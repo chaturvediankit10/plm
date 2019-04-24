@@ -1,13 +1,21 @@
 // Place all the styles related to the calculator controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 body {
   font-family: 'Lato', sans-serif;
 }
 
 
-
+p.small-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    width: 100%;
+    color: #111 !important;
+    font-size: 18px;
+    margin: 0 0 20px 0;
+    line-height: normal;
+}
 .loading-gif{
   position: absolute;
   top: 20px;
@@ -54,9 +62,11 @@ body {
   padding-bottom: 37px;
   text-transform: uppercase;
   font-size: 17px;
-  color: #162647 !important;
+  color: #666 !important;
 }
-
+.navbar-default .nav li a.login-btn {
+  color: #fff !important;
+}
 .navbar-default {
   background-color: #fff;
   /*border-color: #fff;*/
@@ -100,8 +110,9 @@ body {
 }
 
 .form-wrapper {
-  background-color: #3394de;
-  padding: 20px 30px;
+  background: url(../assets/home-search-bg.png) no-repeat center center;
+  padding: 30px;
+  position: relative;
   
 }
 .sticky {
@@ -114,11 +125,17 @@ body {
   border-color: #fff;
   height: 44px;
   box-shadow: none;
-  color: #19214d;
-  font-weight: 600;
+  color: #333;
+  font-weight: 500;
   font-size: 15px;
 }
-
+.form-wrapper form{
+  background: rgba(0,0,0,0.4);
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px -2px #4E4E4E;
+  padding: 20px 10px 15px;
+  position: relative;
+}
 .flex-group {
   display: flex;
   flex-wrap: wrap;
@@ -151,15 +168,15 @@ body {
 
 .form-row .col-md-3,
 .form-row .col-md-4,
-.form-row .col-md-8 {
+.form-row .col-md-8, .form-row .col-md-7, .form-row .col-md-5 {
   padding-right: 10px;
   padding-left: 10px;
 }
 
 .form-wrapper label {
-  font-weight: 600;
+  font-weight: bold;
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
 }
 .padding-left{
 padding-left: 7px !important;
@@ -179,9 +196,8 @@ padding-left: 7px !important;
   background-color: #FF6032;
   color: #fff;
   text-transform: uppercase;
-  font-size: 18px;
-  border: none;
-  border-bottom: 4px solid #b84210;
+  font-size: 16px;
+  border: 2px solid #FF6032;
   padding: 8px 15px;
   font-weight: 400;
 }
@@ -193,24 +209,24 @@ padding-left: 7px !important;
 }
 
 .border-btn {
-  background-color: transparent;
-  color: #fff;
+  background-color: #fff;
+  color: #FF6032;
   text-transform: uppercase;
-  font-size: 18px;
-  border: 2px solid #fff;
+  font-size: 16px;
+  
   padding: 8px;
   font-weight: 400;
 }
 
 .border-btn:hover, .border-btn:focus {
-  background-color: transparent;
-  color: #fff;
+  background-color: #fff;
+  color: #FF6032;
 }
 
 .link-to {
   color: #fff;
   text-decoration: underline;
-  font-weight: 300;
+  font-weight: 600;
   padding-top: 5px;
   display: block;
 }
@@ -240,10 +256,10 @@ padding-left: 7px !important;
 }
 
 .ex-breakdown .table tr th {
-  color: #19224d;
+  color: #111;
   font-weight: 400;
-  padding: 18px;
-  border-bottom: 2px solid #c8d5e6;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
   font-size: 20px;
   text-align: inherit;
 }
@@ -264,7 +280,7 @@ padding-left: 7px !important;
   border-top: none;
   padding: 15px 10px;
   font-size: 18px;
-  color: #19224d;
+  color: #111;
   font-weight: 400;
   height: 58px;
   vertical-align: middle;
@@ -276,14 +292,13 @@ padding-left: 7px !important;
 }
 
 .table-footer {
-  border-top: 2px solid #c8d5e6;
+  border-top: 1px solid #ccc;
 }
 
 .graph-wrapper {
-  border: 3px solid #e9f2f9;
+  border: 1px solid #eee;
   padding: 25px;
-  border-top: none;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0;
 }
 
 .scroll-table {
@@ -353,8 +368,8 @@ padding-left: 7px !important;
 }
 
 .graph-bx {
-  border: 3px solid #e9f2f9;
-  border-radius: 6px;
+  border: 1px solid #eee;
+  border-radius: 0;
   padding: 15px;
 }
 
@@ -369,8 +384,8 @@ padding-left: 7px !important;
   padding: 15px 0;
 }
 .editable-field {
-    background-color: #f7f8fa;
-    border: 1px solid #58a9e1;
+    background-color: #fff;
+    border: 1px solid #f76225;
     text-align: center;
     max-width: 180px;
     padding: 5px 5px;
@@ -424,7 +439,7 @@ footer .copyright {
 
 .dollar-icn {
   position: absolute;
-  color: #19214d;
+  color: #333;
   font-size: 15px;
   left: 22px;
   z-index: 99;
