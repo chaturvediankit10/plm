@@ -193,18 +193,18 @@ padding-left: 7px !important;
 }
 
 .primary-btn {
-  background-color: #FF6032;
+  background-color: #fb6324;
   color: #fff;
   text-transform: uppercase;
-  font-size: 16px;
-  border: 2px solid #FF6032;
+  font-size: 14px;
+  border: 2px solid #fb6324;
   padding: 8px 15px;
   font-weight: 400;
 }
 
 .primary-btn:hover,
 .primary-btn:focus {
-  background-color: #FF6032;
+  background-color: #fb6324;
   color: #fff;
 }
 
@@ -239,8 +239,9 @@ padding-left: 7px !important;
 
 .contain-wrapper p {
   margin: 0 0 20px;
-  color: #19214d;
+  color: #111;
   font-size: 17px;
+  font-weight: 400;
 }
 
 .ex-breakdown h1 {
@@ -278,7 +279,7 @@ padding-left: 7px !important;
 
 .ex-breakdown .table tbody tr td {
   border-top: none;
-  padding: 15px 10px;
+  padding: 10px 10px;
   font-size: 18px;
   color: #111;
   font-weight: 400;
@@ -314,7 +315,7 @@ padding-left: 7px !important;
 }
 
 .ex-breakdown .compare-table .table-border tbody tr td {
-  border-right: 2px solid #c8d5e6;
+  border-right: 1px solid #ccc;
 }
 
 .ex-breakdown .compare-table .table thead tr {
@@ -344,7 +345,7 @@ padding-left: 7px !important;
 .ex-breakdown .compare-table .table-striped tr th {
   font-size: 24px;
   padding: 10px;
-  border-right: 2px solid #c8d5e6;
+  border-right: 1px solid #ccc;
 }
 
 .ex-breakdown .compare-table .table-border tbody tr td:nth-child(2) {
@@ -370,14 +371,15 @@ padding-left: 7px !important;
 .graph-bx {
   border: 1px solid #eee;
   border-radius: 0;
-  padding: 15px;
+  padding: 0 0 15px;
 }
 
 .graph-bx h2 {
   font-size: 20px;
-  color: #a4aec9;
+  color: #111;
   margin: 0;
-  padding: 0;
+  background-color: #eee;
+  padding: 10px;
 }
 
 .graph-container {
@@ -395,11 +397,10 @@ padding-left: 7px !important;
 .graph-bx p {
   margin: 0;
   font-size: 17px;
+  padding: 0 15px;
 }
 
-footer {
-  padding: 0 0 15px;
-}
+
 
 footer .footer-link {
   margin: 0;
@@ -490,7 +491,7 @@ footer .copyright {
 #payoff_schedule_modal .modal-header {
   padding: 15px;
   border-bottom: none;
-  background-color: #58a9e1;
+  background-color: #fb6324;
   color: #fff;
 }
 
@@ -548,9 +549,8 @@ footer .copyright {
     width: 100%;
   }
   .form-wrapper {
-    background-image: url("../images/home-search-bg.png");
     background-repeat: no-repeat;
-    background-position: right top;
+    background-position: center center;
     background-size: cover;
   }
   .link-to {
@@ -632,12 +632,20 @@ footer .copyright {
     color: #162647;
     font-size: 14px;
     padding: 0 20px;
+
   }
-  .ex-breakdown h1 {
+  .breakdown-wrapper h1 {
     font-size: 14px;
     padding: 10px 20px;
     border-radius: 0;
     margin: 30px 0 0;
+  }
+  .breakdown-wrapper .ex-breakdown {
+    border: none;
+    padding: 0;
+  }
+  .breakdown-wrapper .ex-breakdown .tow-graph-wrapper{
+    padding: 15px;
   }
   .ex-breakdown .table tr th,
   .ex-breakdown .table tbody tr td,
