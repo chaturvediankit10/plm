@@ -112,61 +112,58 @@
         <div class="ex-breakdown">
           <div class="graph-wrapper">
             <div id="payoff-schedule-graph" style="height: 300px"></div>
-            <div class="text-center">
+            <div class="text-right">
               <a href="javascript:void(0)" class="btn primary-btn toggle-btn monthly-btn">SHOW PAYOFF SCHEDULE</a>
               <a href="#" class="btn btn-block primary-btn modal-btn" data-toggle="modal" data-target="#payoff_schedule_modal">SHOW PAYOFF SCHEDULE</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="breakdown-wrapper hide-on-mobile toggle-container monthly-pay-none">
+      <div class="ex-breakdown hide-on-mobile toggle-container monthly-pay-none">
         <h1>Monthly Payoff Schedule</h1>
-        <div class="ex-breakdown">
-          
-          <div class="scroll-table mCustomScrollbar" style="overflow: scroll">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th width="15%"></th>
-                  <th align="center">
-                    <center>Principal </center>
-                  </th>
-                  <th>
-                    <center>Interet </center>
-                  </th>
-                  <th>
-                    <center>Remainging </center>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <%
-                if @monthly_payoff_list.present?
-                  %>
-                  <tr>
-                    <td align="center"></td>
-                    <td></td>
-                    <td></td>
-                    <td align="center">
-                      <%= number_to_currency((@home_price - @down_payment).to_f) %>
-                    </td>
-                  </tr>
-                  <%
-                  @monthly_payoff_list.each do |monthly_payoff, index|
-                  %>
-                    <tr>
-                      <td align="center"><%= monthly_payoff[:month] %></td>
-                      <td align="center"><%= number_to_currency(monthly_payoff[:payoff_principal]) %></td>
-                      <td align="center"><%= monthly_payoff[:payoff_interest] %></td>
-                      <td align="center"><%= number_to_currency(monthly_payoff[:payoff_remaining]) %></td>
-                    </tr>
-                  <%
-                  end
-                end
+        <div class="scroll-table mCustomScrollbar" style="overflow: scroll">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th width="15%"></th>
+                <th align="center">
+                  <center>Principal </center>
+                </th>
+                <th>
+                  <center>Interet </center>
+                </th>
+                <th>
+                  <center>Remainging </center>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+              if @monthly_payoff_list.present?
                 %>
-              </tbody>
-            </table>
-          </div>
+                <tr>
+                  <td align="center"></td>
+                  <td></td>
+                  <td></td>
+                  <td align="center">
+                    <%= number_to_currency((@home_price - @down_payment).to_f) %>
+                  </td>
+                </tr>
+                <%
+                @monthly_payoff_list.each do |monthly_payoff, index|
+                %>
+                  <tr>
+                    <td align="center"><%= monthly_payoff[:month] %></td>
+                    <td align="center"><%= number_to_currency(monthly_payoff[:payoff_principal]) %></td>
+                    <td align="center"><%= monthly_payoff[:payoff_interest] %></td>
+                    <td align="center"><%= number_to_currency(monthly_payoff[:payoff_remaining]) %></td>
+                  </tr>
+                <%
+                end
+              end
+              %>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="breakdown-wrapper">
@@ -368,7 +365,7 @@
         <h1>Home Ownership Affordability</h1>
         <div class="ex-breakdown">
           <div class="tow-graph-wrapper">
-            <p class="small-heading">Based on the strong historical housing growth in the entire United State and Mountain View CA, home Ownership is a Strong investment compared to renting with an estimated ROI of 10.42% based on the down payment principal.</p>
+            <p>Based on the strong historical housing growth in the entire United State and Mountain View CA, home Ownership is a Strong investment compared to renting with an estimated ROI of 10.42% based on the down payment principal.</p>
             <div class="row">
               <div class="col-sm-6">
                 <div class="graph-bx">
