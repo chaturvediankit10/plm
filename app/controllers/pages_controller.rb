@@ -93,7 +93,7 @@ class PagesController < ApplicationController
           if key_value.include?("-")
             key_range = (key_value.split("-").first.to_f..key_value.split("-").last.to_f)
             key_range.step(0.01) { |f| array_data << f }
-            instance_variable_set("@#{key}", array_data.uniq)
+            instance_variable_set("@#{key}", array_data.try(:uniq))
           end
         end
       end
@@ -101,7 +101,7 @@ class PagesController < ApplicationController
         key_value = params[key.to_sym]
         if key_value.present?
           array_data = (key_value.split("-").first.to_i..key_value.split("-").last.to_i)
-          instance_variable_set("@#{key}", array_data.uniq)
+          instance_variable_set("@#{key}", array_data.try(:uniq))
         end
       end
     end
