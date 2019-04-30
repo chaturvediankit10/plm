@@ -3,15 +3,15 @@
     <div class="col-md-2 col-xs-6">
       <div class="search-cat zip-srch">
         <label>Zip Code</label>
-        <input type="text" placeholder="123456" value= <%=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  <!-- calling function defined in Application helper-->
+         <!-- <input type="text" placeholder="123456" value= <%#=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  calling function defined in Application helper -->
+        <%= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)) %>
       </div>
     </div>
     <div class="col-md-2 col-xs-6">
       <div class="search-cat purpse-srch">
         <label>Purpose</label>
-        <select>
-          <option>Purchase</option>
-        </select>
+        <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), { prompt: 'Select Loan Purpose'}%>
+          <span class="error-loan-purpose">Please Select Refinance</span>
       </div>
     </div>
     <div class="col-md-2">
@@ -31,9 +31,7 @@
     <div class="col-md-2">
       <div class="search-cat cr-srch">
         <label>Credit Score</label>
-        <select>
-          <option>750+</option>
-        </select>
+          <%= select_tag 'credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")) %>
       </div>
     </div>
     <!-- <button class="rates-btn hm-src-btn-main">Get Rates</button> -->
