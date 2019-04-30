@@ -1,8 +1,7 @@
-GIT
-  remote: https://clarabright91:rate-pureloan987@github.com/PureLoan/APIHookup.git
-  revision: 79e2ee25ee1af47551932023a630b2428a9de269
+PATH
+  remote: /home/richa-yuva/richa_new/search_api
   specs:
-    rate_sheet_extractor (0.1.0)
+    search_api (0.1.0)
       activesupport
       bootsnap (>= 1.1.0)
       bootstrap
@@ -97,7 +96,7 @@ GEM
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.12)
     bindex (0.7.0)
-    bootsnap (1.4.3)
+    bootsnap (1.4.4)
       msgpack (~> 1.0)
     bootstrap (4.3.1)
       autoprefixer-rails (>= 9.1.0)
@@ -138,7 +137,7 @@ GEM
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.4)
-    csv (3.1.0)
+    csv (3.1.1)
     declarative (0.0.10)
     declarative-option (0.1.0)
     devise (4.6.2)
@@ -266,7 +265,7 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
-    os (1.0.0)
+    os (1.0.1)
     paperclip (5.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -441,6 +440,8 @@ DEPENDENCIES
   active_skin
   activeadmin
   aws-sdk (~> 2.3)
+  bootsnap (>= 1.1.0)
+  bootstrap
   bootstrap-sass
   buttercms-rails
   byebug
@@ -454,6 +455,8 @@ DEPENDENCIES
   geocoder (~> 1.4, >= 1.4.9)
   highcharts-rails
   jbuilder (~> 2.5)
+  jquery-datatables
+  jquery-rails
   jquery-validation-rails (~> 1.16)
   listen (>= 3.0.5, < 3.2)
   maskmoney-rails
@@ -463,10 +466,10 @@ DEPENDENCIES
   pg (~> 0.21.0)
   puma (~> 3.7)
   rails (~> 5.1.4)
-  rate_sheet_extractor!
   roo (~> 2.7.0)
   rufus-scheduler (~> 3.4, >= 3.4.2)
   sass-rails (~> 5.0)
+  search_api!
   selenium-webdriver
   sidekiq (~> 5.1, >= 5.1.1)
   spring

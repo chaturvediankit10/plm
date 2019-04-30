@@ -8,113 +8,7 @@
     </div>  
     <!-- banner main search start-->
     <div class="search-main adv-search-mb home-main-search">
-      <div class="row">
-        <div class="col-md-2 col-xs-6">
-          <div class="search-cat zip-srch">
-            <label>Zip Code</label>
-            <input type="text" placeholder="123456" value= <%=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  <!-- calling function defined in Application helper-->
-          </div>
-        </div>
-        <div class="col-md-2 col-xs-6">
-          <div class="search-cat purpse-srch">
-            <label>Purpose</label>
-            <select>
-              <option>Purchase</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="search-cat price-srch">
-            <label>Home Price</label>
-            <div class="dollar-icn">$</div>
-            <input type="text" placeholder="123456">
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="search-cat price-srch">
-            <label>Down Payment</label>
-            <div class="dollar-icn">$</div>
-            <input type="text" placeholder="123456">
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="search-cat cr-srch">
-            <label>Credit Score</label>
-            <select>
-              <option>750+</option>
-            </select>
-          </div>
-        </div>
-        <!-- <button class="rates-btn hm-src-btn-main">Get Rates</button> -->
-        <div class="col-md-2">
-          <button class="rates-btn hm-search-btn-nw">Get Rates</button>
-        </div>
-      </div>
-      <div class="search-adv-option-box">
-        <a href="javascript:void(0);" id="adv-option" class="desktop-btn">Advanced Options
-          <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
-        </a>
-        <a href="" data-toggle="modal" data-target="#advance-srch-mb"  class="mb-btn">Advanced Options
-          <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
-        </a>
-        <div class="search-adv-option" id="search-adv-option-inner">
-          <div class="row">
-            <h4>desired loan programs?</h4>
-            <div class="col-xs-12 col-md-2 advance-check">
-              <div class="form-group"><input type="checkbox" value=""> 30 Year Fixed</div>
-              <div class="form-group"><input type="checkbox" value=""> 20 Year Fixed</div>
-              <div class="form-group"><input type="checkbox" value=""> 15 Year Fixed</div>
-              <div class="form-group"><input type="checkbox" value=""> 10 Year Fixed</div>
-              <div class="form-group"><input type="checkbox" value=""> 7/1 Arm</div>
-              <div class="form-group"><input type="checkbox" value=""> 5/1 Arm</div>
-              <div class="form-group"><input type="checkbox" value=""> 3/1 Arm</div>
-            </div>
-            <div class="col-xs-12 col-md-3 drpdown-box">
-              <select>
-                <option>Select Occupancy</option>
-              </select>
-              <select>
-                <option>Select Occupancy</option>
-              </select>
-              <select>
-                <option>Select Occupancy</option>
-              </select>
-              <select>
-                <option>Select Occupancy</option>
-              </select>
-            </div>
-            <div class="col-xs-12 col-md-4 drpdown-box">
-              <select>
-                <option>Select Prepay Penalty</option>
-              </select>
-              <label>Cash Reserves (mos)</label>
-              <select>
-                <option>$ 15</option>
-              </select>
-              <label>Monthly Debt</label>
-              <select>
-                <option>$ 0</option>
-              </select>
-              <label>Monthly Income</label>
-              <select>
-                <option>$ 5,000</option>
-              </select>
-            </div>
-            <div class="col-xs-12 col-md-3 advance-check">
-              <p>Owned Properties <span>01</span></p>
-              <div class="form-group"><input type="checkbox" value=""> Interest Only</div>
-              <div class="form-group"><input type="checkbox" value=""> Hazard Insuarance Waived</div>
-              <div class="form-group"><input type="checkbox" value=""> Property Taxes Waived</div>
-              <div class="form-group"><input type="checkbox" value=""> First Time Home Buyer</div>
-              <div class="form-group"><input type="checkbox" value=""> Non Perm Resident Alien</div>
-              <div class="form-group"><input type="checkbox" value=""> Foreign National</div>
-              <div class="form-group"><input type="checkbox" value=""> Miltary</div>
-              <div class="form-group"><input type="checkbox" value=""> Rular</div>
-            </div>
-            <div class="col-xs-12 col-md-3 menu-up-adv-search"><a href="javascript:;"><img src="assets/menu-up_03.png" alt=""/></a></div>
-          </div>
-        </div>
-      </div>
+      <%= render 'partials/search_api'%>
     </div>
     <!-- banner main search end-->
   </div>
@@ -718,5 +612,84 @@
     })
   
 </script>
+
+<style type="text/css">
+ .col-md-6{
+    max-width: 71% !important;
+  }
+  i {
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+  #sub_sheets{
+    display: none;
+  }
+  h4#sheet-title{
+    display: none;
+  }
+  .input-grp{
+    background-color: lightslategrey;
+    color: #fff;
+    padding: 5px 10px 5px;
+    margin: 10px;
+  }
+
+  .input-grp h5{
+    font-weight: 600;
+  }
+
+   #search-form{
+      display: -webkit-inline-box;
+    }
+    .panel-basic {
+      border: 1px solid #ccc;
+      margin-bottom: 25px;
+    }
+    .panel-basic .panel-body {
+      min-height: 140px;
+      padding: 15px;
+    }
+    .panel-basic .input-grp {
+      margin: 0;
+      background-color: #95bae4;
+    }
+    .main-form {
+      border: 1px solid #ccc;
+      padding: 0px;
+    }
+    .main-form .panel-body {
+      padding: 15px;
+    }
+    .main-form .panel-heading {
+      background-color: #5399e2;
+      padding: 10px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .lp, .refi {
+      color:red;
+    }
+    .valid {
+      display: none;
+    }
+
+    .error {
+      color: red
+    }
+  .error-loan-purpose{
+    color: red;
+    display:none;
+  }
+
+  .reset{
+    margin-bottom: 5px;
+  }
+</style>
 
 

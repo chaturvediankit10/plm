@@ -75,7 +75,7 @@ gem 'textacular', '~> 5.0', '>= 5.0.1'
 gem 'buttercms-rails'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # Call 'byebug' anywhere in the code to stop execution and get a console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
@@ -99,6 +99,10 @@ gem "chartkick"
 gem "highcharts-rails"
 gem 'whenever', require: false
 gem 'maskmoney-rails'
+gem 'jquery-datatables'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap'
+gem 'jquery-rails'
 
-gem 'rate_sheet_extractor', :git => 'https://clarabright91:rate-pureloan987@github.com/PureLoan/APIHookup.git'
-
+gem 'search_api', :git => "https://#{private_repo_credentials}github.com/PureLoan/APIRead.git"

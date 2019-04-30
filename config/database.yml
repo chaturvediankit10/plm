@@ -5,4 +5,13 @@ development:
   username: postgres
   password: 12345678
   pool: 5
-  database: pure_loan
+  database: rate_sheet_26april
+
+production:
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  username: root
+  password: root
+  pool: 5
+  database: rate_sheet_26april
