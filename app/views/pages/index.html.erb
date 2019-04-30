@@ -29,12 +29,13 @@
     <div class="tab-content rates-tab-content">
       <div id="30years" class="tab-pane fade in active">
         <div class="cntnt-list-box">
-          <h5>30-Year Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+          <h5><%= @term%>-Year Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <% if @result.present? %>
             <% @result.each_with_index do |program, index|%>
               <div class="cntnt-list-inner col-md-12">
                 <div class="inner-logo">
-                  <img src="/assets/CMG Financial.png" alt="">
+                <!-- <img src="/assets/CMG financial.png" alt=""> -->
+                  <img src="<%= "/assets/"+program[:bank_name] %>.png" >
                   <%= program[:bank_name] %>
                   <!-- <p>NMLS ID 54645</p> -->
                 </div>
