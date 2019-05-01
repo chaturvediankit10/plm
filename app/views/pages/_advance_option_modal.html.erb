@@ -1,0 +1,300 @@
+<!-- view details popup start-->
+<div class="modal fade" id="view-details-popup" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <button type="button" class="close" data-dismiss="modal"><%#= image_tag("Homepage-login-overlayw_03.png", :alt => "close", :class => "login-cross-img") %> </button> -->
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <div class="modal-header">
+        <section class="tab-header">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="bank-logos">
+                  <span>
+                    <%= image_tag("pic1_06.png", class: "popup-logo-img") %>
+                  </span>
+                  <div class="extra-wrap">
+                    <h1>Bank of America</h1>
+                    <p>NMLS ID 54645</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#tab1warning" data-toggle="tab">Loan Overview</a></li>
+                  <li><a href="#tab2warning" data-toggle="tab">Monthly Calculator</a></li>
+                  <li><a href="#tab3warning" data-toggle="tab">Loan Parameters</a></li>
+                </ul>
+              </div>
+            </div>
+        </section>
+      </div>
+      <div class="modal-body">
+        <div class="with-nav-tabs panel-warning">
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="tab1warning">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="content-bx">
+                      <h1>Loan Overview</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <td><%= @term%></td>
+                              <td><b>4.356% Rate</b></td>
+                            </tr>
+                            <tr>
+                              <td>Closing Costs</td>
+                              <td><b>$6,590</b></td>
+                            </tr>
+                            <tr>
+                               <td>Loan Amount</td>
+                              <td><b>$240,000</b></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <span class="small-p">Updated Aug 8/30 day rate lock</span>
+                    <div class="content-bx">
+                      <h1>Closing Costs</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <td>Base Rate</td>
+                              <td><b>-$4,747 / 1.978 Points</b></td>
+                            </tr>
+                            <tr>
+                              <td>LTV Credit Score</td>
+                              <td><b>$30,000 / -1.250 Points</b></td>
+                            </tr>
+                            <tr>
+                              <td>Loan Amount</td>
+                              <td><b>-$240 / 0.100 Points</b></td>
+                            </tr>
+                            <tr>
+                              <td>State</td>
+                              <td><b>-$480 / -0.200 Points</b></td>
+                            </tr>
+                            <tr>
+                              <td>Investment Property</td>
+                              <td><b>-$480 / -0.200 Points</b></td>
+                            </tr>
+                            <tr>
+                              <td class="orange-clr">Final</td>
+                              <td class="orange-clr"><b>$6,590 / 2.746 Points</b></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <span class="small-p">*Negative value in closing calculation Indicates a Rebate</span>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="content-bx">
+                      <h1>Extra Savings</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <td colspan="2">Did you know you can save $2400 or 1.2 points by lowering the loan LTV from <br/> 68% to 60% ?</td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">Did you know you can save $2400 or <br/> 1.3 points by Increasing your credit score <br/> rom 680 to 720? </td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">For these savings and more, get in touch with <span class="orange-clr">Citibank</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="tab2warning">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="content-bx">
+                      <h1>Loan Overview</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <td>30 Year Fixed</td>
+                              <td><b>4.356% Rate</b></td>
+                            </tr>
+                            <tr>
+                              <td>Closing Costs</td>
+                              <td><b>$6,590</b></td>
+                            </tr>
+                            <tr>
+                               <td>Loan Amount</td>
+                              <td><b>$240,000</b></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <span class="small-p">Updated Aug 8/30 day rate lock</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="content-bx">
+                      <h1>Calculate Monthly Payment</h1>
+                      <div class="content-bx-content">
+                        <%= image_tag("ec_piechart_status.png") %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="tab3warning">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="content-bx">
+                      <h1>Loan Overview</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <td>30 Year Fixed</td>
+                              <td><b>4.356% Rate</b></td>
+                            </tr>
+                            <tr>
+                              <td>Closing Costs</td>
+                              <td><b>$6,590</b></td>
+                            </tr>
+                            <tr>
+                               <td>Loan Amount</td>
+                              <td><b>$240,000</b></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <span class="small-p">Updated Aug 8/30 day rate lock</span>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="content-bx">
+                      <h1>Loan Parameter</h1>
+                      <div class="content-bx-content row loan-para mCustomScrollbar sb-container-scroll">
+                        <div class="col-md-6 padding-5">
+                          <table class="table table-striped table-condensed">
+                            <tbody>
+                              <tr>
+                                <td>APR</td>
+                                <td align="right"><b>3.344%</b></td>
+                              </tr>
+                              <tr>
+                                <td>Country</td>
+                                <td align="right"><b>Los Angeles</b></td>
+                              </tr>
+                              <tr>
+                                <td>Documentation Type</td>
+                                <td align="right"><b>Full Doc</b></td>
+                              </tr>
+                              <tr>
+                                <td>Employement Status</td>
+                                <td align="right"><b>Wage Earner</b></td>
+                              </tr>
+                              <tr>
+                                <td>Foriegn National</td>
+                                <td align="right"><b>No</b></td>
+                              </tr>
+                              <tr>
+                                <td>Interest Only</td>
+                                <td align="right"><b>No</b></td>
+                              </tr>
+                              <tr>
+                                <td>Loan Purpose</td>
+                                <td align="right"><b>Purchase</b></td>
+                              </tr>
+                              <tr>
+                                <td>Lock Period</td>
+                                <td align="right"><b>30 Days</b></td>
+                              </tr>
+                              <tr>
+                                <td>Monthly Dept</td>
+                                <td align="right"><b>$0</b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">Non-Occupant Co-Borrower</td>
+                                <td align="right"><b>No</b></td>
+                              </tr>
+                              <tr>
+                                <td>Occupancy Status</td>
+                                <td align="right"><b>Owner Occupied</b></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-md-6 padding-5">
+                          <table class="table table-striped table-condensed">
+                            <tbody>
+                              <tr>
+                                <td nowrap="nowrap">Cash ...</td>
+                                <td align="right"><b>24 Months</b></td>
+                              </tr>
+                              <tr>
+                                <td>Credit Score</td>
+                                <td align="right"><b>740</b></td>
+                              </tr>
+                              <tr>
+                                <td>Down Payment</td>
+                                <td align="right"><b>$000,000</b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">First Time Home Buyer</td>
+                                <td align="right"><b>No</b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">Hazard Insurance Weived</td>
+                                <td align="right"><b>No</b></td>
+                              </tr>
+                              <tr>
+                                <td>Loan Amount</td>
+                                <td align="right"><b>$200,000</b></td>
+                              </tr>
+                              <tr>
+                                <td>Loan Term</td>
+                                <td align="right"><b>360 Months</b></td>
+                              </tr>
+                              <tr>
+                                <td>Military</td>
+                                <td align="right"><b>No</b></td>
+                              </tr>
+                              <tr>
+                                <td>Monthly Income</td>
+                                <td align="right"><b>$5000</b></td>
+                              </tr>
+                              <tr>
+                                <td>Non-Permanent Resident</td>
+                                <td align="right"><b>No</b></td>
+                              </tr>
+                              <tr>
+                                <td>---------------</td>
+                                <td align="right"><b>Owner Occupied</b></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content-btns">
+                <p>Get Started with Liberty Mutual Mortgages</p>
+                <a href="#" class="btn btn-orange">Contact lender</a>
+                <a href="#" class="btn btn-orange reverse-btn">Continue Searching</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- view details popup end-->

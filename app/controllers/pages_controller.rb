@@ -9,16 +9,29 @@ class PagesController < ApplicationController
   before_action :update_statue, only: [:change_status, :user_mass_activate, :user_mass_deactivate]
   before_action :set_default, :except => [:show, :refinance, :mortgage, :calculation, :contact_us_email, :research_contact_us_email, :research_post, :update_profile, :change_status, :user_mass_activate, :user_mass_deactivate, :expert_user_registration, :expert_state_and_city, :expert_city_and_zip, :city_freddie_cache_data]
 
+ #  def index
+	# 	@banks = Bank.all
+ #    @all_banks_name = @banks.pluck(:name)
+ #    if params["commit"].present?
+ #      set_variable
+ #      find_base_rate
+ #    end
+ #    fetch_programs_by_bank(true)
+ #    @experts = Expert.where(verified: true).last(5)
+	# end
   def index
-		@banks = Bank.all
+    @banks = Bank.all
     @all_banks_name = @banks.pluck(:name)
     if params["commit"].present?
-      set_variable
-      find_base_rate
-    end
+     set_variable
+     find_base_rate
+   else
+    set_variable
+    find_base_rate
+    find_adjustments_by_searched_programs(Program.all, @lock_period, @arm_basic, @arm_advanced, @fannie_mae_product, @freddie_mac_product, @loan_purpose, @program_category, @property_type, @financing_type, @premium_type, @refinance_option, @misc_adjuster, @state, @loan_type, @loan_size, @result, @interest, @loan_amount, @ltv, @cltv, @term, @credit_score, @dti )
+   end
     fetch_programs_by_bank(true)
-    @experts = Expert.where(verified: true).last(5)
-	end
+  end
 
   def fetch_programs_by_bank(html_type=false)
     @all_programs = Program.all
