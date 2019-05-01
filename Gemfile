@@ -105,6 +105,4 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'jquery-rails'
 
-# gem 'search_api', :git => "https://#{private_repo_credentials}github.com/PureLoan/APIRead.git"
-# gem 'search_api', :path => "/home/yuva/Desktop/Projects/Pure-Loan_last/APIRead"
-gem 'search_api', :git => "https://shivpatel779:yuva_shiv90@github.com/PureLoan/APIRead.git"
+gem "search_api", git: "https://github.com/PureLoan/APIRead.git"
