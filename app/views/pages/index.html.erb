@@ -34,10 +34,10 @@
             <% @result.each_with_index do |program, index|%>
               <div class="cntnt-list-inner col-md-12">
                 <div class="inner-logo">
-                <!-- <img src="/assets/CMG financial.png" alt=""> -->
+                <!-- <img src="//assets/CMG financial.png" alt=""> -->
                   <img src="<%= "/assets/"+program[:bank_name] %>.png" >
                   <%= program[:bank_name] %>
-                  <!-- <p>NMLS ID 54645</p> -->
+                  <p>NMLS ID 1067</p>
                 </div>
                 <div class="inner-block">
                   <% 
@@ -65,12 +65,12 @@
                   </div>
                 </div>
                 <div class="inner-block-btn">
-                  <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+                  <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
                   <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
                   <a href="" class="lendr-web-link">Lender Website</a>
                 </div>
                 <div class="mb-scroll-icn">
-                  <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
+                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
                 </div>
               </div>
               <%= render partial: "advance_option_modal" , locals: { program: program, index: index,final_rate: final_calculate  } %>
@@ -78,7 +78,7 @@
           <% end %>
           <!-- <div class="cntnt-list-inner dark-gray-bg col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic2_03.png" alt="">
+              <img src="/assets/pic2_03.png" alt="">
               <a href="">Bank of America</a>
               <p>NMLS ID 54645</p>
             </div>
@@ -103,7 +103,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -113,7 +113,7 @@
           </div>
           <div class="cntnt-list-inner gray-bg col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic3_07.png" alt="">
+              <img src="/assets/pic3_07.png" alt="">
               <a href="">Bank of America</a>
               <p>NMLS ID 54645</p>
             </div>
@@ -138,7 +138,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -153,9 +153,9 @@
           <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <div class="cntnt-list-inner col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic1_06.png" alt="">
+              <img src="/assets/pic1_06.png" alt="">
               <a href="">Bank of America</a>
-              <p>NMLS ID 54645</p>
+              <p>NMLS ID 1067</p>
             </div>
             <div class="inner-block">
               <span class="hdng-big">4.356% Rate</span>
@@ -178,7 +178,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -188,7 +188,7 @@
           </div>
           <div class="cntnt-list-inner dark-gray-bg col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic2_03.png" alt="">
+              <img src="/assets/pic2_03.png" alt="">
               <a href="">Bank of America</a>
               <p>NMLS ID 54645</p>
             </div>
@@ -213,7 +213,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -223,7 +223,7 @@
           </div>
           <div class="cntnt-list-inner gray-bg col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic3_07.png" alt="">
+              <img src="/assets/pic3_07.png" alt="">
               <a href="">Bank of America</a>
               <p>NMLS ID 54645</p>
             </div>
@@ -248,7 +248,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -264,7 +264,7 @@
           <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <div class="cntnt-list-inner col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic1_06.png" alt="">
+              <img src="/assets/pic1_06.png" alt="">
               <a href="">Bank of America</a>
               <p>NMLS ID 54645</p>
             </div>
@@ -289,7 +289,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -299,7 +299,7 @@
           </div>
           <div class="cntnt-list-inner dark-gray-bg col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic2_03.png" alt="">
+              <img src="/assets/pic2_03.png" alt="">
               <a href="">Bank of America</a>
               <p>NMLS ID 54645</p>
             </div>
@@ -324,7 +324,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -334,7 +334,7 @@
           </div>
           <div class="cntnt-list-inner gray-bg col-md-12">
             <div class="inner-logo">
-              <img src="assets/pic3_07.png" alt="">
+              <img src="/assets/pic3_07.png" alt="">
               <a href="">Bank of America</a>
               <p>NMLS ID 54645</p>
             </div>
@@ -359,7 +359,7 @@
               </div>
             </div>
             <div class="inner-block-btn">
-              <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
               <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
               <a href="" class="lendr-web-link">Lender Website</a>
             </div>
@@ -381,8 +381,8 @@
 <section class="advertisement-box">
   <div class="container">
     <div class="advertisement">
-      <img class="mb-hide" src="assets/home-ad.jpg" alt="">
-      <img class="mb-only" src="assets/expert-ad-mb-img.png" alt="">
+      <img class="mb-hide" src="/assets/home-ad.jpg" alt="">
+      <img class="mb-only" src="/assets/expert-ad-mb-img.png" alt="">
       <h4>Become a mortgage expert on<br> Pureloan.com for Albany, CA</h4>
       <span class="">Reach hundreds of thousands of home buyers or
       refi customers every month!</span>
@@ -402,7 +402,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><img src="images/cancel_03.png" alt="" class="login-cross-img"></button>
+        <button type="button" class="close" data-dismiss="modal"><img src="/assets/cancel_03.png" alt="" class="login-cross-img"></button>
         <h4>Become an expert on <b>Pureloan.com</b> and reach hundreds of
           thousands of home buyers or refi customers every month!
         </h4>

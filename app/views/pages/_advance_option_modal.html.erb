@@ -64,7 +64,7 @@
                             </tr>
                             <tr>
                                <td>Loan Amount</td>
-                              <td><b> $<%= (@home_price - @down_payment) rescue nil %></b></td>
+                              <td><b> $<%= (@home_price.tr(',','').to_i - @down_payment.tr(',','').to_i) rescue nil %></b></td>
                             </tr>
                           </tbody>
                         </table>
@@ -78,7 +78,7 @@
                           <tbody>
                             <tr>
                               <td>Base Rate</td>
-                              <td><b>-$4,747 / 1.978 Points</b></td>
+                              <td><b><%= program[:base_rate] %></b></td>
                             </tr>
                             <tr>
                               <td>LTV Credit Score</td>
@@ -86,11 +86,11 @@
                             </tr>
                             <tr>
                               <td>Loan Amount</td>
-                              <td><b> $<%= (@home_price - @down_payment) rescue nil %> Points</b></td>
+                              <td><b> $<%= (@home_price.tr(',','').to_i - @down_payment.tr(',','').to_i) rescue nil %></b></td>
                             </tr>
                             <tr>
                               <td>State</td>
-                              <td><b>-$480 / -0.200 Points</b></td>
+                              <td><b><%= @state%></b></td>
                             </tr>
                             <tr>
                               <td>Investment Property</td>
@@ -146,7 +146,7 @@
                             </tr>
                             <tr>
                                <td>Loan Amount</td>
-                              <td><b> $<%= (@home_price - @down_payment) rescue nil %></b></td>
+                              <td><b> $<%= (@home_price.tr(',','').to_i - @down_payment.tr(',','').to_i) rescue nil %></b></td>
                             </tr>
                           </tbody>
                         </table>
@@ -182,7 +182,7 @@
                             </tr>
                             <tr>
                                <td>Loan Amount</td>
-                              <td><b> $<%= (@home_price - @down_payment) rescue nil %></b></td>
+                              <td><b> $<%= (@home_price.tr(',','').to_i - @down_payment.tr(',','').to_i) rescue nil %></b></td>
                             </tr>
                           </tbody>
                         </table>
@@ -254,7 +254,7 @@
                               </tr>
                               <tr>
                                 <td>Credit Score</td>
-                                <td align="right"><b><%= @credit_score%></b></td>
+                                <td align="right"><b><%= @credit_score1%></b></td>
                               </tr>
                               <tr>
                                 <td>Down Payment</td>
@@ -270,7 +270,7 @@
                               </tr>
                               <tr>
                                 <td>Loan Amount</td>
-                                <td align="right"><b> $<%= (@home_price - @down_payment) rescue nil %></b></td>
+                                <td><b> $<%= (@home_price.tr(',','').to_i - @down_payment.tr(',','').to_i) rescue nil %></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Term</td>

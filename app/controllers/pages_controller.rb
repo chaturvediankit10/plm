@@ -110,8 +110,10 @@ class PagesController < ApplicationController
      @interest = "4.000"
      @loan_amount = "0 - 50000"
      @ltv = "65.01 - 70.00"
+     @ltv1 = "65.01 - 70.00"
      @cltv = "75.01 - 80.00"
      @credit_score = "700-719"
+     @credit_score1 = "700-719"
      @dti = "25.6%"
      @loan_purpose = "Purchase"
      @loan_type = "Fixed"
@@ -283,6 +285,10 @@ class PagesController < ApplicationController
         @filter_not_nil[:loan_size] = nil
       end
     end
+    @credit_score1 = params[:credit_score].present? ? params[:credit_score] : ""
+    @ltv1 = params[:credit_score].present? ? params[:credit_score] : ""
+    @down_payment = params[:down_payment].present? ? params[:down_payment].tr(",", '').to_i : 50000
+    @home_price = params[:home_price].present? ? params[:home_price].tr(",", '').to_i : 50000
   end
 
   def find_programs_on_term_based(programs, find_term)
