@@ -2,6 +2,7 @@ module Dashboard
 extend ActiveSupport::Concern
   def find_adjustments_by_searched_programs(programs, value_lock_period, value_arm_basic, value_arm_advanced, value_fannie_mae_product, value_freddie_mac_product, value_loan_purpose, value_program_category, value_property_type, value_financing_type, value_premium_type, value_refinance_option, value_misc_adjuster, value_state, value_loan_type, value_loan_size, value_result, value_interest, value_loan_amount, value_ltv, value_cltv, value_term, value_credit_score, value_dti)
     hash_obj = {
+      :id => "",
       :bank_name => "",
       :loan_category => "",
       :program_category => "",
@@ -12,6 +13,7 @@ extend ActiveSupport::Concern
       :final_rate => []
     }
     programs.each do |pro|
+      hash_obj[:id] = pro.id
       hash_obj[:bank_name] = pro.bank_name.present? ? pro.bank_name : ""
       hash_obj[:loan_category] = pro.loan_category.present? ? pro.loan_category : ""
       hash_obj[:program_category] = pro.program_category.present? ? pro.program_category : ""
@@ -2178,15 +2180,16 @@ extend ActiveSupport::Concern
       end
 
       hash_obj = {
-      :bank_name => "",
-      :loan_category => "",
-      :program_category => "",
-      :program_name => "",
-      :base_rate => 0.0,
-      :adj_points => [],
-      :adj_primary_key => [],
-      :final_rate => []
-    }
+        :id => "",
+        :bank_name => "",
+        :loan_category => "",
+        :program_category => "",
+        :program_name => "",
+        :base_rate => 0.0,
+        :adj_points => [],
+        :adj_primary_key => [],
+        :final_rate => []
+      }
 
     end
     return value_result

@@ -28,6 +28,7 @@ class PagesController < ApplicationController
    else
     set_variable
     find_base_rate
+    set_default_values_for_adjustment_input
     find_adjustments_by_searched_programs(Program.all, @lock_period, @arm_basic, @arm_advanced, @fannie_mae_product, @freddie_mac_product, @loan_purpose, @program_category, @property_type, @financing_type, @premium_type, @refinance_option, @misc_adjuster, @state, @loan_type, @loan_size, @result, @interest, @loan_amount, @ltv, @cltv, @term, @credit_score, @dti )
    end
     fetch_programs_by_bank(true)
@@ -85,16 +86,37 @@ class PagesController < ApplicationController
     @filter_data = {}
     @filter_not_nil = {}
     @interest = "4.000"
-    @lock_period ="30"
-    @loan_size = "High-Balance"
-    @loan_type = "Fixed"
     @term = "30"
     @ltv = []
     @credit_score = []
     @cltv = []
-    @fannie_mae_product = "HomeReady"
-    @freddie_mac_product = "Home Possible"
     @flag_loan_type = false
+  end
+
+  def set_default_values_for_adjustment_input
+     @lock_period = "30"
+     @arm_basic = "5/1"
+     @arm_advanced = "1-1-5"
+     @fannie_mae_product = "HomeReady"
+     @freddie_mac_product = "Home Possible"
+     @program_category = "6900"
+     @property_type = "1 Unit"
+     @financing_type = "Subordinate Financing"
+     @premium_type ="1 Unit"
+     @refinance_option ="Cash Out"
+     @misc_adjuster = "CA Escrow Waiver (Full or Taxes Only)"
+     @state = "All"
+     @result = []
+     @interest = "4.000"
+     @loan_amount = "0 - 50000"
+     @ltv = "65.01 - 70.00"
+     @cltv = "75.01 - 80.00"
+     @credit_score = "700-719"
+     @dti = "25.6%"
+     @loan_purpose = "Purchase"
+     @loan_type = "Fixed"
+     @loan_size = "Jumbo"
+     @term = "30"
   end
 
   def modified_ltv_cltv_credit_score

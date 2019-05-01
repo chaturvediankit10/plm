@@ -18,14 +18,18 @@
       <div class="search-cat price-srch">
         <label>Home Price</label>
         <div class="dollar-icn">$</div>
-        <input type="text" placeholder="123456">
+        <!-- <input type="text" placeholder="123456"> -->
+        <%@home_price = params[:home_price].present? ? params[:home_price] : 300000 %>
+        <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0) %>
       </div>
     </div>
     <div class="col-md-2">
       <div class="search-cat price-srch">
         <label>Down Payment</label>
         <div class="dollar-icn">$</div>
-        <input type="text" placeholder="123456">
+        <!-- <input type="text" placeholder="123456"> -->
+        <%@down_payment = params[:down_payment].present? ? params[:down_payment] : 50000 %>
+        <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0) %>
       </div>
     </div>
     <div class="col-md-2">

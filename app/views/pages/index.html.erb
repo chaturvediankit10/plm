@@ -43,8 +43,9 @@
                   <% 
                     base_rate = (program[:base_rate].to_f).round(3).to_s
                     final_rate = (program[:final_rate].sum).round(3).to_s
+
                   %>
-                  <span class="hdng-big"><%= final_rate.split(".").last.length == 1 ? final_rate + "00" : final_rate.split(".").last.length == 2 ? final_rate + "0" : final_rate rescue nil %>% Rate</span>
+                  <span class="hdng-big"><%= final_calculate = final_rate.split(".").last.length == 1 ? final_rate + "00" : final_rate.split(".").last.length == 2 ? final_rate + "0" : final_rate rescue nil %>% Rate</span>
                   <p class="hiden-txt-mb">4.145% APR</p>
                   <p><%= @term %> Year Fixed</p>
                   <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
@@ -65,14 +66,14 @@
                 </div>
                 <div class="inner-block-btn">
                   <img src="assets/heart_03.png" alt="" class="wishlist-icn-fill">
-                  <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
+                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
                   <a href="" class="lendr-web-link">Lender Website</a>
                 </div>
                 <div class="mb-scroll-icn">
                   <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
                 </div>
               </div>
-              <%= render partial: "advance_option_modal" , locals: { program: program } %>
+              <%= render partial: "advance_option_modal" , locals: { program: program, index: index,final_rate: final_calculate  } %>
             <% end %>
           <% end %>
           <!-- <div class="cntnt-list-inner dark-gray-bg col-md-12">
