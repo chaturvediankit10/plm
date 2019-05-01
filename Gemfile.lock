@@ -1,5 +1,6 @@
-PATH
-  remote: /home/hp/personal/kevin_projects/APIRead
+GIT
+  remote: https://github.com/PureLoan/APIRead.git
+  revision: 4611ab66a18705590703e0cf3f6dfa7950b1569d
   specs:
     search_api (0.1.0)
       activesupport
@@ -85,13 +86,13 @@ GEM
     autoprefixer-rails (9.5.1)
       execjs
     aws-eventstream (1.0.3)
-    aws-sdk (2.11.264)
-      aws-sdk-resources (= 2.11.264)
-    aws-sdk-core (2.11.264)
+    aws-sdk (2.11.265)
+      aws-sdk-resources (= 2.11.265)
+    aws-sdk-core (2.11.265)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.264)
-      aws-sdk-core (= 2.11.264)
+    aws-sdk-resources (2.11.265)
+      aws-sdk-core (= 2.11.265)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.12)
@@ -147,7 +148,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.8.0)
-    et-orbi (1.2.0)
+    et-orbi (1.2.1)
       tzinfo
     execjs (2.7.0)
     faraday (0.15.4)
@@ -483,4 +484,4 @@ DEPENDENCIES
   zip-codes
 
 BUNDLED WITH
-   1.16.6
+   2.0.1
