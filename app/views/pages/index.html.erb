@@ -52,6 +52,7 @@
           <div class="col-md-2">
             <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
             <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw" %>
+
           </div>
         </div>
         <div class="search-adv-option-box">
@@ -99,9 +100,9 @@
       <div class="modal-body">
         <%= render 'partials/search_api'%>
       </div>
-      <!-- <div class="modal-footer adv-search-mdl-footer">
+      <div class="modal-footer adv-search-mdl-footer">
          <button class="rates-btn">Get Rates</button>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
@@ -116,7 +117,7 @@
     <ul class="nav nav-tabs rates-tab">
       <li class="active"><a data-toggle="tab" href="#30years">30 Year</a></li>
       <li><a data-toggle="tab" href="#15years">15 Year</a></li>
-      <li><a data-toggle="tab" href="#15years-2">15 Year</a></li>
+      <li><a data-toggle="tab" href="#10years-2">10 Year</a></li>
     </ul>
 
     <div class="tab-content rates-tab-content">
@@ -129,7 +130,7 @@
                 <div class="inner-logo">
                 <!-- <img src="//assets/CMG financial.png" alt=""> -->
                   <img src="<%= "/assets/"+program[:bank_name] %>.png" >
-                  <p><%= program[:bank_name] %></p>
+                  <p class="orange-link"><%= program[:bank_name] %></p>
                   <p>NMLS ID 1067</p>
                 </div>
                 <div class="inner-block">
@@ -240,7 +241,7 @@
             </div>
           </div> -->
         </div>
-
+      </div>
       <div id="15years" class="tab-pane fade">
         <div class="cntnt-list-box">
           <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
@@ -352,9 +353,9 @@
         </div>
       </div>
       
-      <div id="15years-2" class="tab-pane fade">
+      <div id="10years-2" class="tab-pane fade">
         <div class="cntnt-list-box">
-          <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+          <h5>10-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <div class="cntnt-list-inner col-md-12">
             <div class="inner-logo">
               <img src="/assets/pic1_06.png" alt="">
