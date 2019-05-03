@@ -1056,7 +1056,6 @@ extend ActiveSupport::Concern
                     if adj.data[first_key][adj_key_hash[key_index-3]][adj_key_hash[key_index-2]][adj_key_hash[key_index-1]].present?
                       ltv_key2 = ''
                       ltv_key2 = ltv_key_of_adjustment(adj.data[first_key][adj_key_hash[key_index-3]][adj_key_hash[key_index-2]][adj_key_hash[key_index-1]].keys, value_ltv)
-
                       if ltv_key2.present?
                         adj_key_hash[key_index] = ltv_key2
                       else

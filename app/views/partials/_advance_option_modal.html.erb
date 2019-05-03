@@ -214,6 +214,7 @@
                                 <td>Loan Size</td>
                                 <% 
                                 loan_size_value = ""
+                                if program_data.loan_size.present?
                                 program_data.loan_size.split("&").map do |loan_size|%>
                                   <%
                                     if loan_size_value.present?
@@ -222,7 +223,10 @@
                                       loan_size_value = loan_size
                                     end
                                   %>
-                                <%end %>
+                                <%
+                                  end 
+                                end
+                                %>
                                 <td align="right"><b><%= loan_size_value %></b></td>
                               </tr>
                               <tr>

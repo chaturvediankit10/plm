@@ -99,10 +99,10 @@ class PagesController < ApplicationController
      @result = []
      @interest = "4.000"
      @loan_amount = "0 - 50000"
-     @ltv = "65.01 - 70.00"
      @ltv1 = "65.01 - 70.00"
-     @cltv = "75.01 - 80.00"
-     @credit_score = "700-719"
+     # @ltv = "65.01 - 70.00"
+     # @cltv = "75.01 - 80.00"
+     # @credit_score = "700-719"
      @credit_score1 = "700-719"
      @dti = "25.6%"
      @loan_purpose = "Purchase"
