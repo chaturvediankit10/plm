@@ -119,6 +119,8 @@ class PagesController < ApplicationController
      @loan_type = "Fixed"
      @loan_size = "Jumbo"
      @term = "30"
+     @home_price = "300000"
+     @down_payment = "50000"
   end
 
   def modified_ltv_cltv_credit_score
@@ -286,9 +288,9 @@ class PagesController < ApplicationController
       end
     end
     @credit_score1 = params[:credit_score].present? ? params[:credit_score] : ""
-    @ltv1 = params[:credit_score].present? ? params[:credit_score] : ""
-    @down_payment = params[:down_payment].present? ? params[:down_payment].tr(",", '').to_i : 50000
-    @home_price = params[:home_price].present? ? params[:home_price].tr(",", '').to_i : 50000
+    @ltv1 = params[:ltv].present? ? params[:ltv] : ""
+    @home_price = params[:home_price].present? ? params[:home_price].tr(',', '') : "300000"
+    @down_payment = params[:down_payment].present? ? params[:down_payment].tr(',', '') : "50000"
   end
 
   def find_programs_on_term_based(programs, find_term)

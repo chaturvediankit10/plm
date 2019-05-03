@@ -41,7 +41,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Loan Purpose</label>
-                    <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), { prompt: 'Select Loan Purpose', :class=> "form-control" }%>
+                    <%= select_tag 'adv_loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), { :class=> "form-control" }%>
                   <span class="error-loan-purpose">Please Select Refinance</span>
                 </div>
               </div>
@@ -221,7 +221,7 @@
         <div class="form-group">
           <label>Credit Score</label>
           <div class="input-group">
-            <%= select_tag 'credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")), :class=> "form-control" %>
+            <%= select_tag 'adv_credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")), :class=> "form-control" %>
           </div>
         </div>
       </div>
@@ -245,7 +245,7 @@
         <div class="form-group">
           <label>State</label>
           <div class="input-group">
-            <%= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)), :class=> "form-control" %>
+            <%= select_tag 'adv_state', options_for_select(Program::STATE, (params[:state] rescue nil)), :class=> "form-control" %>
           </div>
         </div>
       </div>

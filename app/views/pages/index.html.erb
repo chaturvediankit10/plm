@@ -19,8 +19,8 @@
           </div>
           <div class="col-md-2 col-xs-6">
             <div class="search-cat purpse-srch">
-              <label>Purpose</label>
-              <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), { prompt: 'Select Loan Purpose'}%>
+              <label>Loan Purpose</label>
+              <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil))%>
                 <span class="error-loan-purpose">Please Select Refinance</span>
             </div>
           </div>
@@ -28,8 +28,6 @@
             <div class="search-cat price-srch">
               <label>Home Price</label>
               <div class="dollar-icn">$</div>
-              <!-- <input type="text" placeholder="123456"> -->
-              <%@home_price = params[:home_price].present? ? params[:home_price] : 300000 %>
               <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0) %>
             </div>
           </div>
@@ -37,8 +35,6 @@
             <div class="search-cat price-srch">
               <label>Down Payment</label>
               <div class="dollar-icn">$</div>
-              <!-- <input type="text" placeholder="123456"> -->
-              <%@down_payment = params[:down_payment].present? ? params[:down_payment] : 50000 %>
               <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0) %>
             </div>
           </div>
@@ -137,7 +133,6 @@
                   <% 
                     base_rate = (program[:base_rate].to_f).round(3).to_s
                     final_rate = (program[:final_rate].sum).round(3).to_s
-
                   %>
                   <span class="hdng-big"><%= final_calculate = final_rate.split(".").last.length == 1 ? final_rate + "00" : final_rate.split(".").last.length == 2 ? final_rate + "0" : final_rate rescue nil %>% Rate</span>
                   <p class="hiden-txt-mb">4.145% APR</p>
@@ -928,6 +923,28 @@
   //loan_purpose default error hide
   $('#loan_purpose').change(function () {
     $('.error-loan-purpose').hide()
+    $('#adv_loan_purpose').val($('#loan_purpose').val())
+  });
+
+  $('#adv_loan_purpose').change(function () {
+    $('.error-loan-purpose').hide()
+    $('#loan_purpose').val($('#adv_loan_purpose').val())
+  });
+
+  $('#state').change(function () {
+    $('#adv_state').val($('#state').val())
+  });
+
+  $('#adv_state').change(function () {
+    $('#state').val($('#adv_state').val())
+  });
+
+  $('#credit_score').change(function () {
+    $('#adv_credit_score').val($('#credit_score').val())
+  });
+
+  $('#adv_credit_score').change(function () {
+    $('#credit_score').val($('#adv_credit_score').val())
   });
 
   //when select fannie_mae_product fannie_mae will be true
