@@ -112,8 +112,8 @@
     </p>
     <ul class="nav nav-tabs rates-tab">
       <li class="active"><a data-toggle="tab" href="#30years">30 Year</a></li>
-      <li><a data-toggle="tab" href="#15years">15 Year</a></li>
-      <li><a data-toggle="tab" href="#10years-2">10 Year</a></li>
+      <li><a data-toggle="tab" href="#20years">20 Year</a></li>
+      <li><a data-toggle="tab" href="#15years-2">15 Year</a></li>
     </ul>
 
     <div class="tab-content rates-tab-content">
@@ -136,7 +136,8 @@
                   %>
                   <span class="hdng-big"><%= final_calculate = final_rate.split(".").last.length == 1 ? final_rate + "00" : final_rate.split(".").last.length == 2 ? final_rate + "0" : final_rate rescue nil %>% Rate</span>
                   <p class="hiden-txt-mb">4.145% APR</p>
-                  <p><%= @term %> Year Fixed</p>
+                  
+                  <p>30 Year Fixed</p>
                   <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
                 </div>
                 <div class="inner-block-combined">
@@ -162,7 +163,7 @@
                   <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
                 </div>
               </div>
-              <%= render partial: "advance_option_modal" , locals: { program: program, index: index,final_rate: final_calculate  } %>
+              <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate: final_calculate  } %>
             <% end %>
           <% end %>
           <!-- <div class="cntnt-list-inner dark-gray-bg col-md-12">
@@ -237,9 +238,9 @@
           </div> -->
         </div>
       </div>
-      <div id="15years" class="tab-pane fade">
+      <div id="20years" class="tab-pane fade">
         <div class="cntnt-list-box">
-          <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+          <h5>20-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <div class="cntnt-list-inner col-md-12">
             <div class="inner-logo">
               <img src="/assets/pic1_06.png" alt="">
@@ -348,9 +349,9 @@
         </div>
       </div>
       
-      <div id="10years-2" class="tab-pane fade">
+      <div id="15years-2" class="tab-pane fade">
         <div class="cntnt-list-box">
-          <h5>10-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+          <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <div class="cntnt-list-inner col-md-12">
             <div class="inner-logo">
               <img src="/assets/pic1_06.png" alt="">
