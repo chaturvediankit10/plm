@@ -303,6 +303,10 @@ header .navbar-right {
 
 
 /*view details modal css start*/
+.loan-property label.error{
+  bottom: 0;
+  left: 15px;
+}
 
 .view-details-popup .modal-dialog {
   max-width: 995px;

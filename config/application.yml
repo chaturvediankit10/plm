@@ -10,8 +10,18 @@
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
+# S3_BUCKET_NAME: pureloan-files
+# AWS_ACCESS_KEY_ID: AKIAINI4NNFBVT7QFOQQ
+# AWS_SECRET_ACCESS_KEY: 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
+# S3_REGION: us-west-1
+# S3_HOST_NAME: s3-us-west-1.amazonaws.com
+
 S3_BUCKET_NAME: pureloan-files
-AWS_ACCESS_KEY_ID: AKIAINI4NNFBVT7QFOQQ
-AWS_SECRET_ACCESS_KEY: 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
+AWS_ACCESS_KEY_ID: AKIATUW4UUUTXMYBFDE7
+AWS_SECRET_ACCESS_KEY: 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
 S3_REGION: us-west-1
 S3_HOST_NAME: s3-us-west-1.amazonaws.com
+
+
+
+
