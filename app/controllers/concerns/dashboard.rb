@@ -3,10 +3,31 @@ extend ActiveSupport::Concern
   def find_adjustments_by_searched_programs(programs, value_lock_period, value_arm_basic, value_arm_advanced, value_fannie_mae_product, value_freddie_mac_product, value_loan_purpose, value_program_category, value_property_type, value_financing_type, value_premium_type, value_refinance_option, value_misc_adjuster, value_state, value_loan_type, value_loan_size, value_result, value_interest, value_loan_amount, value_ltv, value_cltv, value_term, value_credit_score, value_dti)
     hash_obj = {
       :id => "",
-      :bank_name => "",
+      :conforming => "",
+      :fannie_mae => "",
+      :fannie_mae_home_ready => "",
+      :freddie_mac => "",
+      :freddie_mac_home_possible => "",
+      :fha => "",
+      :va => "",
+      :usda => "",
+      :streamline => "",
+      :full_doc => "",
       :loan_category => "",
       :program_category => "",
+      :bank_name => "",
       :program_name => "",
+      :loan_type => "",
+      :loan_purpose => "",
+      :arm_basic => "",
+      :arm_advanced => "",
+      :loan_size => "",
+      :fannie_mae_product => "",
+      :freddie_mac_product => "",
+      :du => "",
+      :lp => "",
+      :arm_benchmark => "",
+      :arm_margin => "",
       :base_rate => 0.0,
       :adj_points => [],
       :adj_primary_key => [],
@@ -14,11 +35,31 @@ extend ActiveSupport::Concern
     }
     programs.each do |pro|
       hash_obj[:id] = pro.id
-      hash_obj[:bank_name] = pro.bank_name.present? ? pro.bank_name : ""
-      hash_obj[:loan_category] = pro.loan_category.present? ? pro.loan_category : ""
-      hash_obj[:program_category] = pro.program_category.present? ? pro.program_category : ""
-      hash_obj[:program_name] = pro.program_name.present? ? pro.program_name : ""
-
+      hash_obj[:conforming] = pro.conforming
+      hash_obj[:fannie_mae] = pro.fannie_mae
+      hash_obj[:fannie_mae_home_ready] = pro.fannie_mae_home_ready
+      hash_obj[:freddie_mac] = pro.freddie_mac
+      hash_obj[:freddie_mac_home_possible] = pro.freddie_mac_home_possible
+      hash_obj[:fha] = pro.fha
+      hash_obj[:va] = pro.va
+      hash_obj[:usda] = pro.usda
+      hash_obj[:streamline] = pro.streamline
+      hash_obj[:full_doc] = pro.full_doc
+      hash_obj[:loan_category] = pro.loan_category
+      hash_obj[:program_category] = pro.program_category
+      hash_obj[:bank_name] = pro.bank_name
+      hash_obj[:program_name] = pro.program_name
+      hash_obj[:loan_type] = pro.loan_type
+      hash_obj[:loan_purpose] = pro.loan_purpose
+      hash_obj[:arm_basic] = pro.arm_basic
+      hash_obj[:arm_advanced] = pro.arm_advanced
+      hash_obj[:loan_size] = pro.loan_size
+      hash_obj[:fannie_mae_product] = pro.fannie_mae_product
+      hash_obj[:freddie_mac_product] = pro.freddie_mac_product
+      hash_obj[:du] = pro.du
+      hash_obj[:lp] = pro.lp
+      hash_obj[:arm_benchmark] = pro.arm_benchmark
+      hash_obj[:arm_margin] = pro.arm_margin
       if pro.base_rate.present?
         base_rate_keys = pro.base_rate.keys.map{ |k| ActionController::Base.helpers.number_with_precision(k, :precision => 3)}
 
@@ -70,7 +111,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmBasic"
@@ -81,7 +121,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmAdvanced"
@@ -92,7 +131,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FannieMaeProduct"
@@ -103,7 +141,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FreddieMacProduct"
@@ -114,7 +151,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanPurpose"
@@ -125,7 +161,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -143,7 +178,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -155,7 +189,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -167,7 +200,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FinancingType"
@@ -178,7 +210,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "PremiumType"
@@ -189,7 +220,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -207,7 +237,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -225,7 +254,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -237,7 +265,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -249,7 +276,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -263,7 +289,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -281,7 +306,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -302,7 +326,6 @@ extend ActiveSupport::Concern
                       end
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -314,7 +337,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -328,7 +350,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -342,7 +363,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -356,7 +376,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmBasic"
@@ -367,7 +386,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmAdvanced"
@@ -378,7 +396,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FannieMaeProduct"
@@ -389,7 +406,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FreddieMacProduct"
@@ -400,7 +416,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanPurpose"
@@ -411,7 +426,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -429,7 +443,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -441,7 +454,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -453,7 +465,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FinancingType"
@@ -464,7 +475,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "PremiumType"
@@ -475,7 +485,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -494,7 +503,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -512,7 +520,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -524,7 +531,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -536,7 +542,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -550,7 +555,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "CLTV"
@@ -567,7 +571,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -588,7 +591,6 @@ extend ActiveSupport::Concern
                       end
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -600,7 +602,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -614,7 +615,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -628,7 +628,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -643,7 +642,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmBasic"
@@ -654,7 +652,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmAdvanced"
@@ -665,7 +662,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FannieMaeProduct"
@@ -676,7 +672,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FreddieMacProduct"
@@ -687,7 +682,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanPurpose"
@@ -698,7 +692,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -716,7 +709,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -728,7 +720,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -740,7 +731,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FinancingType"
@@ -751,7 +741,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "PremiumType"
@@ -762,7 +751,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -781,7 +769,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -799,7 +786,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -811,7 +797,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -823,7 +808,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanSize"
@@ -836,7 +820,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "CLTV"
@@ -853,7 +836,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -874,7 +856,6 @@ extend ActiveSupport::Concern
                       end
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -886,7 +867,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "Term"
@@ -899,7 +879,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -913,7 +892,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -927,7 +905,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmBasic"
@@ -938,7 +915,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmAdvanced"
@@ -949,7 +925,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FannieMaeProduct"
@@ -960,7 +935,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FreddieMacProduct"
@@ -971,7 +945,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanPurpose"
@@ -982,7 +955,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1001,7 +973,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1013,7 +984,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1025,7 +995,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FinancingType"
@@ -1036,7 +1005,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "PremiumType"
@@ -1047,7 +1015,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1065,7 +1032,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1083,7 +1049,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1095,7 +1060,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1107,7 +1071,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanSize"
@@ -1120,7 +1083,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "CLTV"
@@ -1137,7 +1099,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1158,7 +1119,6 @@ extend ActiveSupport::Concern
                       end
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1170,7 +1130,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "Term"
@@ -1183,7 +1142,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1197,7 +1155,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1211,7 +1168,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmBasic"
@@ -1222,7 +1178,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmAdvanced"
@@ -1233,7 +1188,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FannieMaeProduct"
@@ -1244,7 +1198,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FreddieMacProduct"
@@ -1255,7 +1208,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanPurpose"
@@ -1266,7 +1218,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1285,7 +1236,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1297,7 +1247,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1309,7 +1258,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FinancingType"
@@ -1320,7 +1268,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "PremiumType"
@@ -1331,7 +1278,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1350,7 +1296,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1368,7 +1313,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1380,7 +1324,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "MiscAdjuster"
@@ -1391,7 +1334,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanSize"
@@ -1404,7 +1346,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "CLTV"
@@ -1421,7 +1362,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1442,7 +1382,6 @@ extend ActiveSupport::Concern
                       end
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1454,7 +1393,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1468,7 +1406,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1482,7 +1419,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1496,7 +1432,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmBasic"
@@ -1507,7 +1442,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmAdvanced"
@@ -1518,7 +1452,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FannieMaeProduct"
@@ -1529,7 +1462,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FreddieMacProduct"
@@ -1540,7 +1472,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanPurpose"
@@ -1551,7 +1482,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1570,7 +1500,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1582,7 +1511,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1594,7 +1522,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FinancingType"
@@ -1605,7 +1532,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "PremiumType"
@@ -1616,7 +1542,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1635,7 +1560,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1653,7 +1577,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1665,7 +1588,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1677,7 +1599,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanSize"
@@ -1690,7 +1611,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "CLTV"
@@ -1707,7 +1627,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1728,7 +1647,6 @@ extend ActiveSupport::Concern
                       end
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1740,7 +1658,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "Term"
@@ -1753,7 +1670,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1767,7 +1683,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1781,7 +1696,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmBasic"
@@ -1792,7 +1706,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "ArmAdvanced"
@@ -1803,7 +1716,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FannieMaeProduct"
@@ -1814,7 +1726,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FreddieMacProduct"
@@ -1825,7 +1736,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "LoanPurpose"
@@ -1836,7 +1746,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1855,7 +1764,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1867,7 +1775,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1879,7 +1786,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "FinancingType"
@@ -1890,7 +1796,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
                 if key_name == "PremiumType"
@@ -1901,7 +1806,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1920,7 +1824,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1938,7 +1841,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1950,7 +1852,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1962,7 +1863,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1976,7 +1876,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -1994,7 +1893,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -2015,7 +1913,6 @@ extend ActiveSupport::Concern
                       end
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -2027,7 +1924,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -2041,7 +1937,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -2055,7 +1950,6 @@ extend ActiveSupport::Concern
                       break
                     end
                   rescue Exception
-                    puts "Adjustment Error: Adjustment Id: #{adj.id}, Adjustment Primary Key: #{first_key}, Key Name: #{key_name}, Loan Category: #{adj.loan_category}"
                   end
                 end
 
@@ -2180,10 +2074,31 @@ extend ActiveSupport::Concern
 
       hash_obj = {
         :id => "",
-        :bank_name => "",
+        :conforming => "",
+        :fannie_mae => "",
+        :fannie_mae_home_ready => "",
+        :freddie_mac => "",
+        :freddie_mac_home_possible => "",
+        :fha => "",
+        :va => "",
+        :usda => "",
+        :streamline => "",
+        :full_doc => "",
         :loan_category => "",
         :program_category => "",
+        :bank_name => "",
         :program_name => "",
+        :loan_type => "",
+        :loan_purpose => "",
+        :arm_basic => "",
+        :arm_advanced => "",
+        :loan_size => "",
+        :fannie_mae_product => "",
+        :freddie_mac_product => "",
+        :du => "",
+        :lp => "",
+        :arm_benchmark => "",
+        :arm_margin => "",
         :base_rate => 0.0,
         :adj_points => [],
         :adj_primary_key => [],

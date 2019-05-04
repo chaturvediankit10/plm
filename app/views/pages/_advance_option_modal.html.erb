@@ -1,7 +1,5 @@
 <!-- view details popup start-->
-<%
-  program_data = Program.find(program[:id])
-%>
+
 <div class="modal fade view-details-popup" id="view-details-popup-<%=index%>" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -47,11 +45,11 @@
                             <tr>
                               <%
                               pro_term = ''
-                              if program_data.term.present?
-                                if program_data.term.to_s.length >2
-                                  pro_term = (program_data.term/100).to_s+"-"+(program_data.term%100).to_s
+                              if program[:term].present?
+                                if program[:term].to_s.length >2
+                                  pro_term = (program[:term]/100).to_s+"-"+(program[:term]%100).to_s
                                 else
-                                  pro_term = program_data.term.to_s
+                                  pro_term = program[:term].to_s
                                 end
                               end
                               %>
@@ -200,21 +198,21 @@
                             <tbody>
                               <tr>
                                 <td>Loan Type</td>
-                                <td align="right"><b><%= program_data.loan_type %></b></td>
+                                <td align="right"><b><%= program[:loan_type] %></b></td>
                               </tr>
                               <tr>
                                 <td>Streamline</td>
-                                <td align="right"><b><%= program_data.streamline ? "Yes" : "No" %></b></td>
+                                <td align="right"><b><%= program[:streamline] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td>Full Foc</td>
-                                <td align="right"><b><%= program_data.full_doc ? "Yes" : "No" %></b></td>
+                                <td align="right"><b><%= program[:full_doc] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Size</td>
                                 <% 
                                 loan_size_value = ""
-                                program_data.loan_size.split("&").map do |loan_size|%>
+                                program[:loan_size].split("&").map do |loan_size|%>
                                   <%
                                     if loan_size_value.present?
                                       loan_size_value = loan_size_value+"/"+ loan_size
@@ -227,7 +225,7 @@
                               </tr>
                               <tr>
                                 <td>DU</td>
-                                <td align="right"><b><%= program_data.du ? "Yes" : "No" %></b></td>
+                                <td align="right"><b><%= program[:du] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td>Interest Rate</td>
@@ -235,7 +233,7 @@
                               </tr>
                               <tr>
                                 <td>Loan Purpose</td>
-                                <td align="right"><b><%= program_data.loan_purpose%></b></td>
+                                <td align="right"><b><%= program[:loan_purpose]%></b></td>
                               </tr>
                               <tr>
                                 <td>Lock Period</td>
@@ -243,11 +241,11 @@
                               </tr>
                               <tr>
                                 <td>LP</td>
-                                <td align="right"><b><%= program_data.lp ? "Yes" : "No" %></b></td>
+                                <td align="right"><b><%= program[:lp] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td nowrap="nowrap">FHA</td>
-                                <td align="right"><b><%= program_data.fha ? "Yes" : "No" %></b></td>
+                                <td align="right"><b><%= program[:fha] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td>Home Price</td>
@@ -261,7 +259,7 @@
                             <tbody>
                               <tr>
                                 <td nowrap="nowrap">VA</td>
-                                <td align="right"><b><%= program_data.va ? "Yes" : "No" %></b></td>
+                                <td align="right"><b><%= program[:va] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td>Credit Score</td>
@@ -273,11 +271,11 @@
                               </tr>
                               <tr>
                                 <td nowrap="nowrap">USDA</td>
-                                <td align="right"><b><%= program_data.usda ? "Yes" : "No" %></b></td>
+                                <td align="right"><b><%= program[:usda] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td nowrap="nowrap">Fannie Mae Product</td>
-                                <td align="right"><b><%= program_data.fannie_mae_product %></b></td>
+                                <td align="right"><b><%= program[:fannie_mae_product] %></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Amount</td>
@@ -289,7 +287,7 @@
                               </tr>
                               <tr>
                                 <td>Freddie Mac Product</td>
-                                <td align="right"><b><%= program_data.freddie_mac_product %></b></td>
+                                <td align="right"><b><%= program[:freddie_mac_product] %></b></td>
                               </tr>
                               <tr>
                                 <td>Monthly Income</td>
@@ -297,11 +295,11 @@
                               </tr>
                               <tr>
                                 <td>Arm Basic</td>
-                                <td align="right"><b><%= program_data.arm_basic %></b></td>
+                                <td align="right"><b><%= program[:arm_basic] %></b></td>
                               </tr>
                               <tr>
                                 <td>Arm Advanced</td>
-                                <td align="right"><b><%= program_data.arm_advanced %></b></td>
+                                <td align="right"><b><%= program[:arm_advanced] %></b></td>
                               </tr>
 
                             </tbody>
