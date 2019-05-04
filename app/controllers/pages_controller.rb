@@ -16,9 +16,7 @@ class PagesController < ApplicationController
      set_variable
      find_base_rate
    else
-    set_variable
     find_base_rate
-    set_default_values_for_adjustment_input
     find_adjustments_by_searched_programs(Program.all, @lock_period, @arm_basic, @arm_advanced, @fannie_mae_product, @freddie_mac_product, @loan_purpose, @program_category, @property_type, @financing_type, @premium_type, @refinance_option, @misc_adjuster, @state, @loan_type, @loan_size, @result, @interest, @loan_amount, @ltv, @cltv, @term, @credit_score, @dti )
    end
     fetch_programs_by_bank(true)
@@ -78,39 +76,47 @@ class PagesController < ApplicationController
     @interest = "4.000"
     @term = "30"
     @ltv = []
-    @credit_score = []
     @cltv = []
+    @credit_score = []
     @flag_loan_type = false
-  end
+    @lock_period ="30"
+    @loan_size = "High-Balance"
+    @loan_type = "Fixed"
+    @fannie_mae_product = "HomeReady"
+    @freddie_mac_product = "Home Possible"
+    @arm_basic = "5/1"
+    @arm_advanced = "1-1-5"
+    @program_category = "6900"
+    @property_type = "1 Unit"
+    @financing_type = "Subordinate Financing"
+    @premium_type ="1 Unit"
+    @refinance_option ="Cash Out"
+    @misc_adjuster = "CA Escrow Waiver (Full or Taxes Only)"
+    @state = "All"
+    @result = []
+    @loan_amount = "0 - 50000"
+    @ltv1 = "65.01 - 70.00"
+    @credit_score1 = "700-719"
+    @dti = "25.6%"
+    @loan_purpose = "Purchase"
+    @home_price = "300000"
+    @down_payment = "50000"
+    @coverage = "30.5%"
+    @margin = "2.0"
+    ltv_range = ("65.01-70.00".split("-").first.to_f.."65.01-70.00".split("-").last.to_f) rescue nil
+    array_data = []
+    ltv_range.step(0.01) { |f| array_data << f } rescue nil
+    @ltv = array_data.try(:uniq)
 
-  def set_default_values_for_adjustment_input
-     @lock_period = "30"
-     @arm_basic = "5/1"
-     @arm_advanced = "1-1-5"
-     @fannie_mae_product = "HomeReady"
-     @freddie_mac_product = "Home Possible"
-     @program_category = "6900"
-     @property_type = "1 Unit"
-     @financing_type = "Subordinate Financing"
-     @premium_type ="1 Unit"
-     @refinance_option ="Cash Out"
-     @misc_adjuster = "CA Escrow Waiver (Full or Taxes Only)"
-     @state = "All"
-     @result = []
-     @interest = "4.000"
-     @loan_amount = "0 - 50000"
-     @ltv1 = "65.01 - 70.00"
-     # @ltv = "65.01 - 70.00"
-     # @cltv = "75.01 - 80.00"
-     # @credit_score = "700-719"
-     @credit_score1 = "700-719"
-     @dti = "25.6%"
-     @loan_purpose = "Purchase"
-     @loan_type = "Fixed"
-     @loan_size = "Jumbo"
-     @term = "30"
-     @home_price = "300000"
-     @down_payment = "50000"
+    cltv_range = ("75.01-80.00".split("-").first.to_f.."75.01-80.00".split("-").last.to_f) rescue nil
+    array_data = []
+    cltv_range.step(0.01) { |f| array_data << f } rescue nil
+    @ltv = array_data.try(:uniq)
+
+    credit_score = ("700-719".split("-").first.to_f.."700-719".split("-").last.to_f) rescue nil
+    array_data = []
+    credit_score.step(0.01) { |f| array_data << f } rescue nil
+    @credit_score = array_data.try(:uniq)
   end
 
   def modified_ltv_cltv_credit_score
@@ -123,14 +129,20 @@ class PagesController < ApplicationController
             key_range = (key_value.split("-").first.to_f..key_value.split("-").last.to_f)
             key_range.step(0.01) { |f| array_data << f }
             instance_variable_set("@#{key}", array_data.try(:uniq))
+          else
+            instance_variable_set("@#{key}", key_value)
           end
         end
       end
       if key == "credit_score"
         key_value = params[key.to_sym]
         if key_value.present?
-          array_data = (key_value.split("-").first.to_i..key_value.split("-").last.to_i)
-          instance_variable_set("@#{key}", array_data.try(:uniq))
+          if key_value.include?("-")
+            array_data = (key_value.split("-").first.to_i..key_value.split("-").last.to_i)
+            instance_variable_set("@#{key}", array_data.try(:uniq))
+          else
+            instance_variable_set("@#{key}", key_value)
+          end
         end
       end
     end
