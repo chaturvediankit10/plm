@@ -16,6 +16,7 @@ class PagesController < ApplicationController
      set_variable
      find_base_rate
    else
+    set_default_values_without_submition
     find_base_rate
     find_adjustments_by_searched_programs(Program.all, @lock_period, @arm_basic, @arm_advanced, @fannie_mae_product, @freddie_mac_product, @loan_purpose, @program_category, @property_type, @financing_type, @premium_type, @refinance_option, @misc_adjuster, @state, @loan_type, @loan_size, @result, @interest, @loan_amount, @ltv, @cltv, @term, @credit_score, @dti )
    end
@@ -250,6 +251,14 @@ class PagesController < ApplicationController
     end
   end
 
+  def set_default_values_without_submition
+    @filter_not_nil[:term] = nil
+    @filter_not_nil[:arm_basic] = nil
+    @filter_not_nil[:arm_advanced] = nil
+    @filter_not_nil[:arm_benchmark] = nil
+    @filter_not_nil[:arm_margin] = nil
+    set_flag_loan_type(true)
+  end
   def set_flag_loan_type(flag)
     @flag_loan_type = flag
   end
@@ -282,6 +291,8 @@ class PagesController < ApplicationController
           set_term
         end
       end
+    else
+      set_flag_loan_type(true)
     end
 
     if params[:loan_size].present?
