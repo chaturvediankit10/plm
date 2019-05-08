@@ -539,7 +539,7 @@ header .navbar-right {
 }
 
 .loan-para {
-  display: flex;
+  display: block;
   justify-content: space-between;
 }
 
