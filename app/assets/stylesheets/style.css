@@ -4072,7 +4072,7 @@ label.error {
 /**-------Sticky Header CSS--------**/
 
 header.fixed-header.scrolled {
-  background-color: #f76225;
+  background-color: #3596cd;
   position: fixed;
   left: 0px;
   right: 0px;
@@ -4086,7 +4086,8 @@ header.fixed-header.scrolled {
 
 .scrolled .navbar-default .nav li a.login-btn {
   background-color: #fff;
-  color: #fa6221 !important;
+  color: #3596cd !important;
+  border-color: #fff;
 }
 
 .white-logo {
