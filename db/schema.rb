@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225131517) do
+ActiveRecord::Schema.define(version: 20190515131350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
   enable_extension "hstore"
+
+  create_table "adjustments", force: :cascade do |t|
+    t.json "data"
+    t.string "program_title"
+    t.string "loan_category"
+    t.integer "program_ids", default: [], array: true
+    t.integer "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -42,6 +52,20 @@ ActiveRecord::Schema.define(version: 20190225131517) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject"], name: "index_auto_responders_on_subject"
+  end
+
+  create_table "banks", force: :cascade do |t|
+    t.string "name"
+    t.integer "nmls"
+    t.string "phone"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state_code"
+    t.string "zip"
+    t.string "state_eligibility"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "calculator_home_affordabilities", force: :cascade do |t|
@@ -99,6 +123,19 @@ ActiveRecord::Schema.define(version: 20190225131517) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["page_slug"], name: "index_cms_pages_on_page_slug", unique: true
+  end
+
+  create_table "error_logs", force: :cascade do |t|
+    t.text "details"
+    t.integer "column"
+    t.integer "row"
+    t.string "loan_category"
+    t.integer "sheet_id"
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "bank_name"
+    t.text "error_detail"
   end
 
   create_table "experts", force: :cascade do |t|
@@ -1586,6 +1623,67 @@ ActiveRecord::Schema.define(version: 20190225131517) do
     t.index ["updated_at"], name: "index_news_search_histories_on_updated_at"
   end
 
+  create_table "program_adjustments", force: :cascade do |t|
+    t.integer "program_id"
+    t.integer "adjustment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "programs", force: :cascade do |t|
+    t.integer "bank_id"
+    t.integer "term"
+    t.boolean "conforming", default: false
+    t.boolean "fannie_mae", default: false
+    t.boolean "fannie_mae_home_ready", default: false
+    t.boolean "freddie_mac", default: false
+    t.boolean "freddie_mac_home_possible", default: false
+    t.boolean "fha", default: false
+    t.boolean "va", default: false
+    t.boolean "usda", default: false
+    t.boolean "streamline", default: false
+    t.boolean "full_doc", default: false
+    t.text "adjustment_ids"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "loan_category"
+    t.json "base_rate"
+    t.string "program_category"
+    t.string "bank_name"
+    t.string "program_name"
+    t.string "rate_type"
+    t.integer "sheet_id"
+    t.string "loan_type"
+    t.integer "lock_period", default: [], array: true
+    t.string "loan_limit_type", default: [], array: true
+    t.string "loan_purpose"
+    t.string "arm_basic"
+    t.string "arm_advanced"
+    t.string "loan_size"
+    t.string "fannie_mae_product"
+    t.string "freddie_mac_product"
+    t.integer "sub_sheet_id"
+    t.boolean "fannie_mae_du"
+    t.boolean "freddie_mac_lp"
+    t.string "arm_benchmark"
+    t.float "arm_margin"
+    t.string "arm_caps"
+  end
+
+  create_table "sheets", force: :cascade do |t|
+    t.string "name"
+    t.integer "bank_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_sheets", force: :cascade do |t|
+    t.string "name"
+    t.integer "sheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_favorites", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "loan_tek_data_id"
@@ -1593,6 +1691,26 @@ ActiveRecord::Schema.define(version: 20190225131517) do
     t.datetime "updated_at", null: false
     t.index ["loan_tek_data_id"], name: "index_user_favorites_on_loan_tek_data_id"
     t.index ["user_id"], name: "index_user_favorites_on_user_id"
+  end
+
+  create_table "user_inputs", force: :cascade do |t|
+    t.text "property_type", default: [], array: true
+    t.text "financing_type", default: [], array: true
+    t.text "premium_type", default: [], array: true
+    t.string "ltv", default: [], array: true
+    t.string "fico", default: [], array: true
+    t.text "refinance_option", default: [], array: true
+    t.text "misc_adjuster", default: [], array: true
+    t.boolean "lpmi"
+    t.integer "coverage"
+    t.integer "loan_amount"
+    t.string "cltv"
+    t.boolean "dti"
+    t.float "interest_rate"
+    t.integer "lock_period"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
