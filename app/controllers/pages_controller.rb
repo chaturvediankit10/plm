@@ -3,12 +3,12 @@
   Created:        16-03-2018
   Purpose:        Following actions are for status update in admin panel .
 =end
-class PagesController < SearchApi::DashboardController
+class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:secret]
   before_action :update_statue, only: [:change_status, :user_mass_activate, :user_mass_deactivate]
 
   def index
-    list_of_banks_and_programs_with_search_results
+    @experts = Expert.where(verified: true).last(5)
   end
 
   def show

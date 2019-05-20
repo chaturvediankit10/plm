@@ -1,0 +1,1029 @@
+<!-- banner start-->
+<section class="banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="banner-headings">
+      <h3>Compare customized mortgage rates instantly</h3>
+      <p>Average savings of $12,860 vs standard rates</p>
+    </div>  
+    <!-- banner main search start-->
+    <div class="search-main adv-search-mb home-main-search">
+      <%= form_tag('/search/index', method: :get, id: :search_form) do %>
+        <div class="row">
+          <div class="col-md-2 col-xs-6">
+            <div class="search-cat zip-srch">
+              <label>State</label>
+               <!-- <input type="text" placeholder="123456" value= <%#=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  calling function defined in Application helper -->
+              <%= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)) %>
+            </div>
+          </div>
+          <div class="col-md-2 col-xs-6">
+            <div class="search-cat purpse-srch">
+              <label>Loan Purpose</label>
+              <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil))%>
+                <span class="error-loan-purpose">Please Select Refinance</span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="search-cat price-srch">
+              <label>Home Price</label>
+              <div class="dollar-icn">$</div>
+              <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0) %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="search-cat price-srch">
+              <label>Down Payment</label>
+              <div class="dollar-icn">$</div>
+              <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0) %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="search-cat cr-srch">
+              <label>Credit Score</label>
+                <%= select_tag 'credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")) %>
+            </div>
+          </div>
+          <!-- <button class="rates-btn hm-src-btn-main">Get Rates</button> -->
+          <div class="col-md-2">
+            <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
+            <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw" %>
+
+          </div>
+        </div>
+        <div class="search-adv-option-box">
+          <a href="javascript:void(0);" id="adv-option" class="desktop-btn">Advanced Options
+            <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
+          </a>
+          <a href="" data-toggle="modal" data-target="#advance-srch-mb"  class="mb-btn">Advanced Options
+            <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
+          </a>
+          <div class="search-adv-option" id="search-adv-option-inner">
+            <div class="row">
+              <%= render 'partials/search_api'%>
+              <div class="row">
+                <div class="col-md-10">
+                </div>
+                <div class="col-md-2 text-right reset">
+                  <button id="reset_all_btn" class="btn btn-danger" >Reset All</button>
+
+                  <%#= render 'partials/search_api'%>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%end%>
+      <!-- api-search-div start-->
+      <!-- <div class="api-search-div">
+        <%#= render 'partials/search_api'%>
+      </div> -->
+      <!-- api-search-div end-->
+      <%#= render 'partials/search_api'%>
+    </div>
+    <!-- banner main search end-->
+  </div>
+</section>
+<div class="modal fade" id="advance-srch-mb" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content adv-search-mdl-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Advanced Options</h4>
+        <a href="">Reset</a>
+      </div>
+      <div class="modal-body">
+        <%= render 'partials/search_api'%>
+      </div>
+      <div class="modal-footer adv-search-mdl-footer">
+         <button class="rates-btn">Get Rates</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%#= render 'partials/search_api'%>
+<!-- banner end-->
+<!-- search result feed start-->
+<section class="content-main">
+  <div class="container">
+    <p class="main-para-hdng">Pureloan searches all the major banks and lenders to give you the best rates. Here are a few sample rates
+      in your area for 30-year fixed, 15year fixed, and 5/1 Adjustable Rate Mortgage (ARM).
+    </p>
+    <ul class="nav nav-tabs rates-tab">
+      <li class="active"><a data-toggle="tab" href="#30years">30 Year</a></li>
+      <li><a data-toggle="tab" href="#20years">20 Year</a></li>
+      <li><a data-toggle="tab" href="#15years-2">15 Year</a></li>
+    </ul>
+
+    <div class="tab-content rates-tab-content">
+      <div id="30years" class="tab-pane fade in active">
+        <div class="cntnt-list-box">
+          <h5><%= @term%>-Year Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+          <% if @result.present? %>
+            <% @result.each_with_index do |program, index|%>
+              <div class="cntnt-list-inner col-md-12">
+                <div class="inner-logo">
+                <!-- <img src="//assets/CMG financial.png" alt=""> -->
+                  <img src="<%= "/assets/"+program[:bank_name] %>.png" >
+                  <p class="orange-link"><%= program[:bank_name] %></p>
+                  <p>NMLS ID 1067</p>
+                </div>
+                <div class="inner-block">
+                  <% 
+                    base_rate = (program[:base_rate].to_f).round(3).to_s
+                    final_rate = (program[:final_rate].sum).round(3).to_s
+                  %>
+                  <span class="hdng-big"><%= final_calculate = final_rate.split(".").last.length == 1 ? final_rate + "00" : final_rate.split(".").last.length == 2 ? final_rate + "0" : final_rate rescue nil %>% Rate</span>
+                  <p class="hiden-txt-mb">4.145% APR</p>
+                  
+                  <p>30 Year Fixed</p>
+                  <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+                </div>
+                <div class="inner-block-combined">
+                  <div class="inner-block inner-block-small">
+                    <span class="hdng-big">$23,078</span>
+                    <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+                  </div>
+                  <div class="inner-block inner-block-small">
+                    <span class="hdng-big">$3,072/mo</span>
+                    <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+                  </div>
+                  <div class="inner-block inner-block-small">
+                    <span class="hdng-big">$23,078</span>
+                    <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+                  </div>
+                </div>
+                <div class="inner-block-btn">
+                  <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
+                  <a href="" class="lendr-web-link">Lender Website</a>
+                </div>
+                <div class="mb-scroll-icn">
+                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
+                </div>
+              </div>
+              <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate: final_calculate  } %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="20years" class="tab-pane fade">
+        <div class="cntnt-list-box">
+          <h5>20-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+          <div class="cntnt-list-inner col-md-12">
+            <div class="inner-logo">
+              <img src="/assets/pic1_06.png" alt="">
+              <a href="">Bank of America</a>
+              <p>NMLS ID 1067</p>
+            </div>
+            <div class="inner-block">
+              <span class="hdng-big">4.356% Rate</span>
+              <p class="hiden-txt-mb">4.145% APR</p>
+              <p>30 Year Fixed</p>
+              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+            </div>
+            <div class="inner-block-combined">
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$3,072/mo</span>
+                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+              </div>
+            </div>
+            <div class="inner-block-btn">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
+              <a href="" class="lendr-web-link">Lender Website</a>
+            </div>
+            <div class="mb-scroll-icn">
+              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+          <div class="cntnt-list-inner dark-gray-bg col-md-12">
+            <div class="inner-logo">
+              <img src="/assets/pic2_03.png" alt="">
+              <a href="">Bank of America</a>
+              <p>NMLS ID 54645</p>
+            </div>
+            <div class="inner-block">
+              <span class="hdng-big">4.356% Rate</span>
+              <p class="hiden-txt-mb">4.145% APR</p>
+              <p>30 Year Fixed</p>
+              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+            </div>
+            <div class="inner-block-combined">
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$3,072/mo</span>
+                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+              </div>
+            </div>
+            <div class="inner-block-btn">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
+              <a href="" class="lendr-web-link">Lender Website</a>
+            </div>
+            <div class="mb-scroll-icn">
+              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+          <div class="cntnt-list-inner gray-bg col-md-12">
+            <div class="inner-logo">
+              <img src="/assets/pic3_07.png" alt="">
+              <a href="">Bank of America</a>
+              <p>NMLS ID 54645</p>
+            </div>
+            <div class="inner-block">
+              <span class="hdng-big">4.356% Rate</span>
+              <p class="hiden-txt-mb">4.145% APR</p>
+              <p>30 Year Fixed</p>
+              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+            </div>
+            <div class="inner-block-combined">
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$3,072/mo</span>
+                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+              </div>
+            </div>
+            <div class="inner-block-btn">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
+              <a href="" class="lendr-web-link">Lender Website</a>
+            </div>
+            <div class="mb-scroll-icn">
+              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="15years-2" class="tab-pane fade">
+        <div class="cntnt-list-box">
+          <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+          <div class="cntnt-list-inner col-md-12">
+            <div class="inner-logo">
+              <img src="/assets/pic1_06.png" alt="">
+              <a href="">Bank of America</a>
+              <p>NMLS ID 54645</p>
+            </div>
+            <div class="inner-block">
+              <span class="hdng-big">4.356% Rate</span>
+              <p class="hiden-txt-mb">4.145% APR</p>
+              <p>30 Year Fixed</p>
+              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+            </div>
+            <div class="inner-block-combined">
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$3,072/mo</span>
+                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+              </div>
+            </div>
+            <div class="inner-block-btn">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
+              <a href="" class="lendr-web-link">Lender Website</a>
+            </div>
+            <div class="mb-scroll-icn">
+              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+          <div class="cntnt-list-inner dark-gray-bg col-md-12">
+            <div class="inner-logo">
+              <img src="/assets/pic2_03.png" alt="">
+              <a href="">Bank of America</a>
+              <p>NMLS ID 54645</p>
+            </div>
+            <div class="inner-block">
+              <span class="hdng-big">4.356% Rate</span>
+              <p class="hiden-txt-mb">4.145% APR</p>
+              <p>30 Year Fixed</p>
+              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+            </div>
+            <div class="inner-block-combined">
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$3,072/mo</span>
+                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+              </div>
+            </div>
+            <div class="inner-block-btn">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
+              <a href="" class="lendr-web-link">Lender Website</a>
+            </div>
+            <div class="mb-scroll-icn">
+              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+          <div class="cntnt-list-inner gray-bg col-md-12">
+            <div class="inner-logo">
+              <img src="/assets/pic3_07.png" alt="">
+              <a href="">Bank of America</a>
+              <p>NMLS ID 54645</p>
+            </div>
+            <div class="inner-block">
+              <span class="hdng-big">4.356% Rate</span>
+              <p class="hiden-txt-mb">4.145% APR</p>
+              <p>30 Year Fixed</p>
+              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+            </div>
+            <div class="inner-block-combined">
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$3,072/mo</span>
+                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+              </div>
+              <div class="inner-block inner-block-small">
+                <span class="hdng-big">$23,078</span>
+                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+              </div>
+            </div>
+            <div class="inner-block-btn">
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
+              <a href="" class="lendr-web-link">Lender Website</a>
+            </div>
+            <div class="mb-scroll-icn">
+              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+  </div>
+</section>
+<!-- search result feed end-->
+<%if Expert.where(verified: true).count < 1%>
+<!-- Advertisement with expert start-->
+<section class="advertisement-box">
+  <div class="container">
+    <div class="advertisement">
+      <img class="mb-hide" src="/assets/home-ad.jpg" alt="">
+      <img class="mb-only" src="/assets/expert-ad-mb-img.png" alt="">
+      <h4>Become a mortgage expert on<br> Pureloan.com for Albany, CA</h4>
+      <span class="">Reach hundreds of thousands of home buyers or
+      refi customers every month!</span>
+      <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
+    </div>
+  </div>
+</section>
+<%end%>
+<!-- Advertisement with expert end-->
+<!--Rendering Experts  -->
+<%if Expert.where(verified: true).count >= 1%>
+<%= render 'pages/index'%>
+<%end%>
+<!-- expert application overlay popup start-->
+<div class="modal fade common-popup-layout" id="expert-app-overlay" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><img src="/assets/cancel_03.png" alt="" class="login-cross-img"></button>
+        <h4>Become an expert on <b>Pureloan.com</b> and reach hundreds of
+          thousands of home buyers or refi customers every month!
+        </h4>
+      </div>
+      <div class="modal-body">
+        <%=form_with scope: :expert, url: expert_user_registration_path, id: 'expert_user_form'  do |expert_user| %>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>First Name</label>
+              <%= expert_user.text_field :first_name, placeholder: "Enter your First Name", class: "form-control"%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Last Name</label>
+              <%= expert_user.text_field :last_name, placeholder: "Enter your Last Name", class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Phone</label>
+              <%= expert_user.text_field :phone, placeholder: "Enter your Phone", class: "form-control", number: true%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Email</label>
+              <%= expert_user.email_field :email, placeholder: "Enter your Email", class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group select-arrow">
+              <label>State</label>
+              <%= expert_user.select(:state, City.pluck(:state_code).uniq.sort, {prompt: "Select State"}, { class: 'state' })%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group select-arrow">
+              <label>City</label>
+              <%= expert_user.select(:city, [], {prompt: "Select city"}, { class: 'city' })%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group select-arrow">
+              <label>Zip</label>
+              <%= expert_user.select(:zip, [], {prompt: "Select zip"}, { class: 'zip' })%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>License Number</label>
+              <%= expert_user.text_field :license_number, placeholder: "Enter your License Number", class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group select-arrow">
+              <label>Speciality <span>(Where you will be listed)</span></label>
+              <%= expert_user.select :specialty, options_for_select([["Mortgage","Mortgage"], ["Refinance","Refinance"], ["Personal","Personal"], ["Auto","Auto"]]), class: "form-control"%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Website</label>
+              <%= expert_user.url_field :website, placeholder: "http//", class: "form-control", value: "http://"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group custm-file-input">
+              <label>Photo</label>
+              <span><i class="fa fa-camera"></i> Upload</span>
+              <%= expert_user.file_field :image %>
+            </div>
+          </div>
+        </div>
+        <%= expert_user.submit "Submit Application", class: "rates-btn"%>
+        <%end%>
+        <!--              <button class="rates-btn">Submit Application</button> -->
+        <div class="expert-app-overlay-note">
+          Your listing as an expert in the city Albany, California will be processed when we verify your status and we recieve an authentication link back from your business site
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- expert application overlay popup end-->
+<script>
+  $(document).ready(function(){
+  
+    $('.menu-up-adv-search').click(function(){
+      $("#search-adv-option-inner").hide("fast").removeClass("display-adv-search");
+    });
+  
+      $('.state').change(function(){
+          id_passed = $(".state option:selected").val();
+          $.ajax({
+              url: '/pages/expert_state_and_city',
+              type: "GET",
+              dataType: 'json',
+              data: {"state" : id_passed},
+              success: function(response) {
+                $(".city").empty();
+                $.each(response, function(e,res){
+                  $(".city").append($("<option></option>").attr("value",res).text(res));
+                })
+              }
+          });
+      })
+  
+      $('.city').change(function(){
+          id_passed = $(".city option:selected").val();
+          $.ajax({
+              url: '/pages/expert_city_and_zip',
+              type: "GET",
+              dataType: 'json',
+              data: {"city" : id_passed},
+              success: function(response) {
+                $(".zip").empty();
+                $.each(response, function(e,res){
+                  $(".zip").append($("<option></option>").attr("value",res).text(res));
+                })
+              }
+          });
+      })
+  
+  });
+  
+  $.validator.addMethod('filesize', function (value, element, param) {
+        return this.optional(element) || (element.files[0].size <= param)
+    }, 'File size must be less than 2-Mb');
+  
+    $('#expert_user_form').validate({
+      rules: {
+        "expert[first_name]": {
+            required: true
+        },
+        "expert[last_name]": {
+            required: true
+        },
+        "expert[phone]":{
+          required: true
+        },
+        "expert[email]": {
+            required: {
+              depends:function(){
+                  $(this).val($.trim($(this).val()));
+                  return true;
+                }
+            },
+            email: true
+        },
+        "expert[state]":{
+          required: true
+        },
+        "expert[city]":{
+          required: true
+        },
+        "expert[zip]":{
+          required: true
+        },
+        "expert[license_number]":{
+            required: true
+        },
+        "expert[website]":{
+          required: true
+        },
+        "expert[image]": {
+          required: true,
+          extension: "jpg,jpeg",
+          filesize:   2097152
+        }
+      },
+      messages: {
+        "expert[first_name]": {
+            required: "Please enter your first name."
+        },
+        "expert[last_name]": {
+            required: "Please enter you last name."
+        },
+        "expert[phone]":{
+          required: "Plese enter mobile number."
+        },
+        "expert[email]": {
+            required: "Please enter your email.",
+            email: "Please enter valid email address.",
+        },
+        "expert[state]":{
+            required: "Please selcet a state"
+        },
+        "expert[city]":{
+            required: "Please selcet a city"
+        },
+        "expert[zip]":{
+            required: "Please selcet a zip"
+        },
+        "expert[license_number]":{
+            required: "Please enter your license number."
+        },
+        "expert[website]":{
+          required: "Please enter website."
+        },
+        "expert[image]": {
+          required: "Please upload an image.",
+          extension: "File must be JPG,JPEG."
+        }
+      }
+    })
+  
+  $(document).ready(function(){
+    $('#bank_name').change(function(){
+      var bank_name =  $(this).val();
+      var loan_category = "All"
+      var pro_category = "All"
+
+      $.ajax({
+        type:'GET',
+        url:'/dashboard/fetch_programs_by_bank',
+        data: {bank_name : bank_name, loan_category: loan_category, pro_category: pro_category },
+        success:function(response){
+          var selectBox = document.getElementById('program_name');
+          selectBox.options.length = 0
+          selectBox.options.add( new Option('All', 'All'));
+          response.program_list.map((program)=>{
+            selectBox.options.add( new Option(program.name, program.name));
+          });
+          var selectBox2 = document.getElementById('loan_category');
+          selectBox2.options.length = 0
+          selectBox2.options.add( new Option('All', 'All'));
+          response.loan_category_list.map((loan_category)=>{
+            selectBox2.options.add( new Option(loan_category.name, loan_category.name));
+          });
+          var selectBox3 = document.getElementById('pro_category');
+          selectBox3.options.length = 0
+          response.pro_category_list.map((pro_category)=>{
+            selectBox3.options.add( new Option(pro_category.name, pro_category.name));
+          });
+
+        }
+      });
+    });
+
+    $('#loan_category').change(function(){
+      var loan_category =  $(this).val();
+      var bank_name = $('#bank_name').val()
+      var pro_category ="All"
+      $.ajax({
+        type:'GET',
+        url:'/dashboard/fetch_programs_by_bank',
+        data: {loan_category : loan_category, bank_name : bank_name, pro_category: pro_category },
+        success:function(response){
+          var selectBox = document.getElementById('program_name');
+          selectBox.options.length = 0
+          selectBox.options.add( new Option('All', 'All'));
+          response.program_list.map((program)=>{
+            selectBox.options.add( new Option(program.name, program.name));
+          });
+
+          var selectBox2 = document.getElementById('pro_category');
+          selectBox2.options.length = 0
+          response.pro_category_list.map((pro_category)=>{
+            selectBox2.options.add( new Option(pro_category.name, pro_category.name));
+          });
+        }
+      });
+    });
+
+    $('#pro_category').change(function(){
+      var pro_category =  $(this).val();
+      var bank_name = $('#bank_name').val()
+      var loan_category = $('#loan_category').val()
+      $.ajax({
+        type:'GET',
+        url:'/dashboard/fetch_programs_by_bank',
+        data: {loan_category : loan_category, bank_name : bank_name, pro_category: pro_category },
+        success:function(response){
+          var selectBox = document.getElementById('program_name');
+          selectBox.options.length = 0
+          selectBox.options.add( new Option('All', 'All'));
+          response.program_list.map((program)=>{
+            selectBox.options.add( new Option(program.name, program.name));
+          });
+        }
+      });
+    });
+
+    function setArmDefaultValues(){
+      $('#arm_benchmark').val('All')
+      $('#arm_margin').val('All')
+      $('#arm_advanced').val('All')
+      $('#arm_basic').val('5/1')
+    }
+
+    function setArmNullValues(){
+      $('#term').val('All')
+      $('#arm_benchmark').val('All')
+      $('#arm_margin').val('All')
+      $('#arm_advanced').val('All')
+      $('#arm_basic').val('All')
+    }
+
+    function setArmDefaultValuesOnLoan(){
+      if ($('#arm_benchmark').val()=='' && $("#loan_type").val() != "All" && $("#loan_type").val() != "ARM" ) {
+          $('#arm_benchmark').val('LIBOR')
+        }
+        if ($('#arm_margin').val()=='' && $("#loan_type").val() != "All" && $("#loan_type").val() != "ARM" ) {
+          $('#arm_margin').val('All')
+        }
+        if ($('#arm_basic').val()=='' && $("#loan_type").val() != "All" && $("#loan_type").val() != "ARM" ) {
+          $('#arm_basic').val('5/1')
+        }
+    }
+
+    function showTermAndArmSectionOnLoan(){
+      if ($("#loan_type").val() == "ARM") {
+        $(".arm-basic").show();
+        $(".term").hide();
+      }else{
+       $(".arm-basic").hide();
+       $(".term").show();
+      }
+
+      if ($("#loan_type").val() == "All") {
+        $(".arm-basic").show();
+        $(".term").show();
+      }
+    }
+
+    setArmDefaultValuesOnLoan();
+    showTermAndArmSectionOnLoan();
+
+
+   $("#loan_type").on('click', function(e){
+     if ($(this).val()=="ARM"){
+      $(".term").hide()
+      $(".arm-basic").show()
+      setArmDefaultValues();
+     }else{
+      if ($(this).val()=="All"){
+        $(".arm-basic").show();
+        $(".term").show();
+        setArmNullValues();
+      }else{
+        $(".arm-basic").hide();
+        $(".term").show();
+      }
+     }
+   });
+  });
+
+  var fannie_mae = false
+  $('#fannie_mae_du').click(function () {
+    if ($(this).prop("checked")){
+      fannie_mae = $('#fannie_mae').prop("checked")
+      $('#fannie_mae').prop('checked', true);
+    } else {
+      $('#fannie_mae').prop('checked', fannie_mae);
+    }
+  });
+
+  $('#fannie_mae').click(function () {
+    if ($(this).prop("checked")){
+      if ($('#fannie_mae_du').prop("checked"))
+      $('#fannie_mae_du').prop('checked', false);
+    } else {
+      if ($('#fannie_mae_du').prop("checked"))
+      $('#fannie_mae_du').prop('checked', false);
+    }
+  });
+
+  var freddie_mac = false
+  $('#freddie_mac_lp').click(function () {
+    if ($(this).prop("checked")){
+      freddie_mac = $('#freddie_mac').prop("checked")
+      $('#freddie_mac').prop('checked', true);
+    } else {
+      $('#freddie_mac').prop('checked', freddie_mac);
+    }
+  });
+
+  $('#freddie_mac').click(function () {
+    if ($(this).prop("checked")){
+      if ($('#freddie_mac_lp').prop("checked"))
+      $('#freddie_mac_lp').prop('checked', false);
+    } else {
+      if ($('#freddie_mac_lp').prop("checked"))
+      $('#freddie_mac_lp').prop('checked', false);
+    }
+  });
+
+  // when streamline checked fha will be true and loan_purpose will be 'Refinance'
+  var fha_checked = false
+  var loan_purpose_value = $('#loan_purpose').val();
+  $('#streamline').click(function () {
+    if ($(this).prop("checked")){
+      fha_checked = $('#fha').prop("checked")
+      loan_purpose_value = $('#loan_purpose').val();
+      $("#loan_purpose").val('Refinance')
+      $('#fha').prop('checked', true);
+      $('#loan_purpose-error').hide();
+    } else {
+      $('#fha').prop('checked', fha_checked);
+      $("#loan_purpose").val(loan_purpose_value)
+      $('.error-loan-purpose').hide();
+    }
+  });
+
+  $('#fha').click(function () {
+    if ($(this).prop("checked")){
+      if ($('#streamline').prop("checked"))
+        $("#loan_purpose").val('')
+      $('#streamline').prop('checked', false);
+    } else {
+      if ($('#streamline').prop("checked"))
+        $("#loan_purpose").val('')
+      $('#streamline').prop('checked', false);
+    }
+  });
+
+  //loan_purpose default error hide
+  $('#loan_purpose').change(function () {
+    $('.error-loan-purpose').hide()
+    $('#adv_loan_purpose').val($('#loan_purpose').val())
+  });
+
+  $('#adv_loan_purpose').change(function () {
+    $('.error-loan-purpose').hide()
+    $('#loan_purpose').val($('#adv_loan_purpose').val())
+  });
+
+  $('#state').change(function () {
+    $('#adv_state').val($('#state').val())
+  });
+
+  $('#adv_state').change(function () {
+    $('#state').val($('#adv_state').val())
+  });
+
+  $('#credit_score').change(function () {
+    $('#adv_credit_score').val($('#credit_score').val())
+  });
+
+  $('#adv_credit_score').change(function () {
+    $('#credit_score').val($('#adv_credit_score').val())
+  });
+
+  //when select fannie_mae_product fannie_mae will be true
+  $('#fannie_mae_product').change(function(){
+    if ($(this).val() == ""){
+      if ($('#fannie_mae_du').prop("checked") == false) {
+        $('#fannie_mae').prop('checked', false)
+      }
+    }
+    else
+      $('#fannie_mae').prop('checked', true)
+  })
+
+  //when select freddie_mac_product freddie_mac will be true
+  $('#freddie_mac_product').change(function(){
+    if ($(this).val() == ""){
+      if ($('#freddie_mac_lp').prop("checked") == false) {
+        $('#freddie_mac').prop('checked', false)
+      }
+    }
+    else
+      $('#freddie_mac').prop('checked', true)
+  })
+
+
+  // check Streamline and loan_purpose value
+  function checkLoanPurposeValue() {
+   var flag = true
+   if ($("#streamline").is(":checked")){
+       if ($("#loan_purpose").val() != "Refinance" && $("#loan_purpose").val() != "") {
+        flag = false
+       }
+    }
+    return flag
+  }
+
+  // form validation
+  $("#search_form").validate({
+    errorPlacement: function(error, element) {
+      $('.error-loan-purpose').hide();
+      if(checkLoanPurposeValue() == false){
+        $('html, body').animate({
+            scrollTop: $(".error-loan-purpose").offset().top
+        }, 1);
+        $('.error-loan-purpose').show()
+      }
+
+      var n = element.attr("name");
+      if (n == "loan_purpose"){
+        error.insertAfter(element);
+      }
+      if (n == "loan_size"){
+        error.insertAfter(element);
+      }
+      if (n == "loan_type"){
+        error.insertAfter(element);
+      }
+    },
+    messages: {
+      'loan_purpose': {
+          required: "This field is required",
+      },
+      'loan_size': {
+          required: "This field is required",
+      },
+      'loan_type': {
+          required: "This field is required",
+      }
+    },
+    rules: {
+        loan_purpose: {
+          required: true
+        },
+        loan_size: {
+          required: true
+        },
+        loan_type: {
+          required: true
+        }
+    },
+    highlight: function(element) {
+       $(element).addClass('has_error');
+    },
+    unhighlight: function(element) {
+        // remove the class "has_error" from the element 
+        $(element).removeClass('has_error');
+    },
+    submitHandler: function(form) {
+      if(checkLoanPurposeValue()){
+        form.submit();
+      }else{
+        $('html, body').animate({
+            scrollTop: $(".error-loan-purpose").offset().top
+        }, 1);
+        $('.error-loan-purpose').show()
+      }
+    }
+  });
+
+  $(document).ready(function(){
+      $('#reset_all_btn').click(function(event){
+        if ($(this).val()=="ARM"){
+          $(".term").hide()
+          $(".arm-basic").show()
+          setArmDefaultValues();
+         }else{
+          if ($(this).val()=="All"){
+            $(".arm-basic").show();
+            $(".term").show();
+            setArmNullValues();
+          }else{
+            $(".arm-basic").hide();
+            $(".term").show();
+          }
+         }
+        $('input:checkbox').removeAttr('checked');
+        $('#loan_type').val('')
+        $('#term').val('')
+        $('#arm_benchmark').val('All')
+        $('#arm_margin').val('All')
+        $('#arm_advanced').val('All')
+        $('#arm_basic').val('5/1')
+        $(".arm-basic").hide();
+        $(".term").show();
+        $('#bank_name').val('')
+        $('#term').val('')
+        $('#interest').val('4.000')
+        $('#lock_period').val('30')
+        $('#loan_purpose').val('')
+        $('#loan_size').val('')
+        $('#fannie_mae_product').val('')
+        $('#freddie_mac_product').val('')
+        $('#credit_score').val("700-719")
+        $('#ltv').val("65.01 - 70.00")
+        $('#cltv').val("75.01 - 80.00")
+        $('#state').val('All')
+        $('#loan_amount').val('0 - 50000')
+        $('#program_category').val('7900')
+        $('#property_type').val('2-4 Unit')
+        $('#financing_type').val('Subordinate Financing')
+        $('#refinance_option').val('Cash Out')
+        $('#misc_adjuster').val('CA Escrow Waiver (Full or Taxes Only)')
+        $('#payment_type').val('Interest Only')
+        $('#dti').val('25.6%')
+        $('#coverage').val('30.5%')
+        $('#margin').val('2.0')
+      });
+  });
+
+
+</script>
