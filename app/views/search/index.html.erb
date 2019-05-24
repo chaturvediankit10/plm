@@ -134,10 +134,12 @@
                     base_rate = (program[:base_rate].to_f).round(3).to_s
                     final_rate = (program[:final_rate].sum).round(3).to_s
                   %>
-                  <span class="hdng-big"><%= final_calculate = final_rate.split(".").last.length == 1 ? final_rate + "00" : final_rate.split(".").last.length == 2 ? final_rate + "0" : final_rate rescue nil %>% Rate</span>
+                  <span class="hdng-big"><%=  number_with_precision(program[:air].to_s, :precision => 3) %>% Rate</span>
                   <p class="hiden-txt-mb">4.145% APR</p>
                   
                   <p>30 Year Fixed</p>
+                  <p><%= program[:program_name]%></p>
+                  <p><%= program[:loan_category]%></p>
                   <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
                 </div>
                 <div class="inner-block-combined">
@@ -146,11 +148,13 @@
                     <p><span class="hiden-txt-mb">Expected</span> Savings</p>
                   </div>
                   <div class="inner-block inner-block-small">
-                    <span class="hdng-big">$3,072/mo</span>
+                  <%if program[:monthly_payment].present? %>
+                    <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
                     <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+                  <% end -%>
                   </div>
                   <div class="inner-block inner-block-small">
-                    <span class="hdng-big">$23,078</span>
+                    <span class="hdng-big"><%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 2) rescue nil%></span>
                     <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
                   </div>
                 </div>
@@ -163,7 +167,7 @@
                   <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
                 </div>
               </div>
-              <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate: final_calculate  } %>
+              <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate:  number_with_precision(program[:air].to_s, :precision => 3)  } %>
             <% end %>
           <% end %>
         </div>
