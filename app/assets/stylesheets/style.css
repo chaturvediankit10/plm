@@ -188,7 +188,7 @@ header .navbar-right {
   width: 100%;
   margin: 12px 0 25px 0;
   font-size: 15px;
-  color: #19214d;
+  color: #111;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -366,7 +366,7 @@ header .navbar-right {
 
 .bank-logos .extra-wrap h1 {
   font-size: 16px;
-  color: #19214d;
+  color: #111;
   font-weight: bold;
   margin: 0;
   padding: 0;
@@ -377,7 +377,7 @@ header .navbar-right {
 
 .bank-logos .extra-wrap p {
   font-size: 14px;
-  color: #19214d;
+  color: #111;
   margin: 0;
   padding: 0;
   white-space: nowrap;
@@ -451,7 +451,7 @@ header .navbar-right {
 .content-bx h1 {
   font-size: 18px;
   font-weight: bold;
-  color: #19214d;
+  color: #111;
   margin: 0;
   padding: 0;
   display: block;
@@ -462,7 +462,7 @@ header .navbar-right {
 .content-bx-content {
   padding: 0 10px 0 10px;
   font-size: 16px;
-  color: #19214d;
+  color: #111;
 }
 
 .mb-none {
@@ -472,7 +472,7 @@ header .navbar-right {
 .content-bx-content .table-condensed>tbody>tr>td {
   padding: 10px;
   font-size: 13px;
-  color: #19214d;
+  color: #111;
 }
 
 .content-bx-content .table-striped>tbody>tr:nth-of-type(odd) {
@@ -823,7 +823,7 @@ header .navbar-right {
 }
 
 .search-adv-option {
-  color: #19214d;
+  color: #111;
   font-size: 15px;
   text-decoration: underline;
   font-weight: bold;
@@ -850,14 +850,14 @@ header .navbar-right {
   font-size: 24px;
   text-transform: uppercase;
   text-align: center;
-  color: #19214d;
+  color: #111;
   font-weight: bold;
   margin: 10px 0 25px 0;
 }
 
 .advance-check {
   font-size: 15px;
-  color: #19214d;
+  color: #111;
 }
 
 .advance-check input {
@@ -867,7 +867,7 @@ header .navbar-right {
 
 .advance-check .form-group {
   font-size: 16px;
-  color: #19214d;
+  color: #111;
   float: left;
   font-weight: normal;
   width: 100%;
@@ -878,9 +878,9 @@ header .navbar-right {
   float: left;
   width: 90%;
   font-size: 15px;
-  color: #19214d;
+  color: #111;
   font-weight: bold;
-  border: 2px solid #19214d;
+  border: 2px solid #111;
   border-radius: 5px;
   margin: 0 0 15px 0;
   padding: 10px 5px;
@@ -891,7 +891,7 @@ header .navbar-right {
   width: 100%;
   margin: 0 0 5px 0;
   font-size: 15px;
-  color: #19214d;
+  color: #111;
   font-weight: bold;
 }
 
@@ -901,7 +901,7 @@ header .navbar-right {
   font-size: 15px;
   text-transform: uppercase;
   text-align: left;
-  color: #19214d;
+  color: #111;
   font-weight: bold;
   margin: 0 0 10px 0;
 }
@@ -909,9 +909,9 @@ header .navbar-right {
 .advance-check p span {
   float: right;
   font-size: 15px;
-  color: #19214d;
+  color: #111;
   font-weight: bold;
-  border: 2px solid #19214d;
+  border: 2px solid #111;
   border-radius: 5px;
   padding: 10px 20px;
   position: relative;
@@ -1082,7 +1082,7 @@ header .navbar-right {
   font-weight: bold;
   float: left;
   font-size: 14px;
-  color: #19214d;
+  color: #111;
   width: 100%;
   margin: 25px 0 0 0;
   line-height: normal;
@@ -1209,7 +1209,7 @@ header .navbar-right {
 }
 
 .home-experts-box h2 {
-  color: #19214d;
+  color: #111;
   font-weight: bold;
   font-size: 30px;
   float: left;
@@ -1230,7 +1230,7 @@ header .navbar-right {
 }
 
 .home-experts h3 {
-  color: #19214d;
+  color: #111;
   font-weight: bold;
   font-size: 17px;
   float: left;
@@ -1241,7 +1241,7 @@ header .navbar-right {
 }
 
 .home-experts a {
-  color: #19214d;
+  color: #111;
   font-weight: normal;
   font-size: 14px;
   float: left;
@@ -1279,7 +1279,7 @@ header .navbar-right {
 }
 
 .expert-cntnt-btn-inner p {
-  color: #19214d;
+  color: #111;
   font-weight: normal;
   font-size: 18px;
   float: left;
@@ -1454,7 +1454,7 @@ footer span {
   position: absolute;
   right: 10px;
   font-size: 13px;
-  color: #19214d;
+  color: #111;
 }
 
 #advance-srch-mb .search-cat input[type="text"],
@@ -1466,7 +1466,7 @@ footer span {
 #advance-srch-mb .search-cat label {
   margin: 15px 0 5px 0;
   font-size: 13px;
-  color: #19214d;
+  color: #111;
   font-weight: bold;
 }
 
@@ -1531,7 +1531,7 @@ footer span {
 
 #advance-srch-mb .drpdown-box label {
   font-size: 13px;
-  color: #19214d;
+  color: #111;
 }
 
 #advance-srch-mb .rates-btn {
@@ -1562,6 +1562,7 @@ footer span {
   border-radius: 0;
   box-shadow: none;
   padding: 13px 0;
+  top: 0;
 }
 
 .banner.search-result-banner .search-cat label {
@@ -1744,7 +1745,7 @@ footer span {
   width: 100%;
   padding: 17px 25px;
   font-size: 18px;
-  color: #19214d;
+  color: #111;
   border-radius: 5px;
   margin: 0 0 35px 0;
 }
@@ -1777,13 +1778,13 @@ footer span {
 /*terms page css start*/
 
 .terms-page {
-  border-top: 1px solid #152545;
+  border-top: none;
 }
 
 .terms-page h1 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 30px;
   margin: 0px 0 45px 0;
   font-weight: bold;
@@ -1800,19 +1801,20 @@ footer span {
 .gray-box-cntnt h3 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   line-height: normal;
-  font-size: 20px;
+  font-size: 24px;
   margin: 0 0 15px 0;
   padding: 0;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
 }
 
 .gray-box-cntnt span.date-inner-abt-us {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 14px;
   margin: 0 0 30px 0;
   padding: 0;
@@ -1823,11 +1825,11 @@ footer span {
 .gray-box-cntnt p {
   float: left;
   width: 100%;
-  color: #19214d;
-  font-size: 18px;
+  color: #111;
+  font-size: 16px;
   margin: 0;
   padding: 0;
-  line-height: 29px;
+  line-height: 24px;
   font-weight: 300;
   position: relative;
 }
@@ -1840,7 +1842,7 @@ footer span {
 .gray-box-cntnt p.left-numbering {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 18px;
   margin: 0 0 40px 0;
   padding: 0 0 0 45px;
@@ -1851,7 +1853,7 @@ footer span {
 
 .gray-box-cntnt p.left-numbering span {
   float: left;
-  color: #19214d;
+  color: #111;
   font-size: 20px;
   margin: 0;
   font-weight: bold;
@@ -1893,7 +1895,7 @@ footer span {
 .abt-left-numbering h5 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 16px;
   margin: 0 0 10px 0;
   font-weight: bold;
@@ -1902,7 +1904,7 @@ footer span {
 .abt-left-numbering p {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 16px;
   margin: 0;
   line-height: 25px;
@@ -1954,7 +1956,7 @@ footer span {
 .login-page h1 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 30px;
   margin: 0px 0 35px 0;
   font-weight: bold;
@@ -2062,7 +2064,7 @@ footer span {
   width: 100%;
   margin: 12px 0 25px 0;
   font-size: 15px;
-  color: #19214d;
+  color: #111;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -2216,7 +2218,7 @@ input.error {
   float: left;
   width: 100%;
   font-size: 16px;
-  color: #19214d;
+  color: #111;
   margin: 0 0 6px 0;
   line-height: normal;
   font-weight: normal;
@@ -2231,7 +2233,7 @@ input.error {
   border: 1px solid #e8ecf0;
   background: #fff;
   font-size: 17px;
-  color: #19214d;
+  color: #111;
   margin: 0;
   line-height: normal;
   font-weight: normal;
@@ -2276,7 +2278,7 @@ input.error {
   width: auto;
   margin-right: 50px;
   font-size: 16px;
-  color: #19214d;
+  color: #111;
   font-weight: normal;
   text-align: center;
   padding: 2px;
@@ -2300,7 +2302,7 @@ input.error {
 .fav-search-cntnt-comon p {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 16px;
   font-weight: bold;
   margin: 0 0 10px 0;
@@ -2317,14 +2319,14 @@ input.error {
   min-height: 50px;
   text-align: center;
   line-height: 45px;
-  color: #19214d;
+  color: #111;
   font-size: 13px;
   font-weight: 400;
   border-left: none;
 }
 
 .fav-search-white-block a {
-  color: #19214d;
+  color: #111;
   text-decoration: underline;
 }
 
@@ -2348,16 +2350,36 @@ input.error {
 
 
 /*directory mortgage rate in state css start*/
-
-.dirctory {
-  border-top: 1px solid #152545;
+.banner.directory-banner{
+  padding: 0;
+  background-position: center center;
 }
-
+.inner-banner-title h1 {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  right: 0;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  margin: 0;
+  font-size: 42px;
+  font-weight: 600;
+}
+.dirctory {
+  border-top: none;
+}
+.inner-banner-title {
+    min-height: 150px;
+}
+.pt-zero{
+  padding-top: 50px !important;
+}
 .directory-box {
   float: left;
   width: 100%;
   padding: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   box-shadow: 0px 5px 5px #ccc;
   border: 1px solid #ddd;
   background-color: #fff;
@@ -2367,7 +2389,7 @@ input.error {
 .directory-box h1 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 30px;
   margin: 0;
   padding: 23px 0;
@@ -2387,14 +2409,14 @@ input.error {
   float: left;
   width: 100%;
   margin: 0;
-  padding: 15px;
+  padding: 15px 0;
 }
 
 .directory-box a {
   font-size: 17px;
   font-weight: 300;
-  color: #19214d;
-  text-decoration: underline;
+  color: #111;
+  text-decoration: none;
   margin: 5px 15px;
   float: left;
   width: 100%;
@@ -2404,7 +2426,25 @@ input.error {
   color: #fb6325;
 }
 
-
+.directory-links-box a{
+  margin: 0;
+  text-decoration: none;
+  color: #111;
+}
+.directory-links-box a span {
+    display: inline-block;
+    max-width: 93%;
+}
+.city-link {
+  padding: 10px 0 5px;
+  border-bottom: 1px solid #ddd;
+  overflow-y: auto;
+}
+.city-link .fa{
+  float: right;
+  color: #fa6221;
+  font-size: 24px;
+}
 /*directory mortgage rate in state css end*/
 
 
@@ -2436,7 +2476,7 @@ input.error {
 }
 
 .pagination a.arrows-pagination {
-  color: #19214d;
+  color: #111;
   background: #ececec;
   font-size: 20px;
   font-weight: bold;
@@ -2444,31 +2484,53 @@ input.error {
 
 .pagination a.arrows-pagination:hover {
   color: #fff;
-  background: #19214d;
+  background: #111;
 }
 
 
 /*directory bank css end*/
+.top-level-directry .directory-box a.dtail-btn{
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px 40px;
+  background: #fb6324 !important;
+  text-transform: uppercase;
+  line-height: normal;
+}
 
 .directory-box h2 {
-  padding: 25px 17px 5px 17px;
+  padding: 0;
   font-weight: normal;
   float: left;
   width: 100%;
   color: #111;
-  font-size: 30px;
+  font-size: 24px;
   margin: 0;
   border-radius: 5px 5px 0 0;
   border-bottom: none;
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .top-level-directry .directory-box a {
-  margin: 0 20px 14px 0;
-  width: auto;
+    width: auto;
+    background-color: #dedede;
+    padding: 5px 10px;
+    min-width: 40px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #111;
+    margin: 0 6px 7px;
+    font-size: 16px;
+    line-height: 26px;
 }
-
+.top-level-directry .directory-box a:hover{
+  background-color: #fa6221;
+  color: #fff;
+}
 
 /*expert-application-overlay css start*/
 
@@ -2496,7 +2558,7 @@ input.error {
   text-align: left;
   font-size: 16px;
   font-weight: 700;
-  color: #19214d;
+  color: #111;
   text-transform: uppercase;
 }
 
@@ -2563,7 +2625,7 @@ input.error {
   text-align: center;
   font-size: 19px;
   font-weight: normal;
-  color: #19214d;
+  color: #111;
   line-height: 27px;
   margin: 20px 0 0 0;
 }
@@ -2586,23 +2648,28 @@ input.error {
 .seo-auto-loan-cntnt-box {
   float: left;
   width: 100%;
-  margin: 0 0 40px 0;
+  margin: 0 0 25px 0;
   padding: 0;
-  border-radius: 5px;
-  box-shadow: 0 0 15px #d7d7d7;
-  background: #f7f7f7;
+  box-shadow: 0px 5px 5px #ccc !important;
+  border: 1px solid #ddd;
+  background-color: #fff !important;
 }
-
-.seo-auto-loan-cntnt-box .gray-box-cntnt {
-  border-radius: 5px 0 0 5px;
+.seo-auto-loan-cntnt-box:last-child{
   margin: 0;
+}
+.seo-auto-loan-cntnt-box .gray-box-cntnt {
+  border-radius: 0;
+  margin: 0;
+  padding: 15px;
+  background-color: #fff;
 }
 
 .seo-bank-cntn-white-bg {
   background: #fff;
   padding: 25px 20px !important;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0;
   float: right;
+  border-left: 1px solid #ddd;
 }
 
 .seo-bank-cntn-white-bg h3 {
@@ -2611,19 +2678,19 @@ input.error {
   float: left;
   width: 100%;
   color: #fb6325;
-  font-size: 25px;
-  margin: 0 0 20px 0;
+  font-size: 20px;
+  margin: 0 0 17px 0;
 }
 
 .seo-bank-cntn-white-bg p {
   padding: 0;
-  font-weight: normal;
+  font-weight: 300;
   float: left;
   width: 100%;
-  color: #19214d;
-  font-size: 17px;
+  color: #111;
+  font-size: 16px;
   margin: 0 0 20px 0;
-  line-height: 28px;
+  line-height: 26px;
 }
 
 .seo-bank-cntn-white-bg p a {
@@ -2631,8 +2698,10 @@ input.error {
 }
 
 .seo-bank-cntn-white-bg p.seo-bank-cntn-white-bg-info {
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   text-align: right;
+  padding: 12px;
+  background-color: #f1f1f1;
 }
 
 .seo-bank-cntn-white-bg p.seo-bank-cntn-white-bg-info span {
@@ -2643,7 +2712,7 @@ input.error {
   border-radius: 0;
   box-shadow: none;
   background: #f7f7f7;
-  padding: 20px 30px;
+  padding: 15px 0;
 }
 
 .seo-auto-loan-cntnt-box2.seo-auto-loan-cntnt-box .gray-box-cntnt {
@@ -2652,23 +2721,24 @@ input.error {
   margin: 0;
 }
 
-.seo-auto-loan-cntnt-box2 .seo-bank-cntn-white-bg {
+/*.seo-auto-loan-cntnt-box2 .seo-bank-cntn-white-bg {
   box-shadow: 0 0 15px #d7d7d7;
   border-radius: 5px;
-}
+}*/
 
 .apply-btn {
-  font-size: 18px;
-  font-weight: normal;
-  color: #fff;
-  border-radius: 50px;
-  padding: 15px 40px;
-  background: #fb6325;
-  box-shadow: 0px 5px 0 #d6460c;
   float: none;
   margin: 30px auto 20px auto;
-  display: inline-block;
+  display: block;
   min-width: 100%;
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px 40px;
+  background: #fb6324 !important;
+  text-transform: uppercase;
+  line-height: normal;
 }
 
 .apply-btn:hover,
@@ -2678,7 +2748,7 @@ input.error {
 }
 
 .seo-bank-cntn-white-bg.text-center {
-  padding: 30px !important;
+  padding: 0 30px !important;
 }
 
 .seo-bank-cntn-white-bg.text-center img {
@@ -2694,23 +2764,41 @@ input.error {
 }
 
 .volume-auto-loan {
-  float: left;
-  width: 65%;
-  margin: 0 0 50px 0;
-  padding: 0;
-  border-radius: 0;
+    padding: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0px 5px 5px #ccc;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    float: none;
+    overflow-y: auto;
 }
-
-
-/*.volume-auto-loan h2{ padding:0; float: left; width: 100%; color: #19214d; font-size: 26px; margin: 0 0 25px 0; font-weight:bold;}*/
+.list-inner {
+    padding: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0px 5px 5px #ccc;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    overflow-y: auto;
+}
+.list-inner  h5{
+  width: 100%;
+  color: #111;
+  font-size: 24px;
+  margin: 0;
+  padding: 0 0 15px;
+  font-weight: 500;
+  border-radius: 5px 5px 0 0;
+  font-family: 'Poppins', sans-serif;
+}
+/*.volume-auto-loan h2{ padding:0; float: left; width: 100%; color: #111; font-size: 26px; margin: 0 0 25px 0; font-weight:bold;}*/
 
 .volume-auto-loan .volume-auto-loan-row {
-  padding: 14px 17px;
+  padding: 12px 17px;
   font-weight: normal;
   float: left;
   width: 100%;
-  color: #19214d;
-  font-size: 18px;
+  color: #111;
+  font-size: 16px;
   margin: 0;
   background: #f1f1f1;
   line-height: normal;
@@ -2721,8 +2809,8 @@ input.error {
   font-weight: normal;
   float: left;
   width: 80%;
-  color: #19214d;
-  font-size: 18px;
+  color: #111;
+  font-size: 16px;
   margin: 0;
   background: none;
   line-height: normal;
@@ -2742,14 +2830,18 @@ input.error {
 
 .volume-auto-loan.loan-chargeoff-recovry p {
   padding: 0;
-  line-height: 32px;
-  font-size: 18px;
+  line-height: 24px;
+  font-size: 16px;
   font-weight: 300;
   background: none;
   margin: 0 0 20px 0;
   text-align: left;
 }
-
+.amount-bold {
+    color: #fb6324 !important;
+    font-weight: 500;
+    font-size: 20px;
+}
 .volume-auto-loan.loan-chargeoff-recovry p.loan-chargeoff-recovry-inner-data {
   margin: 0 0 5px 0;
 }
@@ -2757,11 +2849,22 @@ input.error {
 .loan-chargeoff-recovry-inner-data span {
   float: left;
   margin: 0 10px 0 0;
-  min-width: 200px;
+  min-width: 45%;
 }
-
+.content-center{
+  border: 1px solid #ddd;
+  overflow-y: auto;
+}
+.volume-auto-loan.loan-chargeoff-recovry .content-center p{
+  padding: 10px 15px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #ddd;
+}
+.volume-auto-loan.loan-chargeoff-recovry .content-center p:last-child{
+  border-bottom: none;
+}
 .volume-auto-loan.seo-auto-loan-tabs {
-  width: 75%;
+  width: 100%;
 }
 
 .tabs-data-main {
@@ -2773,16 +2876,16 @@ input.error {
   float: left;
   width: 100%;
   background: #f1f1f1;
-  color: #19214d;
-  font-size: 20px;
-  padding: 10px 10px;
+  color: #111;
+  font-size: 16px;
+  padding: 10px 0;
 }
 
 .tabs-data-row {
   float: left;
   width: 100%;
   margin: 0;
-  padding: 15px 5px 10px 10px;
+  padding: 10px 0 10px 0;
 }
 
 .tabs-data-row p {
@@ -2793,7 +2896,7 @@ input.error {
   background: none;
   font-size: 15px;
   font-weight: normal;
-  color: #19214d;
+  color: #111;
   line-height: normal;
 }
 
@@ -2823,7 +2926,7 @@ input.error {
 .panel-heading.tabs-data-hdng a {
   font-size: 15px;
   font-weight: normal;
-  color: #19214d;
+  color: #111;
   width: 100%;
 }
 
@@ -2851,7 +2954,7 @@ input.error {
 .tabs-accordians-box h5 {
   font-size: 20px;
   font-weight: normal;
-  color: #19214d;
+  color: #111;
   margin-top: 15px;
 }
 
@@ -2935,18 +3038,20 @@ input.error {
   width: 100%;
   margin: 20px 0 6px 0;
   padding: 0;
-  color: #19214d;
+  color: #111;
   line-height: normal;
   font-size: 18px;
   font-weight: 300;
 }
 
 a.seo-loan-aftr-cntnt-link {
-  float: right;
-  text-align: right;
-  color: #fb6325;
-  font-size: 17px;
+  float: none;
+  text-align: center;
+  color: #111;
+  font-size: 16px;
   font-weight: normal;
+  display: block;
+  margin-top: 15px;
 }
 
 .blue_button {
@@ -2966,7 +3071,7 @@ a.seo-loan-aftr-cntnt-link {
 .loan-detail-page h1 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 52px;
   margin: 0px 0 30px 0;
   font-weight: bold;
@@ -3020,7 +3125,7 @@ a.seo-loan-aftr-cntnt-link {
 
 .car-auto-loan-othr-bank-box h3 {
   background: none;
-  color: #19214d !important;
+  color: #111 !important;
   font-weight: bold;
   padding: 0px 10px 0 0 !important;
   font-size: 24px;
@@ -3045,7 +3150,7 @@ a.seo-loan-aftr-cntnt-link {
   width: 100%;
   padding: 15px 20px;
   font-size: 20px;
-  color: #19214d;
+  color: #111;
 }
 
 .loan-detail-blocks-cntnt-row span {
@@ -3082,7 +3187,7 @@ a.seo-loan-aftr-cntnt-link {
 }
 
 .share-research.loan-detail-blocks h3 {
-  background: #19214d;
+  background: #111;
 }
 
 .share-research .loan-detail-blocks-cntnt {
@@ -3101,7 +3206,7 @@ a.seo-loan-aftr-cntnt-link {
   padding: 0;
   font-size: 18px;
   font-weight: 300;
-  color: #19214d;
+  color: #111;
   background: none;
   line-height: 32px;
 }
@@ -3139,7 +3244,7 @@ a.seo-loan-aftr-cntnt-link {
   padding: 0;
   font-size: 19px;
   font-weight: normal;
-  color: #19214d;
+  color: #111;
   background: none;
   line-height: normal;
 }
@@ -3152,7 +3257,7 @@ p.top-txt-info {
   text-align: right;
   font-size: 16px;
   margin: -10px 0 15px 0;
-  color: #19214d;
+  color: #111;
 }
 
 #para-see-more-link,
@@ -3164,7 +3269,7 @@ p.top-txt-info {
   display: none;
   float: left;
   text-decoration: underline;
-  color: #19214d !important;
+  color: #111 !important;
   font-size: 13px;
   cursor: pointer;
   padding: 5px 10px 0px 10px;
@@ -3176,11 +3281,12 @@ p.top-txt-info {
   background: none;
   border-radius: 0;
   padding: 0 0 10px 0;
-  color: #19214d;
+  color: #111;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 500;
   margin: 0;
   min-height: 40px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .tab_blue_content1 {
@@ -3222,7 +3328,7 @@ p.top-txt-info {
 .closing-cost-smry-cntnt .col-xs-12 {
   text-align: center;
   font-size: 18px;
-  color: #19214d;
+  color: #111;
   line-height: 65px;
   border-right: 1px solid #c8d5e6;
   padding: 0;
@@ -3237,7 +3343,7 @@ p.top-txt-info {
   width: 100%;
   background: #f6f8fa;
   font-size: 19px;
-  color: #19214d;
+  color: #111;
   line-height: normal;
   font-weight: normal;
   margin: 0;
@@ -3262,7 +3368,7 @@ p.top-txt-info {
   width: 100%;
   background: none;
   font-size: 21px !important;
-  color: #19214d;
+  color: #111;
   line-height: 26px;
   font-weight: normal;
   margin: 0;
@@ -3275,7 +3381,7 @@ p.top-txt-info {
   font-size: 20px;
   margin: 20px 0 10px 0;
   float: right;
-  color: #19214d;
+  color: #111;
 }
 
 .graph-box p.para-lft-inner {
@@ -3351,7 +3457,7 @@ p.top-txt-info {
 
 .data-table-inner td,
 .data-table-inner th {
-  color: #19214d;
+  color: #111;
   font-size: 18px;
   font-weight: normal;
   padding: 15px 10px !important;
@@ -3371,7 +3477,7 @@ p.top-txt-info {
 
 .row-bordr-botom td,
 .row-bordr-botom th {
-  border-bottom: 2px solid #19214d;
+  border-bottom: 2px solid #111;
 }
 
 
@@ -3398,7 +3504,7 @@ p.top-txt-info {
 
 .seo-bank-table-graph .col-xs-12.col-md-5 p {
   font-size: 20px;
-  color: #19214d;
+  color: #111;
   font-weight: 300;
   line-height: 25px;
   margin: 0 0 25px 0;
@@ -3453,7 +3559,7 @@ span.mnth-calc {
   border-radius: 0 5px 5px 0;
   background: #fff;
   font-size: 15px;
-  color: #19214d;
+  color: #111;
   font-weight: 500;
   padding: 10px 5px;
   text-align: center;
@@ -3514,7 +3620,7 @@ p.today-rate-link a {
   padding: 17px 15px !important;
   border: none !important;
   font-size: 20px;
-  color: #19214d;
+  color: #111;
   font-weight: normal;
 }
 
@@ -3670,7 +3776,7 @@ p.today-rate-link a {
 }
 
 #loan-dtail-overlay .col-xs-12.col-md-12 .loan-detail-blocks-cntnt-row span {
-  color: #19214d;
+  color: #111;
 }
 
 #loan-dtail-overlay .loan-dtail-rght-bordr {
@@ -3772,7 +3878,7 @@ p.today-rate-link a {
 
 .sectn-wo-bg.loan-detail-blocks h3 {
   background: none;
-  color: #19214d;
+  color: #111;
   padding: 0;
 }
 
@@ -3926,7 +4032,7 @@ p.today-rate-link a {
   font-weight: bold !important;
   line-height: normal !important;
   font-family: 'Lato', sans-serif;
-  color: #19214d;
+  color: #111;
   margin: 0 0 10px 0;
 }
 
@@ -4018,13 +4124,13 @@ label.error {
   padding-left: 0;
 }
 
-.seo-loan-cntnt-box-chnge .col-xs-12.col-md-8.our-story-cntnt .gray-box-cntnt {
+/*.seo-loan-cntnt-box-chnge .col-xs-12.col-md-8.our-story-cntnt .gray-box-cntnt {
   min-height: 330px;
 }
 
 .seo-loan-cntnt-box-chnge .col-xs-12.col-md-4.seo-bank-cntn-white-bg.seo-bank-cntn-top-white-bg {
   min-height: 330px;
-}
+}*/
 
 .news-see-more {
   float: left;
@@ -4039,7 +4145,7 @@ label.error {
 }
 
 .news-see-more-link {
-  color: #19214d;
+  color: #111;
   border-radius: 0;
   padding: 4px 10px 0 10px;
   float: left;
@@ -4052,7 +4158,7 @@ label.error {
 }
 
 .news-see-more-link:hover {
-  color: #19214d;
+  color: #111;
   text-decoration: underline;
 }
 
@@ -4918,7 +5024,7 @@ header.fixed-header.scrolled {
     border-radius: 0;
     border-bottom: none;
     text-align: left;
-    font-weight: bold;
+    font-weight: 400;
   }
   .top-level-directry .directory-box {
     padding: 13px 15px;
@@ -5121,7 +5227,7 @@ header.fixed-header.scrolled {
   }
   .show-all-loan-link {
     float: left;
-    color: #19214d;
+    color: #111;
     font-size: 16px;
     margin: 10px 15px;
     text-decoration: underline;
@@ -5134,10 +5240,13 @@ header.fixed-header.scrolled {
     font-size: 16px;
   }
   .loan-chargeoff-recovry-inner-hdng {
-    margin: 20px 0 0px 0;
+    margin: 15px 0;
     padding: 0 15px;
     font-size: 14px;
     font-weight: normal;
+  }
+  .value-bx{
+    color: #fb6324 !important;
   }
   a.seo-loan-aftr-cntnt-link {
     font-size: 14px;
@@ -5149,7 +5258,7 @@ header.fixed-header.scrolled {
   }
   .car-auto-loan-othr-bank-box h3 {
     background: none;
-    color: #19214d !important;
+    color: #111 !important;
     font-weight: bold;
     font-size: 20px !important;
     padding: 0 10px 2px 10px !important;
@@ -5183,7 +5292,7 @@ header.fixed-header.scrolled {
   }
   .seo-cities-mortgage .loan-detail-block-shadow h3 {
     font-size: 18px;
-    color: #19214d;
+    color: #111;
     background: none;
     padding: 10px 10px 2px 10px;
   }
@@ -5256,7 +5365,7 @@ header.fixed-header.scrolled {
   }
   .show-all-specialst-btn,
   .seo-auto-loan .show-all-loan-link {
-    color: #19214d;
+    color: #111;
     border-radius: 0;
     padding: 0;
     float: left;
@@ -5267,7 +5376,7 @@ header.fixed-header.scrolled {
     margin: 10px 0 0 10px;
   }
   .show-all-specialst-btn:hover {
-    color: #19214d;
+    color: #111;
     text-decoration: underline;
   }
   .mortgage-calculator .search-cat,
@@ -5503,7 +5612,7 @@ header.fixed-header.scrolled {
   #para-see-less-link {
     float: right;
     text-decoration: underline;
-    color: #19214d;
+    color: #111;
     font-size: 14px;
     cursor: pointer;
   }
@@ -5532,7 +5641,7 @@ header.fixed-header.scrolled {
   }
   .tabs-data-main.tabs-accordians-box .tabs-data-row a {
     position: relative;
-    color: #19214d;
+    color: #111;
     text-decoration: none;
     font-style: italic;
   }
@@ -6619,7 +6728,7 @@ header.fixed-header.scrolled {
   }
   .show-all-loan-link {
     float: left;
-    color: #19214d;
+    color: #111;
     font-size: 16px;
     margin: 10px 15px;
     text-decoration: underline;
@@ -6647,7 +6756,7 @@ header.fixed-header.scrolled {
   }
   .car-auto-loan-othr-bank-box h3 {
     background: none;
-    color: #19214d !important;
+    color: #111 !important;
     font-weight: bold;
     font-size: 20px !important;
     padding: 0 10px 2px 0 !important;
@@ -6671,7 +6780,7 @@ header.fixed-header.scrolled {
   }
   .seo-cities-mortgage .loan-detail-block-shadow h3 {
     font-size: 18px;
-    color: #19214d;
+    color: #111;
     background: none;
     padding: 10px 10px 2px 10px;
   }
@@ -6744,7 +6853,7 @@ header.fixed-header.scrolled {
     margin: 10px 0 20px 0;
   }
   .show-all-specialst-btn {
-    color: #19214d;
+    color: #111;
     border-radius: 0;
     padding: 0;
     float: left;
@@ -6755,7 +6864,7 @@ header.fixed-header.scrolled {
     margin: 10px 0 0 10px;
   }
   .show-all-specialst-btn:hover {
-    color: #19214d;
+    color: #111;
     text-decoration: underline;
   }
   .graph-box img {
@@ -7003,7 +7112,7 @@ header.fixed-header.scrolled {
   #para-see-less-link {
     float: right;
     text-decoration: underline;
-    color: #19214d;
+    color: #111;
     font-size: 14px;
     cursor: pointer;
   }
@@ -7033,7 +7142,7 @@ header.fixed-header.scrolled {
   }
   .tabs-data-main.tabs-accordians-box .tabs-data-row a {
     position: relative;
-    color: #19214d;
+    color: #111;
     text-decoration: none;
     font-style: italic;
   }
@@ -7424,7 +7533,7 @@ header.fixed-header.scrolled {
 }
 
 .graph-box.main-table-graph .table.table-striped {
-  border-bottom: 2px solid #19214d;
+  border-bottom: 2px solid #111;
 }
 
 .submit-aplicatn-btn-box {
@@ -7438,7 +7547,7 @@ header.fixed-header.scrolled {
 }
 
 .row-bordr-botom {
-  border-bottom: 2px solid #19214d;
+  border-bottom: 2px solid #111;
 }
 
 .data-table-inner.table-responsive.main-table-grapg-box td:first-child {
@@ -7515,7 +7624,7 @@ header.fixed-header.scrolled {
 .blog-post-inner h4 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 20px;
   margin: 0px 0 8px 0;
   font-weight: bold;
@@ -7524,7 +7633,7 @@ header.fixed-header.scrolled {
 }
 
 .blog-post-inner h4 a {
-  color: #19214d;
+  color: #111;
   font-size: 20px;
   font-weight: bold;
   line-height: normal;
@@ -7534,7 +7643,7 @@ header.fixed-header.scrolled {
 .blog-post-inner p {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 18px;
   margin: 0;
   font-weight: 300;
@@ -7557,7 +7666,7 @@ header.fixed-header.scrolled {
 .blog-top-cntnt h4 {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 30px;
   margin: 0 0 10px 0;
   font-weight: bold;
@@ -7567,7 +7676,7 @@ header.fixed-header.scrolled {
 .blog-top-cntnt p {
   float: left;
   width: 100%;
-  color: #19214d;
+  color: #111;
   font-size: 25px;
   margin: 0 0 12px 0;
   font-weight: normal;
@@ -7588,7 +7697,7 @@ header.fixed-header.scrolled {
 .rght-sidebar-box h3 {
   float: left;
   width: 100%;
-  background: #19214d;
+  background: #111;
   border-radius: 5px 5px 0 0;
   padding: 11px 20px;
   color: #fff;
@@ -7614,7 +7723,7 @@ header.fixed-header.scrolled {
   padding: 0;
   font-size: 18px;
   font-weight: 300;
-  color: #19214d;
+  color: #111;
   background: none;
   line-height: 32px;
   text-align: left;
@@ -7655,7 +7764,7 @@ header.fixed-header.scrolled {
   background: none;
   border-radius: 0;
   padding: 0;
-  color: #19214d;
+  color: #111;
   font-size: 18px;
   font-weight: bold;
   margin: 0 0 5px 0;
@@ -7663,7 +7772,7 @@ header.fixed-header.scrolled {
 }
 
 .rght-sidebar-box-dtail-sectns h5 a {
-  color: #19214d;
+  color: #111;
 }
 
 .rght-sidebar-box-dtail-sectns p {
@@ -7673,7 +7782,7 @@ header.fixed-header.scrolled {
   padding: 0;
   font-size: 18px;
   font-weight: 300;
-  color: #19214d;
+  color: #111;
   background: none;
   line-height: 26px;
   text-align: left;
@@ -7692,7 +7801,7 @@ header.fixed-header.scrolled {
 }
 
 .blog-nav a {
-  color: #19214d;
+  color: #111;
 }
 
 #research_contact_form .modal-dialog {
@@ -7750,10 +7859,10 @@ header.fixed-header.scrolled {
 .popup-cntnt textarea {
   float: left;
   width: 100%;
-  border: 2px solid #19214d;
+  border: 2px solid #111;
   padding: 17px 25px;
   font-size: 18px;
-  color: #19214d;
+  color: #111;
   border-radius: 5px;
   margin: 0 0 35px 0;
 }
