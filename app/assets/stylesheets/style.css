@@ -8452,3 +8452,7 @@ p.top-txt-info {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+span.hdng-big{
+  height: 38px;
+}
