@@ -1,8 +1,20 @@
+<section class="banner directory-banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-banner-title">
+          <h1>Directory</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <% title 'Cities list in '+state_full_name(@state_name) %>
-<section class="content-main dirctory mortgage-rates-state">
+<section class="content-main dirctory mortgage-rates-state pt-zero">
   <div class="container">
     <div class="directory-box">
-      <h1>Cities List in <%=state_full_name(@state_name)%></h1>
+      <h2>Cities List in <%=state_full_name(@state_name)%></h2>
         <div class="directory-links-box">
            <%@cities.each do |city|%>
               <div class="col-xs-12 col-md-4">
@@ -10,8 +22,13 @@
                   <%current_path = city_home_mortgage_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id)%>
                 <%elsif @flag == 'refinance'%>
                   <%current_path = city_home_refinance_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id)%>
-                <%end%>      
-               <%=link_to city.city, current_path%>
+                <%end%> 
+                <div class="city-link">
+                  <%= link_to current_path do %>
+                    <span><%=city.city%></span>
+                    <i class="fa fa-angle-double-right"></i>
+                  <% end %>
+                </div> 
               </div>      
            <%end%>   
         </div>                 

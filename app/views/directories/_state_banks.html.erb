@@ -1,9 +1,21 @@
+<section class="banner directory-banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-banner-title">
+          <h1>Directory</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- directory bank content start-->
 <% title @heading +' Costs by Bank'+'-'+@alphabet %>
-<section class="content-main dirctory mortgage-rates-state state-bank-page-list">
+<section class="content-main dirctory mortgage-rates-state state-bank-page-list pt-zero">
   <div class="container">
      <div class="directory-box">
-        <h1><%=@heading%> Costs by Bank - <%=@alphabet%></h1>
+        <h2><%=@heading%> Costs by Bank - <%=@alphabet%></h2>
         <div class="directory-links-box">
           <%@counter= 0%>
           <%if link_calculate(@banks.size).present? %>
@@ -20,7 +32,12 @@
                   <%else %>
                     <%current_path = auto_loan_state_banks_list_path(bank_from: bank.first.id, bank_to: bank.last.id,bank_list: customize_path(bank.first.name, bank.last.name), alphabet: @alphabet)%>             
                   <%end%>  
-                    <%=link_to bank.first.name+' to '+ bank.last.name, current_path %>    
+                    <div class="city-link">
+                      <%= link_to current_path do %>
+                        <span><%=bank.first.name+' to '+ bank.last.name%></span>
+                        <i class="fa fa-angle-double-right"></i>
+                      <% end %>
+                  </div>     
               </div>
               <%if @counter%3 == 0%>
                 </div>

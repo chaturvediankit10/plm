@@ -1,20 +1,40 @@
+<section class="banner directory-banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-banner-title">
+          <h1>Directory</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- dirctory mortgage state in state start-->
 <% title 'Cities in '+state_full_name(@state_name) %>
-<section class="content-main dirctory mortgage-rates-state">
+<section class="content-main dirctory mortgage-rates-state pt-zero">
   <div class="container">
     <div class="directory-box">
-       <h1>Cities in <%=state_full_name(@state_name)%></h1>
+       <h2>Cities in <%=state_full_name(@state_name)%></h2>
           <div class="directory-links-box">
-             <%@cities.in_groups(@cities.size.quo(link_calculate(@cities.size)).ceil, false) do |city|%>
+            <div class="row">
+               <%@cities.in_groups(@cities.size.quo(link_calculate(@cities.size)).ceil, false) do |city|%>
                 <div class="col-xs-12 col-md-4">               
                   <%if @flag == 'mortgage'%>
                     <% current_path = mortgage_state_cities_list_path(state: city.first.state_code, city_list: (city.first.city+'_'+city.last.city).tr(" ", "+"), city_from: city.first.id, city_to: city.last.id)%>
+
                   <%elsif @flag == 'refinance'%>
                     <% current_path = refinance_state_cities_list_path(state: city.first.state_code, city_list: (city.first.city+'_'+city.last.city).tr(" ", "+"), city_from: city.first.id, city_to: city.last.id)%> 
                   <%end%>
-                  <%= link_to city.first.city+' to '+city.last.city, current_path %>  
-              </div>      
-          <%end%>   
+                  <div class="city-link">
+                    <%= link_to current_path do %>
+                      <span><%=city.first.city+' to '+city.last.city%></span>
+                      <i class="fa fa-angle-double-right"></i>
+                    <% end %>
+                  </div>  
+                </div>      
+            <%end%>
+          </div>   
         </div>                 
     </div>
   </div>
