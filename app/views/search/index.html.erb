@@ -122,61 +122,64 @@
           <h5><%= @term%>-Year Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <% if @result.present? %>
             <% @result.each_with_index do |program, index|%>
-              <div class="cntnt-list-inner col-md-12">
-                <div class="inner-logo">
-                <!-- <img src="//assets/CMG financial.png" alt=""> -->
-                  <img src="<%= "/assets/"+program[:bank_name] %>.png" >
-                  <p class="orange-link"><%= program[:bank_name] %></p>
-                  <p>NMLS ID 1067</p>
-                </div>
-                <div class="inner-block">
-                  <% 
-                    base_rate = (program[:base_rate].to_f).round(3).to_s
-                    final_rate = (program[:final_rate].sum).round(3).to_s
-                  %>
-                  <span class="hdng-big">
-                    <%if program[:air] != 0.0 && program[:air] != ""  %>
-                      <%=  number_with_precision(program[:air].to_s, :precision => 3)%>% Rate
-                    <% end -%>
-                  </span>
-                  <p class="hiden-txt-mb">
-                    <%if program[:apr].present?%>
-                      <%= "%g" % ("%.2f" % program[:apr]) rescue nil %>% APR
-                    <%end%>
-                  </p>
-                  
-                  <p>30 Year Fixed</p>
-                  <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-                </div>
-                <div class="inner-block-combined">
-                  <div class="inner-block inner-block-small">
-                    <span class="hdng-big">$23,078</span>
-                    <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+              <% if program[:air].present? && program[:air].to_i != 0 %>
+                <div class="cntnt-list-inner col-md-12">
+                  <div class="inner-logo">
+                  <!-- <img src="//assets/CMG financial.png" alt=""> -->
+                    <img src="<%= "/assets/"+program[:bank_name] %>.png" >
+                    <p class="orange-link"><%= program[:bank_name] %></p>
+                    <p>NMLS ID 1067</p>
                   </div>
-                  <div class="inner-block inner-block-small">
-                  <%if program[:monthly_payment].present? %>
-                    <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
-                    <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-                  <% end -%>
-                  </div>
-                  <div class="inner-block inner-block-small">
-                    <%if program[:closing_cost] != 0.0 && program[:closing_cost] != ""%>
+                  <div class="inner-block">
+                    <% 
+                      base_rate = (program[:base_rate].to_f).round(3).to_s
+                      final_rate = (program[:final_rate].sum).round(3).to_s
+                    %>
                     <span class="hdng-big">
-                      <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 2) rescue nil %>
-                      </span>
-                    <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+                      <%if program[:air] != 0.0 && program[:air] != ""  %>
+                        <%=  number_with_precision(program[:air].to_s, :precision => 3)%>% Rate
+                      <% end -%>
+                    </span>
+                    <p class="hiden-txt-mb">
+                      <%if program[:apr].present? %>
+                        <!-- <%#= "%g" % ("%.2f" % program[:apr]) rescue nil %>% APR -->
+                        <%= program[:apr].to_s.split("e").first.to_f.round(3) rescue nil %>% APR
+                      <%end%>
+                    </p>
+                    
+                    <p>30 Year Fixed</p>
+                    <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+                  </div>
+                  <div class="inner-block-combined">
+                    <div class="inner-block inner-block-small">
+                      <span class="hdng-big">$23,078</span>
+                      <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+                    </div>
+                    <div class="inner-block inner-block-small">
+                    <%if program[:monthly_payment].present? %>
+                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
+                      <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
                     <% end -%>
+                    </div>
+                    <div class="inner-block inner-block-small">
+                      <%if program[:closing_cost] != 0.0 && program[:closing_cost] != ""%>
+                      <span class="hdng-big">
+                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 2) rescue nil %>
+                        </span>
+                      <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+                      <% end -%>
+                    </div>
+                  </div>
+                  <div class="inner-block-btn">
+                    <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
+                    <a href="" class="lendr-web-link">Lender Website</a>
+                  </div>
+                  <div class="mb-scroll-icn">
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
                   </div>
                 </div>
-                <div class="inner-block-btn">
-                  <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
-                  <a href="" class="lendr-web-link">Lender Website</a>
-                </div>
-                <div class="mb-scroll-icn">
-                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
-                </div>
-              </div>
+              <% end %>
               <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate:  number_with_precision(program[:air].to_s, :precision => 3)  } %>
             <% end %>
           <% end %>
