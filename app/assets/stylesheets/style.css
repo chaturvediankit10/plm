@@ -926,7 +926,7 @@ header .navbar-right {
 }
 
 .content-main p {
-  font-family: 'Poppins', sans-serif;
+  /*font-family: 'Poppins', sans-serif;*/
   font-weight: 500;
   float: left;
   width: 100%;
@@ -1919,11 +1919,96 @@ footer span {
   max-width: 100%;
   width: auto;
   float: right;
-  box-shadow: 0 0 40px #c0c0c0;
-  border-radius: 14px;
+  box-shadow: none;
+  border-radius: 0;
   border: none;
+  margin-top: 85px;
 }
+.white-bg{
+  background-color: #fff !important;
+}
+.our-story-cntnt .gray-box-cntnt{
+  padding: 0;
+}
+.about-story h3{
+  font-size: 42px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.about-story-bx p {
+    font-weight: 300;
+    float: none;
+    width: 100%;
+    color: #111;
+    font-size: 17px;
+    margin: 0 0 40px 0;
+    line-height: 24px;
+}
+.our-story-cntnt.about-story h5{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  text-transform: capitalize;
+}
+.our-story-cntnt.about-story h5 .fa{
+  font-size: 26px;
+  margin-right: 25px;
+}
+.about-bottom-page{
+  padding: 40px 0;
+  background: url(../assets/about-bg.jpg) no-repeat top center;
+  background-size: cover;
+  clear: both;
+  margin-top: 100px;
+}
+.contact-wrapper {
+  padding: 60px 0;
+  background: url(../assets/contact-bg.jpg) no-repeat top center;
+  background-size: cover;
+  clear: both;
+}
+.contact-form{
+  background-color: #fff;
+  border-radius: 5px;
+  overflow-y: auto;
 
+}
+.contact-form h2 {
+    background-color: #f1f1f1;
+    font-size: 26px;
+    color: #111;
+    margin: 0;
+    padding: 15px 30px;
+}
+.contact-form form{
+  padding: 30px;
+  overflow-y: auto;
+}
+.contact-form form p {
+    margin: 0 0 15px;
+    font-size: 18px;
+}
+.icon-bx {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+.icon-bx img{
+  max-width: 60px;
+}
+.about-bottom-page .gray-box-cntnt {
+    padding: 25px !important;
+    text-align: left;
+    border-radius: 5px;
+    border-top: 7px solid #3596cd;
+    min-height: 325px;
+}
+.about-bottom-page .gray-box-cntnt h3{
+  text-transform: capitalize;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px !important;
+}
 .abt-tabs-cntnt {
   margin-top: 15px;
 }
@@ -1975,7 +2060,7 @@ footer span {
   width: 100%;
   margin: 10px 0 5px 0;
   float: left;
-  padding: 15px 0px 14px 60px;
+  padding: 0;
   border-bottom: 1px solid #e2e2e2;
   position: relative;
 }
@@ -2054,9 +2139,10 @@ footer span {
 .login-rows.cntnt-login {
   width: 100%;
   margin: 0;
-  padding: 15px 0 25px 0;
+  padding: 0;
   border: none;
   text-align: center;
+  border: none !important;
 }
 
 .login-rows.cntnt-login p {
@@ -2353,6 +2439,13 @@ input.error {
 .banner.directory-banner{
   padding: 0;
   background-position: center center;
+
+}
+.banner.about-banner{
+  padding: 0;
+  background-position: center center;
+  background: url(../assets/aboutbanner.jpg) no-repeat center center !important;
+  background-size: 100% !important;
 }
 .inner-banner-title h1 {
   text-align: center;
@@ -2374,6 +2467,8 @@ input.error {
 }
 .pt-zero{
   padding-top: 50px !important;
+  clear: both;
+  float: none;
 }
 .directory-box {
   float: left;
@@ -2847,21 +2942,31 @@ input.error {
 }
 
 .loan-chargeoff-recovry-inner-data span {
-  float: left;
-  margin: 0 10px 0 0;
-  min-width: 45%;
+  padding: 10px 20px;
+  display: inline-block;
 }
+.loan-chargeoff-recovry-inner-data span.half {
+  float: left;
+  margin: 0;
+  min-width: 50%;
+  padding: 10px 20px;
+  border-right: 1px solid #ddd;
+}
+.loan-chargeoff-recovry-inner-data span
 .content-center{
   border: 1px solid #ddd;
   overflow-y: auto;
 }
 .volume-auto-loan.loan-chargeoff-recovry .content-center p{
-  padding: 10px 15px;
+  padding: 0;
   margin-bottom: 0;
   border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
 }
-.volume-auto-loan.loan-chargeoff-recovry .content-center p:last-child{
-  border-bottom: none;
+.volume-auto-loan.loan-chargeoff-recovry .content-center p.value-bx{
+  border-top: none;
+  color: #fb6324 !important;
+  font-weight: 500;
 }
 .volume-auto-loan.seo-auto-loan-tabs {
   width: 100%;
@@ -2879,19 +2984,21 @@ input.error {
   color: #111;
   font-size: 16px;
   padding: 10px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .tabs-data-row {
   float: left;
   width: 100%;
   margin: 0;
-  padding: 10px 0 10px 0;
+  padding: 12px 0 12px 0;
 }
+.seo-auto-loan-tabs .tabs-data-row:nth-child(odd) {background-color: #f1f1f1;}
 
 .tabs-data-row p {
   float: left;
   width: 100%;
-  margin: 0 0 6px 0;
+  margin: 0 0 0 0;
   padding: 0;
   background: none;
   font-size: 15px;
@@ -3034,9 +3141,9 @@ input.error {
 }
 
 .loan-chargeoff-recovry-inner-hdng {
-  float: left;
+  float: none;
   width: 100%;
-  margin: 20px 0 6px 0;
+  margin: 10px 0;
   padding: 0;
   color: #111;
   line-height: normal;
@@ -3923,9 +4030,16 @@ p.today-rate-link a {
 
 #contact_us_form .login-rows {
   border: none;
-  margin: 4px 0
+  margin: 4px 0 15px;
+  border: 1px solid #ddd;
 }
-
+#contact_us_form .login-rows .fa{
+  left: 9px;
+  position: absolute;
+  top: 7px;
+  font-size: 20px;
+  color: #fa6221;
+}
 #contact_us_form .login-rows input {
   border-bottom: 1px solid #ececec;
   padding: 10px 0;
@@ -3948,24 +4062,21 @@ p.today-rate-link a {
 }
 
 #contact_us_form .login-rows input.login-page-btn {
-  float: left !important;
-  margin: 0 auto 34px 60px;
+  float: none !important;
+  margin: 0 auto;
   position: relative;
-  top: 10px;
-  padding: 10px 0;
-  width: auto !important;
-  background: #fb6325 !important;
   border-radius: 5px;
   border: 4px solid #fff;
   text-transform: uppercase;
   color: #fff !important;
-  box-shadow: 0 0 20px #fcbb0d;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-decoration: none !important;
-  min-width: 250px !important;
+  box-shadow: none;
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 10px !important;
+  padding: 12px 40px;
+  background: #fb6324;
+  text-transform: uppercase;
 }
 
 .contact-page {
@@ -3982,12 +4093,12 @@ p.today-rate-link a {
 #contact_us_form .login-rows input[type="email"],
 #contact_us_form .login-rows input[type="text"],
 #contact_us_form .login-rows textarea {
-  border: 1px solid #f9f9f9 !important;
+  border: none;
   background: none !important;
   color: #333;
-  padding: 10px;
+  padding: 10px 15px 10px 50px;
   font-size: 14px;
-  box-shadow: 1px 1px 5px 0px #cecece;
+  box-shadow: none;
 }
 
 .contact-page .gray-box-cntnt h3 {
@@ -3995,8 +4106,8 @@ p.today-rate-link a {
 }
 
 #contact_us_form label.error {
-  padding-left: 14%;
-  bottom: -3px;
+    padding-left: 0;
+    bottom: -17px;
 }
 
 .dynamic-cntnt {
@@ -4014,14 +4125,14 @@ p.today-rate-link a {
 }
 
 .our-story-cntnt p font {
-  font-size: 18px !important;
+  font-size: 16px !important;
   font-weight: 300 !important;
   line-height: normal !important;
   font-family: 'Lato', sans-serif;
 }
 
 .our-story-cntnt p span {
-  font-size: 18px !important;
+  font-size: 16px !important;
   font-weight: 300 !important;
   line-height: normal !important;
   font-family: 'Lato', sans-serif;
@@ -4031,7 +4142,7 @@ p.today-rate-link a {
   font-size: 16px !important;
   font-weight: bold !important;
   line-height: normal !important;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #111;
   margin: 0 0 10px 0;
 }
@@ -4384,7 +4495,9 @@ header.fixed-header.scrolled {
   margin-bottom: 0;
 }
 
-
+.paddding-none{
+  padding: 0 !important;
+}
 /**-------------Ends----------------**/
 
 
@@ -5245,9 +5358,7 @@ header.fixed-header.scrolled {
     font-size: 14px;
     font-weight: normal;
   }
-  .value-bx{
-    color: #fb6324 !important;
-  }
+
   a.seo-loan-aftr-cntnt-link {
     font-size: 14px;
     padding: 0 10px;
@@ -5899,6 +6010,12 @@ header.fixed-header.scrolled {
 @media(min-width:320px) and (max-width:640px) {
   .rates-tab.nav-tabs>li>a {
     padding: 8px 20px;
+  }
+  .inner-banner-title {
+    min-height: 108px;
+  }
+  .inner-banner-title h1{
+    font-size: 32px;
   }
 }
 
@@ -8079,9 +8196,9 @@ h4#sheet-title{
 .freddie_mac_lp, .refi {
   color:red;
 }
-.valid {
+/*.valid {
   display: none;
-}
+}*/
 
 .error {
   color: red

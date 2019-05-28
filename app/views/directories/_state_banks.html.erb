@@ -32,11 +32,11 @@
                   <%else %>
                     <%current_path = auto_loan_state_banks_list_path(bank_from: bank.first.id, bank_to: bank.last.id,bank_list: customize_path(bank.first.name, bank.last.name), alphabet: @alphabet)%>             
                   <%end%>  
-                    <div class="city-link">
-                      <%= link_to current_path do %>
-                        <span><%=bank.first.name+' to '+ bank.last.name%></span>
-                        <i class="fa fa-angle-double-right"></i>
-                      <% end %>
+                  <div class="city-link">
+                    <%= link_to current_path do %>
+                      <span><%=bank.first.name+' to '+ bank.last.name%></span>
+                      <i class="fa fa-angle-double-right"></i>
+                    <% end %>
                   </div>     
               </div>
               <%if @counter%3 == 0%>
