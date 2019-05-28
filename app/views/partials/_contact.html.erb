@@ -1,0 +1,20 @@
+<h2>Contact Page</h2>
+<div class="col-xs-12 col-md-5 ">
+  <%= form_with url: contact_us_email_path,id: 'contact_us_form' ,remote: true do |f| %>
+    <div class="login-rows">
+      <%= image_tag("login-user.png", :alt => "Name") %>
+      <%= f.text_field :name, autofocus: true, placeholder: "Enter Name" %>
+    </div>
+    <div class="login-rows">
+     <%= image_tag("login-mail.png", :alt => "email") %>
+     <%= f.email_field :email, autofocus: true, placeholder: "Enter Email" %>
+    </div>
+    <div class="login-rows">
+     <%= image_tag("menu-checkbox_03.png", :alt =>"question")%>
+     <%= f.text_area :question, size: "55x5", autofocus: true, placeholder: "Enter Text", style: 'max-width: 100%'%>
+    </div>
+    <div class="login-rows cntnt-login">
+      <%= f.submit "Submit", class: "login-page-btn" %>
+    </div>
+  <%end%>
+</div>  

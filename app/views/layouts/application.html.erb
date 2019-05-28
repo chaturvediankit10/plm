@@ -5,8 +5,6 @@
     <title>
         <% if yield(:title).present? %>
           <%= yield(:title) %>
-        <% elsif @page.present?%>
-          <%= @page.meta_title.present? ? @page.meta_title : 'Standup App'%>
         <%else%>
           Standup App
         <%end%>
