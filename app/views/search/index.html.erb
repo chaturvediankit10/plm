@@ -172,11 +172,11 @@
                   </div>
                   <div class="inner-block-btn">
                     <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" class="dtail-btn">View Details</a>
                     <a href="" class="lendr-web-link">Lender Website</a>
                   </div>
                   <div class="mb-scroll-icn">
-                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" ><i class="fa fa-angle-right"></i></a>
                   </div>
                 </div>
               <% end %>
@@ -239,12 +239,13 @@
                     </div>
                   </div>
                   <div class="inner-block-btn">
+                    <%#debugger%>
                     <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" class="dtail-btn">View Details</a>
                     <a href="" class="lendr-web-link">Lender Website</a>
                   </div>
                   <div class="mb-scroll-icn">
-                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" ><i class="fa fa-angle-right"></i></a>
                   </div>
                 </div>
               <% end %>
@@ -258,7 +259,7 @@
         <div class="cntnt-list-box">
           <h5>5/1 Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
           <% if @result.present? %>
-            <% get_results_arm(@result, 5).each_with_index do |program, index|%>
+            <% get_results_arm(@result, "5").each_with_index do |program, index|%>
               <% if program[:air].present? && program[:air].to_i != 0 %>
                 <div class="cntnt-list-inner col-md-12">
                   <div class="inner-logo">
@@ -309,11 +310,11 @@
                   </div>
                   <div class="inner-block-btn">
                     <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" class="dtail-btn">View Details</a>
                     <a href="" class="lendr-web-link">Lender Website</a>
                   </div>
                   <div class="mb-scroll-icn">
-                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" ><i class="fa fa-angle-right"></i></a>
                   </div>
                 </div>
               <% end %>
