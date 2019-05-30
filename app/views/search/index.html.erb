@@ -157,14 +157,14 @@
                     </div>
                     <div class="inner-block inner-block-small">
                     <%if program[:monthly_payment].present? %>
-                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
+                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 0) if program[:monthly_payment].present? %></span>
                       <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
                     <% end -%>
                     </div>
                     <div class="inner-block inner-block-small">
                       <%if program[:closing_cost] != 0.0 && program[:closing_cost] != ""%>
                       <span class="hdng-big">
-                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 2) rescue nil %>
+                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 0) rescue nil %>
                         </span>
                       <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
                       <% end -%>
@@ -225,14 +225,14 @@
                     </div>
                     <div class="inner-block inner-block-small">
                     <%if program[:monthly_payment].present? %>
-                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
+                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 0) if program[:monthly_payment].present? %></span>
                       <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
                     <% end -%>
                     </div>
                     <div class="inner-block inner-block-small">
                       <%if program[:closing_cost] != 0.0 && program[:closing_cost] != ""%>
                       <span class="hdng-big">
-                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 2) rescue nil %>
+                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 0) rescue nil %>
                         </span>
                       <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
                       <% end -%>
@@ -295,14 +295,14 @@
                     </div>
                     <div class="inner-block inner-block-small">
                     <%if program[:monthly_payment].present? %>
-                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
+                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 0) if program[:monthly_payment].present? %></span>
                       <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
                     <% end -%>
                     </div>
                     <div class="inner-block inner-block-small">
                       <%if program[:closing_cost] != 0.0 && program[:closing_cost] != ""%>
                       <span class="hdng-big">
-                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 2) rescue nil %>
+                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 0) rescue nil %>
                         </span>
                       <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
                       <% end -%>
