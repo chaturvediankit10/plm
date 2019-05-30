@@ -10,19 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190515131350) do
+ActiveRecord::Schema.define(version: 20190529100943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
   enable_extension "hstore"
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
   create_table "adjustments", force: :cascade do |t|
     t.json "data"
     t.string "program_title"
     t.string "loan_category"
-    t.integer "program_ids", default: [], array: true
-    t.integer "program_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -1623,13 +1642,6 @@ ActiveRecord::Schema.define(version: 20190515131350) do
     t.index ["updated_at"], name: "index_news_search_histories_on_updated_at"
   end
 
-  create_table "program_adjustments", force: :cascade do |t|
-    t.integer "program_id"
-    t.integer "adjustment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "programs", force: :cascade do |t|
     t.integer "bank_id"
     t.integer "term"
@@ -1643,7 +1655,7 @@ ActiveRecord::Schema.define(version: 20190515131350) do
     t.boolean "usda", default: false
     t.boolean "streamline", default: false
     t.boolean "full_doc", default: false
-    t.text "adjustment_ids"
+    t.text "adjustments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "loan_category"
@@ -1668,6 +1680,7 @@ ActiveRecord::Schema.define(version: 20190515131350) do
     t.string "arm_benchmark"
     t.float "arm_margin"
     t.string "arm_caps"
+    t.string "adjustment_ids"
   end
 
   create_table "sheets", force: :cascade do |t|
@@ -1742,6 +1755,7 @@ ActiveRecord::Schema.define(version: 20190515131350) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "mortgage_search_results", "users"
   add_foreign_key "user_favorites", "users"
 end
