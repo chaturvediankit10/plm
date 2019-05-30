@@ -17,6 +17,10 @@ Rails.application.config.assets.precompile += %w( Chart.bundle )
 Rails.application.config.assets.precompile += %w( maskmoney )
 Rails.application.config.assets.precompile += %w( scrollBar.css )
 Rails.application.config.assets.precompile += %w( scrollBar.js )
+Rails.application.config.assets.precompile += %w( owl.carousel.min.js )
+Rails.application.config.assets.precompile += %w( owl.carousel.min.css )
+Rails.application.config.assets.precompile += %w( slider.css )
+
 
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path

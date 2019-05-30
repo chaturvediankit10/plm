@@ -55,7 +55,9 @@ header {
 .logo-white {
   display: none;
 }
-
+.mt-30{
+  margin-top: 30px;
+}
 header .navbar-default {
   background: none;
   border-radius: 0;
@@ -322,15 +324,28 @@ header .navbar-right {
   margin-bottom: 0;
   margin-right: 15px;
 }
-
+.closing-amount td {
+  color: #f76225 !important;
+}
 .view-details-popup .content-bx {
   margin-top: 5px;
+  border-radius: 0 !important;
+  box-shadow: 0px 5px 5px #ccc;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
 }
-
+.view-details-popup .content-bx-content .table-condensed > tbody > tr > td{
+  padding: 5px 
+}
+.view-details-popup .content-btns{
+  float: none;
+  text-align: right;
+  margin-bottom: 0;
+}
 .view-details-popup button.close {
   position: absolute;
   z-index: 999;
-  right: 5px;
+  right: 10px;
   top: 5px;
   font-size: 35px;
   opacity: .2;
@@ -384,17 +399,44 @@ header .navbar-right {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
+.view-details-popup .content-bx-content .saving-table > tbody > tr > td{
+  padding: 15px 10px;
+  font-size: 15px;
+}
+.view-details-popup .content-bx-content .saving-table > tbody > tr > td img{
+  width: 80px;
+}
+.view-details-popup .content-bx-content .saving-table strong{
+  color: #f76225;
+}
+ 
 .bank-logos {
   padding: 5px 15px 0;
 }
-
+.view-details-popup .bank-logos{
+  padding: 0 0 15px;
+}
+.view-details-popup .table{
+  margin-bottom: 0;
+}
+.view-details-popup .bank-logos .extra-wrap h1{
+  font-size: 22px;
+}
 .view-details-popupbutton.close:hover {
   opacity: 1;
 }
-
+.view-details-popup .bank-logos span {
+    width: 80px;
+    height: 65px;
+}
+.view-details-popup .bank-logos .extra-wrap p{
+  font-size: 16px;
+}
 .view-details-popup .panel-body {
   padding: 0px 15px 0;
+  max-height: 605px;
+  overflow-y: auto;
+  min-height: 605px;
 }
 
 .view-details-popup .modal-header {
@@ -404,14 +446,33 @@ header .navbar-right {
 .tab-header {
   border-bottom: 1px solid #ddd;
 }
-
+.chart-box{
+  max-height: 440px;
+  text-align: center;
+}
 .view-details-popup .nav-tabs {
   border-bottom: none;
   display: table;
   width: 100%;
-  padding: 5px 15px 0;
+  padding: 5px 0 0;
+}
+.view-details-popup .tab-content{
+  border: 1px solid #ddd;
+  border-top: none;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 
+.view-details-popup .content-bx h1{
+  padding: 10px 15px;
+}
+
+.view-details-popup .content-bx .table tr:first-child td{
+  border: none;
+}
+.modal-header{
+  padding: 15px 15px 0;
+}
 .view-details-popup .nav-tabs li {
   display: table-cell;
   float: none;
@@ -421,23 +482,23 @@ header .navbar-right {
 .view-details-popup .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
   border: none;
-  border-bottom: 2px solid #1d76ba;
-  background-color: transparent;
-  color: #1d76ba;
+  color: #fff;
+  background-color: #f76225 !important;
 }
 
 .view-details-popup .nav-tabs>li>a {
-  border-radius: 0;
-  border-bottom: 2px solid transparent;
-  text-align: center;
-  font-size: 18px;
-  color: #666;
+    border-radius: 10px 10px 0 0;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 13px 40px;
+    margin-right: 10px;
+    background-color: #d6d6d9;
 }
 
 .view-details-popup .nav-tabs>li>a:hover {
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid #1d76ba;
+  background-color: #d6d6d9;
+  color: #fff;
 }
 
 .content-bx {
@@ -731,6 +792,15 @@ header .navbar-right {
   z-index: 9;
 }
 
+@media all and (-ms-high-contrast:none)
+     {
+     .search-cat.purpse-srch:before { display: none; } /* IE10 */
+     *::-ms-backdrop, .search-cat.purpse-srch:before { display: none; } /* IE11 */
+     .search-cat.cr-srch:before{ display: none; } /* IE10 */
+     *::-ms-backdrop, .search-cat.cr-srch:before { display: none; } /* IE11 */
+     }
+
+
 .select-arrow {
   position: relative;
 }
@@ -799,7 +869,7 @@ header .navbar-right {
   font-size: 15px;
   left: 9px;
   z-index: 99;
-  bottom: 14px;
+  bottom: 13px;
   font-weight: bold;
 }
 
@@ -1553,15 +1623,15 @@ footer span {
 /*search result page css start*/
 
 .banner.search-result-banner {
-  padding: 0;
-  background: #3394de;
+  /*padding: 0;*/
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .banner.search-result-banner .search-main {
-  background: none;
+  /*background: none;
   border-radius: 0;
-  box-shadow: none;
-  padding: 13px 0;
+  box-shadow: none;*/
+  padding: 15px 25px 5px;
   top: 0;
 }
 
@@ -1594,7 +1664,7 @@ footer span {
 .srch-results-adv-srch {
   float: left;
   width: 100%;
-  background: #1d75bb;
+  background: transparent;
   padding: 5px 0;
 }
 
@@ -1961,7 +2031,7 @@ footer span {
   margin-top: 100px;
 }
 .contact-wrapper {
-  padding: 60px 0;
+  padding: 40px 0;
   background: url(../assets/contact-bg.jpg) no-repeat top center;
   background-size: cover;
   clear: both;
@@ -2516,7 +2586,12 @@ input.error {
   float: left;
   width: 100%;
 }
-
+.inner-bx {
+    padding: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
 .directory-box a:hover {
   color: #fb6325;
 }
@@ -2526,9 +2601,12 @@ input.error {
   text-decoration: none;
   color: #111;
 }
-.directory-links-box a span {
+.city-link a span {
     display: inline-block;
     max-width: 93%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .city-link {
   padding: 10px 0 5px;
@@ -2994,6 +3072,13 @@ input.error {
   padding: 12px 0 12px 0;
 }
 .seo-auto-loan-tabs .tabs-data-row:nth-child(odd) {background-color: #f1f1f1;}
+.main-table-grapg-box.data-table-inner thead tr{
+  background-color: #f1f1f1; 
+}
+
+.data-table-inner tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
 
 .tabs-data-row p {
   float: left;
@@ -3124,20 +3209,24 @@ input.error {
   float: left;
   width: 100%;
   margin: 0;
-  padding: 15px 0;
+  padding: 0 15px;
   font-size: 18px;
   font-weight: normal;
   color: #fb6325;
   background: none;
 }
+.car-auto-loan-othr-bank .city-link{
+  margin: 0 15px 0 0;
+}
 
 .car-auto-loan-othr-bank a {
   float: left;
   width: 100%;
-  margin: 0 0 12px 0;
+  margin: 0 0 0 0;
   padding: 0;
-  color: #fb6325;
+  color: #111;
   line-height: normal;
+  font-weight: 300;
 }
 
 .loan-chargeoff-recovry-inner-hdng {
@@ -3194,22 +3283,27 @@ a.seo-loan-aftr-cntnt-link {
 }
 
 .loan-detail-blocks {
-  float: left;
-  width: 100%;
-  border-radius: 5px 5px 0 0;
-  margin: 0 0 40px 0;
+  padding: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0px 5px 5px #ccc;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  float: none;
+  overflow-y: auto;
 }
 
 .loan-detail-blocks h3 {
   float: left;
   width: 100%;
-  background: #58a9e1;
-  border-radius: 5px 5px 0 0;
-  padding: 15px 25px;
-  color: #fff;
+  background: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  color: #111;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 500;
   margin: 0;
+  min-height: 40px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .content-main.seo-cities-mortgage .gray-box-cntnt h3 {
@@ -3233,7 +3327,6 @@ a.seo-loan-aftr-cntnt-link {
 .car-auto-loan-othr-bank-box h3 {
   background: none;
   color: #111 !important;
-  font-weight: bold;
   padding: 0px 10px 0 0 !important;
   font-size: 24px;
   min-height: auto;
@@ -3434,13 +3527,17 @@ p.top-txt-info {
 
 .closing-cost-smry-cntnt .col-xs-12 {
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #111;
-  line-height: 65px;
-  border-right: 1px solid #c8d5e6;
-  padding: 0;
+  border-right: 1px solid #ddd;
+  padding: 10px 0;
 }
-
+.closing-cost-smry-cntnt span{
+  display: block;
+  background-color: #f1f1f1;
+  font-size: 16px;
+  padding: 10px 0;
+}
 .closing-cost-smry-cntnt .col-xs-12:last-child {
   border-right: none;
 }
@@ -3448,22 +3545,25 @@ p.top-txt-info {
 .closing-cost-smry-cntnt .col-xs-12 p {
   float: left;
   width: 100%;
-  background: #f6f8fa;
-  font-size: 19px;
+  background: #fff;
+  font-size: 16px;
   color: #111;
   line-height: normal;
   font-weight: normal;
   margin: 0;
-  padding: 18px 0;
+  padding: 10px 0;
 }
+/*.closing-cost-smry-cntnt .col-xs-12 p:nth-child(odd) {
+  background-color: #f1f1f1;
+}*/
 
 .seo-cities-mortgage .loan-detail-blocks h3 span {
   float: left;
   width: 100%;
-  font-size: 18px;
-  line-height: 22px;
-  font-weight: normal;
-  margin: 5px 0 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  margin: 10px 0 0 0;
 }
 
 .seo-cities-mortgage .loan-detail-blocks {
@@ -3483,18 +3583,30 @@ p.top-txt-info {
 }
 
 .link-right-inner {
-  text-align: right;
+  text-align: left;
   font-weight: 300;
   font-size: 20px;
   margin: 20px 0 10px 0;
-  float: right;
+  float: none;
   color: #111;
 }
-
+.link-to {
+    float: left;
+    width: 100%;
+    background: none;
+    border-radius: 0;
+    padding: 0 0 10px 0;
+    color: #111;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    min-height: 40px;
+    font-family: 'Poppins', sans-serif;
+  }
 .graph-box p.para-lft-inner {
   text-align: left;
   font-weight: 300;
-  font-size: 20px !important;
+  font-size: 16px !important;
   margin-top: 20px;
 }
 
@@ -3508,15 +3620,15 @@ p.top-txt-info {
 
 .show-all-specialst-btn {
   float: right;
+  border: none;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: normal;
   color: #fff;
   border-radius: 5px;
-  background: #fb6325;
-  font-size: 14px;
-  line-height: normal;
-  border: none;
-  font-weight: normal;
-  text-decoration: none;
-  padding: 7px 15px;
+  padding: 12px 40px;
+  background: #fb6324;
+  text-transform: uppercase;
 }
 
 .show-all-specialst-btn:hover {
@@ -3533,7 +3645,7 @@ p.top-txt-info {
 }
 
 .seo-cities-mortgage .loan-detail-blocks {
-  margin: 10px 0 30px 0;
+  margin: 0 0 25px 0;
 }
 
 .tabs-data-main .tabs-data-row .col-xs-12.col-md-4 {
@@ -3565,11 +3677,11 @@ p.top-txt-info {
 .data-table-inner td,
 .data-table-inner th {
   color: #111;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
-  padding: 15px 10px !important;
+  padding: 10px !important;
   border-top: none !important;
-  border-right: 1px solid #c8d5e6;
+  border-right: 1px solid #ddd;
   text-align: right;
   height: 58px;
 }
@@ -3584,7 +3696,7 @@ p.top-txt-info {
 
 .row-bordr-botom td,
 .row-bordr-botom th {
-  border-bottom: 2px solid #111;
+  border-bottom: 1px solid #ddd;
 }
 
 
@@ -4286,7 +4398,7 @@ label.error {
   border: 1px solid #ccc;
   overflow-y: auto;
   padding: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   background-color: #fff;
 }
 
@@ -5370,7 +5482,7 @@ header.fixed-header.scrolled {
   .car-auto-loan-othr-bank-box h3 {
     background: none;
     color: #111 !important;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 20px !important;
     padding: 0 10px 2px 10px !important;
   }
@@ -6874,8 +6986,8 @@ header.fixed-header.scrolled {
   .car-auto-loan-othr-bank-box h3 {
     background: none;
     color: #111 !important;
-    font-weight: bold;
-    font-size: 20px !important;
+    font-weight: 500;
+    font-size: 24px !important;
     padding: 0 10px 2px 0 !important;
   }
   .seo-cities-mortgage .car-auto-loan-othr-bank {
@@ -7650,7 +7762,7 @@ header.fixed-header.scrolled {
 }
 
 .graph-box.main-table-graph .table.table-striped {
-  border-bottom: 2px solid #111;
+  border-bottom: 1px solid #ddd;
 }
 
 .submit-aplicatn-btn-box {
@@ -8373,7 +8485,7 @@ p.top-txt-info {
 }
 
 .graph-box p {
-  font-size: 20px !important;
+  font-size: 16px !important;
   font-weight: 300 !important;
 }
 

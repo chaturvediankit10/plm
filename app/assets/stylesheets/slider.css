@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
+.content-bx-slider {
+    padding: 10px 20px;
+  }
+.owl-carousel .owl-stage-outer {
+  padding-top: 75px;
+}
+.slider-icon-bx i {
+  font-size: 35px;
+  color: #fff;
+}
+.slider-icon-bx {
+  text-align: center;
+  height: 80px;
+  width: 80px;
+  background: #fb6324;
+  border-radius: 50%;
+  position: absolute; 
+  top: -24px;
+  line-height: 98px;
+}
+.content-bx-slider h4 {
+  padding: 0 0 10px;
+  font-size: 20px;
+}
+.content-bx-slider p {
+  font-size: 15px;
+  color: #000;
+  line-height: 24px;
+  font-weight: 300;
+  margin: 0 0 10px;
+  font-family: 'Poppins', sans-serif !important;
+}
+.content-bx-slider a {
+  color: #111;
+  font-size: 18px;
+  margin: 0 0;
+  display: block;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 400;
+}
+.read-more-link {
+    color: #fb6325 !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+}
+.owl-nav {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  top: 50%;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 0;
+}
+.reviews .main-title {
+  font-size: 32px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+.owl-nav>div {
+  background: transparent;
+  color: #ddd;
+  z-index: 100;
+  width: 30px;
+  height: 40px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.owl-nav>div:hover {
+  background: transparent;
+  color: #999;
+}
+
+.owl-next i, .owl-prev i {
+    font-size: 90px;
+}
+
+@media (max-width: 1270px) {
+  .owl-nav .owl-prev {
+      left: -10px !important;
+  }
+  .owl-nav .owl-next {
+      right: -10px !important;
+  }
+}
+
+.owl-nav .owl-prev {
+  position: relative;
+  left: -35px;
+}
+
+.owl-nav .owl-next {
+  position: relative;
+  right: -35px;
+}
+
+/* Review */
+
+.reviews {
+  padding: 50px 0;
+  padding-bottom: 25px;
+  background: url(../assets/news-bg.jpg) no-repeat center center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-bottom: 30px;
+}
+
+.reviews .owl-nav {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.reviews .container {
+  max-width: 1200px !important;
+}
+
+@media (min-width: 768px) {
+  .reviews .active.center .item {
+      -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      transform: scale(1.05);
+  }
+}
+
+.reviews .item {
+  padding: 15px 10px;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.reviews .item .card {
+  border-radius: 3px;
+  border: none;
+  -webkit-box-shadow: 0 0 2px 0 #999;
+  box-shadow: 0 0 2px 0 #999;
+  padding: 35px;
+  background-color: #fff;
+}
+
+.reviews .item .card .info-col {
+  margin-bottom: 25px;
+  padding: 15px 25px;
+}
+
+.reviews .item .card .info-col .title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.reviews .item .card .info-col .sub-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 580px) {
+  .reviews .item .card .title {
+      font-size: 14px !important;
+  }
+  .reviews .item .card .sub-title {
+      font-size: 12px !important;
+  }
+  .reviews .item .card li {
+      margin: 0 5px 0 0 !important;
+  }
+  .reviews{
+    background-size: cover;
+  }
+}
+
+.reviews .item .card ul {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.reviews .item .card ul li {
+  padding: 0;
+  margin: 0 10px 0 0;
+  list-style: none;
+  color: #ffc400;
+}
+
+.reviews .item .card .p-col {
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 25px;
+}
+
+.reviews .item .card .img-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.reviews .item .card .img-col .user {
+  border-radius: 50%;
+  min-width: 80px;
+  min-height: 80px;
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
