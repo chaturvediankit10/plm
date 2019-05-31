@@ -3,18 +3,16 @@
   <div class="row">
     <div class="col-md-8">
       <div class="blog-post-box">
-        <!-- Category name -->
-        <h2><%= @category.name %></h2>
-
-        <!-- Recent posts -->
-        <h4>Recent posts</h4>
+        <div class="category-name-list">
+          <h3>Recent posts</h3>
+          <span><i class="fa fa-angle-right"></i> <%= @category.name %></span>
+        </div>
 
         <ul class="author-posts">
           <% @category.recent_posts.each do |post| %>
             <li><%= render :partial => 'buttercms/posts/post', :locals => {:post => post} %></li>
           <% end %>
         </ul>
-
         </div>
         </div>
       <%= render 'partials/butter_cms_side_form'%>
