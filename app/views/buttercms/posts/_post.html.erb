@@ -1,20 +1,27 @@
 <div class="blog-post">
   <div class="blog-post-inner">
     <!-- Featured image -->
-    <%= image_tag(post.featured_image) if post.featured_image %>
+    <span class="featured-image-bx">
+      <%= image_tag(post.featured_image) if post.featured_image %>
+    </span>
+    <div class="extra-wrap">
+      <!-- Post title -->
+      <h4><%= link_to post.title, buttercms_post_path(post.slug), :title => post.title %></h4>
 
-    <!-- Post title -->
-    <h4><%= link_to post.title, buttercms_post_path(post.slug), :title => post.title %></h4>
+      <!-- Post author -->
+      <p class="post-by">April 25,2019 / <%= link_to "#{post.author.first_name} #{post.author.last_name}", buttercms_author_path(post.author.slug) %></p>
 
-    <!-- Post author -->
-    by <%= link_to "#{post.author.first_name} #{post.author.last_name}", buttercms_author_path(post.author.slug) %>
-
-    <!-- Post summary -->
-    <p><%= post.summary %></p>
-
-    <!-- Post categories -->
-    <% post.categories.each do |category| %>
-      <%= link_to category.name, buttercms_category_path(category.slug), :title => category.name %>
-    <% end %>
+      <!-- Post summary -->
+      <p><%= post.summary %></p>
+      <p class="post-details">
+        <%= link_to buttercms_post_path(post.slug)  do %>
+        Full Story<i class="fa fa-arrow-right"></i>
+        <% end %>
+      </p>
+      <!-- Post categories -->
+      <% post.categories.each do |category| %>
+        <%= link_to category.name, buttercms_category_path(category.slug), :title => category.name, class: "category-name" %>
+      <% end %>
+    </div>
   </div>
 </div>
