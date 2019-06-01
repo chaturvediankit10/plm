@@ -188,7 +188,9 @@
     </div>
   </div>
 </section>
-<div id="loadMore" class="bt-primary">Load more</div>
+<div class="btn-load-bg">
+  <button id="loadMore" class="btn btn-load-more">Load more</button>
+</div>
 <!-- <div id="showLess">Show less</div> -->
 <!-- search result feed end-->
 <%if Expert.where(verified: true).count < 1%>
@@ -846,22 +848,21 @@
   }
 </script>
 <style type="text/css">
-  #loadMore {
-    color: green;
-    cursor: pointer;
+  .btn-load-bg {
     background-color: #f5f5f7;
     clear: both;
-    padding: 15px;
+    padding: 15px 15px 35px;
     text-align: center;
   }
-  #loadMore:hover {
-      color:black;
+  .btn-load-more {
+    font-size: 15px;
+    font-weight: normal;
+    color: #fff;
+    border-radius: 5px;
+    padding: 12px 40px;
+    background: #fb6324;
   }
-  #showLess {
-      color:red;
-      cursor:pointer;
-  }
-  #showLess:hover {
-      color:black;
+  .btn-load-more:hover, .btn-load-more:focus {
+    color: #fff;
   }
 </style>
