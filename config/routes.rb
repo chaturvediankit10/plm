@@ -33,9 +33,12 @@ Rails.application.routes.draw do
 
   get 'pages/expert_city_and_zip', to: 'pages#expert_city_and_zip', as: 'expert_city_and_zip'
 
-  root 'search#index'
+  # root 'search#index'
+  # get 'search/index' 
+  root 'search#home'
+  get '/fetch_programs', to: 'search#fetch_programs', as: :fetch_programs
   get 'pages/index'
-  get 'search/index'
+
   get '/refinance', to: 'pages#refinance', as: 'refinance'
   get '/mortgage', to: 'pages#mortgage', as: 'mortgage'
   post '/contact_us_email', to: 'pages#contact_us_email'
