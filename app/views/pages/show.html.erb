@@ -1,4 +1,4 @@
-<%#=begin
+<%##=begin
 form:           change password
 Developer:      Varun
 Created:        19-03-2018
@@ -6,69 +6,73 @@ Purpose:        cms pages contactus
 Params:         name email question
 Return:         hash
 =end %>
-<section class="content-main terms-page about-page  dynamic-page">
+
+<!-- Old Dynamic Code -->
+<!-- <section class="content-main terms-page about-page  dynamic-page">
    <div class="container">
-      <h1><%=@page.page_name%></h1>
-      <%if remove_space(@page.page_slug).downcase == "contact"%>
+      <h1><%##=@page.page_name%></h1>
+      <%#if remove_space(@page.page_slug).downcase == "contact"%>
         <p class="contact-top-para">We would love to hear from you, please drop us a line!</p>
-      <%end%>  
+      <%#end%>  
       <div class="row">
-          <%if remove_space(@page.page_slug).downcase == "contact"%>
-            <!-- Email form for contactus -->
+          <%#if remove_space(@page.page_slug).downcase == "contact"%>
             <div class="col-xs-12 col-md-5 ">
-              <%= form_with url: contact_us_email_path,id: 'contact_us_form' ,remote: true do |f| %>
+              <%#= form_with url: contact_us_email_path,id: 'contact_us_form' ,remote: true do |f| %>
                 <div class="login-rows">
-                  <%= image_tag("login-user.png", :alt => "Name") %>
-                  <%= f.text_field :name, autofocus: true, placeholder: "Enter Name" %>
-               </div>
-               <div class="login-rows">
-                 <%= image_tag("login-mail.png", :alt => "email") %>
-                 <%= f.email_field :email, autofocus: true, placeholder: "Enter Email" %>
-               </div>
-               <div class="login-rows">
-                 <%= image_tag("menu-checkbox_03.png", :alt =>"question")%>
-                 <%= f.text_area :question, size: "55x5", autofocus: true, placeholder: "Enter Text", style: 'max-width: 100%'%>
-               </div>
-               <div class="login-rows cntnt-login">
-                <%= f.submit "Submit", class: "login-page-btn" %>
-               </div>
-            <%end%>
-           </div>  
-          <%elsif remove_space(@page.page_slug).downcase == "about"%>
+                  <%#= image_tag("login-user.png", :alt => "Name") %>
+                  <%#= f.text_field :name, autofocus: true, placeholder: "Enter Name" %>
+                </div>
+                <div class="login-rows">
+                 <%#= image_tag("login-mail.png", :alt => "email") %>
+                 <%#= f.email_field :email, autofocus: true, placeholder: "Enter Email" %>
+                </div>
+                <div class="login-rows">
+                 <%#= image_tag("menu-checkbox_03.png", :alt =>"question")%>
+                 <%#= f.text_area :question, size: "55x5", autofocus: true, placeholder: "Enter Text", style: 'max-width: 100%'%>
+                </div>
+                <div class="login-rows cntnt-login">
+                  <%#= f.submit "Submit", class: "login-page-btn" %>
+                </div>
+              <%#end%>
+            </div>  
+          <%#elsif remove_space(@page.page_slug).downcase == "about"%>
              <div class="col-xs-12 col-md-5 our-story-img pull-right">
                <img src="/images/about-us_03.png" alt="">
              </div>
-          <%end%>
-          <!-- content for term_of_use webpage -->
-        <%if remove_space(@page.page_slug).downcase == "terms"%>
+          <%#end%>
+        <%#if remove_space(@page.page_slug).downcase == "terms"%>
             <div class="col-xs-12 col-md-12">
               <div class="gray-box-cntnt">
-               <%=raw(@page.page_content)%>
+               <%#=raw(@page.page_content)%>
               </div>
             </div>
-        <%elsif remove_space(@page.page_slug).downcase == "privacypolicy"%>
+        <%#elsif remove_space(@page.page_slug).downcase == "privacypolicy"%>
           <div class="col-xs-12 col-md-12">
             <div class="gray-box-cntnt">
-             <%=raw(@page.page_content)%>
+             <%#=raw(@page.page_content)%>
             </div>
           </div>
-        <%else%>
-         <%if remove_space(@page.page_slug).downcase != "contact"%>
+        <%#else%>
+         <%#if remove_space(@page.page_slug).downcase != "contact"%>
          <div class="col-xs-12 col-md-7 our-story-cntnt">
            <div class="gray-box-cntnt">
-            <%=raw(@page.page_content)%>
+            <%#=raw(@page.page_content)%>
            </div>
          </div>
-         <%end%>
-        <%end%>
+         <%#end%>
+        <%#end%>
       </div>
-      <!-- meta description of page -->
-      <%if remove_space(@page.page_slug).downcase != "contact"%>
+      <%#if remove_space(@page.page_slug).downcase != "contact"%>
         <div class="row">
           <div class="col-md-12 dynamic-cntnt">
-           <%=raw(@page.meta_description)%>
+           <%#=raw(@page.meta_description)%>
           </div>
         </div>
-      <%end%>
+      <%#end%>
   </div>
-</section>
+</section> -->
+<!-- ------------------------------------------------------------------ -->
+
+<!-- New Static Page -->
+  <%= render :partial => "/partials/#{@page}" %>
+

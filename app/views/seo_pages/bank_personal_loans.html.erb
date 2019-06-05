@@ -1,426 +1,434 @@
-<!-- seo bank personal loan start-->
-   <section class="content-main terms-page seo-auto-loan autoloan-top-sectn-cntrl">
-      <div class="container">
-         <!--Bank of America Personal Loans start-->
-         <div class="seo-auto-loan-cntnt-box mb-bg-gray seo-loan-cntnt-box-chnge">
-            <div class="col-xs-12 col-md-8 our-story-cntnt">
-               <div class="gray-box-cntnt seo_bank_auto_loan_top" id="bank_content">
-                  <h3>
-                     <%=@bank.name%> Personal Loans
-                     <div class="star-box pull-right">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                     </div>
-                  </h3>
-                  <p>
-                     <%=@bank.name%> is very active in personal loans, with a total carrying amount of loans to individuals for household, family and other personal expenditures that are covered by FDIC loss-sharing agreements of  <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_lcon * 1000).round(-3), precision: 0) : '$0'%>. Nonaccrual other loans from <%=@bank.name%> to individuals for household, family and other personal expenditures on a consolidated basis amount to <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_naconoth * 1000).round(-3), precision: 0) : '$0'%>.
-                  </p>
-                  <div class="space-row"> </div>
-                  <p class="mb-hide-spl">Below are some other banks and lending institutions that specialize in personal loans for you to compare. </p>
-                  <span class="initial-section" href="" id="para-see-more-link">See More</span>
-               </div>
-            </div>
-            <div class="col-xs-12 col-md-4 seo-bank-cntn-white-bg seo-bank-cntn-top-white-bg mb-hide-spl" id="bank_details">
-               <h3><%=@bank.name%></h3>
-                     <p>Founded  <%=@bank.estymd.to_date.strftime("%B %d, %Y")%></br>
-                        FDIC Certificate Number - <%=@bank.cert%></br>
-                        <%=@bank.address+', '+@bank.city+', '+@bank.stname%>
-                     </p>
-               <p class="seo-bank-cntn-white-bg-info"><span>Total Assets:</span> <%= @bank.asset.present? ? number_to_currency((asset_and_dep_formatting(@bank.asset) * 1000).round(-3), precision: 0) : '$0'%></p>
-               <p class="seo-bank-cntn-white-bg-info"><span>Total Deposits:</span> <%= @bank.dep.present? ? number_to_currency((asset_and_dep_formatting(@bank.dep) * 1000).round(-3), precision: 0) : '$0'%></p>
-            </div>
-         </div>
-         <!--Bank of America Personal Loans end-->
-         <!--Lending Club Personal Loans start-->
-         <div class="seo-auto-loan-cntnt-box seo-auto-loan-cntnt-box2 mb-bg-none">
-            <div class="col-xs-12 col-md-9 our-story-cntnt ">
-               <div class="gray-box-cntnt">
-                  <h3>
-                     Lending Club Personal Loans
-                     <div class="star-box pull-right">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                     </div>
-                     <span>Up to $40,000, starting 5.99%</span>
-                  </h3>
-                  <p>Lending Club offers personal loans for credit card refinancing, debt consolidation, home improvement, major purchases, and more.</p>
-                    <div class="space-row"> </div>
-                  <p>
-                  Borrowers who used a personal loan via Lending Club to consolidate debt or pay off high interest credit cards received an interest rate 35% lower than they were paying on their outstanding debt or credit cards.</p>
-               </div>
-            </div>
-            <div class="col-xs-12 col-md-3 seo-bank-cntn-white-bg text-center">
-               <img src="/images/seo-prsnl-loan-img1.png" alt="">
-               <!-- <a href="" class="apply-btn">Apply</a> -->
-               <%=link_to 'Apply',"https://www.lendingclub.com/loans/personal-loans", target: :_blank, class: "apply-btn"%>
-            </div>
-         </div>
-         <!--Lending Club Personal Loans end-->
-         <!--Prosper Personal Loans start-->
-         <div class="seo-auto-loan-cntnt-box seo-auto-loan-cntnt-box2 mb-bg-none">
-            <div class="col-xs-12 col-md-9 our-story-cntnt ">
-               <div class="gray-box-cntnt">
-                  <h3>
-                     Prosper Personal Loans
-                     <div class="star-box pull-right">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_half.png" alt="">
-                     </div>
-                     <span>Up to $40,000, starting 5.99%</span>
-                  </h3>
-                  <p>If you have good credit, you’re a perfect candidate for a personal loan through Prosper’s peer to peer lending marketplace.  Get low fixed rates without any of the hidden fees and red tape associated with other types of loans. Signing up is quick and easy, and you’ll be able to tell potential lenders why they should invest in your loan.</p>
-               </div>
-            </div>
-            <div class="col-xs-12 col-md-3 seo-bank-cntn-white-bg text-center">
-               <img src="/images/seo-prsnl-loan-img3.png" alt="">
-               <!-- <a href="" class="apply-btn">Apply</a> -->
-               <%=link_to 'Apply',"https://www.prosper.com", target: :_blank, class: "apply-btn"%>
-            </div>
-         </div>
-         <!--Prosper Personal Loans end-->
-         <!--Avant Personal Loans start-->
-         <div class="seo-auto-loan-cntnt-box seo-auto-loan-cntnt-box2">
-            <div class="col-xs-12 col-md-9 our-story-cntnt ">
-               <div class="gray-box-cntnt">
-                  <h3>
-                     Avant Personal Loans
-                     <div class="star-box pull-right">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_03.png" alt="">
-                        <img src="/images/star_half.png" alt="">
-                     </div>
-                     <span>Up to $40,000, starting 5.99%</span>
-                  </h3>
-                  <p>Avant has over 350,000 customers to date.  Avant prides itself on loan transparency.  You’ll always know what you pay. There are no hidden fees and no collateral needed for an unsecured loan.</p>
-               </div>
-            </div>
-            <div class="col-xs-12 col-md-3 seo-bank-cntn-white-bg text-center">
-               <img src="/images/seo-prsnl-loan-img2.png" alt="">
-               <!-- <a href="" class="apply-btn">Apply</a> -->
-               <%=link_to 'Apply',"https://www.avant.com/personal-loans", target: :_blank, class: "apply-btn"%>
-            </div>
-         </div>
-         <!--Avant Personal Loans end-->
-         <!--Volume of Personal Loan start-->
-         <div class="volume-auto-loan">
-            <h2 class="tab_blue_content">Volume of Personal Loan at <%=@bank.name%></h2>
-            <div class="volume-auto-loan-row ">
-               <p class="vol-row-inner">Personal loans -retained interest</p>
-               <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_sziocon * 1000).round(-3), precision: 0) : '$0' %></span>
-            </div>
-            <div class="volume-auto-loan-row bg-white">
-               <p class="vol-row-inner">Personal loans -subordinated securities</p>
-               <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_szssccon * 1000).round(-3), precision: 0) : '$0' %></span>
-            </div>
-            <div class="volume-auto-loan-row ">
-               <p class="vol-row-inner">Personal loans -standby letters of credit</p>
-               <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_idslccon * 1000).round(-3), precision: 0) : '$0' %></span>
-            </div>
-            <div class="volume-auto-loan-row bg-white">
-               <p class="vol-row-inner">Personal loans -credit enhancements</p>
-               <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_encecon * 1000).round(-3), precision: 0) : '$0' %></span>
-            </div>
-            <div class="volume-auto-loan-row">
-               <p class="vol-row-inner">Personal loans -bank asset sales</p>
-               <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_ascecons * 1000).round(-3), precision: 0)  : '$0' %></span>
-            </div>
-            <div class="mb-hide" id="bank_personal_data_section">  
-              <div class="volume-auto-loan-row bg-white">
-                 <p class="vol-row-inner">Consumer assets sold with recourse </p>
-                 <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_asdrcons * 1000).round(-3), precision: 0) : '$0' %></span>
-              </div>
-              <div class="volume-auto-loan-row">
-                 <p class="vol-row-inner">Consumer loan charge-offs</p>
-                 <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_drconoth * 1000).round(-3), precision: 0) : '$0' %></span>
-              </div>
-              <div class="volume-auto-loan-row bg-white">
-                 <p class="vol-row-inner">Consumer loan recoveries</p>
-                 <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_crconoth * 1000).round(-3), precision: 0) : '$0' %></span>
-              </div>
-              <div class="volume-auto-loan-row">
-                 <p class="vol-row-inner">Consumer loan net charge-offs</p>
-                 <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_ntconoth * 1000).round(-3), precision: 0) : '$0' %></span>
-              </div>
-            </div>
-            <button class= "show-all-specialst-btn mb-only pull-right see-more-fdic" id="bank_personal_data_section_btn">See More</button>
-            <a class="seo-loan-aftr-cntnt-link" href="">Data produced from US Government reported Financials</a>
-         </div>
-         <!--Volume of Personal Loan end-->
-         <!--Bank of America Personal Loan Chargeoffs, Recoveries section start-->
-         <div class="volume-auto-loan loan-chargeoff-recovry">
-            <h2 class="tab_blue_content"><%=@bank.name%> Personal Loan Chargeoffs, Recoveries  </h2>
-            <p>For <%=@bank.name%>'s assets sold and securitized by other consumer personal loans, the charge-offs amount to <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_szdrcon * 1000).round(-3), precision: 0) : '$0'%> and the recoveries amount to <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_szcrcon * 1000).round(-3), precision: 0) : '$0'%> .
-               </p>
-               <p>
-               An additional figure for personal loan performance are other consumer loans to individuals for household, family and other personal expenditures that are past due still and accruing interest:
-               </p>
-            <p class="loan-chargeoff-recovry-inner-data"><span>Past Due 30 -89 days</span> Past Due 90+ days</p>
-            <p class="loan-chargeoff-recovry-inner-data"><span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_p9conoth * 1000).round(-3), precision: 0) : '$0'%></span> <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_naconoth * 1000).round(-3), precision: 0 ) : '$0'%></p>
-            <div class="loan-chargeoff-recovry-inner-hdng">With FDIC Loss-sharing Agreements</div>
-            <p class="loan-chargeoff-recovry-inner-data"><span>Past Due 30 -89 days</span> Past Due 90+ days</p>
-            <p class="loan-chargeoff-recovry-inner-data"><span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_p3lcon * 1000).round(-3), precision: 0) : '$0'%></span> <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_p9lcon * 1000).round(-3), precision: 0) : '$0'%></p>
-            <a class="seo-loan-aftr-cntnt-link" href="">Data produced from US Government reported Financials</a>
-         </div>
-         <!--Bank of America Personal Loan Chargeoffs, Recoveries section end-->
-         <!--Car Loans Officers section start-->
-         <div class="volume-auto-loan seo-auto-loan-tabs">
-            <h2 class="tab_blue_content"><%=@bank.name%> Unsecured Personal Loans Officers</h2>
-            <!--Used Car Loans desktop section end-->
-            <div class="tabs-data-main desktop-tabs-data">
-               <div class="tabs-data-hdng">
-                  <div class="col-xs-12 col-md-6">Name</div>
-                  <div class="col-xs-12 col-md-6">Contact</div>
-               </div>
-                  <%if @loan_officers.present?%>
-                     <%@loan_officers.each do |loan_officer|%>
-                     <div class="tabs-data-row">
-                       <div class="col-xs-12 col-md-6">
-                           <p><%= remove_unnecessary_keywords(loan_officer.try(:first)) %> <%=remove_unnecessary_keywords(loan_officer.try(:last)) %></p>
-                           <p><%= remove_unnecessary_keywords(loan_officer.try(:title))%></p>
-                       </div>
-                       <div class="col-xs-12 col-md-6">
-                          <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : 
-                          loan_officer.phone2.present? ? mobile_no_formatting(loan_officer.phone2) : mobile_no_formatting(loan_officer.cell)%>
-                            
-                          </p>
-                       </div>
-                     </div>
-                   <%end%>
-                  <%else%>
-                     <div class="tabs-data-row">
-                        No Records Found
-                     </div>
-                  <%end%>
-            </div>
-            <!--Used Car Loans Officers mobile tabs end-->
-            <div class="tabs-data-main tabs-accordians-box">
-               <div class="panel-group">
-                 <%if @loan_officers.present?%>
-                    <%@loan_officers.first(3).each_with_index do |loan_officer, i|%>
-                      <div class="panel panel-default">
-                         <div class="panel-heading tabs-data-hdng">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapse_<%=i.to_s%>">
-                              <%= remove_unnecessary_keywords(loan_officer.try(:first)) %>  <%= remove_unnecessary_keywords(loan_officer.try(:last))%>
-                              </br>
-                              <%= remove_unnecessary_keywords(loan_officer.try(:title))%>
-                            </a>
-                         </div>
-                         <div id="collapse_<%=i.to_s%>" class="panel-collapse collapse">
-                            <div class="tabs-data-row">
-                               <div class="col-xs-12 col-md-12">
-                                  <h5>Contact</h5>
-                                   <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : mobile_no_formatting(loan_officer.phone2)%></p>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                     <%end%>
-                  <%else%>
-                    <div class="tabs-data-row">
-                      No Records Found
-                    </div>
-                <%end%>
-               </div>
-            </div>
-         </div>
-         <!-- Car Loans Officers section end-->
-         
-
-         <!-- News section starts from here -->
-         <div class="volume-auto-loan full-width loan-detail-blocks">
-            <h2 class="tab_blue_content">News on Personal Loans from <%=@bank.name%></h2>
-             <div class="mb-hide">
-              <%if @news_articles.present? %>
-                <%@news_articles.each_with_index do |na, i|%>
-                  <%if i < 5%>
-                   <div class="car-auto-loan-news">
-                     <h6><%=link_to na.headline.truncate(42), na.url, target: "_blank"%></h6>
-                      <p><%=na.text.truncate(130)%>,  <%#=link_to "more info", na.url, target: "_blank"%></p>          
-                   </div>
-                  <%else%>
-                    <div id='news_data_<%=i.to_s%>' style= "display:none;">  
-                      <div class="car-auto-loan-news">
-                       <h6><%=link_to na.headline.truncate(42), na.url, target: "_blank"%></h6>
-                        <p><%=na.text.truncate(130)%>,  <%#=link_to "more info", na.url, target: "_blank"%></p>        
-                      </div>
-                    </div>
-                  <%end%>
-                <%end%>
-                <%if @news_articles.count > 5%>
-                  <div class="full-width">
-                    <button class= "show-all-specialst-btn" id="desktop_news">See More</button>
-                  </div>
-                <%end%>  
-              <%else%>
-                <div class="car-auto-loan-news no-record-box">
-                    No Records Found
-                </div>
-              <%end%>
-           </div>
-            <!-- for mobile view -->
-            <div class="mb-only">
-              <%if @news_articles.present?%>
-                <%@news_articles.each_with_index do |na, i|%>
-                  <%if i < 3 %>
-                    <div class="car-auto-loan-news">
-                      <h6><%=link_to na.headline.truncate(50), na.url, target: "_blank"%></h6> 
-                        <p><%=na.text.truncate(72)%>,  <%#=link_to "more info", na.url, target: "_blank"%></p>
-                    </div>
-                  <%else%>
-                    <div id='mobile_news_articles_data_<%=i.to_s%>' style= "display:none;">
-                      <div class="car-auto-loan-news">
-                        <h6><%=link_to na.headline.truncate(50), na.url, target: "_blank"%></h6> 
-                          <p><%=na.text.truncate(72)%>,  <%#=link_to "more info", na.url, target: "_blank"%></p>
-                      </div>
-                    </div>  
-                  <%end%>  
-                <%end%>
-                <%if @news_articles.count > 3%>
-                  <div class="news-see-more">
-                    <a class= "news-see-more-link pull-right see-more-fdic" id="mobile_news_data">See More</a>
-                  </div>
-                <%end%>  
-              <%else%>
-                <div class="car-auto-loan-news">
-                    No Records Found
-                </div>
-              <%end%>
-            </div>
-         </div>
-         <!-- News section ends here -->
-          <div class="volume-auto-loan full-width loan-detail-blocks car-auto-loan-othr-bank-box">
-            <h3 class="tab_blue_content">Personal Loans from Banks Similar to <%=@bank.name%></h3>
-               <div class="car-auto-loan-othr-bank">
-                <%if @near_by_banks.present? %>
-                  <%@near_by_banks.each do |nbb|%>
-                    <%=link_to nbb.name, bank_home_personal_loan_path(cert: nbb.cert,bank_name: custom_path(nbb.name)) %>
-                  <%end%>
-                </div>
-             <%else%>
-                  No Records Found
-               <%end%>
-          </div>
-          <!-- Loans From Similar Bank end-->
-          
-   </section>
-   <!-- search result feed end-->
-
-   <!-- advance search mobile start-->
-  <!--  <div class="modal fade" id="advance-srch-mb" role="dialog">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Advanced Options</h4>
-               <a href="">Reset</a>
-            </div>
-            <div class="modal-body">
-               <div class="search-main adv-search-mb">
-                  <div class="search-cat zip-srch">
-                     <label>Zip Code</label>
-                     <input placeholder="123456" type="text">
-                  </div>
-                  <div class="search-cat purpse-srch">
-                     <label>Purpose</label>
-                     <select>
-                        <option>Purchase</option>
-                     </select>
-                  </div>
-                  <div class="search-cat price-srch">
-                     <label>Home Price</label>
-                     <div class="dollar-icn">$</div>
-                     <input placeholder="123456" type="text">
-                  </div>
-                  <div class="search-cat price-srch">
-                     <label>Down Payment</label>
-                     <div class="dollar-icn">$</div>
-                     <input placeholder="123456" type="text">
-                  </div>
-                  <div class="search-cat cr-srch">
-                     <label>Credit Score</label>
-                     <select>
-                        <option>750+</option>
-                     </select>
-                  </div>
-                  <div class="search-adv-option-box">
-                     <div class="search-adv-option">
-                        <div class="row">
-                           <h4>desired loan programs?</h4>
-                           <div class="col-xs-12 col-md-2 advance-check">
-                              <div class="form-group"><input value="" type="checkbox"> 30 Year Fixed</div>
-                              <div class="form-group"><input value="" type="checkbox"> 20 Year Fixed</div>
-                              <div class="form-group"><input value="" type="checkbox"> 15 Year Fixed</div>
-                              <div class="form-group"><input value="" type="checkbox"> 10 Year Fixed</div>
-                              <div class="form-group"><input value="" type="checkbox"> 7/1 Arm</div>
-                              <div class="form-group"><input value="" type="checkbox"> 5/1 Arm</div>
-                              <div class="form-group"><input value="" type="checkbox"> 3/1 Arm</div>
-                           </div>
-                           <div class="col-xs-12 col-md-3 drpdown-box">
-                              <select>
-                                 <option>Select Occupancy</option>
-                              </select>
-                              <select>
-                                 <option>Select Occupancy</option>
-                              </select>
-                              <select>
-                                 <option>Select Occupancy</option>
-                              </select>
-                              <select>
-                                 <option>Select Occupancy</option>
-                              </select>
-                           </div>
-                           <div class="col-xs-12 col-md-4 drpdown-box">
-                              <select>
-                                 <option>Select Prepay Penalty</option>
-                              </select>
-                              <label>Cash Reserves (mos)</label>
-                              <select>
-                                 <option>$ 15</option>
-                              </select>
-                              <label>Monthly Debt</label>
-                              <select>
-                                 <option>$ 0</option>
-                              </select>
-                              <label>Monthly Income</label>
-                              <select>
-                                 <option>$ 5,000</option>
-                              </select>
-                           </div>
-                           <div class="col-xs-12 col-md-3 advance-check top-bordr-only">
-                              <p>Owned Properties <span>01</span></p>
-                              <div class="form-group"><input value="" type="checkbox"> Interest Only</div>
-                              <div class="form-group"><input value="" type="checkbox"> Hazard Insuarance Waived</div>
-                              <div class="form-group"><input value="" type="checkbox"> Property Taxes Waived</div>
-                              <div class="form-group"><input value="" type="checkbox"> First Time Home Buyer</div>
-                              <div class="form-group"><input value="" type="checkbox"> Non Perm Resident Alien</div>
-                              <div class="form-group"><input value="" type="checkbox"> Foreign National</div>
-                              <div class="form-group"><input value="" type="checkbox"> Miltary</div>
-                              <div class="form-group"><input value="" type="checkbox"> Rular</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button class="rates-btn">Get Rates</button>
-            </div>
-         </div>
+<section class="banner directory-banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-banner-title">
+          <h1>Bank Personal Loan</h1>
+        </div>
       </div>
-   </div> -->
-   <!-- advance search mobile end-->
-
+    </div>
+  </div>
+</section>
+<!-- seo bank personal loan start-->
+<section class="content-main terms-page seo-auto-loan autoloan-top-sectn-cntrl pt-zero">
+  <div class="container">
+    <!--Bank of America Personal Loans start-->
+    <div class="seo-auto-loan-cntnt-box mb-bg-gray seo-loan-cntnt-box-chnge">
+      <div class="col-xs-12 col-md-8 our-story-cntnt">
+        <div class="gray-box-cntnt seo_bank_auto_loan_top" id="bank_content">
+          <h3>
+            <%=@bank.name%> Personal Loans
+            <div class="star-box pull-right">
+              <img src="/images/star_03.png" alt="">
+              <img src="/images/star_03.png" alt="">
+              <img src="/images/star_03.png" alt="">
+              <img src="/images/star_03.png" alt="">
+              <img src="/images/star_03.png" alt="">
+            </div>
+          </h3>
+          <p>
+            <%=@bank.name%> is very active in personal loans, with a total carrying amount of loans to individuals for household, family and other personal expenditures that are covered by FDIC loss-sharing agreements of  <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_lcon * 1000).round(-3), precision: 0) : '$0'%>. Nonaccrual other loans from <%=@bank.name%> to individuals for household, family and other personal expenditures on a consolidated basis amount to <%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_naconoth * 1000).round(-3), precision: 0) : '$0'%>.
+          </p>
+          <div class="space-row"> </div>
+          <p class="mb-hide-spl">Below are some other banks and lending institutions that specialize in personal loans for you to compare. </p>
+          <span class="initial-section" href="" id="para-see-more-link">See More</span>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4 seo-bank-cntn-white-bg seo-bank-cntn-top-white-bg mb-hide-spl" id="bank_details">
+        <h3><%=@bank.name%></h3>
+        <p>Founded  <%=@bank.estymd.to_date.strftime("%B %d, %Y")%></br>
+          FDIC Certificate Number - <%=@bank.cert%></br>
+          <%=@bank.address+', '+@bank.city+', '+@bank.stname%>
+        </p>
+        <p class="seo-bank-cntn-white-bg-info"><span>Total Assets:</span> <%= @bank.asset.present? ? number_to_currency((asset_and_dep_formatting(@bank.asset) * 1000).round(-3), precision: 0) : '$0'%></p>
+        <p class="seo-bank-cntn-white-bg-info"><span>Total Deposits:</span> <%= @bank.dep.present? ? number_to_currency((asset_and_dep_formatting(@bank.dep) * 1000).round(-3), precision: 0) : '$0'%></p>
+      </div>
+    </div>
+    <!--Bank of America Personal Loans end-->
+    <!--Lending Club Personal Loans start-->
+    <div class="list-inner">
+      <h5>Similar Landers</h5>
+      <div class="seo-auto-loan-cntnt-box seo-auto-loan-cntnt-box2 mb-bg-none">
+        <div class="col-xs-12 col-md-9 our-story-cntnt ">
+          <div class="gray-box-cntnt">
+            <h3>
+              Lending Club Personal Loans
+              <div class="star-box pull-right">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+              </div>
+              <span>Up to $40,000, starting 5.99%</span>
+            </h3>
+            <p>Lending Club offers personal loans for credit card refinancing, debt consolidation, home improvement, major purchases, and more.</p>
+            <div class="space-row"> </div>
+            <p>
+              Borrowers who used a personal loan via Lending Club to consolidate debt or pay off high interest credit cards received an interest rate 35% lower than they were paying on their outstanding debt or credit cards.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3 seo-bank-cntn-white-bg text-center">
+          <img src="/images/seo-prsnl-loan-img1.png" alt="">
+          <!-- <a href="" class="apply-btn">Apply</a> -->
+          <%=link_to 'Apply',"https://www.lendingclub.com/loans/personal-loans", target: :_blank, class: "apply-btn"%>
+        </div>
+      </div>
+      <!--Lending Club Personal Loans end-->
+      <!--Prosper Personal Loans start-->
+      <div class="seo-auto-loan-cntnt-box seo-auto-loan-cntnt-box2 mb-bg-none">
+        <div class="col-xs-12 col-md-9 our-story-cntnt ">
+          <div class="gray-box-cntnt">
+            <h3>
+              Prosper Personal Loans
+              <div class="star-box pull-right">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_half.png" alt="">
+              </div>
+              <span>Up to $40,000, starting 5.99%</span>
+            </h3>
+            <p>If you have good credit, you’re a perfect candidate for a personal loan through Prosper’s peer to peer lending marketplace.  Get low fixed rates without any of the hidden fees and red tape associated with other types of loans. Signing up is quick and easy, and you’ll be able to tell potential lenders why they should invest in your loan.</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3 seo-bank-cntn-white-bg text-center">
+          <img src="/images/seo-prsnl-loan-img3.png" alt="">
+          <!-- <a href="" class="apply-btn">Apply</a> -->
+          <%=link_to 'Apply',"https://www.prosper.com", target: :_blank, class: "apply-btn"%>
+        </div>
+      </div>
+      <!--Prosper Personal Loans end-->
+      <!--Avant Personal Loans start-->
+      <div class="seo-auto-loan-cntnt-box seo-auto-loan-cntnt-box2">
+        <div class="col-xs-12 col-md-9 our-story-cntnt ">
+          <div class="gray-box-cntnt">
+            <h3>
+              Avant Personal Loans
+              <div class="star-box pull-right">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_03.png" alt="">
+                <img src="/images/star_half.png" alt="">
+              </div>
+              <span>Up to $40,000, starting 5.99%</span>
+            </h3>
+            <p>Avant has over 350,000 customers to date.  Avant prides itself on loan transparency.  You’ll always know what you pay. There are no hidden fees and no collateral needed for an unsecured loan.</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3 seo-bank-cntn-white-bg text-center">
+          <img src="/images/seo-prsnl-loan-img2.png" alt="">
+          <!-- <a href="" class="apply-btn">Apply</a> -->
+          <%=link_to 'Apply',"https://www.avant.com/personal-loans", target: :_blank, class: "apply-btn"%>
+        </div>
+      </div>
+    </div>
+    <!--Avant Personal Loans end-->
+    <!--Volume of Personal Loan start-->
+    <div class="volume-auto-loan">
+      <h2 class="tab_blue_content">Volume of Personal Loan at <%=@bank.name%></h2>
+      <div class="volume-auto-loan-row ">
+        <p class="vol-row-inner">Personal loans -retained interest</p>
+        <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_sziocon * 1000).round(-3), precision: 0) : '$0' %></span>
+      </div>
+      <div class="volume-auto-loan-row bg-white">
+        <p class="vol-row-inner">Personal loans -subordinated securities</p>
+        <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_szssccon * 1000).round(-3), precision: 0) : '$0' %></span>
+      </div>
+      <div class="volume-auto-loan-row ">
+        <p class="vol-row-inner">Personal loans -standby letters of credit</p>
+        <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_idslccon * 1000).round(-3), precision: 0) : '$0' %></span>
+      </div>
+      <div class="volume-auto-loan-row bg-white">
+        <p class="vol-row-inner">Personal loans -credit enhancements</p>
+        <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_encecon * 1000).round(-3), precision: 0) : '$0' %></span>
+      </div>
+      <div class="volume-auto-loan-row">
+        <p class="vol-row-inner">Personal loans -bank asset sales</p>
+        <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_ascecons * 1000).round(-3), precision: 0)  : '$0' %></span>
+      </div>
+      <div class="mb-hide" id="bank_personal_data_section">
+        <div class="volume-auto-loan-row bg-white">
+          <p class="vol-row-inner">Consumer assets sold with recourse </p>
+          <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_asdrcons * 1000).round(-3), precision: 0) : '$0' %></span>
+        </div>
+        <div class="volume-auto-loan-row">
+          <p class="vol-row-inner">Consumer loan charge-offs</p>
+          <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_drconoth * 1000).round(-3), precision: 0) : '$0' %></span>
+        </div>
+        <div class="volume-auto-loan-row bg-white">
+          <p class="vol-row-inner">Consumer loan recoveries</p>
+          <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_crconoth * 1000).round(-3), precision: 0) : '$0' %></span>
+        </div>
+        <div class="volume-auto-loan-row">
+          <p class="vol-row-inner">Consumer loan net charge-offs</p>
+          <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_ntconoth * 1000).round(-3), precision: 0) : '$0' %></span>
+        </div>
+      </div>
+      <button class= "show-all-specialst-btn mb-only pull-right see-more-fdic" id="bank_personal_data_section_btn">See More</button>
+      <div style="clear: both; overflow-y: auto;">
+        <a class="seo-loan-aftr-cntnt-link" href="">Data produced from US Government reported Financials</a>
+      </div>
+    </div>
+    <!--Volume of Personal Loan end-->
+    <!--Bank of America Personal Loan Chargeoffs, Recoveries section start-->
+    <div class="volume-auto-loan loan-chargeoff-recovry">
+      <h2 class="tab_blue_content"><%=@bank.name%> Personal Loan Chargeoffs, Recoveries  </h2>
+      <p>For <%=@bank.name%>'s assets sold and securitized by other consumer personal loans, the charge-offs amount to <b class="amount-bold"><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_szdrcon * 1000).round(-3), precision: 0) : '$0'%></b> and the recoveries amount to <b class="amount-bold"><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_szcrcon * 1000).round(-3), precision: 0) : '$0'%></b>.
+      </p>
+      <p>
+        An additional figure for personal loan performance are other consumer loans to individuals for household, family and other personal expenditures that are past due still and accruing interest:
+      </p>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="content-center">
+            <p class="loan-chargeoff-recovry-inner-data"><span class="half">Past Due 30 -89 days</span> <span>Past Due 90+ days</span></p>
+            <p class="loan-chargeoff-recovry-inner-data value-bx"><span class="half"><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_p9conoth * 1000).round(-3), precision: 0) : '$0'%></span> <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_naconoth * 1000).round(-3), precision: 0 ) : '$0'%></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="loan-chargeoff-recovry-inner-hdng">
+        <center>With FDIC Loss-sharing Agreements</center>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="content-center">
+            <p class="loan-chargeoff-recovry-inner-data"><span class="half">Past Due 30 -89 days</span> <span>Past Due 90+ days</span></p>
+            <p class="loan-chargeoff-recovry-inner-data value-bx"><span class="half"><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_p3lcon * 1000).round(-3), precision: 0) : '$0'%></span> <span><%= @fdic_cal_data.present? ? number_to_currency((@fdic_cal_data.p_p9lcon * 1000).round(-3), precision: 0) : '$0'%></span></p>
+          </div>
+        </div>
+      </div>
+      <a class="seo-loan-aftr-cntnt-link" href="">Data produced from US Government reported Financials</a>
+    </div>
+    <!--Bank of America Personal Loan Chargeoffs, Recoveries section end-->
+    <!--Car Loans Officers section start-->
+    <div class="volume-auto-loan seo-auto-loan-tabs">
+      <h2 class="tab_blue_content"><%=@bank.name%> Unsecured Personal Loans Officers</h2>
+      <!--Used Car Loans desktop section end-->
+      <div class="tabs-data-main desktop-tabs-data">
+        <div class="tabs-data-hdng">
+          <div class="col-xs-12 col-md-4">Name</div>
+          <div class="col-xs-12 col-md-4"></div>
+          <div class="col-xs-12 col-md-4">Contact</div>
+        </div>
+        <%if @loan_officers.present?%>
+        <%@loan_officers.each do |loan_officer|%>
+        <div class="tabs-data-row">
+          <div class="col-xs-12 col-md-4">
+            <p><%= remove_unnecessary_keywords(loan_officer.try(:first)) %> <%=remove_unnecessary_keywords(loan_officer.try(:last)) %></p>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <p><%= remove_unnecessary_keywords(loan_officer.try(:title))%></p>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : 
+              loan_officer.phone2.present? ? mobile_no_formatting(loan_officer.phone2) : mobile_no_formatting(loan_officer.cell)%>
+            </p>
+          </div>
+        </div>
+        <%end%>
+        <%else%>
+        <div class="tabs-data-row">
+          No Records Found
+        </div>
+        <%end%>
+      </div>
+      <!--Used Car Loans Officers mobile tabs end-->
+      <div class="tabs-data-main tabs-accordians-box">
+        <div class="panel-group">
+          <%if @loan_officers.present?%>
+          <%@loan_officers.first(3).each_with_index do |loan_officer, i|%>
+          <div class="panel panel-default">
+            <div class="panel-heading tabs-data-hdng">
+              <a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapse_<%=i.to_s%>">
+              <%= remove_unnecessary_keywords(loan_officer.try(:first)) %>  <%= remove_unnecessary_keywords(loan_officer.try(:last))%>
+              </br>
+              <%= remove_unnecessary_keywords(loan_officer.try(:title))%>
+              </a>
+            </div>
+            <div id="collapse_<%=i.to_s%>" class="panel-collapse collapse">
+              <div class="tabs-data-row">
+                <div class="col-xs-12 col-md-12">
+                  <h5>Contact</h5>
+                  <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : mobile_no_formatting(loan_officer.phone2)%></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%end%>
+          <%else%>
+          <div class="tabs-data-row">
+            No Records Found
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+    <!-- Car Loans Officers section end-->
+  </div>
+  <!-- News section starts from here -->
+<section class="reviews">
+  <div class="container">
+    <h4 class="main-title text-center font-weight-bold pb-4">News on Personal Loans from <%=@bank.name%></h4>
+    <div class="owl-carousel">
+      <!-- card -->
+      <%if @news_articles.present? %>
+        <%@news_articles.each_with_index do |na, i|%>
+          <div class="item">
+            <div class=" card">
+              <div class="row">
+                <div class="content-bx-slider">
+                  <div class="slider-icon-bx">
+                    <i class="fa fa-newspaper-o"></i>
+                  </div>
+                  <h4 class="title"><%=link_to na.headline.truncate(42), na.url, target: "_blank"%></h4>
+                  <p><%=na.text.truncate(130)%></p>
+                  <a href="#" class="read-more-link">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+</section> 
+  <!-- News section ends here -->
+  <div class="container">
+    <div class="volume-auto-loan full-width loan-detail-blocks car-auto-loan-othr-bank-box">
+      <h2 class="tab_blue_content">Personal Loans from Banks Similar to <%=@bank.name%></h2>
+      <div class="car-auto-loan-othr-bank">
+        <%if @near_by_banks.present? %>
+        <div class="row">
+          <%@near_by_banks.each do |nbb|%>
+          <div class="col-md-4">
+            <%#=link_to nbb.name, bank_home_personal_loan_path(cert: nbb.cert,bank_name: custom_path(nbb.name)) %>
+            <div class="city-link">
+              <%= link_to bank_home_personal_loan_path(cert: nbb.cert,bank_name: custom_path(nbb.name)) do %>
+              <span><%=nbb.name%></span>
+              <i class="fa fa-angle-double-right"></i>
+              <% end %>
+            </div>
+          </div>
+          <%end%>
+        </div>
+      </div>
+      <%else%>
+      No Records Found
+      <%end%>
+    </div>
+  </div>
+  <!-- Loans From Similar Bank end-->
+</section>
+<!-- search result feed end-->
+<!-- advance search mobile start-->
+<!--  <div class="modal fade" id="advance-srch-mb" role="dialog">
+  <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Advanced Options</h4>
+           <a href="">Reset</a>
+        </div>
+        <div class="modal-body">
+           <div class="search-main adv-search-mb">
+              <div class="search-cat zip-srch">
+                 <label>Zip Code</label>
+                 <input placeholder="123456" type="text">
+              </div>
+              <div class="search-cat purpse-srch">
+                 <label>Purpose</label>
+                 <select>
+                    <option>Purchase</option>
+                 </select>
+              </div>
+              <div class="search-cat price-srch">
+                 <label>Home Price</label>
+                 <div class="dollar-icn">$</div>
+                 <input placeholder="123456" type="text">
+              </div>
+              <div class="search-cat price-srch">
+                 <label>Down Payment</label>
+                 <div class="dollar-icn">$</div>
+                 <input placeholder="123456" type="text">
+              </div>
+              <div class="search-cat cr-srch">
+                 <label>Credit Score</label>
+                 <select>
+                    <option>750+</option>
+                 </select>
+              </div>
+              <div class="search-adv-option-box">
+                 <div class="search-adv-option">
+                    <div class="row">
+                       <h4>desired loan programs?</h4>
+                       <div class="col-xs-12 col-md-2 advance-check">
+                          <div class="form-group"><input value="" type="checkbox"> 30 Year Fixed</div>
+                          <div class="form-group"><input value="" type="checkbox"> 20 Year Fixed</div>
+                          <div class="form-group"><input value="" type="checkbox"> 15 Year Fixed</div>
+                          <div class="form-group"><input value="" type="checkbox"> 10 Year Fixed</div>
+                          <div class="form-group"><input value="" type="checkbox"> 7/1 Arm</div>
+                          <div class="form-group"><input value="" type="checkbox"> 5/1 Arm</div>
+                          <div class="form-group"><input value="" type="checkbox"> 3/1 Arm</div>
+                       </div>
+                       <div class="col-xs-12 col-md-3 drpdown-box">
+                          <select>
+                             <option>Select Occupancy</option>
+                          </select>
+                          <select>
+                             <option>Select Occupancy</option>
+                          </select>
+                          <select>
+                             <option>Select Occupancy</option>
+                          </select>
+                          <select>
+                             <option>Select Occupancy</option>
+                          </select>
+                       </div>
+                       <div class="col-xs-12 col-md-4 drpdown-box">
+                          <select>
+                             <option>Select Prepay Penalty</option>
+                          </select>
+                          <label>Cash Reserves (mos)</label>
+                          <select>
+                             <option>$ 15</option>
+                          </select>
+                          <label>Monthly Debt</label>
+                          <select>
+                             <option>$ 0</option>
+                          </select>
+                          <label>Monthly Income</label>
+                          <select>
+                             <option>$ 5,000</option>
+                          </select>
+                       </div>
+                       <div class="col-xs-12 col-md-3 advance-check top-bordr-only">
+                          <p>Owned Properties <span>01</span></p>
+                          <div class="form-group"><input value="" type="checkbox"> Interest Only</div>
+                          <div class="form-group"><input value="" type="checkbox"> Hazard Insuarance Waived</div>
+                          <div class="form-group"><input value="" type="checkbox"> Property Taxes Waived</div>
+                          <div class="form-group"><input value="" type="checkbox"> First Time Home Buyer</div>
+                          <div class="form-group"><input value="" type="checkbox"> Non Perm Resident Alien</div>
+                          <div class="form-group"><input value="" type="checkbox"> Foreign National</div>
+                          <div class="form-group"><input value="" type="checkbox"> Miltary</div>
+                          <div class="form-group"><input value="" type="checkbox"> Rular</div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="modal-footer">
+           <button class="rates-btn">Get Rates</button>
+        </div>
+     </div>
+  </div>
+  </div> -->
+<!-- advance search mobile end-->
 <!-- Script for see more/hide funct. for News section  -->
 <script type="text/javascript">
   // section for web view
@@ -430,7 +438,7 @@
     <%end%>
     $("#desktop_news").hide();
   });
-
+  
   $("#mobile_news_data").click(function(){
   //section for mobile view 
      <%(3..9).each do |i|%>
@@ -443,9 +451,37 @@
     $("#bank_details").addClass('show-box');
   $(".initial-section").hide();
   })
-
+  
   $('#bank_personal_data_section_btn').click(function(){
     $('#bank_personal_data_section').removeClass('mb-hide')
   $('#bank_personal_data_section_btn').hide();
   })
 </script>
+<script>
+      // Reviews slider
+      $(".reviews .owl-carousel").owlCarousel({
+          loop: true,
+          margin: 20,
+          nav: true,
+          center: true,
+          autoplay: true,
+          navText: [
+              '<i class="fa fa-angle-left"></i>',
+              '<i class="fa fa-angle-right"></i>'
+          ],
+          responsive: {
+              0: {
+                  items: 1
+              },
+              600: {
+                  items: 2
+              },
+              750: {
+                  items: 2
+              },
+              1000: {
+                  items: 3
+              }
+          }
+      });
+    </script>

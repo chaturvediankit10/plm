@@ -12,11 +12,17 @@ class PagesController < ApplicationController
   end
 
   def show
-    page = CmsPage.find_by(page_slug: params[:page_slug])
+    # page = CmsPage.find_by(page_slug: params[:page_slug])
+    # if page
+    #   @page = page
+    # else
+    #    content_not_found  
+    # end
+    page = params[:page_slug]
     if page
       @page = page
     else
-       content_not_found  
+      content_not_found  
     end
   end
 

@@ -17,4 +17,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require maskmoney
+//= require owl.carousel.min
 //= require_tree .

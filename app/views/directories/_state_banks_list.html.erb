@@ -1,8 +1,20 @@
+<section class="banner directory-banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-banner-title">
+          <h1>Directory</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <% title 'Bank list'%>
-<section class="content-main dirctory mortgage-rates-state">
+<section class="content-main dirctory mortgage-rates-state pt-zero">
   <div class="container">
     <div class="directory-box">
-      <h1>Bank List </h1>
+      <h2>Bank List </h2>
         <div class="directory-links-box">
           <%@counter=0%>
            <%@banks.each do |bank|%>
@@ -18,7 +30,14 @@
                 <%else%>
                   <%current_path = bank_home_auto_loan_path(cert: bank.cert,bank_name: custom_path(bank.name)) %>
                 <%end%>           
-                <%=link_to bank.name+', '+ state_full_name(bank.stname, true), current_path%>
+                <%#=link_to bank.name+', '+ state_full_name(bank.stname, true), current_path%>
+
+                <div class="city-link">
+                  <%= link_to current_path do %>
+                    <span><%=bank.name+', '+ state_full_name(bank.stname, true)%></span>
+                    <i class="fa fa-angle-double-right"></i>
+                  <% end %>
+                </div>  
               </div>
               <%if @counter%3 == 0%>
                 </div>

@@ -111,290 +111,87 @@
       in your area for 30-year fixed, 15year fixed, and 5/1 Adjustable Rate Mortgage (ARM).
     </p>
     <ul class="nav nav-tabs rates-tab">
-      <li class="active"><a data-toggle="tab" href="#30years">30 Year</a></li>
-      <li><a data-toggle="tab" href="#20years">20 Year</a></li>
-      <li><a data-toggle="tab" href="#15years-2">15 Year</a></li>
+      <li class="active"><a data-toggle="tab" href="#30years" class="tab-btn">30 Year</a></li>
+      <li><a data-toggle="tab" href="#15years" class="tab-btn">15 Year</a></li>
+      <li><a data-toggle="tab" href="#51years" class="tab-btn">5/1 ARM</a></li>
     </ul>
 
-    <div class="tab-content rates-tab-content">
-      <div id="30years" class="tab-pane fade in active">
-        <div class="cntnt-list-box">
-          <h5><%= @term%>-Year Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
-          <% if @result.present? %>
-            <% @result.each_with_index do |program, index|%>
-              <div class="cntnt-list-inner col-md-12">
-                <div class="inner-logo">
-                <!-- <img src="//assets/CMG financial.png" alt=""> -->
-                  <img src="<%= "/assets/"+program[:bank_name] %>.png" >
-                  <p class="orange-link"><%= program[:bank_name] %></p>
-                  <p>NMLS ID 1067</p>
-                </div>
-                <div class="inner-block">
-                  <% 
-                    base_rate = (program[:base_rate].to_f).round(3).to_s
-                    final_rate = (program[:final_rate].sum).round(3).to_s
-                  %>
-                  <span class="hdng-big"><%= final_calculate = final_rate.split(".").last.length == 1 ? final_rate + "00" : final_rate.split(".").last.length == 2 ? final_rate + "0" : final_rate rescue nil %>% Rate</span>
-                  <p class="hiden-txt-mb">4.145% APR</p>
-                  
-                  <p>30 Year Fixed</p>
-                  <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-                </div>
-                <div class="inner-block-combined">
-                  <div class="inner-block inner-block-small">
-                    <span class="hdng-big">$23,078</span>
-                    <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+    <div class="tab-content rates-tab-content" >
+      <% [30, 15, 51 ].each do |term_n|%>
+        <div data-id="<%=term_n%>" id="<%=term_n%>years" class="tab-pane for-test fade in  <%=term_n == 30 ? 'active' : ''%>">
+          <div class="cntnt-list-box">
+            <h5><%= term_n%>-Year Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+            <% if @result.present? %>
+              <% @all_resultes = term_n == 51 ? get_results_arm(@result, "5") : get_results(@result, term_n) %>
+              <% @all_resultes.each_with_index do |program, index|%>
+                <div class="cntnt-list-inner col-md-12 demo-items-<%=term_n%>">
+                  <div class="inner-logo">
+                  <!-- <img src="//assets/CMG financial.png" alt=""> -->
+                    <img src="<%= "/assets/"+program[:bank_name] %>.png" >
+                    <p class="orange-link"><%= program[:bank_name] %></p>
+                    <p>NMLS ID 1067</p>
                   </div>
-                  <div class="inner-block inner-block-small">
-                    <span class="hdng-big">$3,072/mo</span>
-                    <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+                  <div class="inner-block">
+                    <% 
+                      base_rate = (program[:base_rate].to_f).round(3).to_s
+                      final_rate = (program[:final_rate].sum).round(3).to_s
+                    %>
+                    <span class="hdng-big">
+                      <%if program[:air] != 0.0 && program[:air] != ""  %>
+                        <%=  number_with_precision(program[:air].to_s, :precision => 3)%>% Rate
+                      <% end -%>
+                    </span>
+                    <p class="hiden-txt-mb">
+                      <%if program[:apr].present? %>
+                        <!-- <%#= "%g" % ("%.2f" % program[:apr]) rescue nil %>% APR -->
+                        <%= program[:apr].to_s.split("e").first.to_f.round(3) rescue nil %>% APR
+                      <%end%>
+                    </p>
+                    <p><%= term_n == 51 ? "5/1 Arm" : term_n.to_s+ "Year Fixed" %> </p>
+                    <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
                   </div>
-                  <div class="inner-block inner-block-small">
-                    <span class="hdng-big">$23,078</span>
-                    <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+                  <div class="inner-block-combined">
+                    <div class="inner-block inner-block-small">
+                      <span class="hdng-big">$23,078</span>
+                      <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+                    </div>
+                    <div class="inner-block inner-block-small">
+                    <%if program[:monthly_payment].present? %>
+                      <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
+                      <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+                    <% end -%>
+                    </div>
+                    <div class="inner-block inner-block-small">
+                      <%if program[:closing_cost] != 0.0 && program[:closing_cost] != ""%>
+                      <span class="hdng-big">
+                        <%=  number_to_currency(program[:closing_cost].to_s, unit: "$", :precision => 0) rescue nil %>
+                        </span>
+                      <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+                      <% end -%>
+                    </div>
+                  </div>
+                  <div class="inner-block-btn">
+                    <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" class="dtail-btn">View Details</a>
+                    <a href="" class="lendr-web-link">Lender Website</a>
+                  </div>
+                  <div class="mb-scroll-icn">
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" ><i class="fa fa-angle-right"></i></a>
                   </div>
                 </div>
-                <div class="inner-block-btn">
-                  <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" class="dtail-btn">View Details</a>
-                  <a href="" class="lendr-web-link">Lender Website</a>
-                </div>
-                <div class="mb-scroll-icn">
-                  <a href="" data-toggle="modal" data-target="#view-details-popup-<%=index%>" ><i class="fa fa-angle-right"></i></a>
-                </div>
-              </div>
-              <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate: final_calculate  } %>
+                <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate:  number_with_precision(program[:air].to_s, :precision => 3)  } %>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div id="20years" class="tab-pane fade">
-        <div class="cntnt-list-box">
-          <h5>20-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
-          <div class="cntnt-list-inner col-md-12">
-            <div class="inner-logo">
-              <img src="/assets/pic1_06.png" alt="">
-              <a href="">Bank of America</a>
-              <p>NMLS ID 1067</p>
-            </div>
-            <div class="inner-block">
-              <span class="hdng-big">4.356% Rate</span>
-              <p class="hiden-txt-mb">4.145% APR</p>
-              <p>30 Year Fixed</p>
-              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-            </div>
-            <div class="inner-block-combined">
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$3,072/mo</span>
-                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
-              </div>
-            </div>
-            <div class="inner-block-btn">
-              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
-              <a href="" class="lendr-web-link">Lender Website</a>
-            </div>
-            <div class="mb-scroll-icn">
-              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="cntnt-list-inner dark-gray-bg col-md-12">
-            <div class="inner-logo">
-              <img src="/assets/pic2_03.png" alt="">
-              <a href="">Bank of America</a>
-              <p>NMLS ID 54645</p>
-            </div>
-            <div class="inner-block">
-              <span class="hdng-big">4.356% Rate</span>
-              <p class="hiden-txt-mb">4.145% APR</p>
-              <p>30 Year Fixed</p>
-              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-            </div>
-            <div class="inner-block-combined">
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$3,072/mo</span>
-                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
-              </div>
-            </div>
-            <div class="inner-block-btn">
-              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
-              <a href="" class="lendr-web-link">Lender Website</a>
-            </div>
-            <div class="mb-scroll-icn">
-              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="cntnt-list-inner gray-bg col-md-12">
-            <div class="inner-logo">
-              <img src="/assets/pic3_07.png" alt="">
-              <a href="">Bank of America</a>
-              <p>NMLS ID 54645</p>
-            </div>
-            <div class="inner-block">
-              <span class="hdng-big">4.356% Rate</span>
-              <p class="hiden-txt-mb">4.145% APR</p>
-              <p>30 Year Fixed</p>
-              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-            </div>
-            <div class="inner-block-combined">
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$3,072/mo</span>
-                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
-              </div>
-            </div>
-            <div class="inner-block-btn">
-              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
-              <a href="" class="lendr-web-link">Lender Website</a>
-            </div>
-            <div class="mb-scroll-icn">
-              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
-            </div>
           </div>
         </div>
-      </div>
-      
-      <div id="15years-2" class="tab-pane fade">
-        <div class="cntnt-list-box">
-          <h5>15-Years Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
-          <div class="cntnt-list-inner col-md-12">
-            <div class="inner-logo">
-              <img src="/assets/pic1_06.png" alt="">
-              <a href="">Bank of America</a>
-              <p>NMLS ID 54645</p>
-            </div>
-            <div class="inner-block">
-              <span class="hdng-big">4.356% Rate</span>
-              <p class="hiden-txt-mb">4.145% APR</p>
-              <p>30 Year Fixed</p>
-              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-            </div>
-            <div class="inner-block-combined">
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$3,072/mo</span>
-                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
-              </div>
-            </div>
-            <div class="inner-block-btn">
-              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
-              <a href="" class="lendr-web-link">Lender Website</a>
-            </div>
-            <div class="mb-scroll-icn">
-              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="cntnt-list-inner dark-gray-bg col-md-12">
-            <div class="inner-logo">
-              <img src="/assets/pic2_03.png" alt="">
-              <a href="">Bank of America</a>
-              <p>NMLS ID 54645</p>
-            </div>
-            <div class="inner-block">
-              <span class="hdng-big">4.356% Rate</span>
-              <p class="hiden-txt-mb">4.145% APR</p>
-              <p>30 Year Fixed</p>
-              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-            </div>
-            <div class="inner-block-combined">
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$3,072/mo</span>
-                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
-              </div>
-            </div>
-            <div class="inner-block-btn">
-              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
-              <a href="" class="lendr-web-link">Lender Website</a>
-            </div>
-            <div class="mb-scroll-icn">
-              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="cntnt-list-inner gray-bg col-md-12">
-            <div class="inner-logo">
-              <img src="/assets/pic3_07.png" alt="">
-              <a href="">Bank of America</a>
-              <p>NMLS ID 54645</p>
-            </div>
-            <div class="inner-block">
-              <span class="hdng-big">4.356% Rate</span>
-              <p class="hiden-txt-mb">4.145% APR</p>
-              <p>30 Year Fixed</p>
-              <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
-            </div>
-            <div class="inner-block-combined">
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Expected</span> Savings</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$3,072/mo</span>
-                <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-              </div>
-              <div class="inner-block inner-block-small">
-                <span class="hdng-big">$23,078</span>
-                <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
-              </div>
-            </div>
-            <div class="inner-block-btn">
-              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-              <a href="" data-toggle="modal" data-target="#view-details-popup" class="dtail-btn">View Details</a>
-              <a href="" class="lendr-web-link">Lender Website</a>
-            </div>
-            <div class="mb-scroll-icn">
-              <a href="" data-toggle="modal" data-target="#view-details-popup"><i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%end%>
     </div>
-    
-    
-    
   </div>
 </section>
+<div class="btn-load-bg">
+  <button id="loadMore" class="btn btn-load-more">Load more</button>
+</div>
+<!-- <div id="showLess">Show less</div> -->
 <!-- search result feed end-->
 <%if Expert.where(verified: true).count < 1%>
 <!-- Advertisement with expert start-->
@@ -1028,5 +825,44 @@
       });
   });
 
+  $(document).ready(function () {
+    var tab_val = "30";
+    load_more(tab_val);
+    $('.tab-btn').click(function () {
+      tab_val = $(this).text().replace ( /[^\d.]/g, '' );
+      load_more(tab_val);
+    });
+  });
 
+  function load_more(tab_val){
+    size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
+    // $("."+tab_val+"years").addClass('active')
+    $("#"+tab_val+"years .demo-items-"+tab_val).hide();
+    x=20;
+    $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+    $('#loadMore').click(function () {
+      x = 20
+      x = (x+10 <= size_li) ? x+10 : size_li;
+      $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+    });
+  }
 </script>
+<style type="text/css">
+  .btn-load-bg {
+    background-color: #f5f5f7;
+    clear: both;
+    padding: 15px 15px 35px;
+    text-align: center;
+  }
+  .btn-load-more {
+    font-size: 15px;
+    font-weight: normal;
+    color: #fff;
+    border-radius: 5px;
+    padding: 12px 40px;
+    background: #fb6324;
+  }
+  .btn-load-more:hover, .btn-load-more:focus {
+    color: #fff;
+  }
+</style>
