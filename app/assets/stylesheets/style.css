@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700);
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 li {
@@ -285,10 +286,13 @@ header .navbar-right {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #152544;
+  background-color: #fff;
   border-radius: 0;
 }
-
+.navbar-default .navbar-toggle {
+  background-color: #fb6325;
+  border-radius: 0;
+}
 .navbar-default .navbar-toggle {
   border: 1px solid transparent;
   border-radius: 5px;
@@ -296,8 +300,8 @@ header .navbar-right {
 
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:hover {
-  background-color: #fff;
-  border-color: #152544;
+  background-color: #fb6325;
+  border-color: #fb6325;
 }
 
 
@@ -4584,23 +4588,29 @@ header.fixed-header.scrolled {
 }
 
 .breakdown-wrapper {
+  width: 100%;
+  padding: 15px;
   margin-bottom: 30px;
+  box-shadow: 0px 5px 5px #ccc;
+  border: 1px solid #ddd;
+  background-color: #fff;
 }
 
 .breakdown-wrapper h1 {
-  border-radius: 10px 10px 0 0;
-  border: none;
-  color: #fff;
+  width: 100%;
+  color: #111;
   font-size: 24px;
-  padding: 10px 15px;
-  background-color: #f76225 !important;
-  margin: 0;
+  margin: 0 0 15px;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
-.breakdown-wrapper .ex-breakdown {
+/*.breakdown-wrapper .ex-breakdown {
   border: 1px solid #ccc;
   padding: 15px;
-}
+}*/
 
 .breakdown-wrapper .ex-breakdown .table {
   border: 1px solid #eee;
@@ -4891,6 +4901,8 @@ header.fixed-header.scrolled {
   }
   .advertisement-box {
     padding: 0 0 0 0;
+    background-position: right top;
+    background-size: cover;
   }
   .advertisement {
     width: 98%;
@@ -6123,7 +6135,8 @@ header.fixed-header.scrolled {
 
 @media(min-width:320px) and (max-width:640px) {
   .rates-tab.nav-tabs>li>a {
-    padding: 8px 20px;
+    padding: 8px 10px;
+    font-size: 14px;
   }
   .inner-banner-title {
     min-height: 108px;
@@ -8943,6 +8956,10 @@ p.hiden-txt-mb {
   .about-story h3 {
     font-size: 32px;
   }
+.banner.mortgage-banner .search-main, .banner.refinance-banner .search-main{
+  padding: 0;
+}
+
 }
 @media(max-width:540px) {
   .blog-post-inner .featured-image-bx {
