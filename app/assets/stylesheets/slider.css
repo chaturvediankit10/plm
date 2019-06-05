@@ -184,6 +184,15 @@
   .reviews{
     background-size: cover;
   }
+  .reviews .main-title{
+    font-size: 24px;
+  }
+  .content-bx-slider{
+    padding: 10px 0;
+  }
+  .reviews .item .card{
+    padding: 35px 15px;
+  }
 }
 
 .reviews .item .card ul {

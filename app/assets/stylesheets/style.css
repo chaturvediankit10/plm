@@ -431,7 +431,7 @@ header .navbar-right {
 }
 .view-details-popup .bank-logos span {
     width: 80px;
-    height: 65px;
+    height: auto;
 }
 .view-details-popup .bank-logos .extra-wrap p{
   font-size: 16px;
@@ -4620,6 +4620,9 @@ header.fixed-header.scrolled {
 .paddding-none{
   padding: 0 !important;
 }
+.bg-none{
+  background-color: transparent !important;
+}
 /**-------------Ends----------------**/
 
 
@@ -5598,7 +5601,7 @@ header.fixed-header.scrolled {
     padding: 15px 4px 0 4px;
   }
   .seo-cities-mortgage .loan-detail-blocks {
-    margin: 10px 0;
+    margin: 10px 10px;
   }
   .show-all-specialst-btn,
   .seo-auto-loan .show-all-loan-link {
@@ -8970,7 +8973,7 @@ p.hiden-txt-mb {
     min-height: auto;
   }
   .contact-form {
-    max-width: 90%;
+    max-width: 100%;
     margin: 0 auto;
   }
   .contact-form h2 {
@@ -8979,6 +8982,18 @@ p.hiden-txt-mb {
   }
   .contact-form form{
     padding: 15px;
+  }
+  .contact-form form p {
+    font-size: 16px;
+    line-height: normal;
+  }
+  .blog-post{
+    padding: 10px;
+  }
+  .blog-post-inner p, .blog-post p {
+    font-size: 14px;
+    line-height: normal;
+
   }
 }
 @media(max-width:480px) {
