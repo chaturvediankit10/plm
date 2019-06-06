@@ -365,7 +365,7 @@ header .navbar-right {
 
 .bank-logos span {
   width: 63px;
-  height: 48px;
+  /*height: 48px;*/
   float: left;
   margin-right: 5px;
   overflow: hidden;
@@ -425,12 +425,13 @@ header .navbar-right {
 }
 .view-details-popup .bank-logos .extra-wrap h1{
   font-size: 22px;
+  line-height: normal;
 }
 .view-details-popupbutton.close:hover {
   opacity: 1;
 }
 .view-details-popup .bank-logos span {
-    width: 80px;
+    /*width: 80px;*/
     height: auto;
 }
 .view-details-popup .bank-logos .extra-wrap p{
@@ -2071,7 +2072,7 @@ footer span {
   max-width: 60px;
 }
 .about-bottom-page .gray-box-cntnt {
-    padding: 25px !important;
+    padding: 25px;
     text-align: left;
     border-radius: 5px;
     border-top: 7px solid #3596cd;
@@ -2087,9 +2088,9 @@ footer span {
   margin-top: 15px;
 }
 
-.abt-tabs-cntnt .gray-box-cntnt {
+/*.abt-tabs-cntnt .gray-box-cntnt {
   padding: 50px 37px;
-}
+}*/
 
 .abt-tabs-cntnt .gray-box-cntnt h3 {
   font-size: 24px;
@@ -2607,7 +2608,7 @@ input.error {
 }
 .city-link a span {
     display: inline-block;
-    max-width: 93%;
+    max-width: 90%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -4629,14 +4630,25 @@ header.fixed-header.scrolled {
 /*mobile device css start*/
 
 @media(min-width:320px) and (max-width:767px) {
+
+  .view-details-popup .panel-body{
+    max-height: inherit;
+  }
   .car-auto-loan-othr-bank {
     padding: 0 0 15px 0;
+  }
+  .car-auto-loan-othr-bank .city-link{
+    margin: 0;
   }
   .volume-auto-loan .car-auto-loan-news h6 {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     min-height: auto !important;
+  }
+  .about-bottom-page .gray-box-cntnt{
+    padding: 15px;
+    min-height: inherit;
   }
   #global-nav {
     padding: 0;
@@ -4784,6 +4796,9 @@ header.fixed-header.scrolled {
     margin-bottom: 15px;
     line-height: 21px;
   }
+  .sectn-wo-bg .loan-detail-blocks-cntnt-inner p{
+    font-size: 15px;  
+  }
   .cntnt-list-box {
     box-shadow: none;
     overflow: visible;
@@ -4801,7 +4816,7 @@ header.fixed-header.scrolled {
     padding: 10px !important;
     background: #fff !important;
     box-shadow: 0 0 9px #d7d7d7;
-    margin: 2% 1% 6px 1%;
+    margin: 2% 1% 6px 0;
   }
   .inner-block-btn {
     display: none;
@@ -5044,7 +5059,7 @@ header.fixed-header.scrolled {
     text-transform: none;
   }
   .terms-page .container {
-    padding: 0;
+    padding: 0 10px;
   }
   .gray-box-cntnt-mb-single {}
   .terms-page h1 {
@@ -5099,9 +5114,9 @@ header.fixed-header.scrolled {
   .abt-tabs-cntnt {
     padding: 0;
   }
-  .abt-tabs-cntnt .gray-box-cntnt {
+  /*.abt-tabs-cntnt .gray-box-cntnt {
     padding: 30px 20px;
-  }
+  }*/
   .abt-tabs-cntnt .gray-box-cntnt h3 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -5401,12 +5416,12 @@ header.fixed-header.scrolled {
     width: 100%;
   }
   .volume-auto-loan h2 {
-    color: #fff;
     font-size: 20px;
+    /*color: #fff;
     margin: 0;
     background: #58a9e1;
     padding: 10px;
-    height: auto;
+    height: auto;*/
   }
   .volume-auto-loan-row {
     padding: 17px 15px;
@@ -5448,6 +5463,12 @@ header.fixed-header.scrolled {
     margin: 0;
     font-weight: normal;
   }
+
+
+  .bank-p .volume-auto-loan.loan-chargeoff-recovry p{
+    padding: 15px 0;
+  }
+
   .volume-auto-loan.loan-chargeoff-recovry p.loan-chargeoff-recovry-inner-data {
     margin: 0;
     padding: 5px 10px 0px 10px;
@@ -5458,11 +5479,15 @@ header.fixed-header.scrolled {
   .tabs-data-main.tabs-accordians-box {
     float: left;
     width: 100%;
-    padding: 0 10px;
+    padding: 0;
   }
   .tabs-accordians-box p {
     background: none;
     padding: 0 !important;
+    margin: 0 !important;
+  }
+  .tabs-accordians-box .col-xs-12.col-md-12 {
+    padding: 0 10px !important;
   }
   .tabs-data-row {
     padding: 22px 0px 20px 0px;
@@ -5510,6 +5535,10 @@ header.fixed-header.scrolled {
     width: 96%;
     margin: 2% 2% 0 2%;
   }
+  .bank-p .volume-auto-loan .volume-auto-loan-row {
+    width: 100%;
+    margin: 0;
+  }
   .seo-auto-loan-cntnt-box {
     width: 96%;
     margin: 2% 2% 25px 2%;
@@ -5517,9 +5546,9 @@ header.fixed-header.scrolled {
   .content-main.seo-cities-mortgage {
     padding-top: 0;
   }
-  .seo-cities-mortgage .container {
+  /*.seo-cities-mortgage .container {
     padding: 0;
-  }
+  }*/
   .seo-cities-mortgage .row {
     margin: 0;
   }
@@ -5546,15 +5575,17 @@ header.fixed-header.scrolled {
     padding: 0 10px 0 10px;
   }
   .seo-cities-mortgage p.top-txt-info {
-    width: auto;
-    float: right;
-    margin: 10px 10px 10px 0;
-    position: relative;
-    line-height: normal;
-    font-size: 13px;
+      width: auto;
+      float: none;
+      padding: 10px 10px 10px 0;
+      position: relative;
+      line-height: normal;
+      font-size: 13px;
+      clear: both;
+      display: block;
   }
   .loan-detail-blocks h3 {
-    padding: 10px 10px;
+    padding: 10px 0;
     font-size: 17px;
     border-radius: 0;
     line-height: 24px;
@@ -5568,7 +5599,7 @@ header.fixed-header.scrolled {
     font-size: 14px;
     line-height: normal;
     border-right: none;
-    padding: 15px 10px 0 10px;
+    padding: 15px 0 0 0;
   }
   .closing-cost-smry-cntnt .col-xs-12 p {
     float: right;
@@ -5601,7 +5632,7 @@ header.fixed-header.scrolled {
     padding: 15px 4px 0 4px;
   }
   .seo-cities-mortgage .loan-detail-blocks {
-    margin: 10px 10px;
+    margin: 10px 0;
   }
   .show-all-specialst-btn,
   .seo-auto-loan .show-all-loan-link {
@@ -5956,7 +5987,7 @@ header.fixed-header.scrolled {
   .main-table-graph {
     float: left;
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
   }
   .home-loan-breakdown .link-right-inner {
     margin: 15px 0 0 0;
@@ -5964,7 +5995,7 @@ header.fixed-header.scrolled {
     width: 100%;
   }
   .seo-cities-mortgage .cntnt-list-box {
-    padding: 0 10px;
+    padding: 0;
   }
   .table-inner-lft-space {
     padding-left: 15px;
@@ -6042,15 +6073,15 @@ header.fixed-header.scrolled {
   .seo-auto-loan-cntnt-box.seo-auto-loan-cntnt-box2 .row {
     margin: 0;
   }
-  .content-main.autoloan-top-sectn-cntrl {
+/*  .content-main.autoloan-top-sectn-cntrl {
     padding-top: 0 !important;
-  }
+  }*/
   .seo-auto-loan-cntnt-box.mb-bg-gray.seo-loan-cntnt-box-chnge {
     background: #f7f7f7 !important;
   }
   .autoloan-top-sectn-cntrl .seo-auto-loan-cntnt-box.mb-bg-gray.seo-loan-cntnt-box-chnge {
     background: #fff !important;
-    margin: 0;
+    margin: 0 0 25px;
     width: 100%;
   }
   .autoloan-top-sectn-cntrl .seo-loan-cntnt-box-chnge .col-xs-12.col-md-8.our-story-cntnt .gray-box-cntnt {
@@ -6065,7 +6096,7 @@ header.fixed-header.scrolled {
     font-weight: 300;
   }
   .autoloan-top-sectn-cntrl .seo-auto-loan-cntnt-box {
-    margin: 0;
+    margin: 0 0 25px;
     width: 100%;
   }
   .autoloan-top-sectn-cntrl .seo-auto-loan-cntnt-box .col-md-4.show-box {
@@ -6117,6 +6148,11 @@ header.fixed-header.scrolled {
   .see-more-fdic {
     margin-right: 8px !important;
   }
+  .pt-zero {
+    padding-top: 50px !important;
+    clear: both;
+    float: none;
+  }
 }
 
 
@@ -6145,7 +6181,19 @@ header.fixed-header.scrolled {
     min-height: 108px;
   }
   .inner-banner-title h1{
-    font-size: 32px;
+    font-size: 24px;
+    transform: translate(0%,-50%);
+    left: 0;
+  }
+  .post-value .col-md-6{
+    padding: 0 !important;
+  }
+  .loan-chargeoff-recovry-inner-data span.half{
+    min-width: 52%;
+    padding: 10px 5px;
+  }
+  .loan-chargeoff-recovry-inner-data span{
+    padding: 10px 5px;
   }
 }
 
@@ -6624,9 +6672,9 @@ header.fixed-header.scrolled {
   /*.abt-tabs-cntnt {
     padding: 0;
   }*/
-  .abt-tabs-cntnt .gray-box-cntnt {
+  /*.abt-tabs-cntnt .gray-box-cntnt {
     padding: 30px 20px;
-  }
+  }*/
   .abt-tabs-cntnt .gray-box-cntnt h3 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -7099,6 +7147,20 @@ header.fixed-header.scrolled {
   .seo-cities-mortgage .loan-detail-blocks {
     margin: 10px 0 20px 0;
   }
+  .seo-cities-mortgage.seo-cities .closing-cost-smry-cntnt .col-xs-12{
+    padding: 0;
+    background-color: #eee;
+    margin-bottom: 2px;
+  }
+  .seo-cities-mortgage.seo-cities .closing-cost-smry-cntnt span{
+    display: inline-block;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .seo-cities-mortgage.seo-cities .closing-cost-smry-cntnt .col-xs-12 p{
+    padding: 10px;
+    font-size: 14px;
+  }
   .show-all-specialst-btn {
     color: #111;
     border-radius: 0;
@@ -7419,10 +7481,10 @@ header.fixed-header.scrolled {
   .col-xs-12.col-md-5.our-story-img.pull-right {
     text-align: center;
   }
-  .col-xs-12.col-md-5.our-story-img.pull-right,
+  /*.col-xs-12.col-md-5.our-story-img.pull-right,
   .col-xs-12.col-md-7.our-story-cntnt {
     width: 100%;
-  }
+  }*/
   .our-story-img img {
     float: none;
     margin-top: 0;
@@ -7639,6 +7701,20 @@ header.fixed-header.scrolled {
   .signup-login-popup li.cntnt-login .social-login a {
     margin-bottom: 15px;
   }
+  .seo-cities-mortgage.seo-cities .closing-cost-smry-cntnt .col-xs-12{
+    padding: 0;
+    background-color: #f1f1f1;
+    margin-bottom: 2px;
+  }
+  .seo-cities-mortgage.seo-cities .closing-cost-smry-cntnt span{
+    display: inline-block;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .seo-cities-mortgage.seo-cities .closing-cost-smry-cntnt .col-xs-12 p{
+    padding: 10px;
+    font-size: 14px;
+  }
 }
 
 @media(min-width:768px) and (max-width:991px) {
@@ -7745,6 +7821,7 @@ header.fixed-header.scrolled {
   .closing-cost-smry-cntnt .col-xs-12,
   .closing-cost-smry-cntnt .col-xs-12 p {
     font-size: 15px;
+    padding: 0 0;
   }
   .mortgage-calculator .search-cat.anual-int-rate {
     width: 12%;
@@ -8760,7 +8837,7 @@ p.top-txt-info {
 @media( min-width:320px) and ( max-width:991px) {
   .bank-logos {
     padding: 15px;
-    background-color: #eee;
+    
   }
 }
 
@@ -8778,6 +8855,7 @@ p.top-txt-info {
   }
   .about-bottom-page{
     margin-top: 40px;
+    background-position: right top;
   }
   .blog-top-cntnt p {
     font-size: 16px;
@@ -8811,6 +8889,11 @@ p.top-txt-info {
   }
   .view-details-popup .modal-dialog .col-md-6 {
     max-width: 100% !important;
+    padding: 0;
+  }
+  .view-details-popup .modal-dialog .col-md-12{
+     max-width: 100% !important;
+    padding: 0;
   }
   .home-main-search .col-md-2 {
     padding: 0 15px;
@@ -8844,7 +8927,7 @@ p.top-txt-info {
     padding: 10px;
   }
   .view-details-popup .nav-tabs {
-    padding: 5px 10px 0;
+    padding: 5px 0 0;
   }
   .content-bx-content .table-condensed>tbody>tr>td {
     font-size: 14px;
@@ -8861,6 +8944,9 @@ p.top-txt-info {
   }
   .mb-scroll-icn a:focus {
     outline: none;
+  }
+  .graph-box p{
+    font-size: 14px !important;
   }
 }
 
@@ -8962,7 +9048,33 @@ p.hiden-txt-mb {
 .banner.mortgage-banner .search-main, .banner.refinance-banner .search-main{
   padding: 0;
 }
-
+  .banner-headings{
+    display: none;
+  }
+  .search-main{
+    padding: 0;
+  }
+  .rates-tab-content{
+    padding: 10px;
+  }
+  .view-details-popup .modal-header .tab-header .col-md-12, .view-details-popup .modal-header .tab-header .col-md-9{
+    padding: 0;
+  }
+  .view-details-popup .tab-content{
+    padding: 10px;
+  }
+  .car-auto-loan-othr-bank .city-link{
+    margin-right: 0;
+  }
+  .car-auto-loan-othr-bank a{
+    padding: 0;
+  }
+  .loan-detail-blocks.car-auto-loan-othr-bank-box{
+    padding: 15px 0;
+  }
+  .bank-p .loan-detail-blocks.car-auto-loan-othr-bank-box{
+    padding: 15px;
+  }
 }
 @media(max-width:540px) {
   .blog-post-inner .featured-image-bx {
@@ -9008,5 +9120,13 @@ p.hiden-txt-mb {
   .row {
     margin-right: 0;
     margin-left: 0;
+  }
+  .volume-auto-loan.loan-chargeoff-recovry p {
+    line-height: 22px;
+    font-size: 13px;
+    font-weight: normal;
+  }
+  .volume-auto-loan.loan-chargeoff-recovry p.loan-chargeoff-recovry-inner-data {
+    padding: 5px 5px 0px 5px;
   }
 }

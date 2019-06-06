@@ -149,6 +149,32 @@ p.small-heading {
   background-color: #fff;
   border-radius: 4px 0px 0px 4px;
 }
+.flex-group .search-section{
+  border-right: none; 
+}
+.flex-group .input-section{
+  flex: 0 0 60%;
+  max-width: 60%;
+  border-right: 1px solid #b7c5df;
+  background-color: #fff;
+  border-radius: 4px 0px 0px 4px;
+}
+.flex-group span {
+  flex: 0 0 40%;
+  max-width: 40%;
+  border-right: 1px solid #b7c5df;
+  background-color: #fff;
+  border-radius: 4px 0px 0px 4px;
+  line-height: 34px;
+}
+.flex-group .input-section{
+  border-right: none;
+}
+.flex-group .input-section input {
+    width: 100%;
+    max-width: 100%;
+    border-right: none !important;
+}
 .calculator_weapper{
   background: #f5f5f7;
 }
@@ -445,6 +471,7 @@ padding-left: 7px !important;
   padding: 5px 15px;
   background-color: #eee;
   font-weight: 400;
+  clear: both;
 }
 .graph-container {
   padding: 15px 0;
@@ -836,6 +863,7 @@ footer .copyright {
   }
   .graph-bx h2 {
     font-size: 16px;
+    clear: both;
   }
   .editable-field{
     max-width: 75px;
