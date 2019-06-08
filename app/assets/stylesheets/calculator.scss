@@ -41,12 +41,12 @@ p.small-heading {
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #19214d;
+  background-color: #fb6325;
   color: #fff;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #19214d;
+  background-color: #fff;
 }
 
 .navbar-default .navbar-toggle:hover .icon-bar {
@@ -149,8 +149,97 @@ p.small-heading {
   background-color: #fff;
   border-radius: 4px 0px 0px 4px;
 }
+.flex-group .search-section{
+  border-right: none; 
+}
+.flex-group .input-section{
+  flex: 0 0 60%;
+  max-width: 60%;
+  border-right: 1px solid #b7c5df;
+  background-color: #fff;
+  border-radius: 4px 0px 0px 4px;
+}
+.flex-group span {
+  flex: 0 0 40%;
+  max-width: 40%;
+  border-right: 1px solid #b7c5df;
+  background-color: #fff;
+  border-radius: 4px 0px 0px 4px;
+  line-height: 34px;
+}
+.flex-group .input-section{
+  border-right: none;
+}
+.flex-group .input-section input {
+    width: 100%;
+    max-width: 100%;
+    border-right: none !important;
+}
+.calculator_weapper{
+  background: #f5f5f7;
+}
+.calculator_weapper .form-wrapper {
+    box-shadow: 0px 5px 5px #ccc;
+    background: #fff;
+    padding: 15px;
+    position: relative;
+}
+.calculator_weapper .form-wrapper form {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    position: relative;
+}
+.calculator_weapper .form-wrapper label {
+    font-weight: 500;
+    color: #666;
+    font-size: 15px;
+}
+.calculator_weapper .form-wrapper .form-control {
+    border-color: #ddd;
+    border-radius: 0;
+}
+.calculator_weapper .form-group{
+  position: relative
+}
+.calculator_weapper .dollar-icn {
+    left: 10px;
+    bottom: 10px;
+}
+.icon-right {
+    position: absolute;
+    color: #666;
+    font-size: 15px;
+    left: auto;
+    z-index: 99;
+    bottom: 27px;
+    font-weight: bold;
+    right: 10px;
+    bottom: 10px;
+  }
+.calculator_weapper .form-wrapper input {
+    padding: 8px 15px 6px 25px;
+}
+.calculator_weapper .form-wrapper #today_rate {
+    font-size: 16px;
+    color: #FF6032;
+    text-decoration: navajowhite;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 15px;
+}
 
+.calculator_weapper.content-main .main-para-hdng {
+    font-weight: 500;
+    float: left;
+    width: 100%;
+    color: #111;
+    font-size: 20px;
+    margin: 0 0 20px 0;
+    line-height: 30px;
 
+}
 .flex-group select {
   border-radius: 4px 0px 0px 4px;
   background-color: transparent;
@@ -241,20 +330,20 @@ padding-left: 7px !important;
 
 .contain-wrapper p {
   margin: 0 0 20px;
-  color: #19214d;
+  color: #111;
   font-size: 17px;
+  line-height: 24px;
 }
 
 .ex-breakdown h1 {
-  display: block;
-  background-color: #58a9e1;
-  color: #fff;
-  text-transform: capitalize;
+  width: 100%;
+  color: #111;
   font-size: 24px;
-  padding: 12px 25px;
-  border-radius: 6px 6px 0 0;
-  font-weight: 700;
-  margin: 30px 0 0;
+  margin: 30px 0 15px;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .ex-breakdown .table tr th {
@@ -262,7 +351,7 @@ padding-left: 7px !important;
   font-weight: 400;
   padding: 10px;
   border-bottom: 1px solid #ccc;
-  font-size: 20px;
+  font-size: 16px;
   text-align: inherit;
 }
 
@@ -280,11 +369,10 @@ padding-left: 7px !important;
 
 .ex-breakdown .table tbody tr td {
   border-top: none;
-  padding: 15px 10px;
-  font-size: 18px;
+  padding: 12px 10px;
+  font-size: 16px;
   color: #111;
   font-weight: 400;
-  height: 58px;
   vertical-align: middle;
 }
 
@@ -316,7 +404,7 @@ padding-left: 7px !important;
 }
 
 .ex-breakdown .compare-table .table-border tbody tr td {
-  border-right: 2px solid #c8d5e6;
+  border-right: 2px solid #eee;
 }
 
 .ex-breakdown .compare-table .table thead tr {
@@ -340,13 +428,14 @@ padding-left: 7px !important;
 }
 
 .ex-breakdown .compare-table .table-border tbody tr td .sub-table tr td {
-  padding: 15px 10px 15px 25px;
+  padding: 12px 10px 12px 25px;
 }
 
 .ex-breakdown .compare-table .table-striped tr th {
-  font-size: 24px;
+  font-size: 16px;
   padding: 10px;
-  border-right: 2px solid #c8d5e6;
+  border-right: 2px solid #eee;
+  background-color: #eee;
 }
 
 .ex-breakdown .compare-table .table-border tbody tr td:nth-child(2) {
@@ -372,16 +461,18 @@ padding-left: 7px !important;
 .graph-bx {
   border: 1px solid #eee;
   border-radius: 0;
-  padding: 15px;
-}
-
-.graph-bx h2 {
-  font-size: 20px;
-  color: #a4aec9;
-  margin: 0;
   padding: 0;
 }
 
+.graph-bx h2 {
+  font-size: 18px;
+  color: #111;
+  margin: 0;
+  padding: 5px 15px;
+  background-color: #eee;
+  font-weight: 400;
+  clear: both;
+}
 .graph-container {
   padding: 15px 0;
 }
@@ -395,8 +486,10 @@ padding-left: 7px !important;
     font-weight: normal;
 }
 .graph-bx p {
-  margin: 0;
-  font-size: 17px;
+    margin: 0;
+    font-size: 16px;
+    background-color: #eee;
+    padding: 15px;
 }
 
 
@@ -530,6 +623,8 @@ footer .copyright {
     bottom: 26px;
     font-size: 12px;
   }
+
+
   .link-to {
     font-size: 12px;
   }
@@ -768,6 +863,7 @@ footer .copyright {
   }
   .graph-bx h2 {
     font-size: 16px;
+    clear: both;
   }
   .editable-field{
     max-width: 75px;

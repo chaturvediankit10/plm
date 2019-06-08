@@ -1,79 +1,19 @@
 
-<!-- <.....form wrapper.... -->
-<section class="form-wrapper" id="myHeader">
+<section class="banner directory-banner">
   <div class="banner-overlay"></div>
-  <%= form_tag(calculator_path, method: :get, :id => 'calculator_form') do %>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-9">
-          <div class="row">
-            <div class="col-md-7">
-              <div class="row form-row">
-                <div class="col-md-3 col-xs-6">
-                  <div class="form-group">
-                    <label>Zip Code</label>
-                    <%= text_field_tag :zip_code, @zip_code, :class=> "form-control" %>
-                  </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                  <div class="form-group search-section">
-                    <label>Purpose</label>
-                    <span class="purpose-span">
-                      <%= select_tag 'purpose', options_for_select(@purpose_list), :class=> "form-control" %>
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label>Home Price</label>
-                    <div class="dollar-icn">$</div>
-                    <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0), :class=> "form-control" %>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label>Down Payment</label>
-                    <div class="dollar-icn">$</div>
-                    <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0), :class=> "form-control" %>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="row form-row">
-                <div class="col-md-7">
-                  <div class="form-group">
-                    <label>Mortgage Term</label>
-                    <div class="flex-group">
-                      <div class="search-section">
-                        <%= select_tag 'mortgage_term', options_for_select(@mortgage_term_list, @mortgage_term), :class=> "form-control" %>
-                      </div>
-                      <%= text_field_tag :mortgage_month, '', :class=> "form-control padding-left" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div>
-                    <label>Annual Interst Rate</label>
-                    <%= text_field_tag :annual_interest_rate, @annual_interest_rate, :class=> "form-control" %>
-                    <a href="JavaScript:Void(0);" id="today_rate" class="link-to">Use Today's Rate</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <%= submit_tag "Calculate Mortgage", :class => "btn btn-block primary-btn" %>
-          <a href="#" class="btn btn-block border-btn">Get Latest Rates</a>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-banner-title">
+          <h1>Mortgage Calculator</h1>
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </section>
-<!-- <.....form wrapper end.... -->
+
 <!-- <.....main content wrapper.... -->
-<section class="contain-wrapper">
+<section class="contain-wrapper pt-zero calculator_weapper content-main">
   <%= render partial: "wrapper" %>
 </section>
 <!-- <.....main content wrapper end .... -->

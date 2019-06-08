@@ -1,10 +1,108 @@
 <div class="container">
-  <div>
-    <div>
-      <p class="small-heading"> pure-loan.com provides a mortgage calculator to help you understand your monthly home expenses. this includes mortgage principal home loan interest , and estimate total payment for both home mortgage and refinance customers. </p>
-      <p class="small-heading"> These calculator are based on your location, interest rate, and our proprietary analysis platform. We use various sources of public data to estimate additional costs such as property tax, home insurance, and PMI insurance it applicable.
+  <div class="row">
+    <div class="col-md-12">
+      <p class="main-para-hdng"> pure-loan.com provides a mortgage calculator to help you understand your monthly home expenses. this includes mortgage principal home loan interest , and estimate total payment for both home mortgage and refinance customers. </p>
+      <p class="main-para-hdng"> These calculator are based on your location, interest rate, and our proprietary analysis platform. We use various sources of public data to estimate additional costs such as property tax, home insurance, and PMI insurance it applicable.
       </p>
       <p id=”notice”><%= notice %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-wrapper" >
+        <%= form_tag(calculator_path, method: :get, :id => 'calculator_form') do %>
+          <div class="form-group mb-30">
+            <img src="/assets/home-image.jpg">
+          </div>
+          <div class="form-group">
+            <label>Zip Code</label>
+            <%= text_field_tag :zip_code, @zip_code, :class=> "form-control" %>
+          </div>
+          <div class="form-group search-section">
+            <label>Purpose</label>
+            <span class="purpose-span">
+              <%= select_tag 'purpose', options_for_select(@purpose_list), :class=> "form-control" %>
+            </span>
+          </div>
+          <div class="form-group">
+            <label>Home Price</label>
+            <div class="dollar-icn">$</div>
+            <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0), :class=> "form-control" %>
+          </div>
+          <div class="form-group">
+            <label>Down Payment</label>
+            <div class="dollar-icn">$</div>
+            <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0), :class=> "form-control" %>
+          </div>
+          <div class="form-group">
+            <label>Mortgage Term</label>
+            <div class="flex-group">
+              <div class="search-section">
+                <%= select_tag 'mortgage_term', options_for_select(@mortgage_term_list, @mortgage_term), :class=> "form-control" %>
+              </div>
+              <%= text_field_tag :mortgage_month, '', :class=> "form-control padding-left" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Annual Interst Rate</label>
+            <div class="icon-right">%</div>
+            <%= text_field_tag :annual_interest_rate, @annual_interest_rate, :class=> "form-control" %>
+            <a href="JavaScript:Void(0);" id="today_rate" class="link-to">Use Today's Rate</a>
+          </div>
+
+          <div class="form-group">
+            <label>Property Tax</label>
+            <div class="flex-group">
+              <div class="dollar-icn">$</div>
+              <div class="input-section">
+                <%= text_field_tag :monthly_property_tax, @property_tax[:monthly], :class=> "form-control" %>
+              </div>
+              <span class="form-control padding-left"><%= @property_tax[:percentage]%></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Home Insurance</label>
+            <div class="flex-group">
+              <div class="dollar-icn">$</div>
+              <div class="input-section">
+                <%= text_field_tag :monthly_home_insurance, @home_insurance[:monthly], :class=> "form-control" %>
+              </div>
+              <span class="form-control padding-left"><%= @home_insurance[:percentage]%>%</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>PMI Insurance</label>
+            <div class="flex-group">
+              <div class="dollar-icn">$</div>
+              <div class="input-section">
+                <%= text_field_tag :monthly_pmi_insurance, @pmi_insurance[:monthly], :class=> "form-control" %>
+              </div>
+              <span class="form-control padding-left"><%= @pmi_insurance[:percentage]%>%</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>HOA Dues</label>
+            <div class="flex-group">
+              <div class="dollar-icn">$</div>
+              <div class="input-section">
+                <%= text_field_tag :monthly_hoa_dues, @hoa_dues[:monthly], :class=> "form-control" %>
+              </div>
+              <span class="form-control padding-left"><%= @hoa_dues[:percentage]%>%</span>
+            </div>
+          </div>
+           
+          
+          <div class="form-group mt-30">
+            <%= submit_tag "Calculate Mortgage", :class => "btn btn-block primary-btn" %>
+            <a href="#" class="btn btn-block primary-btn">Get Latest Rates</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-9">
       <div class="breakdown-wrapper">
         <h1>Monthly Expenses Breakdown</h1>
         <div class="ex-breakdown">
@@ -49,50 +147,50 @@
                   <%= @mortgage_interest[:percentage]%>%
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>Property Tax</td>
                 <td align="center">
-                <%= text_field_tag :monthly_property_tax, @property_tax[:monthly], :class=> "editable-field" %>
+                <%#= text_field_tag :monthly_property_tax, @property_tax[:monthly], :class=> "editable-field" %>
                 </td>
                 <td align="center">
-                  <%= number_to_currency(@property_tax[:total], unit: "")%>
+                  <%#= number_to_currency(@property_tax[:total], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= @property_tax[:percentage]%>%
+                  <%#= @property_tax[:percentage]%>%
                 </td>
-              </tr>
-              <tr>
+              </tr> -->
+              <!-- <tr>
                 <td>Home Insurance</td>
                 <td align="center">
-                <%= text_field_tag :monthly_home_insurance, @home_insurance[:monthly], :class=> "editable-field" %>
+                <%#= text_field_tag :monthly_home_insurance, @home_insurance[:monthly], :class=> "editable-field" %>
                 </td>
                 <td align="center">
-                  <%= number_to_currency(@home_insurance[:total], unit: "")%>
+                  <%#= number_to_currency(@home_insurance[:total], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= @home_insurance[:percentage]%>%
+                  <%#= @home_insurance[:percentage]%>%
                 </td>
-              </tr>
-              <tr>
+              </tr> -->
+              <!-- <tr>
                 <td>PMI Insurance</td>
                 <td align="center">
-                <%= text_field_tag :monthly_pmi_insurance, @pmi_insurance[:monthly], :class=> "editable-field" %>
+                <%#= text_field_tag :monthly_pmi_insurance, @pmi_insurance[:monthly], :class=> "editable-field" %>
                 </td>
                 <td align="center">
-                  <%= number_to_currency(@pmi_insurance[:total], unit: "")%>
+                  <%#= number_to_currency(@pmi_insurance[:total], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= @pmi_insurance[:percentage]%>%
+                  <%#= @pmi_insurance[:percentage]%>%
                 </td>
-              </tr>
-              <tr>
+              </tr> -->
+              <!-- <tr>
                 <td>HOA Dues</td>
                 <td align="center">
-                <%= text_field_tag :monthly_hoa_dues, @hoa_dues[:monthly], :class=> "editable-field" %>
+                <%#= text_field_tag :monthly_hoa_dues, @hoa_dues[:monthly], :class=> "editable-field" %>
                 </td>
-                <td align="center"><%= number_to_currency(@hoa_dues[:total], unit: "")%></td>
-                <td align="center"><%= @hoa_dues[:percentage]%>%</td>
-              </tr>
+                <td align="center"><%#= number_to_currency(@hoa_dues[:total], unit: "")%></td>
+                <td align="center"><%#= @hoa_dues[:percentage]%>%</td>
+              </tr> -->
               <tr class="table-footer">
                 <td>Total</td>
                 <td align="center">
@@ -112,252 +210,251 @@
         <div class="ex-breakdown">
           <div class="graph-wrapper">
             <div id="payoff-schedule-graph" style="height: 300px"></div>
-            <div class="text-right">
+            <div class="text-center">
               <a href="javascript:void(0)" class="btn primary-btn toggle-btn monthly-btn">SHOW PAYOFF SCHEDULE</a>
               <a href="#" class="btn btn-block primary-btn modal-btn" data-toggle="modal" data-target="#payoff_schedule_modal">SHOW PAYOFF SCHEDULE</a>
             </div>
           </div>
         </div>
-      </div>
-      <div class="ex-breakdown hide-on-mobile toggle-container monthly-pay-none">
-        <h1>Monthly Payoff Schedule</h1>
-        <div class="scroll-table mCustomScrollbar" style="overflow: scroll">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th width="15%"></th>
-                <th align="center">
-                  <center>Principal </center>
-                </th>
-                <th>
-                  <center>Interet </center>
-                </th>
-                <th>
-                  <center>Remainging </center>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <%
-              if @monthly_payoff_list.present?
-                %>
+        <div class="ex-breakdown hide-on-mobile toggle-container monthly-pay-none">
+          <h1>Monthly Payoff Schedule</h1>
+          <div class="scroll-table mCustomScrollbar" style="overflow: scroll">
+            <table class="table table-striped">
+              <thead>
                 <tr>
-                  <td align="center"></td>
-                  <td></td>
-                  <td></td>
-                  <td align="center">
-                    <%= number_to_currency((@home_price - @down_payment).to_f) %>
-                  </td>
+                  <th width="15%"></th>
+                  <th align="center">
+                    <center>Principal </center>
+                  </th>
+                  <th>
+                    <center>Interet </center>
+                  </th>
+                  <th>
+                    <center>Remainging </center>
+                  </th>
                 </tr>
+              </thead>
+              <tbody>
                 <%
-                @monthly_payoff_list.each do |monthly_payoff, index|
-                %>
+                if @monthly_payoff_list.present?
+                  %>
                   <tr>
-                    <td align="center"><%= monthly_payoff[:month] %></td>
-                    <td align="center"><%= number_to_currency(monthly_payoff[:payoff_principal]) %></td>
-                    <td align="center"><%= monthly_payoff[:payoff_interest] %></td>
-                    <td align="center"><%= number_to_currency(monthly_payoff[:payoff_remaining]) %></td>
+                    <td align="center"></td>
+                    <td></td>
+                    <td></td>
+                    <td align="center">
+                      <%= number_to_currency((@home_price - @down_payment).to_f) %>
+                    </td>
                   </tr>
-                <%
+                  <%
+                  @monthly_payoff_list.each do |monthly_payoff, index|
+                  %>
+                    <tr>
+                      <td align="center"><%= monthly_payoff[:month] %></td>
+                      <td align="center"><%= number_to_currency(monthly_payoff[:payoff_principal]) %></td>
+                      <td align="center"><%= monthly_payoff[:payoff_interest] %></td>
+                      <td align="center"><%= number_to_currency(monthly_payoff[:payoff_remaining]) %></td>
+                    </tr>
+                  <%
+                  end
                 end
-              end
-              %>
-            </tbody>
-          </table>
+                %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
+      
       <div class="breakdown-wrapper">
         <h1>Investment Returns From Home Ownership Compare to Renting</h1>
-        <div class="breakdown-wrapper">
-          <div class="ex-breakdown">
-            <div class="padding-20">
-              <p class="small-heading">Benefits of Buying:</p>
-              <p class="small-heading"><%= @costs_compare_sum[:benifit].html_safe %></p>
-            </div>
-            <div class="compare-table">
-              <table class="table table-striped table-border">
-                <thead>
-                  <tr>
-                    <th align="center" colspan="2">
-                      <center>Rent</center>
-                    </th>
-                    <th colspan="2">
-                      <center>Buy</center>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td width="25%">Initial Costs</td>
-                    <td width="25%"><%= number_to_currency(@initial_costs[:rent], unit: "")%></td>
-                    <td width="25%"><%= number_to_currency(@initial_costs[:buy], unit: "")%></td>
-                    <td>Initial Costs</td>
-                  </tr>
-                  <tr>
-                    <td colspan="4" class="padding-0">
-                      <table class="sub-table" width="100%">
-                        <tbody>
-                          <tr>
-                            <td width="25%">Rent Security Deposit</td>
-                            <td width="25%">
-                              <%= number_to_currency(@rent_security_deposit, unit: "")%>
+        <div class="ex-breakdown">
+          <div>
+            <p>Benefits of Buying:</p>
+            <p><%= @costs_compare_sum[:benifit].html_safe %></p>
+          </div>
+          <div class="compare-table">
+            <table class="table table-striped table-border">
+              <thead>
+                <tr>
+                  <th align="center" colspan="2">
+                    <center>Rent</center>
+                  </th>
+                  <th colspan="2">
+                    <center>Buy</center>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td width="25%">Initial Costs</td>
+                  <td width="25%"><%= number_to_currency(@initial_costs[:rent], unit: "")%></td>
+                  <td width="25%"><%= number_to_currency(@initial_costs[:buy], unit: "")%></td>
+                  <td>Initial Costs</td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="padding-0">
+                    <table class="sub-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="25%">Rent Security Deposit</td>
+                          <td width="25%">
+                            <%= number_to_currency(@rent_security_deposit, unit: "")%>
+                          </td>
+                          <td width="25%">
+                            <%= number_to_currency((@down_payment*-1), unit: "")%>
+                          </td>
+                          <td width="25%">Down Payment</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td width="25%">
+                            <%= number_to_currency(@costs_of_buying_house[:rent], unit: "")%>
+                          </td>
+                          <td width="25%">
+                            <%= number_to_currency(@costs_of_buying_house[:buy], unit: "")%>
+                          </td>
+                          <td>Cost of Buying House</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%">Recurring Costs</td>
+                  <td  width="25%">
+                    <%= number_to_currency(@recuring_costs[:rent], unit: "")%>
+                  </td>
+                  <td  width="25%">
+                    <%= number_to_currency(@recuring_costs[:buy], unit: "")%>
+                  </td>
+                  <td>Recurring Costs</td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="padding-0">
+                    <table class="sub-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="25%">Total Monthly Rents</td>
+                          <td width="25%">
+                            <%= number_to_currency((@total_monthly_rents*-1), unit: "")%>
+                          </td>
+                          <td width="25%">
+                            <%= number_to_currency(@mortgage_payments, unit: "")%>
+                          </td>
+                          <td width="25%">Morgage Payment</td>
+                        </tr>
+                        <tr>
+                          <td>Renter's Insurance</td>
+                          <td width="25%">
+                            <%= number_to_currency(@renter_insurance, unit: "")%>
                             </td>
-                            <td width="25%">
-                              <%= number_to_currency((@down_payment*-1), unit: "")%>
-                            </td>
-                            <td width="25%">Down Payment</td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td width="25%">
-                              <%= number_to_currency(@costs_of_buying_house[:rent], unit: "")%>
-                            </td>
-                            <td width="25%">
-                              <%= number_to_currency(@costs_of_buying_house[:buy], unit: "")%>
-                            </td>
-                            <td>Cost of Buying House</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="25%">Recurring Costs</td>
-                    <td  width="25%">
-                      <%= number_to_currency(@recuring_costs[:rent], unit: "")%>
-                    </td>
-                    <td  width="25%">
-                      <%= number_to_currency(@recuring_costs[:buy], unit: "")%>
-                    </td>
-                    <td>Recurring Costs</td>
-                  </tr>
-                  <tr>
-                    <td colspan="4" class="padding-0">
-                      <table class="sub-table" width="100%">
-                        <tbody>
-                          <tr>
-                            <td width="25%">Total Monthly Rents</td>
-                            <td width="25%">
-                              <%= number_to_currency((@total_monthly_rents*-1), unit: "")%>
-                            </td>
-                            <td width="25%">
-                              <%= number_to_currency(@mortgage_payments, unit: "")%>
-                            </td>
-                            <td width="25%">Morgage Payment</td>
-                          </tr>
-                          <tr>
-                            <td>Renter's Insurance</td>
-                            <td width="25%">
-                              <%= number_to_currency(@renter_insurance, unit: "")%>
-                              </td>
-                            <td width="25%">
-                              <%= number_to_currency((@property_tax[:total]*-1), unit: "")%>
-                            </td>
-                            <td>Property Taxes</td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                              <%= number_to_currency((@home_insurance[:total]*-1), unit: "")%>
-                            </td>
-                            <td>Home Insurance</td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                              <%= number_to_currency((@pmi_insurance[:total]*-1), unit: "")%>
-                            </td>
-                            <td>PMI Insurance</td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                              <%= number_to_currency(@hoa_dues[:monthly], unit: "")%>
-                            </td>
-                            <td>HOA Dues</td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                              <%= number_to_currency(@returns_for_investment, unit: "")%>
-                            </td>
-                            <td>The Returns for Investment</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="25%">Closing Costs</td>
-                    <td width="25%">
-                      <%= number_to_currency(@closing_costs[:rent], unit: "")%>
-                    </td>
-                    <td width="25%">
-                      <%= number_to_currency(@closing_costs[:buy], unit: "")%>
-                    </td>
-                    <td>Closing Costs</td>
-                  </tr>
-                  <tr>
-                    <td colspan="4" class="padding-0">
-                      <table class="sub-table" width="100%">
-                        <tbody>
-                          <tr>
-                            <td width="25%"></td>
-                            <td width="25%"></td>
-                            <td width="25%">
-                              <%= number_to_currency(@closing_costs[:buy], unit: "")%>
-                            </td>
-                            <td width="25%">Cost of Selling House</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="25%">Proceeds from Moving</td>
-                    <td width="25%">
-                      <%= number_to_currency(@home_appreciation[:rent], unit: "")%>
-                    </td>
-                    <td width="25%">
-                      <%= number_to_currency(@home_appreciation[:buy], unit: "")%>
-                    </td>
-                    <td>Proceeds from sale</td>
-                  </tr>
-                  <tr>
-                    <td colspan="4" class="padding-0">
-                      <table class="sub-table" width="100%">
-                        <tbody>
-                          <tr>
-                            <td width="25%">Return of the rental security deposit</td>
-                            <td width="25%">
-                              <%= number_to_currency(@home_appreciation[:rent], unit: "")%>
-                            </td>
-                            <td width="25%">
-                              <%= number_to_currency(@home_appreciation[:buy], unit: "")%>
-                            </td>
-                            <td width="25%">Home Value</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="25%">Total</td>
-                    <td width="25%">
-                      <%= number_to_currency(@costs_compare_sum[:rent], unit: "")%>
-                    </td>
-                    <td width="25%">
-                      <%= number_to_currency(@costs_compare_sum[:buy], unit: "")%>
-                    </td>
-                    <td>Total</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                          <td width="25%">
+                            <%= number_to_currency((@property_tax[:total]*-1), unit: "")%>
+                          </td>
+                          <td>Property Taxes</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            <%= number_to_currency((@home_insurance[:total]*-1), unit: "")%>
+                          </td>
+                          <td>Home Insurance</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            <%= number_to_currency((@pmi_insurance[:total]*-1), unit: "")%>
+                          </td>
+                          <td>PMI Insurance</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            <%= number_to_currency(@hoa_dues[:monthly], unit: "")%>
+                          </td>
+                          <td>HOA Dues</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            <%= number_to_currency(@returns_for_investment, unit: "")%>
+                          </td>
+                          <td>The Returns for Investment</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%">Closing Costs</td>
+                  <td width="25%">
+                    <%= number_to_currency(@closing_costs[:rent], unit: "")%>
+                  </td>
+                  <td width="25%">
+                    <%= number_to_currency(@closing_costs[:buy], unit: "")%>
+                  </td>
+                  <td>Closing Costs</td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="padding-0">
+                    <table class="sub-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="25%"></td>
+                          <td width="25%"></td>
+                          <td width="25%">
+                            <%= number_to_currency(@closing_costs[:buy], unit: "")%>
+                          </td>
+                          <td width="25%">Cost of Selling House</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%">Proceeds from Moving</td>
+                  <td width="25%">
+                    <%= number_to_currency(@home_appreciation[:rent], unit: "")%>
+                  </td>
+                  <td width="25%">
+                    <%= number_to_currency(@home_appreciation[:buy], unit: "")%>
+                  </td>
+                  <td>Proceeds from sale</td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="padding-0">
+                    <table class="sub-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="25%">Return of the rental security deposit</td>
+                          <td width="25%">
+                            <%= number_to_currency(@home_appreciation[:rent], unit: "")%>
+                          </td>
+                          <td width="25%">
+                            <%= number_to_currency(@home_appreciation[:buy], unit: "")%>
+                          </td>
+                          <td width="25%">Home Value</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="25%">Total</td>
+                  <td width="25%">
+                    <%= number_to_currency(@costs_compare_sum[:rent], unit: "")%>
+                  </td>
+                  <td width="25%">
+                    <%= number_to_currency(@costs_compare_sum[:buy], unit: "")%>
+                  </td>
+                  <td>Total</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -461,25 +558,25 @@
         series: [{
             name: 'Principal',
             pointStart: 1,
-            color:'#6495ed',
+            color:'#687b82 ',
             lineWidth: 4,
             data: principle_values
         }, {
             name: 'Interest',
             pointStart: 1,
             dashStyle: 'dash',
-            color:'#7FFF00',
+            color:'#84b2c2',
             data: interest_values
         }, {
             name: 'Remaining',
             pointStart: 1,
             dashStyle: 'dash',
-            color:'#C71585',
+            color:'#1b8db1',
             data: remaining_values
         }, {
             name: 'Total Paid',
             pointStart: 1,
-            color:'red',
+            color:'#582b6c',
             lineWidth: 5,
             data: total_paid_values
         }]
@@ -512,7 +609,7 @@
         series: [{
             name: '',
             data: ca_values,
-            color: "#4DD264",
+            color: "#84b2c2",
             fillOpacity: 0.8,
             marker:{
               enabled: false
@@ -570,7 +667,7 @@
         series: [{
             name: undefined,
             data: nation_wide_values,
-            color: "#3C95D0",
+            color: "#687a84",
             fillOpacity: 0.8,
             marker:{
               enabled: false
@@ -660,7 +757,7 @@
   });
 
   $(document).ready(function(){
-    FixHeader()
+    // FixHeader()
 
       var items = document.querySelectorAll("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues");
 
@@ -684,20 +781,20 @@
       });
     });
 
-    function FixHeader() {
-      window.onscroll = function() {myFunction()};
+    // function FixHeader() {
+    //   window.onscroll = function() {myFunction()};
 
-      var header = document.getElementById("myHeader");
-      var sticky = header.offsetTop;
+    //   var header = document.getElementById("myHeader");
+    //   var sticky = header.offsetTop;
 
-      function myFunction() {
-        if (window.pageYOffset > sticky) {
-          header.classList.add("sticky");
-        } else {
-          header.classList.remove("sticky");
-        }
-      }
-    }
+    //   function myFunction() {
+    //     if (window.pageYOffset > sticky) {
+    //       header.classList.add("sticky");
+    //     } else {
+    //       header.classList.remove("sticky");
+    //     }
+    //   }
+    // }
 
 
   });

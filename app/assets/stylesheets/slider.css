@@ -170,7 +170,11 @@
   font-size: 14px;
   font-weight: 600;
 }
-
+@media (max-width: 640px) {
+.reviews{
+  background-size: cover;
+}
+}
 @media (max-width: 580px) {
   .reviews .item .card .title {
       font-size: 14px !important;
@@ -183,6 +187,15 @@
   }
   .reviews{
     background-size: cover;
+  }
+  .reviews .main-title{
+    font-size: 24px;
+  }
+  .content-bx-slider{
+    padding: 10px 0;
+  }
+  .reviews .item .card{
+    padding: 35px 15px;
   }
 }
 

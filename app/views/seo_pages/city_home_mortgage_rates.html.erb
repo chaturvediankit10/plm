@@ -124,13 +124,13 @@
 </section>
 <!-- banner end-->
 <!-- result feed start-->
-<section class="content-main seo-cities-mortgage pt-zero">
+<section class="content-main seo-cities-mortgage seo-cities pt-zero">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <div class="loan-detail-blocks sectn-wo-bg inner-bx">
           <h3><%=@city.city%>, <%=state_full_name(@state)%> Mortgage Rates</h3>
-          <div class="loan-detail-blocks-cntnt-inner">
+          <div class="loan-detail-blocks-cntnt-inner bg-none">
             <p>Here are the most competitive home mortgage rates for <%=@city.city%>, <%=state_full_name(@state, true)%> based on around 200 competing banks and lending
               institutions that offer home loans in the cities around <%=@city.city%>, <%=state_full_name(@state)%>.
             </p>
@@ -676,9 +676,17 @@
             to ensure you are getting the best rates even during the online research phase.</span>
           </h3>
           <div class="graph-box">
-            <img src="/images/seo-city-mortgage-graph2.png" alt="">
-            <img src="/images/seo-city-mortgage-graph2.png" alt="">
-            <img src="/images/seo-city-mortgage-graph2.png" alt="">
+            <div class="row">
+              <div class="col-sm-4 col-xs-12">
+                <img src="/images/seo-city-mortgage-graph2.png" alt="">
+              </div>
+              <div class="col-sm-4 col-xs-12">
+                <img src="/images/seo-city-mortgage-graph2.png" alt="">
+              </div>
+              <div class="col-sm-4 col-xs-12">
+                <img src="/images/seo-city-mortgage-graph2.png" alt="">
+              </div>
+            </div>
             <p class="para-lft-inner">The charts above are the historical interest rates quoted for home loans in <%=@city.city%>, <%=state_full_name(@state, true)%>. This is data generated from our unique data service, and is not seen anywhere else.  We have shown the most relevant metrics (interest rates, APR, and closing costs) for the most popular loan types (30-yr fixed, 15-yr fixed, and 5/1 ARM).</p>
             <a href="" class="see-more-link-common">See More Graphs</a>
           </div>
