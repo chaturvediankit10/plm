@@ -172,7 +172,7 @@
                   </div>
                   <div class="inner-block-btn">
                     <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill">
-                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" class="dtail-btn">View Details</a>
+                    <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+index.to_s%>" class="dtail-btn">View Details</a>
                     <a href="" class="lendr-web-link">Lender Website</a>
                   </div>
                   <div class="mb-scroll-icn">
@@ -518,7 +518,7 @@
     function setArmDefaultValues(){
       $('#arm_benchmark').val('All')
       $('#arm_margin').val('All')
-      $('#arm_advanced').val('All')
+      $('#arm_advanced').val('')
       $('#arm_caps').val('All')
       $('#arm_basic').val('5/1')
     }
@@ -527,7 +527,7 @@
       $('#term').val('All')
       $('#arm_benchmark').val('All')
       $('#arm_margin').val('All')
-      $('#arm_advanced').val('All')
+      $('#arm_advanced').val('')
       $('#arm_caps').val('All')
       $('#arm_basic').val('All')
     }
@@ -655,6 +655,18 @@
     $('.error-loan-purpose').hide()
     $('#adv_loan_purpose').val($('#loan_purpose').val())
   });
+  
+  $("#arm_advanced").on('click', function(e){
+    if ($(this).val()==""){
+      $('#arm_basic').val('5/1')
+    }else{
+      $('#arm_basic').val('')
+    }
+  });
+
+   $("#arm_basic").on('click', function(e){
+     $('#arm_advanced').val('')
+   });
 
   $('#adv_loan_purpose').change(function () {
     $('.error-loan-purpose').hide()
@@ -795,7 +807,7 @@
         $('#term').val('')
         $('#arm_benchmark').val('All')
         $('#arm_margin').val('All')
-        $('#arm_advanced').val('All')
+        $('#arm_advanced').val('')
         $('#arm_caps').val('All')
         $('#arm_basic').val('5/1')
         $(".arm-basic").hide();
@@ -841,7 +853,6 @@
     x=20;
     $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
     $('#loadMore').click(function () {
-      x = 20
       x = (x+10 <= size_li) ? x+10 : size_li;
       $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
     });
