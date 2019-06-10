@@ -120,7 +120,8 @@
       <% [30, 15, 51 ].each do |term_n|%>
         <div data-id="<%=term_n%>" id="<%=term_n%>years" class="tab-pane for-test fade in  <%=term_n == 30 ? 'active' : ''%>">
           <div class="cntnt-list-box">
-            <h5><%= term_n%>-Year Fixed Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
+
+            <h5><%= term_n ==51 ? "5/1 Arm Basic" : term_n.to_s+" Year Fixed" %> Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
             <% if @result.present? %>
               <% @all_resultes = term_n == 51 ? get_results_arm(@result, "5") : get_results(@result, term_n) %>
               <% @all_resultes.each_with_index do |program, index|%>
