@@ -111,9 +111,9 @@
       in your area for 30-year fixed, 15year fixed, and 5/1 Adjustable Rate Mortgage (ARM).
     </p>
     <ul class="nav nav-tabs rates-tab">
-      <li class="active"><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
-      <li><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
-      <li><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
+      <li class="<%= @term == "30" && @loan_type != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
+      <li class="<%= @term == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
+      <li  class="<%= @loan_type == "ARM" ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
     </ul>
 
     <div class="tab-content rates-tab-content" >
