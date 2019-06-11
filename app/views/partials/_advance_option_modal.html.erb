@@ -43,24 +43,6 @@
                         <table class="table table-striped table-condensed">
                           <tbody>
                             <tr>
-                              <td>Loan Amount</td>
-                              <% loan_amount_value = (@home_price.to_i - @down_payment.to_i) rescue nil %>
-                              <td align="right"><b> <%= "$" + loan_amount_value.to_s if loan_amount_value.present? rescue nil %></b></td>
-                            </tr>
-                            <tr>
-                              <%#debugger%>
-                              <td>Interest Rate</td>
-                              <td align="right"><b><%=@interest%>%</b></td>
-                            </tr>
-                            <tr>
-                              <td>Term</td>
-                              <td align="right"><b><%=program[:term]%> Year</b></td>
-                            </tr>
-                            <tr>
-                              <td>Monthly Payment</td>
-                              <td align="right"><b><%=program[:monthly_payment].round(3)%></b></td>
-                            </tr>
-                            <tr>
                               <%
                               pro_term = ''
                               if program[:term].present?
@@ -71,6 +53,24 @@
                                 end
                               end
                               %>
+
+                              <td>Loan Amount</td>
+                              <% loan_amount_value = (@home_price.to_i - @down_payment.to_i) rescue nil %>
+                              <td align="right"><b> <%= "$" + loan_amount_value.to_s if loan_amount_value.present? rescue nil %></b></td>
+                            </tr>
+                            <tr>
+                              <td>Interest Rate</td>
+                              <td align="right"><b><%=@interest%>%</b></td>
+                            </tr>
+                            <tr>
+                              <td>Term</td>
+                              <td align="right"><%= pro_term%> <%= pro_term.present? ? "Year" : ""%></td>
+                            </tr>
+                            <tr>
+                              <td>Monthly Payment</td>
+                              <td align="right"><b><%=program[:monthly_payment].round(3)%></b></td>
+                            </tr>
+                            <tr>
                               <td><%= pro_term%> <%= pro_term.present? ? "Year Fixed" : ""%></td>
                               <td align="right"><b><%= final_rate %>% Rate</b></td>
                             </tr>
@@ -95,7 +95,7 @@
                             </tr>
                             <tr>
                               <td>Adjustment</td>
-                              <td colspan="2"><%=program[:adj_points].sum%></td>
+                              <td colspan="2"><%=program[:adj_points].sum.round(3)%></td>
                             </tr>
                             <tr>
                               <td>LTV / Credit Score</td>
@@ -119,7 +119,7 @@
                             </tr>
                             <tr>
                               <td class="orange-clr">Ending Closing Cost</td>
-                              <td class="orange-clr" colspan="2" align="right"><b>$<%=program[:closing_cost]%> / <%=program[:adj_points].sum.round(3)%> Points</b></td>
+                              <td class="orange-clr" colspan="2" align="right"><b>$<%=program[:closing_cost].round(3)%> / <%=program[:adj_points].sum.round(3)%> Points</b></td>
                               
                             </tr>
                           </tbody>

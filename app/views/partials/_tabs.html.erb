@@ -1,4 +1,4 @@
-<div data-id="<%=term_n%>" id="<%=term_n%>years" class="tab-pane for-test fade in  <%=term_n == 30 ? 'active' : ''%>">
+<div data-id="<%=term_n%>" id="<%=term_n%>years" class="tab-pane for-test fade in active">
   <div class="cntnt-list-box">
     <h5><%= term_n ==51 ? "5/1 Arm Basic" : term_n.to_s+" Year Fixed" %> Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
     <% if @result.present? %>

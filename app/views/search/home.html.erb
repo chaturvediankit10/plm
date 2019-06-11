@@ -263,13 +263,27 @@
 
   $(document).ready(function () {
     $('.js-trigger').click(function(){
-      var term = $(this).data().tab;
-      $("#term").val(term);
+      var term = $(this).text().replace ( /[^\d.]/g, '' );
+      if (term=="51") {
+        $('#loan_type').val("ARM");
+        $('#arm_basic').val('5/1');
+      }else{
+        $('#loan_type').val("");
+        $('#arm_basic').val('');
+        $("#term").val(term);
+      }
+      $("#"+30+"years").css('display','none');
+      $("#"+15+"years").css('display','none');
+      $("#"+51+"years").css('display','none');
+      $("#"+0+"years").css('display','none');
+
       var data = $("#search_form").serialize();
+      // $("#"+term+"years").css('display','block');
+
       $.ajax({
         url: '/',
         type: "GET",
-        // contentType: "application/json",
+        dataType: "script",
         data: data,
       });
     });

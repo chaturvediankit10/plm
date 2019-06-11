@@ -1,1 +1,3 @@
-$(".rates-tab-content").html("<%= escape_javascript(render partial: 'partials/tabs', locals: { term_n: @t } ) %>");
+$(".rates-tab-content").html("<%= escape_javascript(render partial: 'partials/tabs', locals: { term_n: @term_value.to_i, result: @result } ) %>");
+
+
