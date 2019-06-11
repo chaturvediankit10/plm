@@ -48,16 +48,17 @@
                               <td align="right"><b> <%= "$" + loan_amount_value.to_s if loan_amount_value.present? rescue nil %></b></td>
                             </tr>
                             <tr>
+                              <%#debugger%>
                               <td>Interest Rate</td>
-                              <td align="right"><b>4.00%</b></td>
+                              <td align="right"><b><%=@interest%>%</b></td>
                             </tr>
                             <tr>
                               <td>Term</td>
-                              <td align="right"><b>4.00%</b></td>
+                              <td align="right"><b><%=program[:term]%> Year</b></td>
                             </tr>
                             <tr>
                               <td>Monthly Payment</td>
-                              <td align="right"><b>30 Years</b></td>
+                              <td align="right"><b><%=program[:monthly_payment].round(3)%></b></td>
                             </tr>
                             <tr>
                               <%
@@ -75,7 +76,7 @@
                             </tr>
                             <tr class="closing-amount">
                               <td><b>Closing Costs</b></td>
-                              <td align="right"><b>$6,590</b></td>
+                              <td align="right"><b>$<%=program[:closing_cost]%></b></td>
                             </tr>
                             
                           </tbody>
@@ -94,7 +95,7 @@
                             </tr>
                             <tr>
                               <td>Adjustment</td>
-                              <td colspan="2">Value</td>
+                              <td colspan="2"><%=program[:adj_points].sum%></td>
                             </tr>
                             <tr>
                               <td>LTV / Credit Score</td>
@@ -112,13 +113,13 @@
                               <td align="right"><b>+0.10</b></td>
                             </tr>
                             <tr>
-                              <td>Investment Property</td>
-                              <td><b>-$480 / -0.200 Points</b></td>
+                              <td>Property Type</td>
+                              <td><b><%=@property_type%></b></td>
                               <td align="right"><b>+0.10</b></td>
                             </tr>
                             <tr>
                               <td class="orange-clr">Ending Closing Cost</td>
-                              <td class="orange-clr" colspan="2" align="right"><b>$6,590 / 2.746 Points</b></td>
+                              <td class="orange-clr" colspan="2" align="right"><b>$<%=program[:closing_cost]%> / <%=program[:adj_points].sum.round(3)%> Points</b></td>
                               
                             </tr>
                           </tbody>
@@ -168,7 +169,7 @@
                             </tr>
                             <tr>
                               <td>Closing Costs</td>
-                              <td align="right"><b>$6,590</b></td>
+                              <td align="right"><b>$<%=program[:closing_cost]%></b></td>
                             </tr>
                             <tr>
                               <td>Loan Amount</td>
