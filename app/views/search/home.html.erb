@@ -284,13 +284,10 @@
         type: "GET",
         dataType: "script",
         data: data,
+        success: function(response) {
+          $(".loader").hide();
+        }
       });
-      setTimeout(function(){  
-        $(".loader").hide();
-        
-      }, 6000);
-      
-      //
     });
   });
 
