@@ -4502,7 +4502,7 @@ header.fixed-header.scrolled {
   left: 0px;
   right: 0px;
   width: 100%;
-  z-index: 999;
+  z-index: 99999;
 }
 
 .scrolled .navbar-default .nav li a {

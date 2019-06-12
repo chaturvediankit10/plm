@@ -68,7 +68,7 @@
                             </tr>
                             <tr>
                               <td>Monthly Payment</td>
-                              <td align="right"><b><%=program[:monthly_payment].round(3)%></b></td>
+                              <td align="right"><b><%=program[:monthly_payment].round(3) if program[:monthly_payment].present?%></b></td>
                             </tr>
                             <tr>
                               <td><%= pro_term%> <%= pro_term.present? ? "Year Fixed" : ""%></td>

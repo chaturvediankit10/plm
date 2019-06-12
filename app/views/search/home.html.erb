@@ -110,16 +110,18 @@
     <p class="main-para-hdng">Pureloan searches all the major banks and lenders to give you the best rates. Here are a few sample rates
       in your area for 30-year fixed, 15year fixed, and 5/1 Adjustable Rate Mortgage (ARM).
     </p>
-    <ul class="nav nav-tabs rates-tab">
-      <li class="<%= @term == "30" && @loan_type != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
-      <li class="<%= @term == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
-      <li  class="<%= @loan_type == "ARM" ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
-    </ul>
-
-    <div class="tab-content rates-tab-content" >
-      <% [30, 15, 51 ].each do |term_n|%>
-        <%= render partial: "partials/tabs" , locals: { term_n: term_n } %>
-      <%end%>
+    <div style="position: relative; clear: both;">
+      <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
+      <ul class="nav nav-tabs rates-tab">
+        <li class="<%= @term == "30" && @loan_type != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
+        <li class="<%= @term == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
+        <li  class="<%= @loan_type == "ARM" ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
+      </ul>
+    
+      <div class="tab-content rates-tab-content" style="position: relative;">
+        
+        <%= render partial: "partials/tabs", locals: { term_n: 30, result: @result }%>
+      </div>
     </div>
   </div>
 </section>
@@ -262,30 +264,33 @@
   });
 
   $(document).ready(function () {
+    var tab_term = "30";
     $('.js-trigger').click(function(){
-      var term = $(this).text().replace ( /[^\d.]/g, '' );
-      if (term=="51") {
+      $(".loader").show();
+      $("#"+tab_term+"years").removeClass("active");
+      
+      var tab_term = $(this).text().replace ( /[^\d.]/g, '' );
+      if (tab_term=="51") {
         $('#loan_type').val("ARM");
         $('#arm_basic').val('5/1');
       }else{
         $('#loan_type').val("");
         $('#arm_basic').val('');
-        $("#term").val(term);
+        $("#term").val(tab_term);
       }
-      $("#"+30+"years").css('display','none');
-      $("#"+15+"years").css('display','none');
-      $("#"+51+"years").css('display','none');
-      $("#"+0+"years").css('display','none');
-
       var data = $("#search_form").serialize();
-      // $("#"+term+"years").css('display','block');
-
       $.ajax({
         url: '/',
         type: "GET",
         dataType: "script",
         data: data,
       });
+      setTimeout(function(){  
+        $(".loader").hide();
+        
+      }, 6000);
+      
+      //
     });
   });
 
@@ -812,7 +817,7 @@
   });
 
   function load_more(tab_val){
-    size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
+    var size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
     // $("."+tab_val+"years").addClass('active')
     $("#"+tab_val+"years .demo-items-"+tab_val).hide();
     x=20;
@@ -840,5 +845,18 @@
   }
   .btn-load-more:hover, .btn-load-more:focus {
     color: #fff;
+  }
+  .loader {
+    position: absolute;
+    font-size: 100px;
+    width: 100%;
+    top: 0;
+    background-color: rgba(0,0,0,0.8);
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    color: #fff;
+    text-align: center;
+    padding-top: 5%;
   }
 </style>
