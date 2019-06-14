@@ -50,7 +50,9 @@ header {
   margin: 0 !important;
 }
 
-
+.modal{
+  z-index: 999999;
+}
 /* .black-head{ background:#000 !important;} */
 
 .logo-white {
@@ -4497,7 +4499,7 @@ label.error {
 /**-------Sticky Header CSS--------**/
 
 header.fixed-header.scrolled {
-  background-color: #3596cd;
+  background-color: #a7a6ac;
   position: fixed;
   left: 0px;
   right: 0px;
@@ -4511,7 +4513,7 @@ header.fixed-header.scrolled {
 
 .scrolled .navbar-default .nav li a.login-btn {
   background-color: #fff;
-  color: #3596cd !important;
+  color: #666 !important;
   border-color: #fff;
 }
 
@@ -7936,7 +7938,7 @@ header.fixed-header.scrolled {
   border-radius: 0;
   padding: 20px;
   margin: 0 0 30px 0;
-  background: #f7f7f7;
+  background: #fff;
   position: relative;
   min-height: 195px;
   box-shadow: 0px 5px 5px #ccc;
@@ -8039,7 +8041,7 @@ header.fixed-header.scrolled {
   float: left;
   width: 100%;
   color: #111;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   font-weight: 300;
   line-height: 24px;
@@ -8836,7 +8838,7 @@ p.top-txt-info {
 
 @media( min-width:320px) and ( max-width:991px) {
   .bank-logos {
-    padding: 15px;
+    padding: 10px 0 !important;
     
   }
 }
@@ -8882,7 +8884,7 @@ p.top-txt-info {
     max-width: 100%;
     width: 100%;
     margin: 0px 0px 25px 0px;
-    top: 50%;
+    top: 25%;
     left: 0;
     height: 100vh;
     transform: translate(-50%, -50%);
