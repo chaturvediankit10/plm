@@ -22,9 +22,9 @@
               </div>
               <div class="col-md-9">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#tab1warning-<%=program[:term]%>" data-toggle="tab">Loan Overview</a></li>
-                  <li><a href="#tab2warning-<%=program[:term]%>" data-toggle="tab">Monthly Calculator</a></li>
-                  <li><a href="#tab3warning-<%=program[:term]%>" data-toggle="tab">Loan Parameters</a></li>
+                  <li class="active"><a href="#tab1warning-<%=program[:term].to_s+"years"+index.to_s%>" data-toggle="tab">Loan Overview</a></li>
+                  <li><a href="#tab2warning-<%=program[:term].to_s+"years"+index.to_s%>" data-toggle="tab">Monthly Calculator</a></li>
+                  <li><a href="#tab3warning-<%=program[:term].to_s+"years"+index.to_s%>" data-toggle="tab">Loan Parameters</a></li>
                 </ul>
               </div>
             </div>
@@ -34,7 +34,7 @@
         <div class="with-nav-tabs panel-warning">
           <div class="panel-body">
             <div class="tab-content">
-              <div class="tab-pane fade in active" id="tab1warning-<%=program[:term]%>">
+              <div class="tab-pane fade in active" id="tab1warning-<%=program[:term].to_s+"years"+index.to_s%>">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="content-bx">
@@ -155,7 +155,7 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="tab2warning-<%=program[:term]%>">
+              <div class="tab-pane fade" id="tab2warning-<%=program[:term].to_s+"years"+index.to_s%>">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="content-bx">
@@ -164,7 +164,7 @@
                         <table class="table table-striped table-condensed">
                           <tbody>
                             <tr>
-                              <td><%= pro_term%> <%= pro_term.present? ? "Year Fixed" : ""%></td>
+                              <td><%= pro_term.present? ? pro_term + " Year Fixed" : program[:arm_basic].to_s + "/1 Arm Basic"%></td>
                               <td align="right"><b><%= final_rate %>% Rate</b></td>
                             </tr>
                             <tr>
@@ -193,7 +193,7 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="tab3warning-<%=program[:term]%>">
+              <div class="tab-pane fade" id="tab3warning-<%=program[:term].to_s+"years"+index.to_s%>">
                 <div class="row">
                   <!-- <div class="col-md-4">
                     <div class="content-bx">

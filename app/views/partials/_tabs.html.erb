@@ -57,7 +57,7 @@
             <a href="" class="lendr-web-link">Lender Website</a>
           </div>
           <div class="mb-scroll-icn">
-            <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term]%>" ><i class="fa fa-angle-right"></i></a>
+            <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+"years"+index.to_s%>" ><i class="fa fa-angle-right"></i></a>
           </div>
         </div>
         <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate:  number_with_precision(program[:air].to_s, :precision => 3)  } %>
