@@ -274,6 +274,9 @@
       
       tab_term = $(this).text().replace ( /[^\d.]/g, '' );
       if (tab_term=="51") {
+        $(".arm-basic").show();
+        $("#term").val('');
+        $(".term").hide();
         $('#loan_type').val("ARM");
         $('.term_30').prop('checked', false);
         $('.term_15').prop('checked', false);
