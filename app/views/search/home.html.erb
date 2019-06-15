@@ -271,9 +271,19 @@
       
       var tab_term = $(this).text().replace ( /[^\d.]/g, '' );
       if (tab_term=="51") {
+        $(".arm-basic").show();
+        $("#term").val('');
+        $(".term").hide();
         $('#loan_type').val("ARM");
         $('#arm_basic').val('5/1');
+        $('#arm_benchmark').val('All')
+        $('#arm_margin').val('All')
+        $('#arm_advanced').val('')
+        $('#arm_caps').val('All')
+        
       }else{
+        $(".arm-basic").hide();
+        $(".term").show();
         $('#loan_type').val('');
         $('#arm_basic').val('');
         $("#term").val(tab_term);

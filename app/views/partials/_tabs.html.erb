@@ -33,12 +33,12 @@
           </div>
           <div class="inner-block-combined">
             <div class="inner-block inner-block-small">
-              <span class="hdng-big"><%= number_to_currency(program[:saving].to_s, unit: "$", :precision => 2) if program[:saving].present? %></span>
+              <span class="hdng-big"><%= number_to_currency(program[:saving].to_s, unit: "$", :precision => 0) if program[:saving].present? %></span>
               <p><span class="hiden-txt-mb">Expected</span> Savings</p>
             </div>
             <div class="inner-block inner-block-small">
             <%if program[:monthly_payment].present? %>
-              <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 2) if program[:monthly_payment].present? %></span>
+              <span class="hdng-big"><%=  number_to_currency(program[:monthly_payment].to_s, unit: "$", :precision => 0) if program[:monthly_payment].present? %></span>
               <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
             <% end -%>
             </div>
