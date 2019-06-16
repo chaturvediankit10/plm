@@ -104,4 +104,6 @@ gem 'jquery-datatables'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'jquery-rails'
-gem "search_api", git: "https://github.com/PureLoan/APIRead.git"
+# gem "search_api", git: "https://github.com/PureLoan/APIRead.git"
+gem 'search_api', path: "/home/richa/Projects/Kevin/Latest-today/Personal-Repo/APIRead"
+gem 'finance_math'
