@@ -8512,6 +8512,99 @@ h4#sheet-title{
 .freddie_mac_lp, .refi {
   color:red;
 }
+.advanced-search-bx {
+    padding: 10px;
+}
+.field-wrapper{
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+.mar-22{
+  margin-left: 22px;
+}
+
+.field-wrapper input[type="text"],
+.field-wrapper select {
+  float: none;
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  color: #333;
+  font-size: 15px;
+  padding: 12px 5px;
+  font-weight: 500;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+.field-wrapper .slect-tag{
+  position: relative;
+}
+.field-wrapper input[type="text"]{
+  padding-left: 20px;
+}
+#reset_all_btn {
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px 40px;
+  background: #fb6324;
+  text-transform: uppercase;
+}
+.field-wrapper label {
+    float: none;
+    width: 100%;
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+}
+.field-wrapper .slect-tag:before,
+.field-wrapper .slect-tag:before {
+  content: "\f107";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #333;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  bottom: 12px;
+  right: 7px;
+  z-index: 9;
+}
+.field-wrapper .checkbox label {
+  font-weight: normal;
+  font-size: 14px !important;
+  float: none;
+  margin-bottom: 20px !important;
+}
+.field-wrapper .checkbox .checkmark {
+  background-color: #fff;
+  border-radius: 0;
+  /*border: 1px solid #ddd;*/
+}
+.field-wrapper .checkbox .radio-bx input:checked ~ .checkmark {
+    background-color: #fb6324;
+    outline: 1px solid #fb6324;
+}
+.input-area{
+  position: relative;
+}
+.input-leble {
+    font-weight: normal;
+    display: block;
+    text-align: left;
+    padding: 10px 0;
+}
+.field-wrapper .checkbox, .radio{
+  margin-top: 0;
+}
 /*.valid {
   display: none;
 }*/
