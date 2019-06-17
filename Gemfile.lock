@@ -1,5 +1,6 @@
-PATH
-  remote: /home/richa/Projects/Kevin/Latest-today/Personal-Repo/APIRead
+GIT
+  remote: https://github.com/PureLoan/APIRead.git
+  revision: 714a068d9e47b11ed0bad916eb551c43c5e738ac
   specs:
     search_api (0.1.0)
       activesupport
