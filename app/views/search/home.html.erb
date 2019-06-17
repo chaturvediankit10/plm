@@ -58,15 +58,17 @@
           <a href="" data-toggle="modal" data-target="#advance-srch-mb"  class="mb-btn">Advanced Options
             <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
           </a>
-          <div class="search-adv-option" id="search-adv-option-inner">
-            <div class="row">
-              <%= render 'partials/search_api'%>
+          <div id="ad-search">
+            <div class="search-adv-option" id="search-adv-option-inner">
               <div class="row">
-                <div class="col-md-12 text-center reset">
-                  <button id="reset_all_btn" class="btn btn-danger" >Reset All</button>
+                <%= render 'partials/search_api'%>
+                <div class="row">
+                  <div class="col-md-12 text-center reset">
+                    <button id="reset_all_btn" class="btn btn-danger" >Reset All</button>
 
-                  <%#= render 'partials/search_api'%>
-                  
+                    <%#= render 'partials/search_api'%>
+                    
+                  </div>
                 </div>
               </div>
             </div>
@@ -834,6 +836,20 @@
     });
   }
 </script>
+<script type="text/javascript">
+   $('#adv-option').click(function () {
+        $("html, body").animate({
+            scrollTop: 275
+        }, 1000);
+        //return false;
+    });
+
+
+  // $("#adv-option").click(function() { 
+  //   $('html, body').animate({ scrollTop: 
+  //   $("#ad-search").offset().top - 100}, 2000); });
+</script>
+
 <style type="text/css">
   .btn-load-bg {
     background-color: #f5f5f7;

@@ -19,12 +19,12 @@
         </div> 
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 30 Year fixed
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 30 Year fixed
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 15 Year fixed
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 15 Year fixed
               <span class="checkmark"></span>
             </label>
           </div>
@@ -39,7 +39,7 @@
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 5/1 ARM
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 5/1 ARM
               <span class="checkmark"></span>
             </label>
           </div>
@@ -47,16 +47,16 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="field-wrapper">
+      <div class="field-wrapper mar-b30">
         <label>Government Programs</label>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> FHA (Income-based)
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> FHA (Income-based)
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Only Streamline
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Only Streamline
               <span class="checkmark"></span>
             </label>
           </div>
@@ -81,32 +81,32 @@
         <label>Board Lender Search</label>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Fannie Mae
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Fannie Mae
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> DU
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> DU
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> HomeReady
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> HomeReady
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Freddie Mac
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Freddie Mac
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> LP
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> LP
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Home Possible
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Home Possible
               <span class="checkmark"></span>
             </label>
           </div>
@@ -114,7 +114,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="field-wrapper">
+      <div class="field-wrapper mar-b30">
         <label>Personal Finance</label>
         <div class="form-group">
           <div class="row">
@@ -146,8 +146,8 @@
           <div class="row">
             <div class="col-xs-6">
               <div class="input-area">
-                <div class="dollar-icn">$</div>
-                <input type="text" name="" id="" value="">
+                <!-- <div class="dollar-icn">$</div> -->
+                <input type="text" name="" id="" value="80%">
               </div>
             </div>
             <div class="col-xs-6">
@@ -210,18 +210,18 @@
           <label>Closing</label>
           <select>
             <option>
-              30-days lock
+              30-day lock
             </option>
           </select>
         </div>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 0 points
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 0 points
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 1 points
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 1 points
               <span class="checkmark"></span>
             </label>
           </div>
@@ -234,13 +234,13 @@
         <div class="form-group slect-tag">
           <select>
             <option>
-              30-days lock
+              Escrow Options 
             </option>
           </select>
         </div>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Full doc
+            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Full doc
               <span class="checkmark"></span>
             </label>
           </div>
@@ -634,6 +634,110 @@
 </div> -->
 
 <style type="text/css">
+  .advanced-search-bx {
+    padding: 0 10px 10px;
+}
+.field-wrapper{
+  border: 1px solid #ddd;
+  padding: 5px 15px;
+  margin-bottom: 0;
+}
+.mar-b30{
+  margin-bottom: 5px;
+}
+.mar-22{
+  margin-left: 22px;
+}
+.field-wrapper .form-group{
+  margin-bottom: 10px;
+}
+.field-wrapper input[type="text"],
+.field-wrapper select {
+  float: none;
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  color: #333;
+  font-size: 13px;
+  padding: 5px 5px;
+  font-weight: 500;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+.field-wrapper .slect-tag{
+  position: relative;
+}
+.field-wrapper input[type="text"]{
+  padding-left: 20px;
+}
+.field-wrapper .dollar-icn{
+  bottom: 5px;
+}
+#reset_all_btn {
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 40px;
+  background: #a7a6ac;
+  text-transform: uppercase;
+  border-color:  #a7a6ac;
+}
+.field-wrapper label {
+    float: none;
+    width: 100%;
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+}
+.field-wrapper .slect-tag:before,
+.field-wrapper .slect-tag:before {
+  content: "\f107";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #333;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  bottom: 7px;
+  right: 7px;
+  z-index: 9;
+}
+.field-wrapper .checkbox label {
+  font-weight: normal;
+  font-size: 13px !important;
+  float: none;
+  margin-bottom: 5px !important;
+}
+.field-wrapper .checkbox .checkmark {
+  background-color: #fff;
+  border-radius: 0;
+  /*border: 1px solid #ddd;*/
+}
+.field-wrapper .checkbox .radio-bx input:checked ~ .checkmark {
+    background-color: #fff;
+    outline: 1px solid #000;
+}
+
+.input-area{
+  position: relative;
+}
+.input-leble {
+    font-weight: normal;
+    display: block;
+    text-align: left;
+    padding: 5px 0;
+}
+.field-wrapper .checkbox, .radio{
+  margin-top: 0;
+  margin-bottom: 5px;
+}
   .radio-boxes {
     margin-left: 15px;
   }
@@ -663,8 +767,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
     background-color: #eee;
     border-radius: 10%;
     outline: 1px solid #C0C0C0;
@@ -693,12 +797,12 @@
   }
 
   /* Style the indicator (dot/circle) */
-  .radio-bx .checkmark:after {
-    left: 7px;
-    top: 4px;
-    width: 5px;
+  .field-wrapper .radio-bx .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 7px;
     height: 12px;
-    border: solid white;
+    border: solid #000;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
