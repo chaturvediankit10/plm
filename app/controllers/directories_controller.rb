@@ -13,7 +13,7 @@ class DirectoriesController < ApplicationController
   before_action :state_banks_list, only: [:mortgage_state_banks_list, :personal_loan_state_banks_list, :auto_loan_state_banks_list]
   
   def directory_root
-    @states = City.select(:state_code).distinct
+    @states = City.distinct.pluck(:state_code).sort
   end
 
   def mortgage_state_cities
