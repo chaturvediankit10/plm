@@ -825,6 +825,10 @@
         $('#coverage').val('30.5%')
         $('#margin').val('2.0')
       });
+
+      $('.check').on('change', function() {
+        $('.check').not(this).prop('checked', false); 
+      });
   });
 
   function load_more(tab_val){

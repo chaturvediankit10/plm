@@ -4,11 +4,8 @@
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Loan Purpose</label>
-          <select>
-            <option>
-              Primary Residence
-            </option>
-          </select>
+          <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil))%>
+                <span class="error-loan-purpose">Please Select Refinance</span>
         </div>
         <div class="form-group slect-tag">
           <select>
@@ -19,28 +16,36 @@
         </div> 
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 30 Year fixed
+          <!--             <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 30 Year fixed
               <span class="checkmark"></span>
+            </label> -->
+            <label class="radio-bx">
+              <%= check_box_tag :term, "30", {:checked => "checked"} ,:class => "check" %>30 Year fixed
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 15 Year fixed
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag :term, "15", nil ,:class => "check" %>15 Year fixed
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 10 Year fixed
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag :term, "10", nil ,:class => "check" %>10 Year fixed
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 7/1 ARM
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag :arm_basic, "7/1", nil ,:class => "check" %>7/1 ARM
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 5/1 ARM
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag :arm_basic, "5/1", nil ,:class => "check" %>5/1 ARM
+               <span class="checkmark"></span>
             </label>
           </div>
         </div>
@@ -51,28 +56,32 @@
         <label>Government Programs</label>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> FHA (Income-based)
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'fha', 'fha', params[:fha].present? ,{:checked => "checked"}%>FHA (Income-based)
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Only Streamline
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'streamline', 'streamline', params[:streamline].present? ,{:checked => "checked"} %>Only Streamline
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Militory (VA)
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'va', 'va', params[:va].present? %>Militory (VA)
+               <span class="checkmark"></span>
             </label>
           </div>
-          <div class="checkbox radio mar-22">
+          <!-- <div class="checkbox radio mar-22">
             <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Only Streamline
               <span class="checkmark"></span>
             </label>
-          </div>
+          </div> -->
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Rural (USDA)
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'usda', 'usda', params[:usda].present? %> Rural (USDA)
+               <span class="checkmark"></span>
             </label>
           </div>
         </div>
@@ -81,33 +90,39 @@
         <label>Board Lender Search</label>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Fannie Mae
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'fannie_mae', 'fannie_mae', params[:fannie_mae].present? ,{:checked => "checked"}%> Fannie Mae
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> DU
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'fannie_mae_du', 'fannie_mae_du', params[:fannie_mae_du].present? ,{:checked => "checked"}%> DU
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> HomeReady
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'fannie_mae_product', 'fannie_mae_product', params[:fannie_mae_product].present? ,{:checked => "checked"}%> HomeReady
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Freddie Mac
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'freddie_mac_product', 'freddie_mac_product', params[:freddie_mac_product].present? ,{:checked => "checked"}%> Freddie Mac
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> LP
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'freddie_mac_lp', 'freddie_mac_lp', params[:freddie_mac_lp].present? ,{:checked => "checked"}%> LP
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Home Possible
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'freddie_mac_product', 'freddie_mac_product', params[:freddie_mac_product].present? ,{:checked => "checked"}%> Home Possible
+               <span class="checkmark"></span>
             </label>
           </div>
         </div>
@@ -121,7 +136,8 @@
             <div class="col-xs-6">
               <div class="input-area">
                 <div class="dollar-icn">$</div>
-                <input type="text" name="" id="" value="">
+                <!-- <input type="text" name="" id="" value=""> -->
+                <%= text_field_tag 'monthly_income', '' %>
               </div>
             </div>
             <div class="col-xs-6">
@@ -134,7 +150,8 @@
             <div class="col-xs-6">
               <div class="input-area">
                 <div class="dollar-icn">$</div>
-                <input type="text" name="" id="" value="">
+                <!-- <input type="text" name="" id="" value=""> -->
+                <%= text_field_tag 'monthly_debt', '' %>
               </div>
             </div>
             <div class="col-xs-6">
@@ -157,8 +174,9 @@
         </div>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Subordinated Financing
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'financing_type', 'Subordinate Financing', params[:financing_type].present? %> Subordinated Financing
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
@@ -169,11 +187,12 @@
         </div>
       </div>
       <div class="field-wrapper">
-        <label>Personal Finance</label>
+        <label>Refinancing </label>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Cash Out Refinance
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'refinance_option', 'Cash Out', params[:refinance_option].present? %> Cash Out Refinance
+               <span class="checkmark"></span>
             </label>
           </div>
         </div>
@@ -192,13 +211,15 @@
         </div>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> Rate and Tearm
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'refinance_option', 'Rate and Term', params[:refinance_option].present? %> Rate and Tearm
+               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> IRRRL
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'refinance_option', 'IRRRL', params[:refinance_option].present? %> IRRRL
+               <span class="checkmark"></span>
             </label>
           </div>
         </div>
@@ -208,25 +229,21 @@
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Closing</label>
-          <select>
-            <option>
-              30-day lock
-            </option>
-          </select>
+          <%= select_tag 'lock_period', options_for_select(Program::LOCK_PERIOD_LIST, @lock_period) %>
         </div>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 0 points
+            <label class="radio-bx"> <%= radio_button_tag 'point', '0',{:checked => "checked"} %> 0 points
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 1 points
+            <label class="radio-bx"> <%= radio_button_tag 'point', '1' %> 1 points
               <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value=""> 2 points
+            <label class="radio-bx"> <%= radio_button_tag 'point', '2'%> 2 points
               <span class="checkmark"></span>
             </label>
           </div>
@@ -240,8 +257,9 @@
         </div>
         <div class="form-group">
           <div class="checkbox radio">
-            <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> Full doc
-              <span class="checkmark"></span>
+            <label class="radio-bx">
+              <%= check_box_tag 'full_doc', true, params[:full_doc].present?,{:checked => "checked"} %> Full doc
+               <span class="checkmark"></span>
             </label>
           </div>
         </div>
@@ -249,378 +267,7 @@
     </div>
   </div>
 </div>
-<div class="main-form panel" style="display: none;">
-  <div class="panel-heading">Program Inputs</div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-5">
-        <div class="program-panel panel-basic">
-          <div class="input-grp"><h5>Program Info</h5></div>
-          <div class="row panel-body">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Bank Name</label>
-                <%= select_tag 'bank_name', options_for_select(@all_banks_name.sort_by!{ |m| m.downcase }, params[:bank_name]), { :class=> "form-control" ,:include_blank => 'All'} %>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Loan Category</label>
-                <%= select_tag 'loan_category', options_for_select(@loan_categories.sort_by!{ |m| m.downcase }, params[:loan_category]), { :class=> "form-control" ,:include_blank => 'All'} %>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Program Category</label>
-                <%= select_tag 'pro_category', options_for_select(@program_categories, params[:pro_category]), { :class=> "form-control"} %>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Program Name</label>
-                <%= select_tag 'program_name', options_for_select(@program_names, params[:program_name]), { :include_blank => 'All', :class=> "form-control"} %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="program-panel panel-basic">
-          <div class="input-grp"><h5>Government Program</h5></div>
-          <div class="row panel-body">
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <div class="checkbox radio">
-                      <label class="radio-bx"> <%= check_box_tag 'fha', 'fha', params[:fha].present? %> FHA
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <div class="checkbox radio">
-                      <label class="radio-bx"><%= check_box_tag 'streamline', 'streamline', params[:streamline].present? %> Streamline
-                      <span class="checkmark"></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <div class="checkbox radio">
-                      <label class="radio-bx"><%= check_box_tag 'va', 'va', params[:va].present? %> VA
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <div class="checkbox radio">
-                      <label class="radio-bx"><%= check_box_tag 'usda', 'usda', params[:usda].present? %> USDA
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="program-panel panel-basic">
-          <div class="input-grp"><h5>Points / Fees </h5></div>
-          <div class="row panel-body">
-            <div class="col-md-12">
-              <div class="radio-boxes">
-                <div class="radio">
-                  <label class="radio-bx">
-                    <%= radio_button_tag 'point', '0', params[:point]=='0' ? true : true %> 0 point
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div class="radio">
-                  <label class="radio-bx">
-                    <%= radio_button_tag 'point', '1', params[:point]=='1' ? true : false %> 1 point
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div class="radio">
-                  <label class="radio-bx">
-                    <%= radio_button_tag 'point', '2', params[:point]=='2' ? true : false%> 2 points
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="checkbox radio">
-            <label class="radio-bx"><%= check_box_tag 'full_doc', 'full_doc', params[:full_doc].present? %> Full Doc
-              <span class="checkmark"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-7">
-        <div class="panel-basic">
-          <div class="input-grp"><h5>Loan Property</h5></div>
-          <div class="row panel-body loan-property">
-            <div class="row col-md-12">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Loan Purpose</label>
-                    <%= select_tag 'adv_loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), { :class=> "form-control" }%>
-                  <span class="error-loan-purpose">Please Select Refinance</span>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Loan Size</label>
-                    <%= select_tag 'loan_size', options_for_select(Program::LOAN_SIZE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_size] rescue nil)), { prompt: 'Select Loan Size', :class=> "form-control" }%>
-                </div>
-              </div>
-            </div>
-            <div class="row col-md-12">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Loan Type</label>
-                    <%= select_tag 'loan_type', options_for_select(Program::LOAN_TYPE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_type] rescue nil)), { prompt: 'Select Loan Type', :class=> "form-control" } %>
-                </div>
-              </div>
-              <div class="col-md-6 term">
-                <div class="form-group">
-                  <label>Term</label>
-                  <div class="input-group">
-                    <%= select_tag 'term', options_for_select(@term_list, (params[:term] rescue nil)), { prompt: 'Select Term', :class=> "form-control" } %>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 arm-basic">
-                <div class="form-group">
-                  <label>ARM Basic</label>
-                  <div class="input-group">
-                    <%= select_tag 'arm_basic', options_for_select(Program::ARM_BASIC.flatten, (params[:arm_basic].present? ? params[:arm_basic] : "10/1 ARM")), { prompt: 'Select ARM Basic', :class=> "form-control"} %>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 arm-basic">
-                <div class="form-group">
-                  <label>ARM Benchmark</label>
-                  <%= select_tag 'arm_benchmark', options_for_select(Program::ARM_BENCHMARK_LIST.flatten.sort_by!{ |m| m.downcase }, (params[:arm_benchmark] rescue nil)), { prompt: 'Select ARM Benchmark', :class=> "form-control" } %>
-                </div>
-              </div>
-              <div class="col-md-6 arm-basic">
-                <div class="form-group">
-                  <label>ARM Margin</label>
-                  <%= select_tag 'arm_margin', options_for_select(Program::ARM_MARGIN_LIST.flatten, (params[:arm_margin] rescue nil)), { prompt: 'Select ARM Margin', :class=> "form-control"} %>
-                </div>
-              </div>
-              <div class="col-md-6 arm-basic">
-                <div class="form-group">
-                  <label>ARM Caps</label>
-                  <%= select_tag 'arm_caps', options_for_select( @arm_caps_list.flatten.sort_by!{ |m| m.downcase }.prepend(["All"]), (params[:arm_caps] rescue nil)), { prompt: 'Select ARM Caps', :class=> "form-control"} %>
-                </div>
-              </div>
-              <div class="col-md-6 arm-basic">
-                <div class="form-group">
-                  <label>ARM Advanced</label>
-                  <%= select_tag 'arm_advanced', options_for_select( @arm_advanced_list.flatten.sort_by!{ |m| m.downcase }.prepend(["All"]), (params[:arm_advanced] rescue nil)), { prompt: 'Select ARM Advanced', :class=> "form-control"} %>
-                </div>
-              </div>
-            </div>
-            <div class="row col-md-12">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Interest Rate</label>
-                  <%= select_tag 'interest', options_for_select(Program::INTEREST_LIST, @interest), :class=> "form-control" %>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Lock Period</label>
-                  <div class="input-group">
-                    <%= select_tag 'lock_period', options_for_select(Program::LOCK_PERIOD_LIST, @lock_period), :class=> "form-control" %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="program-panel panel-basic">
-          <div class="input-grp"><h5>FM</h5></div>
-          <div class="row panel-body">
-            <div class="row col-md-12">
-              <div class="col-md-4">
-                <div class="checkbox radio">
-                  <label class="radio-bx"> <%= check_box_tag 'fannie_mae', 'fannie_mae', params[:fannie_mae].present? %> Fannie Mae
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="checkbox radio">
-                  <label class="radio-bx"> <%= check_box_tag 'fannie_mae_du', 'fannie_mae_du', params[:fannie_mae_du].present? %> Fannie Mae DU
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <%= select_tag 'fannie_mae_product', options_for_select(Program::FANNIE_MAE_PRODUCT_LIST.flatten.sort_by!{ |m| m.downcase }, (params[:fannie_mae_product] rescue nil)), { prompt: 'Select Product', :class=> "form-control" } %>
-                </div>
-              </div>
-            </div>
-            <div class="row col-md-12">
-              <div class="col-md-4">
-                <div class="checkbox radio">
-                  <label class="radio-bx"> <%= check_box_tag 'freddie_mac', 'freddie_mac', params[:freddie_mac].present? %> Freddie Mac
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="checkbox radio">
-                  <label class="radio-bx"> <%= check_box_tag 'freddie_mac_lp', 'freddie_mac_lp', params[:freddie_mac_lp].present? %> Freddie Mac LP
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <div class="form-group">
-                    <%= select_tag 'freddie_mac_product', options_for_select(Program::FREDDIE_MAC_PRODUCT_LIST.flatten.sort_by!{ |m| m.downcase }, (params[:freddie_mac_product] rescue nil)), { prompt: 'Select Product', :class=> "form-control" } %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="main-form panel" style="display: none;">
-  <div class="panel-heading">Adjustment Inputs</div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Credit Score</label>
-          <div class="input-group">
-            <%= select_tag 'adv_credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>LTV</label>
-          <div class="input-group">
-            <%= select_tag 'ltv', options_for_select(Program::LTV_VALUES, (params[:ltv].present? ? params[:ltv] : "65.01 - 70.00")), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>CLTV</label>
-          <div class="input-group">
-            <%= select_tag 'cltv', options_for_select(Program::CLTV_VALUES, (params[:cltv].present? ? params[:cltv] : "75.01 - 80.00")), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>State</label>
-          <div class="input-group">
-            <%= select_tag 'adv_state', options_for_select(Program::STATE, (params[:state] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Loan Amount</label>
-          <% @loan_amount_list =%>
-          <%= select_tag 'loan_amount', options_for_select(Program::LOAN_AMOUNT, (params[:loan_amount] rescue nil)), { :class=> "form-control", :required => true} %>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Program Category</label>
-          <%= select_tag 'program_category', options_for_select(Program::PROGRAM_CATEGORY_LIST.sort, (params[:program_category] rescue nil)), { :class=> "form-control", :required => true} %>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Property Type</label>
-          <div class="input-group">
-            <%= select_tag 'property_type', options_for_select(Program::PROPERTY_TYPE_VALUES.sort, (params[:property_type] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Financing Type</label>
-          <div class="input-group">
-            <%= select_tag 'financing_type', options_for_select(Program::FINANCING_TYPE_VALUES.sort, (params[:financing_type] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Refinance Option</label>
-          <div class="input-group">
-            <%= select_tag 'refinance_option', options_for_select(Program::REFINANCE_OPTION_VALUES.sort, (params[:refinance_option] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Misc Adjuster</label>
-          <div class="input-group">
-            <%= select_tag 'misc_adjuster', options_for_select(Program::MISC_ADJUSTER_VALUES.sort, (params[:misc_adjuster] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Payment Type</label>
-          <div class="input-group">
-            <%= select_tag 'payment_type', options_for_select(Program::PATMENT_TYPE_VALUES.sort, (params[:payment_type] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>DTI</label>
-          <div class="input-group">
-            <%= select_tag 'dti', options_for_select(Program::DTI_VALUES.sort, (params[:dti] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Coverage</label>
-          <div class="input-group">
-            <%= select_tag 'coverage', options_for_select(Program::COVERAGE_VALUES.sort, (params[:coverage] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label>Margin</label>
-          <div class="input-group">
-            <%= select_tag 'margin', options_for_select(Program::MARGIN_VALUES.sort, (params[:margin] rescue nil)), :class=> "form-control" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- <div class="row">
   <div class="col-md-8"></div>
   <div class="col-md-4">
