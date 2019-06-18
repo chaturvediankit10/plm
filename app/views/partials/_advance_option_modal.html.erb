@@ -64,7 +64,7 @@
                             </tr>
                             <tr>
                               <td>Term</td>
-                              <td align="right"><%= pro_term%> <%= pro_term.present? ? "Year" : ""%></td>
+                              <td align="right"><b><%= pro_term%> <%= pro_term.present? ? "Year" : ""%></b></td>
                             </tr>
                             <tr>
                               <td>Monthly Payment</td>
@@ -76,7 +76,7 @@
                             </tr> -->
                             <tr class="closing-amount">
                               <td><b>Closing Costs</b></td>
-                              <td align="right"><b>$<%=program[:closing_cost]%></b></td>
+                              <td align="right"><b>$<%=program[:closing_cost].round(0)%></b></td>
                             </tr>
                             
                           </tbody>
@@ -95,7 +95,7 @@
                             </tr>
                             <tr>
                               <td>Adjustment</td>
-                              <td colspan="2"><%=program[:adj_points].sum.round(3)%></td>
+                              <td colspan="2">Value</td>
                             </tr>
                             <tr>
                               <td>LTV / Credit Score</td>
@@ -344,13 +344,16 @@
                   </div>
                 </div>
               </div>
-              <div class="content-btns">
-                <p>Get Started with Liberty Mutual Mortgages</p>
-                <a href="#" class="btn btn-orange">Contact lender</a>
-                <a href="#" class="btn btn-orange reverse-btn">Continue Searching</a>
-              </div>
+              
             </div>
           </div>
+        </div>
+      </div>
+      <div class="modal-footer adv-search-mdl-footer">
+        <div class="content-btns">
+          <p>Get Started with Liberty Mutual Mortgages</p>
+          <a href="#" class="btn btn-orange">Contact lender</a>
+          <a href="#" class="btn btn-orange reverse-btn">Continue Searching</a>
         </div>
       </div>
     </div>
