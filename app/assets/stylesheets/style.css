@@ -179,6 +179,9 @@ header .navbar-right {
 .cntnt-login {
   border: none;
 }
+.input-leble{
+  font-size: 13px;
+}
 
 .signup-login-popup li.cntnt-login {
   width: 100%;
@@ -336,8 +339,8 @@ header .navbar-right {
 .view-details-popup .content-bx {
   margin-top: 5px;
   border-radius: 0 !important;
-  box-shadow: 0px 5px 5px #ccc;
-  border: 1px solid #ddd;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+  border: 1px solid #eee;
   margin-bottom: 15px;
 }
 .view-details-popup .content-bx-content .table-condensed > tbody > tr > td{
@@ -441,9 +444,9 @@ header .navbar-right {
 }
 .view-details-popup .panel-body {
   padding: 0px 15px 0;
-  max-height: 605px;
+  max-height: 530px;
   overflow-y: auto;
-  min-height: 605px;
+  min-height: 530px;
 }
 
 .view-details-popup .modal-header {
@@ -466,8 +469,8 @@ header .navbar-right {
 .view-details-popup .tab-content{
   border: 1px solid #ddd;
   border-top: none;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 15px 15px 0;
+  margin-bottom: 0;
 }
 
 .view-details-popup .content-bx h1{
@@ -562,7 +565,7 @@ header .navbar-right {
   float: right;
   display: flex;
   align-items: center;
-  margin: 15px 0px;
+  margin: 0 0px;
 }
 
 .content-btns p {
@@ -747,7 +750,7 @@ header .navbar-right {
   box-shadow: 1px 1px 10px -2px #4E4E4E;
   padding: 10px 25px 5px;
   position: relative;
-  top: 340px;
+  top: 320px;
 }
 
 .search-cat {
@@ -1222,8 +1225,8 @@ header .navbar-right {
   float: left;
   width: 100%;
   padding: 10px 0;
-  margin: 0 5% 50px 5%;
-  padding: 15px 15px 0 225px;
+  margin: 0 0 50px 5%;
+  padding: 0 15px 0 225px;
   /*box-shadow:0 0 15px #d7d7d7;*/
   min-height: 188px;
   position: relative;
@@ -1774,6 +1777,21 @@ footer span {
 
 
 /*login popup css start*/
+#expert-app-overlay .modal-header {
+  padding: 15px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  border-radius: 10px 10px 0 0;
+}
+#expert-app-overlay .modal-content {
+    border-radius: 10px;
+}
+#expert-app-overlay .modal-header h4 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
 
 .common-popup-layout .modal-content {
   border-radius: 0;
@@ -2554,8 +2572,8 @@ input.error {
   width: 100%;
   padding: 15px;
   margin-bottom: 30px;
-  box-shadow: 0px 5px 5px #ccc;
-  border: 1px solid #ddd;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+  border: 1px solid #eee;
   background-color: #fff;
   overflow: hidden;
 }
@@ -2719,12 +2737,13 @@ input.error {
 #expert-app-overlay .modal-header h4 {
   font-size: 25px;
   line-height: 35px;
+  text-align: left;
 }
 
 #expert-app-overlay .form-group {
   float: left;
   width: 100%;
-  margin: 0 0 25px 0;
+  margin: 0 0 15px 0;
   position: relative;
 }
 
@@ -2738,18 +2757,22 @@ input.error {
   float: left;
   width: 100%;
   text-align: left;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   color: #111;
-  text-transform: uppercase;
+  text-transform: inherit;
+  margin: 0 0 5px !important;
+  display: none;
 }
 
 #expert-app-overlay .form-group input,
 #expert-app-overlay .form-group select {
-  margin: 0;
+  margin: 0 !important;
   padding: 12px 7px;
   font-size: 14px;
   height: auto;
+  border: 1px solid #ddd;
+  background-color: #fff;
 }
 
 #expert-app-overlay .form-group label span {
@@ -2760,9 +2783,11 @@ input.error {
 }
 
 #expert-app-overlay .modal-body {
-  padding: 50px 8%;
+  padding: 15px 30px;
 }
-
+#expert-app-overlay p{
+  text-align: left;
+}
 #expert-app-overlay .form-group input[type="file"] {
   border: none;
   padding: 0 0;
@@ -2778,21 +2803,23 @@ input.error {
 }
 
 #expert-app-overlay.common-popup-layout .rates-btn {
-  padding: 17px 30px;
+  padding: 10px 15px !important;
   margin-top: 26px;
   color: #fff;
   border-color: #fff;
   width: auto;
   float: none;
+  font-weight: normal;
 }
 
 .custm-file-input span {
-  background: #fb6325;
+  background: #d6d6d9;
   border-radius: 3px;
   float: left;
-  color: #fff;
-  padding: 8px 25px;
-  margin: 5px 0 0 0;
+  color: #111;
+  padding: 10px 25px;
+  margin: 0 0 0 0;
+  width: 100%;
 }
 
 .custm-file-input span .fa {
@@ -2805,10 +2832,10 @@ input.error {
   float: left;
   width: 100%;
   text-align: center;
-  font-size: 19px;
+  font-size: 14px;
   font-weight: normal;
   color: #111;
-  line-height: 27px;
+  line-height: 24px;
   margin: 20px 0 0 0;
 }
 
@@ -2832,8 +2859,8 @@ input.error {
   width: 100%;
   margin: 0 0 25px 0;
   padding: 0;
-  box-shadow: 0px 5px 5px #ccc !important;
-  border: 1px solid #ddd;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15) !important;
+  border: 1px solid #eee;
   background-color: #fff !important;
 }
 .seo-auto-loan-cntnt-box:last-child{
@@ -2948,8 +2975,8 @@ input.error {
 .volume-auto-loan {
     padding: 15px;
     margin-bottom: 25px;
-    box-shadow: 0px 5px 5px #ccc;
-    border: 1px solid #ddd;
+    box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+    border: 1px solid #eee;
     background-color: #fff;
     float: none;
     overflow-y: auto;
@@ -2957,8 +2984,8 @@ input.error {
 .list-inner {
     padding: 15px;
     margin-bottom: 25px;
-    box-shadow: 0px 5px 5px #ccc;
-    border: 1px solid #ddd;
+    box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+    border: 1px solid #eee;
     background-color: #fff;
     overflow-y: auto;
 }
@@ -3294,8 +3321,8 @@ a.seo-loan-aftr-cntnt-link {
 .loan-detail-blocks {
   padding: 15px;
   margin-bottom: 25px;
-  box-shadow: 0px 5px 5px #ccc;
-  border: 1px solid #ddd;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+  border: 1px solid #eee;
   background-color: #fff;
   float: none;
   overflow-y: auto;
@@ -4462,7 +4489,7 @@ label.error {
   width: 100%;
   box-shadow: none;
   padding: 15px 0 !important;
-  margin-top: 35px !important;
+  margin-top: 27px !important;
   font-size: 14px;
 }
 
@@ -4597,8 +4624,8 @@ header.fixed-header.scrolled {
   width: 100%;
   padding: 15px;
   margin-bottom: 30px;
-  box-shadow: 0px 5px 5px #ccc;
-  border: 1px solid #ddd;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+  border: 1px solid #eee;
   background-color: #fff;
 }
 
@@ -4638,6 +4665,11 @@ header.fixed-header.scrolled {
 
   .view-details-popup .panel-body{
     max-height: inherit;
+    min-height: inherit;
+  }
+  .modal-footer .btn + .btn{
+    margin-right: 0;
+    margin-left: 0;
   }
   .car-auto-loan-othr-bank {
     padding: 0 0 15px 0;
@@ -4763,7 +4795,7 @@ header.fixed-header.scrolled {
   .search-adv-option-box a {
     color: #fff;
     font-weight: normal;
-    margin: 0;
+    margin: 10px 0;
     float: none;
     font-size: 12px !important;
   }
@@ -6215,6 +6247,9 @@ header.fixed-header.scrolled {
   #global-nav {
     padding: 0;
   }
+  .banner-headings{
+    display: none;
+  }
   .navbar-nav {
     margin: 0;
     width: 100%;
@@ -6261,17 +6296,21 @@ header.fixed-header.scrolled {
   .banner p {
     display: none;
   }
+  .home-main-search .hm-search-btn-nw {
+    padding: 13px 0 !important;
+    margin-top: 40px !important;
+}
   .banner h3 {
     font-size: 25px;
     margin: 11px 0 9px 0;
     line-height: 22px;
     padding: 0 15px;
   }
-  .search-main {
+  /*.search-main {
     background: none;
     box-shadow: none;
     padding: 0;
-  }
+  }*/
   .home-main-search .search-cat.zip-srch,
   .home-main-search .search-cat.purpse-srch {
     width: 100%;
@@ -6321,7 +6360,7 @@ header.fixed-header.scrolled {
     color: #fff;
     font-weight: normal;
     margin: 0;
-    float: right;
+    float: none;
     font-size: 12px !important;
   }
   .search-adv-option-box a.price-alert-btn {
@@ -6356,7 +6395,7 @@ header.fixed-header.scrolled {
   }
   .content-main p {
     font-size: 14px;
-    margin: 0;
+    margin: 0 0 20px;
     line-height: 21px;
   }
   .cntnt-list-box {
@@ -7944,7 +7983,7 @@ header.fixed-header.scrolled {
   background: #fff;
   position: relative;
   min-height: 195px;
-  box-shadow: 0px 5px 5px #ccc;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
   
 }
 .blog-post a{
@@ -7957,7 +7996,7 @@ header.fixed-header.scrolled {
 }
 .blog-post p{
   color: #111;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   font-weight: 300;
   line-height: 24px;
@@ -8115,7 +8154,7 @@ header.fixed-header.scrolled {
   color: #111;
   font-size: 22px;
   font-weight: 500;
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
   border-bottom: 1px solid #ddd;
 }
 
@@ -8127,7 +8166,7 @@ header.fixed-header.scrolled {
   margin: 0;
   background: #fff;
   text-align: center;
-  box-shadow: 0px 5px 5px #ccc;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
   
 }
 
@@ -8136,7 +8175,7 @@ header.fixed-header.scrolled {
     width: 100%;
     margin: 0;
     padding: 0;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
     color: #111;
     background: none;
@@ -8243,10 +8282,15 @@ header.fixed-header.scrolled {
 
 }
 .modal-message-bx{
-  background-color: #3596cd;
-  color: #fff;
+  background-color: #d6d6d9;
+  color: #111;
   padding: 15px;
   border-radius: 5px;
+}
+#expert-app-overlay .modal-message-bx {
+  margin-bottom: 20px;
+  background-color: #d6d6d9;
+  color: #111;
 }
 .modal-message-bx p{
   margin: 0;
@@ -8584,8 +8628,8 @@ h4#sheet-title{
 .cntnt-list-inner {
   padding: 10px 23px;
   margin-bottom: 15px;
-  box-shadow: 0px 5px 5px #ccc;
-  border: 1px solid #ddd;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+  border: 1px solid #eee;
   background-color: #fff;
 }
 
@@ -8648,7 +8692,7 @@ p.top-txt-info {
 }
 
 .common-popup-layout .modal-header {
-  margin-top: -9px;
+  margin-top: 0;
 }
 
 #create-price-alert li.cntnt-login .social-login {
@@ -8788,7 +8832,16 @@ p.top-txt-info {
       top: 0px;
   }
 }*/
-
+@media( min-width:768px) and ( max-width:1024px) {
+ .view-details-popup .modal-body {
+    padding: 138px 15px 0;
+    position: fixed;
+    background: #fff;
+    height: calc(100% - 68px);
+    overflow: auto;
+    width: 100%;
+  }
+}
 @media( min-width:320px) and ( max-width:1024px) {
   #advance-srch-mb .modal-dialog {
     width: 100% !important;
@@ -8811,7 +8864,49 @@ p.top-txt-info {
     bottom: 0;
     background: #fff;
   }
+
+  .view-details-popup .modal-dialog {
+    width: 100% !important;
+    height: 100%;
+    margin: 0;
+  }
+  .view-details-popup .modal-header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+    width: 100%;
+  }
+  .view-details-popup .modal-body {
+    padding: 138px 15px 0;
+    position: fixed;
+    background: #fff;
+    overflow: auto;
+    width: 100%;
+  }
+  .view-details-popup .panel-body{
+    padding: 0;
+  }
+  .view-details-popup .modal-footer.adv-search-mdl-footer {
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    width: 100%;
+  }
 }
+
+@media( min-width:320px) and ( max-width:767px) {
+  .view-details-popup .modal-body {
+    height: calc(100% - 145px);
+    padding: 120px 15px 0;
+  }
+}
+@media( min-width:320px) and ( max-width:447px) {
+  .view-details-popup .modal-body {
+    padding: 140px 15px 0;
+  }
+}
+
 
 #research_contact_form .popup-cntnt {
   padding: 30px 20px 0 !important;
@@ -8888,7 +8983,7 @@ p.top-txt-info {
     max-width: 100%;
     width: 100%;
     margin: 0px 0px 25px 0px;
-    top: 25%;
+    top: 0;
     left: 0;
     height: 100vh;
     transform: translate(-50%, -50%);
@@ -8931,6 +9026,7 @@ p.top-txt-info {
   .view-details-popup .nav-tabs>li>a {
     font-size: 15px;
     padding: 10px;
+    text-align: center;
   }
   .view-details-popup .nav-tabs {
     padding: 5px 0 0;
@@ -9134,5 +9230,19 @@ p.hiden-txt-mb {
   }
   .volume-auto-loan.loan-chargeoff-recovry p.loan-chargeoff-recovry-inner-data {
     padding: 5px 5px 0px 5px;
+  }
+  .signup-login-popup li.cntnt-login .social-login a i {
+  margin-right: 10px;
+  font-size: 16px;
+  }
+  .signup-login-popup li.cntnt-login .social-login a.facebook-btn{
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  .signup-login-popup li.cntnt-login .social-login a.google-plus-btn{
+    font-size: 16px;
+  }
+  .view-details-popup .nav-tabs > li > a{
+    margin: 0 1px;
   }
 }

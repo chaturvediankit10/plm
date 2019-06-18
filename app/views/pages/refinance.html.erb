@@ -481,3 +481,108 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade common-popup-layout" id="expert-app-overlay" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Become an Expert</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-message-bx">
+          <p>Become an expert on <b>Pureloan.com</b> and reach hundreds of
+          thousands of home buyers or refi customers every month!
+          </p>
+        </div>
+        <%=form_with scope: :expert, url: expert_user_registration_path, id: 'expert_user_form'  do |expert_user| %>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>First Name</label>
+              <%= expert_user.text_field :first_name, placeholder: "Enter your First Name", class: "form-control"%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Last Name</label>
+              <%= expert_user.text_field :last_name, placeholder: "Enter your Last Name", class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Phone</label>
+              <%= expert_user.text_field :phone, placeholder: "Enter your Phone", class: "form-control", number: true%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Email</label>
+              <%= expert_user.email_field :email, placeholder: "Enter your Email", class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <div class="form-group select-arrow">
+              <label>State</label>
+              <%= expert_user.select(:state, City.pluck(:state_code).uniq.sort, {prompt: "Select State"}, { class: 'state' })%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="form-group select-arrow">
+              <label>City</label>
+              <%= expert_user.select(:city, [], {prompt: "Select city"}, { class: 'city' })%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="form-group select-arrow">
+              <label>Zip</label>
+              <%= expert_user.select(:zip, [], {prompt: "Select zip"}, { class: 'zip' })%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>License Number</label>
+              <%= expert_user.text_field :license_number, placeholder: "Enter your License Number", class: "form-control"%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group select-arrow">
+              <label>Speciality <span>(Where you will be listed)</span></label>
+              <%= expert_user.select :specialty, options_for_select([["Mortgage","Mortgage"], ["Refinance","Refinance"], ["Personal","Personal"], ["Auto","Auto"]]), {prompt: " Select your specialty"}, class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label>Website</label>
+              <%= expert_user.url_field :website, placeholder: "Enter your business website ", class: "form-control", value: "Enter your business website "%>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group custm-file-input">
+              <label>Photo</label>
+              <span><i class="fa fa-camera"></i> Upload</span>
+              <%= expert_user.file_field :image %>
+            </div>
+          </div>
+        </div>
+        <%= expert_user.submit "Submit Application", class: "rates-btn"%>
+        <%end%>
+        <!--              <button class="rates-btn">Submit Application</button> -->
+        <div class="expert-app-overlay-note">
+          Your listing as an expert in the city Albany, California will be processed when we verify your status and we recieve an authentication link back from your business site
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
