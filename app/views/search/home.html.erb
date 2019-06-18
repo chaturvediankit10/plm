@@ -130,7 +130,7 @@
 </div>
 <!-- <div id="showLess">Show less</div> -->
 <!-- search result feed end-->
-<%#if Expert.where(verified: true).count < 1%>
+<%if Expert.where(verified: true).count < 1%>
 <!-- Advertisement with expert start-->
 <!-- <section class="advertisement-box">
   <div class="container">
@@ -144,12 +144,12 @@
     </div>
   </div>
 </section> -->
-<%#end%>
+<%end%>
 <!-- Advertisement with expert end-->
 <!--Rendering Experts  -->
-<%#if Expert.where(verified: true).count >= 1%>
-<%#= render 'pages/index'%>
-<%#end%>
+<%if Expert.where(verified: true).count >= 1%>
+<%= render 'pages/index'%>
+<%end%>
 <!-- expert application overlay popup start-->
 <div class="modal fade common-popup-layout" id="expert-app-overlay" role="dialog">
   <div class="modal-dialog">
