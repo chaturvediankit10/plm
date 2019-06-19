@@ -170,10 +170,23 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+@media( min-width:320px) and ( max-width:767px) {
+  .reviews .item .card{
+      padding: 35px 10px 10px;
+    }
+  }
 @media (max-width: 640px) {
-.reviews{
-  background-size: cover;
-}
+  .reviews{
+    background-size: cover;
+    padding: 25px 0;
+  }
+  .owl-carousel .owl-stage-outer {
+    padding-top: 40px;
+  }
+  .owl-next i, .owl-prev i {
+    font-size: 60px;
+  }
 }
 @media (max-width: 580px) {
   .reviews .item .card .title {

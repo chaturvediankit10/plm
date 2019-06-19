@@ -193,8 +193,8 @@ p.small-heading {
 }
 .calculator_weapper .form-wrapper label {
     font-weight: 500;
-    color: #666;
-    font-size: 15px;
+    color: #111;
+    font-size: 14px;
 }
 .calculator_weapper .form-wrapper .form-control {
     border-color: #ddd;
@@ -698,6 +698,15 @@ footer .copyright {
 }
 
 @media (max-width: 767px) {
+  .calculator_weapper.content-main .main-para-hdng{
+    font-size: 14px;
+    line-height: 21px;
+    padding: 0;
+  }
+  .breakdown-wrapper h1{
+    font-size: 18px;
+    line-height: 24px;
+  }
   .top-nav-bar .navbar-brand {
     height: auto;
     padding: 11px 15px;
@@ -784,6 +793,9 @@ footer .copyright {
   .tow-graph-wrapper p {
     padding: 0 !important;
   }
+  .tow-graph-wrapper .graph-bx p{
+    padding: 10px !important;
+  }
   footer .footer-link {
     padding: 0 0 15px;
     text-align: center;
@@ -793,6 +805,9 @@ footer .copyright {
   }
   #payoff_schedule_modal {
     background: #fff;
+  }
+  .tow-graph-wrapper .row{
+    margin: 0 -15px;
   }
 }
 
@@ -844,8 +859,9 @@ footer .copyright {
     padding: 20px 0px;
   }
   .contain-wrapper p {
-    padding: 0 10px;
-    font-size: 12px;
+    padding: 0 0;
+    font-size: 14px;
+    line-height: 21px;
   }
   .ex-breakdown .table tr th,
   .ex-breakdown .table tbody tr td,
