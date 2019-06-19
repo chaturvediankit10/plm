@@ -279,16 +279,20 @@
         $(".term").hide();
         $('#loan_type').val("ARM");
         $('#arm_basic').val('5/1');
-        $('#arm_benchmark').val('All')
-        $('#arm_margin').val('All')
-        $('#arm_advanced').val('')
-        $('#arm_caps').val('All')
-        
+        $('#arm_benchmark').val('');
+        $('#arm_margin').val('');
+        $('#arm_advanced').val('');
+        $('#arm_caps').val('');
       }else{
         $(".arm-basic").hide();
         $(".term").show();
         $('#loan_type').val('');
+        $('#loan_type').val("Fixed");
         $('#arm_basic').val('');
+        $('#arm_benchmark').val('');
+        $('#arm_margin').val('');
+        $('#arm_advanced').val('');
+        $('#arm_caps').val('');
         $("#term").val(tab_term);
       }
 
