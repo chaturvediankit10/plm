@@ -108,7 +108,7 @@
 <section class="content-main">
   <div class="container">
     <p class="main-para-hdng">Pureloan searches all the major banks and lenders to give you the best rates. Here are a few sample rates
-      in your area for 30-year fixed, 15year fixed, and 5/1 Adjustable Rate Mortgage (ARM).
+      in your area for 30-year Fixed, 15-year Fixed, and 5/1 Adjustable Rate Mortgage (ARM).
     </p>
     <div style="position: relative; clear: both;">
       <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
@@ -258,7 +258,7 @@
 <!-- expert application overlay popup end-->
 <script>
   $(document).ready(function () {
-    var tab_val = "30";
+    var tab_val = $('.active .js-trigger').attr('data-tab');
     load_more(tab_val);
     $('.tab-btn').click(function (e) {
       tab_val = $(this).text().replace ( /[^\d.]/g, '' ); 
