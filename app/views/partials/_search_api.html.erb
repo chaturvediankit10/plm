@@ -1,6 +1,6 @@
 <div class="advanced-search-bx">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Loan Purpose</label>
@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="field-wrapper mar-b30">
         <label>Government Programs</label>
         <div class="form-group">
@@ -128,7 +128,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="field-wrapper mar-b30">
         <label>Personal Finance</label>
         <div class="form-group">
@@ -225,7 +225,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Closing</label>
@@ -352,8 +352,8 @@
   font-size: 18px;
   padding-right: 0.5em;
   position: absolute;
-  bottom: 7px;
-  right: 7px;
+  bottom: 5px;
+  right: 0;
   z-index: 9;
 }
 .field-wrapper .checkbox label {
@@ -454,5 +454,10 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+  @media( min-width:320px) and ( max-width:767px) {
+    .field-wrapper {
+      margin-bottom: 5px;
+    }
   }
 </style>

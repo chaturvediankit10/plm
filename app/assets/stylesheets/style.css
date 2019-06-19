@@ -1546,7 +1546,7 @@ footer span {
 }
 
 #advance-srch-mb .search-cat label {
-  margin: 15px 0 5px 0;
+  margin: 10px 0 5px 0;
   font-size: 13px;
   color: #111;
   font-weight: bold;
@@ -2031,7 +2031,9 @@ footer span {
   font-size: 42px;
   font-weight: 600;
   text-transform: capitalize;
+  margin: 0 0 10px;
 }
+
 .about-story-bx p {
     font-weight: 300;
     float: none;
@@ -2049,6 +2051,7 @@ footer span {
 .our-story-cntnt.about-story h5 .fa{
   font-size: 26px;
   margin-right: 25px;
+  vertical-align: sub;
 }
 .about-bottom-page{
   padding: 40px 0;
@@ -3152,7 +3155,7 @@ input.error {
 }
 
 .panel-heading.tabs-data-hdng a {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: normal;
   color: #111;
   width: 100%;
@@ -3180,10 +3183,10 @@ input.error {
 }
 
 .tabs-accordians-box h5 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
   color: #111;
-  margin-top: 15px;
+  margin: 15px 0 5px;
 }
 
 .tabs-accordians-box p {
@@ -4686,6 +4689,7 @@ header.fixed-header.scrolled {
   .about-bottom-page .gray-box-cntnt{
     padding: 15px;
     min-height: inherit;
+    margin: 0;
   }
   #global-nav {
     padding: 0;
@@ -4829,23 +4833,25 @@ header.fixed-header.scrolled {
     padding: 15px 0 0 0 !important;
   }
   .content-main p {
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 15px;
     line-height: 21px;
   }
   .sectn-wo-bg .loan-detail-blocks-cntnt-inner p{
-    font-size: 15px;  
+    font-size: 14px; 
+    margin: 0;
   }
   .cntnt-list-box {
     box-shadow: none;
     overflow: visible;
   }
   .cntnt-list-box h5 {
-    font-size: 14px;
+    font-size: 18px;
     margin: 0;
     padding: 0 3px 4px 3px;
     border-radius: 0;
     font-weight: normal;
+    line-height: 24px;
   }
   .cntnt-list-inner {
     float: left;
@@ -5155,11 +5161,12 @@ header.fixed-header.scrolled {
     padding: 30px 20px;
   }*/
   .abt-tabs-cntnt .gray-box-cntnt h3 {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 15px;
   }
+
   .abt-tabs-cntnt .gray-box-cntnt p {
-    line-height: 26px;
+    line-height: 21px;
     font-size: 14px;
   }
   .our-story-cntnt .gray-box-cntnt {
@@ -5311,8 +5318,8 @@ header.fixed-header.scrolled {
     line-height: 28px;
   }
   .directory-box h2 {
-    font-size: 20px;
-    margin: 5px 0 20px 0;
+    font-size: 18px;
+    margin: 5px 0 10px 0;
     padding: 0;
     border-radius: 0;
     border-bottom: none;
@@ -5562,7 +5569,7 @@ header.fixed-header.scrolled {
     background: none;
     color: #111 !important;
     font-weight: 500;
-    font-size: 20px !important;
+    font-size: 18px !important;
     padding: 0 10px 2px 10px !important;
   }
   .seo-cities-mortgage .car-auto-loan-othr-bank {
@@ -5622,10 +5629,11 @@ header.fixed-header.scrolled {
       display: block;
   }
   .loan-detail-blocks h3 {
-    padding: 10px 0;
-    font-size: 17px;
+    padding: 0 0 10px;
+    font-size: 18px;
     border-radius: 0;
     line-height: 24px;
+    min-height: inherit;
   }
   .seo-cities-mortgage .loan-detail-blocks h3 span {
     font-size: 15px;
@@ -6186,7 +6194,7 @@ header.fixed-header.scrolled {
     margin-right: 8px !important;
   }
   .pt-zero {
-    padding-top: 50px !important;
+    padding-top: 30px !important;
     clear: both;
     float: none;
   }
@@ -6720,7 +6728,7 @@ header.fixed-header.scrolled {
     padding: 30px 20px;
   }*/
   .abt-tabs-cntnt .gray-box-cntnt h3 {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 15px;
   }
   .abt-tabs-cntnt .gray-box-cntnt p {
@@ -6880,7 +6888,7 @@ header.fixed-header.scrolled {
     line-height: 28px;
   }
   .directory-box h2 {
-    font-size: 20px;
+    font-size: 18px;
     margin: 5px 0 20px 0;
     padding: 0;
     border-radius: 0;
@@ -7074,7 +7082,7 @@ header.fixed-header.scrolled {
     font-style: italic;
   }
   .car-auto-loan-othr-bank a {
-    margin: 10px 0 0 0;
+    margin: 0 0 0;
     padding: 0;
     font-weight: normal;
     font-size: 16px;
@@ -7763,6 +7771,13 @@ header.fixed-header.scrolled {
 
 @media(min-width:768px) and (max-width:991px) {
   .contact-container {
+    width: 100%;
+  }
+  .home-main-search .row .col-sm-2{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .container{
     width: 100%;
   }
   .mortgage-calculator .container {
@@ -8853,11 +8868,14 @@ p.top-txt-info {
     z-index: 1;
   }
   #advance-srch-mb .modal-body {
-    padding: 60px 15px 0;
+    padding: 60px 0 0;
     position: fixed;
     background: #fff;
     height: calc(100% - 60px);
     overflow: auto;
+  }
+  .advanced-search-bx {
+    padding: 0 0 10px !important;
   }
   .modal-footer.adv-search-mdl-footer {
     position: fixed;
@@ -8943,6 +8961,17 @@ p.top-txt-info {
 }
 
 @media( min-width:320px) and ( max-width:767px) {
+  .data-table-inner.table-responsive{
+    float: none;
+  }
+  .home-main-search .hm-search-btn-nw{
+    padding: 12px 0 !important;
+    margin-top: 41px !important;
+  }
+  .link-right-inner {
+    float: none;
+    display: block;
+  }
   .row {
     margin-right: 0;
     margin-left: 0;
@@ -8952,15 +8981,32 @@ p.top-txt-info {
   }
   .blog-top-cntnt h4,
   .blog-post-box h2 {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: normal;
   }
   .about-bottom-page{
     margin-top: 40px;
     background-position: right top;
   }
   .blog-top-cntnt p {
-    font-size: 16px;
+    font-size: 14px;
     line-height: normal;
+  }
+  .blog-cntnt .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .blog-post h4{
+    margin: 0;
+    font-size: 18px;
+  }
+  .blog-post-inner h4 a{
+    font-size: 18px;
+    margin: 0;
+  }
+  .post-by, .post-by a{
+    font-size: 14px;
   }
   .blog-post-box {
     padding: 0;
@@ -8969,9 +9015,44 @@ p.top-txt-info {
   }
   .blog-post {
     box-shadow: 0 0 15px #d7d7d7;
+    margin: 0 0 20px 0;
+
+  }
+  .contact-wrapper .row {
+    margin: 0 -15px;
+  }
+  .white-bg .row{
+    margin: 0 -15px;
+  }
+  .our-story-cntnt.about-story h5 .fa {
+    margin-right: 10px;
+  }
+  .our-story-cntnt.about-story h5{
+    font-size: 16px;
+  }
+  .about-story h3 {
+    font-size: 24px;
+  }
+  .rght-sidebar-box-dtail-sectns h5{
+    font-size: 14px;
+    margin: 0;
+  }
+  .rght-sidebar-box-dtail-sectns{
+    padding: 10px 0;
+  }
+  .rght-sidebar-box-dtail-sectns:last-child{
+    padding: 10px 0 5px 0;
+  }
+  .rght-sidebar-box h3{
+    font-size: 18px;
+    padding: 0 0 10px;
+    margin: 0 0 15px 0;
   }
   .blog-post-inner {
     padding: 0;
+  }
+  .rght-sidebar-box-dtail{
+    padding: 15px;
   }
   .blog-post-inner img {
     position: relative;
@@ -9191,8 +9272,8 @@ p.hiden-txt-mb {
     margin: 0 auto;
   }
   .contact-form h2 {
-    font-size: 20px;
-    padding: 15px 20px;
+    font-size: 18px;
+    padding: 12px 20px;
   }
   .contact-form form{
     padding: 15px;
@@ -9203,6 +9284,7 @@ p.hiden-txt-mb {
   }
   .blog-post{
     padding: 10px;
+    min-height: inherit;
   }
   .blog-post-inner p, .blog-post p {
     font-size: 14px;
