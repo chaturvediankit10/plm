@@ -10,6 +10,7 @@
     <div class="search-main adv-search-mb home-main-search">
       <%= form_tag('/', method: :get, id: :search_form) do %>
         <div class="row">
+          <%= hidden_field_tag 'source', 0 %>
           <div class="col-md-2 col-xs-6">
             <div class="search-cat zip-srch">
               <label>State</label>
