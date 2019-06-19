@@ -286,7 +286,6 @@
       }else{
         $(".arm-basic").hide();
         $(".term").show();
-        $('#loan_type').val('');
         $('#loan_type').val("Fixed");
         $('#arm_basic').val('');
         $('#arm_benchmark').val('');
@@ -583,6 +582,20 @@
     } else {
       $('#fannie_mae').prop('checked', fannie_mae);
     }
+  });
+
+  $('#arm_basic').click(function () {
+    if ($(this).prop("checked"))
+      $('#loan_type').val("ARM")
+    else
+      $('#loan_type').val('')
+  });
+
+  $('#term').click(function () {
+    if ($(this).prop("checked"))
+      $('#loan_type').val("Fixed")
+    else
+      $('#loan_type').val('')
   });
 
   $('#fannie_mae').click(function () {
