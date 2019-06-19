@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                               <td>Interest Rate</td>
-                              <td align="right"><b><%=@interest%>%</b></td>
+                              <td align="right"><b><%=final_rate%>%</b></td>
                             </tr>
                             <tr>
                               <td>Term</td>
@@ -68,7 +68,7 @@
                             </tr>
                             <tr>
                               <td>Monthly Payment</td>
-                              <td align="right"><b><%=program[:monthly_payment].round(3) if program[:monthly_payment].present?%></b></td>
+                              <td align="right"><b>$<%=program[:monthly_payment].round(0) if program[:monthly_payment].present?%></b></td>
                             </tr>
                             <!-- <tr>
                               <td><%#= pro_term%> <%#= pro_term.present? ? "Year Fixed" : ""%></td>
@@ -263,7 +263,7 @@
                               </tr>
                               <tr>
                                 <td>Interest Rate</td>
-                                <td align="right"><b><%= @interest%></b></td>
+                                <td align="right"><b><%= final_rate%></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Purpose</td>

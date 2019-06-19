@@ -105,9 +105,15 @@
     <div class="col-md-9">
       <div class="breakdown-wrapper">
         <h1>Monthly Expenses Breakdown</h1>
-        <div class="ex-breakdown">
-          <table class="table table-striped">
-            <thead>
+        <div id="container-a"></div>
+        <div id="addText" ></div>
+      </div>
+      <%#= pie_chart({interest: @mortgage_interest[:monthly], property: @property_tax[:monthly], pmi: @pmi_insurance[:monthly], hoa: @hoa_dues[:monthly], principal: @mortgage_principal[:monthly]})%>
+      <!-- <div class="breakdown-wrapper"> -->
+        <!-- <h1>Monthly Expenses Breakdown</h1> -->
+        <!-- <div class="ex-breakdown"> -->
+          <!-- <table class="table table-striped"> -->
+            <!-- <thead>
               <tr>
                 <th></th>
                 <th align="center">
@@ -120,34 +126,34 @@
                   <center>Percentage</center>
                 </th>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
+            </thead> -->
+            <!-- <tbody> -->
+             <!--  <tr>
                 <td>Mortgage Principle</td>
                 <td align="center">
-                  <%= number_to_currency(@mortgage_principal[:monthly], unit: "")%>
+                  <%#= number_to_currency(@mortgage_principal[:monthly], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= number_to_currency(@mortgage_principal[:total], unit: "")%>
+                  <%#= number_to_currency(@mortgage_principal[:total], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= @mortgage_principal[:percentage]%>%
+                  <%#= @mortgage_principal[:percentage]%>%
                 </td>
-              </tr>
-              <tr>
+              </tr> -->
+              <!-- <tr>
                 <td>Mortgage Interest</td>
                 <td align="center">
 
-                  <%= number_to_currency(@mortgage_interest[:monthly], unit: "")%>
+                  <%#= number_to_currency(@mortgage_interest[:monthly], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= number_to_currency(@mortgage_interest[:total], unit: "")%>
+                  <%#= number_to_currency(@mortgage_interest[:total], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= @mortgage_interest[:percentage]%>%
+                  <%#= @mortgage_interest[:percentage]%>%
                 </td>
-              </tr>
-              <tr>
+              </tr> -->
+             <!--  <tr>
                 <td>Property Tax</td>
                 <td align="center">
                 <%#= text_field_tag :monthly_property_tax, @property_tax[:monthly], :class=> "editable-field" %>
@@ -158,7 +164,7 @@
                 <td align="center">
                   <%#= @property_tax[:percentage]%>%
                 </td>
-              </tr>
+              </tr> -->
               <!-- <tr>
                 <td>Home Insurance</td>
                 <td align="center">
@@ -191,20 +197,20 @@
                 <td align="center"><%#= number_to_currency(@hoa_dues[:total], unit: "")%></td>
                 <td align="center"><%#= @hoa_dues[:percentage]%>%</td>
               </tr> -->
-              <tr class="table-footer">
+              <!-- <tr class="table-footer">
                 <td>Total</td>
                 <td align="center">
-                  <%= number_to_currency(@monthly_expenses_sum[:monthly], unit: "")%>
+                  <%#= number_to_currency(@monthly_expenses_sum[:monthly], unit: "")%>
                 </td>
                 <td align="center">
-                  <%= number_to_currency(@monthly_expenses_sum[:total], unit: "")%>
+                  <%#= number_to_currency(@monthly_expenses_sum[:total], unit: "")%>
                 </td>
-                <td align="center"><%= @monthly_expenses_sum[:percentage] %>%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+                <td align="center"><%#= @monthly_expenses_sum[:percentage] %>%</td>
+              </tr> -->
+            <!-- </tbody> -->
+          <!-- </table> -->
+        <!-- </div> -->
+      <!-- </div> -->
       <div class="breakdown-wrapper">
         <h1>Mortgage Payoff Over Time</h1>
         <div class="ex-breakdown">
@@ -504,6 +510,16 @@
     remaining_values  = <%= raw @remaining.values %>
     total_paid_values  = <%= raw @total_paid.values %>
     x_axis_max_value = <%= raw @principle.values.count %>
+    
+    monthly_mortgage_interest = <%= raw @mortgage_interest[:monthly] %>
+    monthly_property_tax = <%= raw @property_tax[:monthly] %>
+    monthly_pmi_insurance = <%= raw @pmi_insurance[:monthly] %>
+    monthly_hoa_dues = <%= raw @hoa_dues[:monthly] %>
+    monthly_mortgage_principal = <%= raw @mortgage_principal[:monthly] %>
+    monthly_home_insurance = <%= raw @home_insurance[:monthly] %>
+    monthly_expenses_sum = <%= raw @monthly_expenses_sum[:monthly] %>
+
+
 
     $('#payoff-schedule-graph').highcharts({
         title: {
@@ -697,6 +713,50 @@
           }
         }
     });
+
+    $(function() {
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container-a',
+            type: 'pie'
+            },
+            colors: ['#687b82', '#83b2c2', '#3b86b6', '#592c67', '#7f8930'],
+            plotOptions: {
+                pie: {
+                    innerSize: '70%'
+                }
+            },
+            series: [{
+                data: [
+                    // ["Home Insurance", monthly_home_insurance],
+                    ["Property Tax", monthly_property_tax],
+                    ["PMI Insurance", monthly_pmi_insurance],
+                    ["HOA Dues", monthly_hoa_dues],
+                    ["Principal & Interest", (monthly_mortgage_principal+monthly_mortgage_interest)]
+                  ],
+                  dataLabels: {
+                    color: 'black'
+                    }
+                  }
+                ]
+
+                  
+        },
+        
+        function(chart) { // on complete
+            var textX = chart.plotLeft + (chart.plotWidth  * 0.5);
+            var textY = chart.plotTop  + (chart.plotHeight * 0.5);
+            var span = '<span id="pieChartInfoText" style="position:absolute; text-align:center;">';
+            span += '<b><span>'+'$' + Number((monthly_expenses_sum).toFixed(2)) +'</span><br>';
+            span += '<span class="m-payment">Monthly Payment</span></b>';
+            span += '</span>';
+
+            $("#addText").append(span);
+            span = $('#pieChartInfoText');
+            span.css('left', textX + (span.width() * -0.5));
+            span.css('top', textY + (span.height() * -0.5));
+        });
+    });
   });
 
 
@@ -799,3 +859,16 @@
 
   });
 </script>
+<style type="text/css">
+  #pieChartInfoText{
+    left: 0 !important;
+    right: 0 !important;
+  }
+  #pieChartInfoText span{
+    font-size: 24px;
+    font-weight: bold;
+  }
+  #pieChartInfoText span.m-payment{
+    font-size: 16px;
+  }
+</style>
