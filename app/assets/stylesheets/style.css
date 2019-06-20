@@ -1052,7 +1052,7 @@ header .navbar-right {
 .cntnt-list-inner {
   float: left;
   width: 100%;
-  padding: 10px 23px;
+  padding: 10px 10px;
   margin: 0;
 }
 
@@ -2039,7 +2039,7 @@ footer span {
     float: none;
     width: 100%;
     color: #111;
-    font-size: 17px;
+    font-size: 16px;
     margin: 0 0 40px 0;
     line-height: 24px;
 }
@@ -2101,7 +2101,7 @@ footer span {
     text-align: left;
     border-radius: 5px;
     border-top: 7px solid #3596cd;
-    min-height: 325px;
+    min-height: 300px;
 }
 .about-bottom-page .gray-box-cntnt h3{
   text-transform: capitalize;
@@ -2118,12 +2118,12 @@ footer span {
 }*/
 
 .abt-tabs-cntnt .gray-box-cntnt h3 {
-  font-size: 24px;
+  font-size: 21px;
   margin-bottom: 25px;
 }
 
 .abt-tabs-cntnt .gray-box-cntnt p {
-  line-height: 28px;
+  line-height: 24px;
   font-size: 16px;
   margin: 0;
 }
@@ -4663,7 +4663,22 @@ header.fixed-header.scrolled {
 
 
 /*mobile device css start*/
-
+@media(min-width:1025px) and (max-width:1200px) {
+  .advertisement {
+    margin: 0 0 50px 0;
+  }
+  .advertisement-box{
+    padding: 30px 0 0;
+  }
+  .advertisement h4{
+    font-size: 24px;
+    margin: 2px 0 5px 0;
+  }
+  .advertisement span{
+    font-size: 18px;
+    width: 100%;
+  }
+}
 @media(min-width:320px) and (max-width:767px) {
 
   .view-details-popup .panel-body{
@@ -5545,10 +5560,10 @@ header.fixed-header.scrolled {
     font-style: italic;
   }
   .car-auto-loan-othr-bank a {
-    margin: 10px 0 0 0;
+    margin: 0 0 0 0;
     padding: 0 10px;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
   }
   .loan-chargeoff-recovry-inner-hdng {
     margin: 15px 0;
@@ -6861,22 +6876,22 @@ header.fixed-header.scrolled {
     font-weight: bold;
   }
   .directory-box {
-    padding: 0;
+    padding: 15px;
     margin: 0 0 20px 0;
     box-shadow: none;
     border-radius: 0;
   }
   .directory-links-box {
-    padding: 10px;
+    padding: 0;
     text-align: center;
   }
-  .directory-box div {
+  /*.directory-box div {
     padding: 0;
-  }
+  }*/
   .directory-box a {
     font-size: 14px;
     font-weight: normal;
-    margin: 0 0 17px 0;
+    margin: 0 0 0 0;
   }
   .pagination {
     padding: 0 0 0 15px;
@@ -8167,7 +8182,7 @@ header.fixed-header.scrolled {
   border-radius: 0;
   padding: 0 0 15px;
   color: #111;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   margin: 0 0 20px 0;
   border-bottom: 1px solid #ddd;
@@ -8641,7 +8656,7 @@ h4#sheet-title{
 }
 
 .cntnt-list-inner {
-  padding: 10px 23px;
+  padding: 10px;
   margin-bottom: 15px;
   box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
   border: 1px solid #eee;
@@ -8887,6 +8902,7 @@ p.top-txt-info {
     width: 100% !important;
     height: 100%;
     margin: 0;
+    max-width: 100%;
   }
   .view-details-popup .modal-header {
     position: fixed;
