@@ -258,6 +258,7 @@
 </div>
 <!-- expert application overlay popup end-->
 <script>
+
   $(document).ready(function () {
     var tab_val = $('.active .js-trigger').attr('data-tab');
     load_more(tab_val);
@@ -265,10 +266,8 @@
       tab_val = $(this).text().replace ( /[^\d.]/g, '' ); 
       load_more(tab_val);
     });
-  });
 
-  $(document).ready(function () {
-    var tab_term = "30";
+    var tab_term =  $('.active .js-trigger').attr('data-tab');
     $('.js-trigger').click(function(){
       $(".loader").show();
       $("#"+tab_term+"years").removeClass("active");
@@ -307,12 +306,7 @@
         }
       });
     });
-  });
 
-
-
-  $(document).ready(function(){
-  
     $('.menu-up-adv-search').click(function(){
       $("#search-adv-option-inner").hide("fast").removeClass("display-adv-search");
     });
@@ -348,520 +342,286 @@
               }
           });
       })
-  
-  });
-  
-  $.validator.addMethod('filesize', function (value, element, param) {
-        return this.optional(element) || (element.files[0].size <= param)
-    }, 'File size must be less than 2-Mb');
-  
-    $('#expert_user_form').validate({
-      rules: {
-        "expert[first_name]": {
-            required: true
-        },
-        "expert[last_name]": {
-            required: true
-        },
-        "expert[phone]":{
-          required: true
-        },
-        "expert[email]": {
-            required: {
-              depends:function(){
-                  $(this).val($.trim($(this).val()));
-                  return true;
-                }
-            },
-            email: true
-        },
-        "expert[state]":{
-          required: true
-        },
-        "expert[city]":{
-          required: true
-        },
-        "expert[zip]":{
-          required: true
-        },
-        "expert[license_number]":{
-            required: true
-        },
-        "expert[website]":{
-          required: true
-        },
-        "expert[image]": {
-          required: true,
-          extension: "jpg,jpeg",
-          filesize:   2097152
-        }
-      },
-      messages: {
-        "expert[first_name]": {
-            required: "Please enter your first name."
-        },
-        "expert[last_name]": {
-            required: "Please enter you last name."
-        },
-        "expert[phone]":{
-          required: "Plese enter mobile number."
-        },
-        "expert[email]": {
-            required: "Please enter your email.",
-            email: "Please enter valid email address.",
-        },
-        "expert[state]":{
-            required: "Please selcet a state"
-        },
-        "expert[city]":{
-            required: "Please selcet a city"
-        },
-        "expert[zip]":{
-            required: "Please selcet a zip"
-        },
-        "expert[license_number]":{
-            required: "Please enter your license number."
-        },
-        "expert[website]":{
-          required: "Please enter website."
-        },
-        "expert[image]": {
-          required: "Please upload an image.",
-          extension: "File must be JPG,JPEG."
-        }
-      }
-    })
-  
-  $(document).ready(function(){
-    $('#bank_name').change(function(){
-      var bank_name =  $(this).val();
-      var loan_category = "All"
-      var pro_category = "All"
 
-      $.ajax({
-        type:'GET',
-        url:'/fetch_programs',
-        data: {bank_name : bank_name, loan_category: loan_category, pro_category: pro_category },
-        success:function(response){
-          var selectBox = document.getElementById('program_name');
-          selectBox.options.length = 0
-          selectBox.options.add( new Option('All', 'All'));
-          response.program_list.map((program)=>{
-            selectBox.options.add( new Option(program.name, program.name));
-          });
-          var selectBox2 = document.getElementById('loan_category');
-          selectBox2.options.length = 0
-          selectBox2.options.add( new Option('All', 'All'));
-          response.loan_category_list.map((loan_category)=>{
-            selectBox2.options.add( new Option(loan_category.name, loan_category.name));
-          });
-          var selectBox3 = document.getElementById('pro_category');
-          selectBox3.options.length = 0
-          response.pro_category_list.map((pro_category)=>{
-            selectBox3.options.add( new Option(pro_category.name, pro_category.name));
-          });
+      $.validator.addMethod('filesize', function (value, element, param) {
+          return this.optional(element) || (element.files[0].size <= param)
+      }, 'File size must be less than 2-Mb');
 
+      $('#expert_user_form').validate({
+        rules: {
+          "expert[first_name]": {
+              required: true
+          },
+          "expert[last_name]": {
+              required: true
+          },
+          "expert[phone]":{
+            required: true
+          },
+          "expert[email]": {
+              required: {
+                depends:function(){
+                    $(this).val($.trim($(this).val()));
+                    return true;
+                  }
+              },
+              email: true
+          },
+          "expert[state]":{
+            required: true
+          },
+          "expert[city]":{
+            required: true
+          },
+          "expert[zip]":{
+            required: true
+          },
+          "expert[license_number]":{
+              required: true
+          },
+          "expert[website]":{
+            required: true
+          },
+          "expert[image]": {
+            required: true,
+            extension: "jpg,jpeg",
+            filesize:   2097152
+          }
+        },
+        messages: {
+          "expert[first_name]": {
+              required: "Please enter your first name."
+          },
+          "expert[last_name]": {
+              required: "Please enter you last name."
+          },
+          "expert[phone]":{
+            required: "Plese enter mobile number."
+          },
+          "expert[email]": {
+              required: "Please enter your email.",
+              email: "Please enter valid email address.",
+          },
+          "expert[state]":{
+              required: "Please selcet a state"
+          },
+          "expert[city]":{
+              required: "Please selcet a city"
+          },
+          "expert[zip]":{
+              required: "Please selcet a zip"
+          },
+          "expert[license_number]":{
+              required: "Please enter your license number."
+          },
+          "expert[website]":{
+            required: "Please enter website."
+          },
+          "expert[image]": {
+            required: "Please upload an image.",
+            extension: "File must be JPG,JPEG."
+          }
+        }
+      })
+
+      $('#bank_name').change(function(){
+        var bank_name =  $(this).val();
+        var loan_category = "All"
+        var pro_category = "All"
+
+        $.ajax({
+          type:'GET',
+          url:'/fetch_programs',
+          data: {bank_name : bank_name, loan_category: loan_category, pro_category: pro_category },
+          success:function(response){
+            var selectBox = document.getElementById('program_name');
+            selectBox.options.length = 0
+            selectBox.options.add( new Option('All', 'All'));
+            response.program_list.map((program)=>{
+              selectBox.options.add( new Option(program.name, program.name));
+            });
+            var selectBox2 = document.getElementById('loan_category');
+            selectBox2.options.length = 0
+            selectBox2.options.add( new Option('All', 'All'));
+            response.loan_category_list.map((loan_category)=>{
+              selectBox2.options.add( new Option(loan_category.name, loan_category.name));
+            });
+            var selectBox3 = document.getElementById('pro_category');
+            selectBox3.options.length = 0
+            response.pro_category_list.map((pro_category)=>{
+              selectBox3.options.add( new Option(pro_category.name, pro_category.name));
+            });
+
+          }
+        });
+      });
+
+      $('#loan_category').change(function(){
+        var loan_category =  $(this).val();
+        var bank_name = $('#bank_name').val()
+        var pro_category ="All"
+        $.ajax({
+          type:'GET',
+          url:'/fetch_programs',
+          data: {loan_category : loan_category, bank_name : bank_name, pro_category: pro_category },
+          success:function(response){
+            var selectBox = document.getElementById('program_name');
+            selectBox.options.length = 0
+            selectBox.options.add( new Option('All', 'All'));
+            response.program_list.map((program)=>{
+              selectBox.options.add( new Option(program.name, program.name));
+            });
+
+            var selectBox2 = document.getElementById('pro_category');
+            selectBox2.options.length = 0
+            response.pro_category_list.map((pro_category)=>{
+              selectBox2.options.add( new Option(pro_category.name, pro_category.name));
+            });
+          }
+        });
+      });
+
+      $('#pro_category').change(function(){
+        var pro_category =  $(this).val();
+        var bank_name = $('#bank_name').val()
+        var loan_category = $('#loan_category').val()
+        $.ajax({
+          type:'GET',
+          url:'/fetch_programs',
+          data: {loan_category : loan_category, bank_name : bank_name, pro_category: pro_category },
+          success:function(response){
+            var selectBox = document.getElementById('program_name');
+            selectBox.options.length = 0
+            selectBox.options.add( new Option('All', 'All'));
+            response.program_list.map((program)=>{
+              selectBox.options.add( new Option(program.name, program.name));
+            });
+          }
+        });
+      });
+
+      var fannie_mae = false
+      $('#fannie_mae_du').click(function () {
+        if ($(this).prop("checked")){
+          fannie_mae = $('#fannie_mae').prop("checked")
+          $('#fannie_mae').prop('checked', true);
+        } else {
+          $('#fannie_mae').prop('checked', fannie_mae);
         }
       });
-    });
 
-    $('#loan_category').change(function(){
-      var loan_category =  $(this).val();
-      var bank_name = $('#bank_name').val()
-      var pro_category ="All"
-      $.ajax({
-        type:'GET',
-        url:'/fetch_programs',
-        data: {loan_category : loan_category, bank_name : bank_name, pro_category: pro_category },
-        success:function(response){
-          var selectBox = document.getElementById('program_name');
-          selectBox.options.length = 0
-          selectBox.options.add( new Option('All', 'All'));
-          response.program_list.map((program)=>{
-            selectBox.options.add( new Option(program.name, program.name));
-          });
+      $('#arm_basic').click(function () {
+        if ($(this).prop("checked"))
+          $('#loan_type').val("ARM")
+        else
+          $('#loan_type').val('')
+      });
 
-          var selectBox2 = document.getElementById('pro_category');
-          selectBox2.options.length = 0
-          response.pro_category_list.map((pro_category)=>{
-            selectBox2.options.add( new Option(pro_category.name, pro_category.name));
-          });
+      $('#term').click(function () {
+        if ($(this).prop("checked"))
+          $('#loan_type').val("Fixed")
+        else
+          $('#loan_type').val('')
+      });
+
+      var freddie_mac = false
+      $('#freddie_mac_lp').click(function () {
+        if ($(this).prop("checked")){
+          freddie_mac = $('#freddie_mac').prop("checked")
+          $('#freddie_mac').prop('checked', true);
+        } else {
+          $('#freddie_mac').prop('checked', freddie_mac);
         }
       });
-    });
 
-    $('#pro_category').change(function(){
-      var pro_category =  $(this).val();
-      var bank_name = $('#bank_name').val()
-      var loan_category = $('#loan_category').val()
-      $.ajax({
-        type:'GET',
-        url:'/fetch_programs',
-        data: {loan_category : loan_category, bank_name : bank_name, pro_category: pro_category },
-        success:function(response){
-          var selectBox = document.getElementById('program_name');
-          selectBox.options.length = 0
-          selectBox.options.add( new Option('All', 'All'));
-          response.program_list.map((program)=>{
-            selectBox.options.add( new Option(program.name, program.name));
-          });
+      var fha_checked = false
+      var loan_purpose_value = $('#loan_purpose').val();
+      $('#streamline').click(function () {
+        if ($(this).prop("checked")){
+          fha_checked = $('#fha').prop("checked")
+          loan_purpose_value = $('#loan_purpose').val();
+          $("#loan_purpose").val('Refinance')
+          $('#fha').prop('checked', true);
+          $('#loan_purpose-error').hide();
+        } else {
+          $('#fha').prop('checked', fha_checked);
+          $("#loan_purpose").val(loan_purpose_value)
+          $('.error-loan-purpose').hide();
         }
       });
-    });
 
-    function setArmDefaultValues(){
-      $('#arm_benchmark').val('All')
-      $('#arm_margin').val('All')
-      $('#arm_advanced').val('')
-      $('#arm_caps').val('All')
-      $('#arm_basic').val('5/1')
-    }
+      //loan_purpose default error hide
+      $('#loan_purpose').change(function () {
+        $('.error-loan-purpose').hide()
+        $('#adv_loan_purpose').val($('#loan_purpose').val())
+      });
+      
+      $('#adv_loan_purpose').change(function () {
+        $('.error-loan-purpose').hide()
+        $('#loan_purpose').val($('#adv_loan_purpose').val())
+      });
 
-    function setArmNullValues(){
-      $('#term').val('All')
-      $('#arm_benchmark').val('All')
-      $('#arm_margin').val('All')
-      $('#arm_advanced').val('')
-      $('#arm_caps').val('All')
-      $('#arm_basic').val('All')
-    }
+      $('#state').change(function () {
+        $('#adv_state').val($('#state').val())
+      });
 
-    function setArmDefaultValuesOnLoan(){
-      if ($('#arm_benchmark').val()=='' && $("#loan_type").val() != "All" && $("#loan_type").val() != "ARM" ) {
-          $('#arm_benchmark').val('LIBOR')
+      $('#adv_state').change(function () {
+        $('#state').val($('#adv_state').val())
+      });
+
+      $('#credit_score').change(function () {
+        $('#adv_credit_score').val($('#credit_score').val())
+      });
+
+      $('#adv_credit_score').change(function () {
+        $('#credit_score').val($('#adv_credit_score').val())
+      });
+
+      //when select fannie_mae_product fannie_mae will be true
+      $('#fannie_mae_product').click(function () {
+        if ($(this).prop("checked")){
+          $('#fannie_mae').prop('checked', true);
+        } else {
+          $('#fannie_mae').prop('checked', false);
         }
-        if ($('#arm_margin').val()=='' && $("#loan_type").val() != "All" && $("#loan_type").val() != "ARM" ) {
-          $('#arm_margin').val('All')
+      });
+
+      $('#freddie_mac_product').click(function () {
+        if ($(this).prop("checked")){
+          $('#freddie_mac').prop('checked', true);
+        } else {
+          $('#freddie_mac').prop('checked', false);
         }
-        if ($('#arm_basic').val()=='' && $("#loan_type").val() != "All" && $("#loan_type").val() != "ARM" ) {
-          $('#arm_basic').val('5/1')
-        }
-    }
+      });
 
-    function showTermAndArmSectionOnLoan(){
-      if ($("#loan_type").val() == "ARM") {
-        $(".arm-basic").show();
-        $(".term").hide();
-      }else{
-       $(".arm-basic").hide();
-       $(".term").show();
-      }
-
-      if ($("#loan_type").val() == "All") {
-        $(".arm-basic").show();
-        $(".term").show();
-      }
-    }
-
-    setArmDefaultValuesOnLoan();
-    showTermAndArmSectionOnLoan();
-
-
-   $("#loan_type").on('click', function(e){
-     if ($(this).val()=="ARM"){
-      $(".term").hide()
-      $(".arm-basic").show()
-      setArmDefaultValues();
-     }else{
-      if ($(this).val()=="All"){
-        $(".arm-basic").show();
-        $(".term").show();
-        setArmNullValues();
-      }else{
-        $(".arm-basic").hide();
-        $(".term").show();
-      }
-     }
-   });
-  });
-
-  var fannie_mae = false
-  $('#fannie_mae_du').click(function () {
-    if ($(this).prop("checked")){
-      fannie_mae = $('#fannie_mae').prop("checked")
-      $('#fannie_mae').prop('checked', true);
-    } else {
-      $('#fannie_mae').prop('checked', fannie_mae);
-    }
-  });
-
-  $('#arm_basic').click(function () {
-    if ($(this).prop("checked"))
-      $('#loan_type').val("ARM")
-    else
-      $('#loan_type').val('')
-  });
-
-  $('#term').click(function () {
-    if ($(this).prop("checked"))
-      $('#loan_type').val("Fixed")
-    else
-      $('#loan_type').val('')
-  });
-
-  $('#fannie_mae').click(function () {
-    if ($(this).prop("checked")){
-      if ($('#fannie_mae_du').prop("checked"))
-      $('#fannie_mae_du').prop('checked', false);
-    } else {
-      if ($('#fannie_mae_du').prop("checked"))
-      $('#fannie_mae_du').prop('checked', false);
-    }
-  });
-
-  var freddie_mac = false
-  $('#freddie_mac_lp').click(function () {
-    if ($(this).prop("checked")){
-      freddie_mac = $('#freddie_mac').prop("checked")
-      $('#freddie_mac').prop('checked', true);
-    } else {
-      $('#freddie_mac').prop('checked', freddie_mac);
-    }
-  });
-
-  $('#freddie_mac').click(function () {
-    if ($(this).prop("checked")){
-      if ($('#freddie_mac_lp').prop("checked"))
-      $('#freddie_mac_lp').prop('checked', false);
-    } else {
-      if ($('#freddie_mac_lp').prop("checked"))
-      $('#freddie_mac_lp').prop('checked', false);
-    }
-  });
-
-  // when streamline checked fha will be true and loan_purpose will be 'Refinance'
-  var fha_checked = false
-  var loan_purpose_value = $('#loan_purpose').val();
-  $('#streamline').click(function () {
-    if ($(this).prop("checked")){
-      fha_checked = $('#fha').prop("checked")
-      loan_purpose_value = $('#loan_purpose').val();
-      $("#loan_purpose").val('Refinance')
-      $('#fha').prop('checked', true);
-      $('#loan_purpose-error').hide();
-    } else {
-      $('#fha').prop('checked', fha_checked);
-      $("#loan_purpose").val(loan_purpose_value)
-      $('.error-loan-purpose').hide();
-    }
-  });
-
-  $('#fha').click(function () {
-    if ($(this).prop("checked")){
-      if ($('#streamline').prop("checked"))
-        $("#loan_purpose").val('')
-      $('#streamline').prop('checked', false);
-    } else {
-      if ($('#streamline').prop("checked"))
-        $("#loan_purpose").val('')
-      $('#streamline').prop('checked', false);
-    }
-  });
-
-  //loan_purpose default error hide
-  $('#loan_purpose').change(function () {
-    $('.error-loan-purpose').hide()
-    $('#adv_loan_purpose').val($('#loan_purpose').val())
-  });
-  
-  $("#arm_advanced").on('click', function(e){
-    if ($(this).val()==""){
-      $('#arm_basic').val('5/1')
-    }else{
-      $('#arm_basic').val('')
-    }
-  });
-
-   $("#arm_basic").on('click', function(e){
-     $('#arm_advanced').val('')
-   });
-
-  $('#adv_loan_purpose').change(function () {
-    $('.error-loan-purpose').hide()
-    $('#loan_purpose').val($('#adv_loan_purpose').val())
-  });
-
-  $('#state').change(function () {
-    $('#adv_state').val($('#state').val())
-  });
-
-  $('#adv_state').change(function () {
-    $('#state').val($('#adv_state').val())
-  });
-
-  $('#credit_score').change(function () {
-    $('#adv_credit_score').val($('#credit_score').val())
-  });
-
-  $('#adv_credit_score').change(function () {
-    $('#credit_score').val($('#adv_credit_score').val())
-  });
-
-  //when select fannie_mae_product fannie_mae will be true
-  $('#fannie_mae_product').change(function(){
-    if ($(this).val() == ""){
-      if ($('#fannie_mae_du').prop("checked") == false) {
-        $('#fannie_mae').prop('checked', false)
-      }
-    }
-    else
-      $('#fannie_mae').prop('checked', true)
-  })
-
-  //when select freddie_mac_product freddie_mac will be true
-  $('#freddie_mac_product').change(function(){
-    if ($(this).val() == ""){
-      if ($('#freddie_mac_lp').prop("checked") == false) {
-        $('#freddie_mac').prop('checked', false)
-      }
-    }
-    else
-      $('#freddie_mac').prop('checked', true)
-  })
-
-
-  // check Streamline and loan_purpose value
-  function checkLoanPurposeValue() {
-   var flag = true
-   if ($("#streamline").is(":checked")){
-       if ($("#loan_purpose").val() != "Refinance" && $("#loan_purpose").val() != "") {
-        flag = false
-       }
-    }
-    return flag
-  }
-
-  // form validation
-  $("#search_form").validate({
-    errorPlacement: function(error, element) {
-      $('.error-loan-purpose').hide();
-      if(checkLoanPurposeValue() == false){
-        $('html, body').animate({
-            scrollTop: $(".error-loan-purpose").offset().top
-        }, 1);
-        $('.error-loan-purpose').show()
-      }
-
-      var n = element.attr("name");
-      if (n == "loan_purpose"){
-        error.insertAfter(element);
-      }
-      if (n == "loan_size"){
-        error.insertAfter(element);
-      }
-      if (n == "loan_type"){
-        error.insertAfter(element);
-      }
-    },
-    messages: {
-      'loan_purpose': {
-          required: "This field is required",
-      },
-      'loan_size': {
-          required: "This field is required",
-      },
-      'loan_type': {
-          required: "This field is required",
-      }
-    },
-    rules: {
-        loan_purpose: {
-          required: true
-        },
-        loan_size: {
-          required: true
-        },
-        loan_type: {
-          required: true
-        }
-    },
-    highlight: function(element) {
-       $(element).addClass('has_error');
-    },
-    unhighlight: function(element) {
-        // remove the class "has_error" from the element 
-        $(element).removeClass('has_error');
-    },
-    submitHandler: function(form) {
-      if(checkLoanPurposeValue()){
-        form.submit();
-      }else{
-        $('html, body').animate({
-            scrollTop: $(".error-loan-purpose").offset().top
-        }, 1);
-        $('.error-loan-purpose').show()
-      }
-    }
-  });
-
-  $(document).ready(function(){
       $('#reset_all_btn').click(function(event){
-        if ($(this).val()=="ARM"){
+        if ($('#loan_type').val()=="ARM"){
           $(".term").hide()
           $(".arm-basic").show()
           setArmDefaultValues();
          }else{
-          if ($(this).val()=="All"){
-            $(".arm-basic").show();
-            $(".term").show();
-            setArmNullValues();
-          }else{
             $(".arm-basic").hide();
             $(".term").show();
           }
-         }
         $('input:checkbox').removeAttr('checked');
-        $('#loan_type').val('')
-        $('#term').val('')
-        $('#arm_benchmark').val('All')
-        $('#arm_margin').val('All')
-        $('#arm_advanced').val('')
-        $('#arm_caps').val('All')
-        $('#arm_basic').val('5/1')
-        $(".arm-basic").hide();
-        $(".term").show();
-        $('#bank_name').val('')
-        $('#term').val('')
-        $('#interest').val('4.000')
-        $('#lock_period').val('30')
-        $('#loan_purpose').val('')
-        $('#loan_size').val('')
-        $('#fannie_mae_product').val('')
-        $('#freddie_mac_product').val('')
-        $('#credit_score').val("700-719")
-        $('#ltv').val("65.01 - 70.00")
-        $('#cltv').val("75.01 - 80.00")
-        $('#state').val('All')
-        $('#loan_amount').val('0 - 50000')
-        $('#program_category').val('7900')
-        $('#property_type').val('2-4 Unit')
-        $('#financing_type').val('Subordinate Financing')
-        $('#refinance_option').val('Cash Out')
-        $('#misc_adjuster').val('CA Escrow Waiver (Full or Taxes Only)')
-        $('#payment_type').val('Interest Only')
-        $('#dti').val('25.6%')
-        $('#coverage').val('30.5%')
-        $('#margin').val('2.0')
       });
 
       $('.check').on('change', function() {
         $('.check').not(this).prop('checked', false); 
       });
-  });
 
-  function load_more(tab_val){
-    var size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
-    // $("."+tab_val+"years").addClass('active')
-    $("#"+tab_val+"years .demo-items-"+tab_val).hide();
-    x=20;
-    $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
-    $('#loadMore').click(function () {
-      x = (x+10 <= size_li) ? x+10 : size_li;
+    function load_more(tab_val){
+      var size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
+      // $("."+tab_val+"years").addClass('active')
+      $("#"+tab_val+"years .demo-items-"+tab_val).hide();
+      x=20;
       $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
-    });
-  }
-</script>
-<script type="text/javascript">
+      $('#loadMore').click(function () {
+        x = (x+10 <= size_li) ? x+10 : size_li;
+        $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+      });
+    }
+
    $('#adv-option').click(function () {
         $("html, body").animate({
             scrollTop: 250
@@ -869,10 +629,8 @@
         //return false;
     });
 
+  });
 
-  // $("#adv-option").click(function() { 
-  //   $('html, body').animate({ scrollTop: 
-  //   $("#ad-search").offset().top - 100}, 2000); });
 </script>
 
 <style type="text/css">
