@@ -363,6 +363,7 @@
                           <td></td>
                           <td></td>
                           <td>
+
                             <%= number_to_currency((@home_insurance[:total]*-1), unit: "")%>
                           </td>
                           <td>Home Insurance</td>
@@ -517,7 +518,7 @@
     monthly_hoa_dues = <%= raw @hoa_dues[:monthly] %>
     monthly_mortgage_principal = <%= raw @mortgage_principal[:monthly] %>
     monthly_home_insurance = <%= raw @home_insurance[:monthly] %>
-    monthly_expenses_sum = <%= raw @monthly_expenses_sum[:monthly] %>
+    monthly_expenses_sum = <%= raw @monthly_expenses_sum[:monthly].round(2) %>
 
 
 
@@ -714,150 +715,106 @@
         }
     });
 
-    $(function() {
-    var chart = new Highcharts.Chart({
-        chart: {
-            renderTo: 'container-a',
-            type: 'pie'
-            },
-            colors: ['#687b82', '#83b2c2', '#3b86b6', '#592c67', '#7f8930'],
-            plotOptions: {
-                pie: {
-                    innerSize: '70%'
-                }
-            },
-            series: [{
-                data: [
-                    // ["Home Insurance", monthly_home_insurance],
-                    ["Property Tax", monthly_property_tax],
-                    ["PMI Insurance", monthly_pmi_insurance],
-                    ["HOA Dues", monthly_hoa_dues],
-                    ["Principal & Interest", (monthly_mortgage_principal+monthly_mortgage_interest)]
-                  ],
-                  dataLabels: {
-                    color: 'black'
-                    }
-                  }
-                ]
+});
 
-                  
-        },
-        
-        function(chart) { // on complete
-            var textX = chart.plotLeft + (chart.plotWidth  * 0.5);
-            var textY = chart.plotTop  + (chart.plotHeight * 0.5);
-            var span = '<span id="pieChartInfoText" style="position:absolute; text-align:center;">';
-            span += '<b><span>'+'$' + Number((monthly_expenses_sum).toFixed(2)) +'</span><br>';
-            span += '<span class="m-payment">Monthly Payment</span></b>';
-            span += '</span>';
+    $(document).ready(function(){
 
-            $("#addText").append(span);
-            span = $('#pieChartInfoText');
-            span.css('left', textX + (span.width() * -0.5));
-            span.css('top', textY + (span.height() * -0.5));
+      // get_todays_rate
+      $("#today_rate").click(function(){
+        var term = $('#mortgage_term').val()
+        $.ajax({
+          type:'GET',
+          url:'/get_todays_rate',
+          data: {mortgage_term: term},
+          success:function(res){
+          $('#annual_interest_rate').val(res["today_rate"] + '%')
+          }
         });
-    });
-  });
+      });
 
+      $(".toggle-btn").click(function(){
+        $(".toggle-container").toggle(500);
+      });
 
-  $(document).ready(function(){
+      if ($('#mortgage_term').val()!=''){
+        $('#mortgage_month').val(parseInt($('#mortgage_term').val())*12 + " "+ "month")
+      }
 
-    // get_todays_rate
-    $("#today_rate").click(function(){
-      var term = $('#mortgage_term').val()
-      $.ajax({
-        type:'GET',
-        url:'/get_todays_rate',
-        data: {mortgage_term: term},
-        success:function(res){
-        $('#annual_interest_rate').val(res["today_rate"] + '%')
+      if($('#annual_interest_rate')!=''){
+        var value = $('#annual_interest_rate').val()
+        if (value.includes("%")) {
+          value = value.replace('%%','%')
+          value = value.replace('% %','%')
+          value = value.replace('%%%','%')
+          $('#annual_interest_rate').val(value)
+        }
+        else{
+          $('#annual_interest_rate').val(value + "%")
+        }
+      }
+
+      $("#annual_interest_rate").change(function () {
+        var value = $(this).val()
+        if (value.includes("%")) {
+          value = value.replace('%%','%')
+          value = value.replace('% %','%')
+          value = value.replace('%%%','%')
+          $('#annual_interest_rate').val(value)
+        }
+        else{
+          $('#annual_interest_rate').val(value + "%")
         }
       });
-    });
 
-    $(".toggle-btn").click(function(){
-      $(".toggle-container").toggle(500);
-    });
-
-    if ($('#mortgage_term').val()!=''){
-      $('#mortgage_month').val(parseInt($('#mortgage_term').val())*12 + " "+ "month")
-    }
-
-    if($('#annual_interest_rate')!=''){
-      var value = $('#annual_interest_rate').val()
-      if (value.includes("%")) {
-        value = value.replace('%%','%')
-        value = value.replace('% %','%')
-        value = value.replace('%%%','%')
-        $('#annual_interest_rate').val(value)
-      }
-      else{
-        $('#annual_interest_rate').val(value + "%")
-      }
-    }
-
-    $("#annual_interest_rate").change(function () {
-      var value = $(this).val()
-      if (value.includes("%")) {
-        value = value.replace('%%','%')
-        value = value.replace('% %','%')
-        value = value.replace('%%%','%')
-        $('#annual_interest_rate').val(value)
-      }
-      else{
-        $('#annual_interest_rate').val(value + "%")
-      }
-    });
-
-    $("#mortgage_term").change(function () {
-      var selectedText = $(this).find("option:selected").text();
-      var selectedValue = $(this).val();
-      $('#mortgage_month').val(parseInt(selectedValue)*12 + " "+ "month")
-    });
-  });
-
-  $(document).ready(function(){
-    // FixHeader()
-
-      var items = document.querySelectorAll("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues");
-
-      for (var i = 0; i < items.length; i++)
-      {
-        $(items[i]).maskMoney().maskMoney('mask',Number(items[i].value));
-      }
-
-    $("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues").change(function() {
-      data = $("#calculator_form").serialize();
-      all_data = data +
-            "&monthly_property_tax=" + $("#monthly_property_tax").val() +
-            "&monthly_home_insurance=" + $("#monthly_home_insurance").val() +
-            "&monthly_pmi_insurance=" + $("#monthly_pmi_insurance").val() +
-            "&monthly_hoa_dues=" + $("#monthly_hoa_dues").val()
-      $.ajax({
-       type: "GET",
-       url: "/calculator",
-       data : all_data,
-       dataType: "script",
+      $("#mortgage_term").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        $('#mortgage_month').val(parseInt(selectedValue)*12 + " "+ "month")
       });
     });
 
-    // function FixHeader() {
-    //   window.onscroll = function() {myFunction()};
+    $(document).ready(function(){
+      // FixHeader()
 
-    //   var header = document.getElementById("myHeader");
-    //   var sticky = header.offsetTop;
+        var items = document.querySelectorAll("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues");
 
-    //   function myFunction() {
-    //     if (window.pageYOffset > sticky) {
-    //       header.classList.add("sticky");
-    //     } else {
-    //       header.classList.remove("sticky");
-    //     }
-    //   }
-    // }
+        for (var i = 0; i < items.length; i++)
+        {
+          $(items[i]).maskMoney().maskMoney('mask',Number(items[i].value));
+        }
+
+      $("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues").change(function() {
+        data = $("#calculator_form").serialize();
+        all_data = data +
+              "&monthly_property_tax=" + $("#monthly_property_tax").val() +
+              "&monthly_home_insurance=" + $("#monthly_home_insurance").val() +
+              "&monthly_pmi_insurance=" + $("#monthly_pmi_insurance").val() +
+              "&monthly_hoa_dues=" + $("#monthly_hoa_dues").val()
+        $.ajax({
+         type: "GET",
+         url: "/calculator",
+         data : all_data,
+         dataType: "script",
+        });
+      });
+
+      // function FixHeader() {
+      //   window.onscroll = function() {myFunction()};
+
+      //   var header = document.getElementById("myHeader");
+      //   var sticky = header.offsetTop;
+
+      //   function myFunction() {
+      //     if (window.pageYOffset > sticky) {
+      //       header.classList.add("sticky");
+      //     } else {
+      //       header.classList.remove("sticky");
+      //     }
+      //   }
+      // }
 
 
-  });
+    });
 </script>
 <style type="text/css">
   #pieChartInfoText{
@@ -870,5 +827,15 @@
   }
   #pieChartInfoText span.m-payment{
     font-size: 16px;
+  }
+  .percentage-label{
+    display: block;
+  }
+  .value-lable{
+    display: inline-block;
+
+  }
+  .labels-name{
+     display: inline-block;
   }
 </style>
