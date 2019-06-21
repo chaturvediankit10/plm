@@ -120,8 +120,7 @@
       </ul>
     
       <div class="tab-content rates-tab-content" style="position: relative;">
-        
-        <%= render partial: "partials/tabs", locals: { term_n: 30, result: @result }%>
+        <%= render partial: "partials/tabs", locals: { term_n: @arm_term.to_i, result: @result }%>
       </div>
     </div>
   </div>
@@ -275,10 +274,10 @@
       var tab_term = $(this).text().replace ( /[^\d.]/g, '' );
       if (tab_term=="51") {
         $(".arm-basic").show();
-        $("#term").val('');
         $(".term").hide();
         $('#loan_type').val("ARM");
-        $('#arm_basic').val('5/1');
+        $('#term').prop('checked', false);
+        $('#arm_basic').prop('checked', true);
         $('#arm_benchmark').val('');
         $('#arm_margin').val('');
         $('#arm_advanced').val('');
@@ -287,7 +286,7 @@
         $(".arm-basic").hide();
         $(".term").show();
         $('#loan_type').val("Fixed");
-        $('#arm_basic').val('');
+        $('#arm_basic').prop('checked', false);
         $('#arm_benchmark').val('');
         $('#arm_margin').val('');
         $('#arm_advanced').val('');
@@ -510,14 +509,14 @@
         }
       });
 
-      $('#arm_basic').click(function () {
+      $('.arm_basic_7, .arm_basic_5').click(function () {
         if ($(this).prop("checked"))
           $('#loan_type').val("ARM")
         else
           $('#loan_type').val('')
       });
 
-      $('#term').click(function () {
+      $('.term_30, .term_15, .term_10').click(function () {
         if ($(this).prop("checked"))
           $('#loan_type').val("Fixed")
         else

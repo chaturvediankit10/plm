@@ -21,31 +21,31 @@
             </label> -->
             <% term_30_flag = ((params[:term].present? && params[:term]!="30") || params[:arm_basic].present?) ? false : true %>
             <label class="radio-bx">
-              <%= check_box_tag :term, "30", term_30_flag , :class => "check" %>30 Year fixed
+              <%= check_box_tag :term, "30", term_30_flag , :class => "check term_30" %>30 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :term, "15",  params[:term]=="15" ? true : false , :class => "check" %>15 Year fixed
+              <%= check_box_tag :term, "15",  params[:term]=="15" ? true : false , :class => "check term_15" %>15 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :term, "10",  params[:term]=="10" ? true : false , :class => "check" %>10 Year fixed
+              <%= check_box_tag :term, "10",  params[:term]=="10" ? true : false , :class => "check term_10" %>10 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :arm_basic, "7/1",  params[:arm_basic]=="7/1" ? true : false , :class => "check" %>7/1 ARM
+              <%= check_box_tag :arm_basic, "7/1",  params[:arm_basic]=="7/1" ? true : false , :class => "check arm_basic_7" %>7/1 ARM
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :arm_basic, "5/1",  params[:arm_basic]=="5/1" ? true : false , :class => "check" %>5/1 ARM
+              <%= check_box_tag :arm_basic, "5/1",  params[:arm_basic]=="5/1" ? true : false , :class => "check arm_basic_5" %>5/1 ARM
                <span class="checkmark"></span>
             </label>
           </div>

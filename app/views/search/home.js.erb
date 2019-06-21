@@ -1,4 +1,4 @@
-$(".rates-tab-content").html("<%= escape_javascript(render partial: 'partials/tabs', locals: { term_n: params[:loan_type] == "ARM" ? 51 : @term, result: @result } ) %>");
+$(".rates-tab-content").html("<%= escape_javascript(render partial: 'partials/tabs', locals: { term_n: @arm_term, result: @result } ) %>");
 
 
 
