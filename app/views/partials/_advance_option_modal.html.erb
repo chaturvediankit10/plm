@@ -56,7 +56,7 @@
 
                               <td>Loan Amount</td>
                               <% loan_amount_value = (@home_price.to_i - @down_payment.to_i) rescue nil %>
-                              <td align="right"><b> <%= "$" + loan_amount_value.to_s if loan_amount_value.present? rescue nil %></b></td>
+                              <td align="right"><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
                             </tr>
                             <tr>
                               <td>Interest Rate</td>
@@ -104,7 +104,7 @@
                             </tr>
                             <tr>
                               <td>Loan Amount</td>
-                              <td><b> <%= "$" + loan_amount_value.to_s if loan_amount_value.present? rescue nil %></b></td>
+                              <td><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
                               <td align="right"><b>+0.10</b></td>
                             </tr>
                             <tr>
@@ -118,7 +118,7 @@
                               <td align="right"><b>+0.10</b></td>
                             </tr>
                             <tr>
-                              <td class="orange-clr">Ending Closing Cost</td>
+                              <td class="orange-clr"><b>Ending Closing Cost</b></td>
                               <td class="orange-clr" colspan="2" align="right"><b>$<%=program[:closing_cost].round(3)%> / <%=program[:adj_points].sum.round(3)%> Points</b></td>
                               
                             </tr>

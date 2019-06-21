@@ -6,7 +6,10 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-
+a {
+    color: #FF6032;
+    text-decoration: none;
+}
 p.small-heading {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -227,9 +230,12 @@ p.small-heading {
     text-decoration: navajowhite;
     font-weight: normal;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 0;
+    float: none;
 }
-
+#annual_interest_rate{
+  padding-left: 12px;
+}
 .calculator_weapper.content-main .main-para-hdng {
     font-weight: 500;
     float: left;
@@ -393,6 +399,7 @@ padding-left: 7px !important;
 
 .scroll-table {
   height: 600px;
+  overflow: hidden !important;
 }
 
 .padding-20 {

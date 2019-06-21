@@ -758,8 +758,18 @@ header .navbar-right {
   width: 14%;
   margin-right: 2%;
   position: relative;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
+.adv-search-main label {
+  float: left;
+  width: 100%;
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+}
 .search-cat label {
   float: left;
   width: 100%;
@@ -768,9 +778,7 @@ header .navbar-right {
   color: #fff;
   font-weight: bold;
 }
-
-.search-cat input[type="text"],
-.search-cat select {
+.search-cat input[type="text"]{
   float: left;
   width: 100%;
   border: 2px solid #fff;
@@ -785,7 +793,23 @@ header .navbar-right {
   appearance: none;
   position: relative;
 }
-
+.search-cat select {
+  float: left;
+  width: 100%;
+  border: 2px solid #fff;
+  background-color: transparent;
+  border-radius: 5px;
+  color: #333;
+  font-size: 15px;
+  padding: 12px 5px;
+  font-weight: 500;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  z-index: 99999;
+  cursor: pointer;
+}
 .search-cat.purpse-srch:before,
 .search-cat.cr-srch:before {
   content: "\f107";
@@ -801,6 +825,7 @@ header .navbar-right {
   right: 7px;
   z-index: 9;
 }
+
 
 @media all and (-ms-high-contrast:none)
      {
@@ -1655,7 +1680,7 @@ footer span {
 .banner.search-result-banner .search-cat input[type="text"],
 .banner.search-result-banner .search-cat select {
   border: 1px solid #fff;
-  background: #fff;
+  background: transparent;
   padding: 10px 5px;
 }
 
@@ -4792,11 +4817,17 @@ header.fixed-header.scrolled {
   .search-cat input[type="text"],
   .search-cat select {
     border: 2px solid #fff;
-    background: #fff;
+    background: transparent;
     padding: 10px 5px;
     font-size: 14px;
     width: 100%;
     font-weight: 600;
+  }
+.adv-search-main label {
+    margin: 15px 0 6px 0;
+    font-size: 14px;
+    color: #fff;
+    font-weight: normal;
   }
   .search-cat label {
     margin: 15px 0 6px 0;
@@ -6355,7 +6386,7 @@ header.fixed-header.scrolled {
   .search-cat input[type="text"],
   .search-cat select {
     border: 2px solid #fff;
-    background: #fff;
+    background: transparent;
     padding: 10px 5px;
     font-size: 14px;
     width: 100%;
@@ -6364,6 +6395,12 @@ header.fixed-header.scrolled {
   }
   select option {
     background: #fff;
+  }
+  .adv-search-main label {
+    margin: 15px 0 6px 0;
+    font-size: 14px;
+    color: #fff;
+    font-weight: normal;
   }
   .search-cat label {
     margin: 15px 0 6px 0;
