@@ -8,44 +8,44 @@
     </div> -->
     <!-- banner main search start-->
     <div class="search-main adv-search-mb home-main-search">
-      <div class="row">
-        <div class="col-md-2 col-xs-6">
+      <div class="row adv-search-main">
+        <div class="col-sm-2 col-xs-6">
+          <label>Zip Code</label>
           <div class="search-cat zip-srch">
-            <label>Zip Code</label>
             <input type="text" placeholder="123456" value= <%=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  <!-- calling function defined in Application helper-->
           </div>
         </div>
-        <div class="col-md-2 col-xs-6">
+        <div class="col-sm-2 col-xs-6">
+          <label>Purpose</label>
           <div class="search-cat purpse-srch">
-            <label>Purpose</label>
             <select>
               <option>Mortgage</option>
             </select>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-sm-2 col-xs-6">
+          <label>Home Price</label>
           <div class="search-cat price-srch">
-            <label>Home Price</label>
             <div class="dollar-icn">$</div>
             <input type="text" placeholder="123456">
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-sm-2 col-xs-6">
+          <label>Down Payment</label>
           <div class="search-cat price-srch">
-            <label>Down Payment</label>
             <div class="dollar-icn">$</div>
             <input type="text" placeholder="123456">
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-sm-2 col-xs-6">
+          <label>Credit Score</label>
           <div class="search-cat cr-srch">
-            <label>Credit Score</label>
             <select>
               <option>750+</option>
             </select>
           </div>
         </div>
-        <div class="col-md-2">  
+        <div class="col-sm-2 col-xs-6">  
           <button class="rates-btn hm-search-btn-nw">Get Rates</button>
         </div>
       </div>

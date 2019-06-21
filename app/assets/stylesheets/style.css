@@ -334,7 +334,18 @@ header .navbar-right {
   margin-right: 15px;
 }
 .closing-amount td {
-  color: #f76225 !important;
+  color: #fb6325 !important;
+}
+.adv-search-main .search-cat{
+  width: 100%;
+  margin-right: 0;
+}
+.adv-search-main .hm-search-btn-nw {
+  width: 100%;
+  box-shadow: none;
+  padding: 15px 0 !important;
+  margin-top: 27px !important;
+  font-size: 14px;
 }
 .view-details-popup .content-bx {
   margin-top: 5px;

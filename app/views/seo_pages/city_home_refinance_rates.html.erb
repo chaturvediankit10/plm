@@ -3,33 +3,47 @@
     <div class="container">
        <!-- banner main search start-->
        <div class="search-main adv-search-mb" id="seo-city-mort-desktop">
-          <div class="search-cat zip-srch">
-             <label>Zip Code</label>
-             <input type="text" placeholder="94305"value= <%=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : @city.zip : @city.zip%> >
+          <div class="row adv-search-main">
+            <div class="col-sm-2 col-xs-6">
+              <label>Zip Code</label>
+              <div class="search-cat zip-srch">
+                <input type="text" placeholder="94305" value= <%=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : @city.zip : @city.zip%> >
+              </div>
+            </div>  
+            <div class="col-sm-2 col-xs-6">
+               <label>Purpose</label>
+              <div class="search-cat purpse-srch">
+                <select>
+                  <option>Refinance</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+              <label>Home Price</label>
+              <div class="search-cat price-srch">
+                <div class="dollar-icn">$</div>
+                <input type="text" placeholder="123456">
+              </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+              <label>Down Payment</label>
+              <div class="search-cat price-srch">
+                <div class="dollar-icn">$</div>
+                <input type="text" placeholder="123456">
+              </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+              <label>Credit Score</label>
+              <div class="search-cat cr-srch">
+                <select>
+                  <option>750+</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">  
+              <button class="rates-btn hm-search-btn-nw">Get Rates</button>
+            </div>
           </div>
-          <div class="search-cat purpse-srch">
-             <label>Purpose</label>
-             <select>
-                <option>Purchase</option>
-             </select>
-          </div>
-          <div class="search-cat price-srch">
-             <label>Home Price</label>
-             <div class="dollar-icn">$</div>
-             <input type="text" placeholder="500,000">
-          </div>
-          <div class="search-cat price-srch">
-             <label>Down Payment</label>
-             <div class="dollar-icn">$</div>
-             <input type="text" placeholder="100,000">
-          </div>
-          <div class="search-cat cr-srch">
-             <label>Credit Score</label>
-             <select>
-                <option>750+</option>
-             </select>
-          </div>
-          <button class="rates-btn src-btn-inner">Get Rates</button>
        </div>
        <div class="search-main adv-search-mb" id="seo-city-mort-mb">
           <div class="section-lft-srch-drpdwn-icn" id="srch-edit-mb-only">
