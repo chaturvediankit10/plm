@@ -629,6 +629,14 @@
         //return false;
     });
 
+   $('#adv_loan_purpose').change(function () {
+      $('#loan_purpose').val($('#adv_loan_purpose').val())
+    });
+
+   $('#loan_purpose').change(function () {
+      $('#adv_loan_purpose').val($('#loan_purpose').val())
+    });
+
   });
 
 </script>

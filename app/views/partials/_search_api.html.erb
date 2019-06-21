@@ -4,7 +4,7 @@
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Loan Purpose</label>
-          <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil))%>
+          <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), {:id => 'adv_loan_purpose'}%>
                 <span class="error-loan-purpose">Please Select Refinance</span>
         </div>
         <div class="form-group slect-tag">
