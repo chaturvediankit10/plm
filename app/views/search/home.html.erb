@@ -114,8 +114,8 @@
     <div style="position: relative; clear: both;">
       <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
       <ul class="nav nav-tabs rates-tab">
-        <li class="<%= @term == "30" && @loan_type != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
-        <li class="<%= @term == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
+        <li class="<%= @term.to_s == "30" && @loan_type != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
+        <li class="<%= @term.to_s == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
         <li  class="<%= @loan_type == "ARM" ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
       </ul>
     
@@ -262,36 +262,40 @@
     var tab_val = $('.active .js-trigger').attr('data-tab');
     load_more(tab_val);
     $('.tab-btn').click(function (e) {
+
       tab_val = $(this).text().replace ( /[^\d.]/g, '' ); 
       load_more(tab_val);
     });
 
-    var tab_term =  $('.active .js-trigger').attr('data-tab');
+    tab_term =  $('.active .js-trigger').attr('data-tab');
     $('.js-trigger').click(function(){
       $(".loader").show();
       $("#"+tab_term+"years").removeClass("active");
       
-      var tab_term = $(this).text().replace ( /[^\d.]/g, '' );
+      tab_term = $(this).text().replace ( /[^\d.]/g, '' );
       if (tab_term=="51") {
-        $(".arm-basic").show();
-        $(".term").hide();
         $('#loan_type').val("ARM");
-        $('#term').prop('checked', false);
-        $('#arm_basic').prop('checked', true);
-        $('#arm_benchmark').val('');
-        $('#arm_margin').val('');
-        $('#arm_advanced').val('');
-        $('#arm_caps').val('');
+        $('.term_30').prop('checked', false);
+        $('.term_15').prop('checked', false);
+        $('.term_10').prop('checked', false);
+        $('.arm_basic_7').prop('checked', false);
+        $('.arm_basic_5').prop('checked', true);
+
       }else{
-        $(".arm-basic").hide();
-        $(".term").show();
         $('#loan_type').val("Fixed");
-        $('#arm_basic').prop('checked', false);
-        $('#arm_benchmark').val('');
-        $('#arm_margin').val('');
-        $('#arm_advanced').val('');
-        $('#arm_caps').val('');
-        $("#term").val(tab_term);
+        if (tab_term=="15") {
+          $('.term_30').prop('checked', false);
+          $('.term_10').prop('checked', false);
+          $('.arm_basic_7').prop('checked', false);
+          $('.arm_basic_5').prop('checked', false);
+          $('.term_15').prop('checked', true);
+        }else{
+          $('.term_10').prop('checked', false);
+          $('.arm_basic_7').prop('checked', false);
+          $('.arm_basic_5').prop('checked', false);
+          $('.term_15').prop('checked', false);
+          $('.term_30').prop('checked', true);
+        }
       }
 
       var data = $("#search_form").serialize();
