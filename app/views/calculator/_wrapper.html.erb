@@ -718,14 +718,26 @@
     $(function () {
         var chart = new Highcharts.Chart({
             title: {
+              x: 0,
               verticalAlign: 'middle',
+              y: 0,
               floating: true,
-              text: '' + monthly_expenses_sum + '' + '<br /> Monthly Payment',
+              text: '$' + monthly_expenses_sum + '' + '<br /> Monthly Payment',
               floating: false,
               align: 'center',
               style: {
                 fontFamily: 'dinotmedium',
               }
+            },
+            tooltip: {
+              formatter:function(){
+                var formatter2 = new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                  minimumFractionDigits: 0
+                })
+                return '<b>'+ this.point.name+ '</b><br></br>' +': <b>'+ (formatter2.format(this.point.y)) +'</b><br/>'
+              },
             },
             chart: {
               renderTo: 'container-a',
