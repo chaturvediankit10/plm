@@ -91,7 +91,7 @@
                           <tbody>
                             <tr>
                               <td>Starting Base Point</td>
-                              <td align="right" colspan="2"><b><%= number_to_currency(program[:base_rate],  :unit=> "", precision: 3) %></b></td>
+                              <td align="right" colspan="2"><b><%= program[:starting_base_point] %></b></td>
                             </tr>
                             <tr>
                               <td>Adjustment</td>
@@ -119,8 +119,7 @@
                             </tr>
                             <tr>
                               <td class="orange-clr"><b>Ending Closing Cost</b></td>
-                              <td class="orange-clr" colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 2)%> / <%=program[:adj_points].sum.round(3)%> Points</b></td>
-                              
+                              <td class="orange-clr" colspan="2" align="right"><b>$<%=program[:closing_cost].round(3)%> / <%=program[:air_point].round(3)%> Points</b></td>
                             </tr>
                           </tbody>
                         </table>
