@@ -450,7 +450,6 @@ DEPENDENCIES
   capybara (~> 2.13)
   chartkick
   ckeditor
-  coffee-rails (~> 4.2)
   devise
   figaro (~> 1.1, >= 1.1.1)
   finance_math
@@ -468,7 +467,6 @@ DEPENDENCIES
   pg (~> 0.21.0)
   puma (~> 3.7)
   rails (~> 5.1.4)
-  roo (~> 2.7.0)
   rufus-scheduler (~> 3.4, >= 3.4.2)
   sass-rails (~> 5.0)
   search_api!
