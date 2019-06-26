@@ -186,7 +186,7 @@
                       <div class="content-bx-content">
                         <div class="chart-box">
                           <!-- <img src="/assets/ec_piechart_status.png" width="450"> -->
-                          <div id="cmp_pie_chart-<%=program[:term].to_s+"years"+index.to_s%>"> Hello</div>
+                          <div id="cmp_pie_chart-<%=(program[:term].present? ? program[:term].to_s : index.to_s)+"years"+index.to_s%>"> Hello</div>
                         </div>
                       </div>
                     </div>
