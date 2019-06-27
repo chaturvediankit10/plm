@@ -55,9 +55,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_property_tax, @property_tax[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_property_tax, @monthly_exp_breakdown[:property_tax][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @property_tax[:percentage]%></span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:property_tax][:percentage]%></span>
             </div>
           </div>
 
@@ -66,9 +66,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_home_insurance, @home_insurance[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_home_insurance, @monthly_exp_breakdown[:home_insurance][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @home_insurance[:percentage]%>%</span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:home_insurance][:percentage]%>%</span>
             </div>
           </div>
 
@@ -77,9 +77,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_pmi_insurance, @pmi_insurance[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_pmi_insurance, @monthly_exp_breakdown[:pmi_insurance][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @pmi_insurance[:percentage]%>%</span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:pmi_insurance][:percentage]%>%</span>
             </div>
           </div>
 
@@ -88,9 +88,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_hoa_dues, @hoa_dues[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_hoa_dues, @monthly_exp_breakdown[:hoa_dues][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @hoa_dues[:percentage]%>%</span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:hoa_dues][:percentage]%>%</span>
             </div>
           </div>
            
@@ -355,7 +355,7 @@
                             <%= number_to_currency(@renter_insurance, unit: "")%>
                             </td>
                           <td width="25%">
-                            <%= number_to_currency((@property_tax[:total]*-1), unit: "")%>
+                            <%= number_to_currency((@monthly_exp_breakdown[:property_tax][:total]*-1), unit: "")%>
                           </td>
                           <td>Property Taxes</td>
                         </tr>
@@ -364,7 +364,7 @@
                           <td></td>
                           <td>
 
-                            <%= number_to_currency((@home_insurance[:total]*-1), unit: "")%>
+                            <%= number_to_currency((@monthly_exp_breakdown[:home_insurance][:total]*-1), unit: "")%>
                           </td>
                           <td>Home Insurance</td>
                         </tr>
@@ -372,7 +372,7 @@
                           <td></td>
                           <td></td>
                           <td>
-                            <%= number_to_currency((@pmi_insurance[:total]*-1), unit: "")%>
+                            <%= number_to_currency((@monthly_exp_breakdown[:pmi_insurance][:total]*-1), unit: "")%>
                           </td>
                           <td>PMI Insurance</td>
                         </tr>
@@ -380,7 +380,7 @@
                           <td></td>
                           <td></td>
                           <td>
-                            <%= number_to_currency(@hoa_dues[:monthly], unit: "")%>
+                            <%= number_to_currency(@monthly_exp_breakdown[:hoa_dues][:monthly], unit: "")%>
                           </td>
                           <td>HOA Dues</td>
                         </tr>
@@ -499,27 +499,22 @@
   $(document).ready(function(){
     ca_keys = <%= raw @ca_affordability.keys.reverse %>
     ca_values = <%= raw @ca_values %>
-
     nation_wide_keys = <%= raw @nation_wide_affordability.keys.reverse %>
     nation_wide_values = <%= raw @nation_wide_values %>
-
     area_chart_max = <%= raw @area_chart_max %>
-
-
     principle_values  = <%= raw @principle.values %>
     interest_values  = <%= raw @interest.values %>
     remaining_values  = <%= raw @remaining.values %>
     total_paid_values  = <%= raw @total_paid.values %>
     x_axis_max_value = <%= raw @principle.values.count %>
     
-    monthly_mortgage_interest = <%= raw @mortgage_interest[:monthly] %>
-    monthly_property_tax = <%= raw @property_tax[:monthly] %>
-    monthly_pmi_insurance = <%= raw @pmi_insurance[:monthly] %>
-    monthly_hoa_dues = <%= raw @hoa_dues[:monthly] %>
-    monthly_mortgage_principal = <%= raw @mortgage_principal[:monthly] %>
-    monthly_home_insurance = <%= raw @home_insurance[:monthly] %>
-    monthly_expenses_sum = <%= raw @monthly_expenses_sum[:monthly].round(2) %>
-
+    monthly_mortgage_principal = <%= raw @monthly_exp_breakdown[:mortgage_principal][:monthly] %>
+    monthly_mortgage_interest = <%= raw @monthly_exp_breakdown[:mortgage_interest][:monthly] %>
+    monthly_home_insurance = <%= raw @monthly_exp_breakdown[:home_insurance][:monthly] %>
+    monthly_pmi_insurance = <%= raw @monthly_exp_breakdown[:pmi_insurance][:monthly] %>
+    monthly_hoa_dues = <%= raw @monthly_exp_breakdown[:hoa_dues][:monthly] %>
+    monthly_expenses_sum = <%= raw @monthly_exp_breakdown[:monthly_expenses_sum][:monthly].round(2) %>
+    monthly_property_tax = <%= raw @monthly_exp_breakdown[:property_tax][:monthly] %>
 
 
     $('#payoff-schedule-graph').highcharts({
@@ -715,7 +710,6 @@
         }
     });
 
-
     var chart = new Highcharts.Chart({
         title: {
           x: 0,
@@ -775,9 +769,7 @@
           ],
         }, ],
     });
-
-
-});
+  });
 
     $(document).ready(function(){
 
@@ -874,7 +866,6 @@
       //     }
       //   }
       // }
-
 
     });
 </script>

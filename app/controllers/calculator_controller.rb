@@ -13,9 +13,7 @@ class CalculatorController < ApplicationController
     monthly_interest_rate
     calculate_discount_factor
     calculate_monthly_payment
-    calculate_monthly_property_tax
-    calculate_pmi_term
-    monthly_expenses_breakdown
+    @monthly_exp_breakdown = SearchApi::Calculation.new.monthly_expenses_breakdown(calculate_loan_payment,number_of_payments,calculate_monthly_payment, @home_price, @default_annual_home_insurance, @default_pmi_insurance, @default_property_tax_perc, @down_payment, params)
     monthly_payoff_schedule
     monthly_payoff_schedule_graph
     investment_return_from_ownership
@@ -53,12 +51,11 @@ class CalculatorController < ApplicationController
     @initial_costs[:buy] = @down_payment*-1 + (@home_price*0.02467)*-1
 
     @recuring_costs[:rent] = (@home_price/@price_to_rent_ratio*@mortgage_term*(1+0.025)**@mortgage_term+@home_price/@price_to_rent_ratio*@mortgage_term*0.0132)*-1
-
     @recuring_costs[:buy] =
-    ((@mortgage_principal[:total] + @mortgage_interest[:total])*-1) + (@property_tax[:total]*-1) + (@home_insurance[:total]*-1) + (@pmi_insurance[:total]*-1) + ((((1+0.054/12)**number_of_payments-1)*@down_payment)*-1)
+    ((@monthly_exp_breakdown[:mortgage_principal][:total] + @monthly_exp_breakdown[:mortgage_interest][:total])*-1) + (@monthly_exp_breakdown[:property_tax][:total]*-1) + (@monthly_exp_breakdown[:home_insurance][:total]*-1) + (@monthly_exp_breakdown[:pmi_insurance][:total]*-1) + ((((1+0.054/12)**number_of_payments-1)*@down_payment)*-1)
 
     @total_monthly_rents = (@home_price/@price_to_rent_ratio*@mortgage_term*(1+0.025)**@mortgage_term)
-    @mortgage_payments = (@mortgage_principal[:total] + @mortgage_interest[:total])*-1
+    @mortgage_payments = (@monthly_exp_breakdown[:mortgage_principal][:total] + @monthly_exp_breakdown[:mortgage_interest][:total])*-1
     @renter_insurance = (@home_price/@price_to_rent_ratio*@mortgage_term*0.0132)*-1
     @returns_for_investment = ((((1+0.054/12)**number_of_payments-1)*@down_payment)*-1)
 
@@ -223,80 +220,6 @@ class CalculatorController < ApplicationController
     @interest = @payoff_schedule_graph[1][:data]
     @remaining = @payoff_schedule_graph[2][:data]
     @total_paid = @payoff_schedule_graph[3][:data]
-  end
-
-  def monthly_expenses_breakdown
-    @mortgage_principal = {}
-    @mortgage_interest  = {}
-    @home_insurance = {}
-    @pmi_insurance = {}
-    @hoa_dues = {}
-    @monthly_expenses_sum = {}
-
-    @mortgage_principal[:monthly] = (calculate_loan_payment/number_of_payments) rescue 0.0
-    @mortgage_principal[:total] = calculate_loan_payment
-
-    @mortgage_interest[:monthly] = (calculate_monthly_payment-@mortgage_principal[:monthly]) rescue 0.0
-    @mortgage_interest[:total] =  (calculate_monthly_payment*number_of_payments-@mortgage_principal[:total]) rescue 0.0
-
-    if params["monthly_home_insurance"].present?
-      @home_insurance[:monthly] = params["monthly_home_insurance"].delete(',').to_f
-    else
-      @home_insurance[:monthly] = (@home_price*0.35).round(2) rescue 0.0
-    end
-
-    @home_insurance[:total] = ((@default_annual_home_insurance*1.0*number_of_payments)/12) rescue 0.0
-
-    if params["monthly_pmi_insurance"].present?
-      @pmi_insurance[:monthly] = params["monthly_pmi_insurance"].delete(',').to_f
-      @default_pmi_insurance = params["monthly_pmi_insurance"].delete(',').to_f
-    else
-      @pmi_insurance[:monthly] = @default_pmi_insurance rescue 0.0
-    end
-    @pmi_insurance[:total] =  @pmi_insurance[:monthly].to_i == 0 ? 0.0 :  @pmi_insurance[:monthly]*calculate_pmi_term rescue 0.0
-
-    if params["monthly_hoa_dues"].present?
-      @hoa_dues[:monthly] = params["monthly_hoa_dues"].delete(',').to_f
-    else
-      @hoa_dues[:monthly] = 0.00
-    end
-
-    @hoa_dues[:total] = (@hoa_dues[:monthly]*number_of_payments) rescue 0.0
-
-    @monthly_expenses_sum[:monthly] =  ((@mortgage_principal[:monthly] + @mortgage_interest[:monthly] + @property_tax[:monthly] + @home_insurance[:monthly] + @pmi_insurance[:monthly] + @hoa_dues[:monthly]))  rescue 0.0
-
-    @monthly_expenses_sum[:total] = ((@mortgage_principal[:total] + @mortgage_interest[:total] + @property_tax[:total] + @home_insurance[:total] + @pmi_insurance[:total])) rescue 0.0
-
-    @mortgage_principal[:percentage] = ((@mortgage_principal[:monthly]*100 / @monthly_expenses_sum[:monthly])).round(2) rescue 0.0
-
-    @mortgage_interest[:percentage] =  ((@mortgage_interest[:monthly]*100 / @monthly_expenses_sum[:monthly])).round(2) rescue 0.0
-
-    @property_tax[:percentage] = ((@property_tax[:monthly]*100 / @monthly_expenses_sum[:monthly])).round(2) rescue 0.0
-
-    @home_insurance[:percentage] = ((@home_insurance[:monthly]*100 / @monthly_expenses_sum[:monthly])).round(2) rescue 0.0
-
-    @pmi_insurance[:percentage] =  ((@pmi_insurance[:monthly]*100 / @monthly_expenses_sum[:monthly])).round(2) rescue 0.0
-
-    @hoa_dues[:percentage] =  ((@hoa_dues[:monthly]*100 / @monthly_expenses_sum[:monthly])).round(2) rescue 0.0
-
-    @monthly_expenses_sum[:percentage] = (@mortgage_principal[:percentage] + @mortgage_interest[:percentage] + @property_tax[:percentage] + @home_insurance[:percentage] + @pmi_insurance[:percentage] + @hoa_dues[:percentage]).round() rescue 100
-  end
-
-  def calculate_pmi_term
-    (((@home_price*0.22- @down_payment)/((@home_price-@down_payment)/number_of_payments)).ceil) rescue 0
-  end
-
-  def calculate_monthly_property_tax
-    @property_tax = {}
-
-    if params["monthly_property_tax"].present?
-        @property_tax[:monthly] = params["monthly_property_tax"].delete(',').to_f rescue 0.0
-        @property_tax[:total] = (@property_tax[:monthly]*number_of_payments) rescue 0.0
-    else
-      @property_tax[:monthly] = (@home_price * @default_property_tax_perc*1.0 /100/12) rescue 0.0
-      @property_tax[:total] = (@property_tax[:monthly]*number_of_payments) rescue 0.0
-    end
-    return @property_tax[:monthly]
   end
 
   def calculate_discount_factor
