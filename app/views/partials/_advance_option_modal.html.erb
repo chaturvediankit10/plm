@@ -68,7 +68,7 @@
                             </tr>
                             <tr>
                               <td>Monthly Payment</td>
-                              <td align="right"><b>$<%=program[:monthly_payment].round(0) if program[:monthly_payment].present?%></b></td>
+                              <td align="right"><b><%=number_to_currency(program[:monthly_payment],  :unit=> "$", precision: 0) if program[:monthly_payment].present?%></b></td>
                             </tr>
                             <!-- <tr>
                               <td><%#= pro_term%> <%#= pro_term.present? ? "Year Fixed" : ""%></td>
@@ -91,7 +91,7 @@
                           <tbody>
                             <tr>
                               <td>Starting Base Point</td>
-                              <td align="right" colspan="2"><b><%= program[:base_rate] %></b></td>
+                              <td align="right" colspan="2"><b><%= number_to_currency(program[:base_rate],  :unit=> "", precision: 3) %></b></td>
                             </tr>
                             <tr>
                               <td>Adjustment</td>
@@ -119,7 +119,7 @@
                             </tr>
                             <tr>
                               <td class="orange-clr"><b>Ending Closing Cost</b></td>
-                              <td class="orange-clr" colspan="2" align="right"><b>$<%=program[:closing_cost].round(3)%> / <%=program[:adj_points].sum.round(3)%> Points</b></td>
+                              <td class="orange-clr" colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 2)%> / <%=program[:adj_points].sum.round(3)%> Points</b></td>
                               
                             </tr>
                           </tbody>
@@ -173,7 +173,7 @@
                             </tr>
                             <tr>
                               <td>Loan Amount</td>
-                              <td align="right"><b> <%= "$" + loan_amount_value.to_s if loan_amount_value.present? rescue nil %></b></td>
+                              <td align="right"><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
                             </tr>
                           </tbody>
                         </table>
@@ -282,8 +282,8 @@
                                 <td align="right"><b><%= program[:fha] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
-                                <td>Home Price</td>
-                                <td><b> <%= @home_price.present? ? "$"+@home_price.to_s : "" %></b></td>
+                                <td nowrap="nowrap">Home Price</td>
+                                <td align="right"><b> <%= number_to_currency(@home_price.present? ? @home_price : 0,  :unit=> "$", precision: 0) %></b></td> 
                               </tr>
                             </tbody>
                           </table>
@@ -301,7 +301,7 @@
                               </tr>
                               <tr>
                                 <td>Down Payment</td>
-                                <td align="right"><b><%= @down_payment %></b></td>
+                                <td align="right"><b><%= number_to_currency(@down_payment,  :unit=> "$", precision: 0) %></b></td>
                               </tr>
                               <tr>
                                 <td nowrap="nowrap">USDA</td>
@@ -313,7 +313,7 @@
                               </tr>
                               <tr>
                                 <td>Loan Amount</td>
-                                <td align="right"><b> <%= "$" + loan_amount_value.to_s if loan_amount_value.present? rescue nil%></b></td>
+                                <td align="right"><b> <%= number_to_currency(loan_amount_value, :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil%></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Term</td>
@@ -325,7 +325,7 @@
                               </tr>
                               <tr>
                                 <td>Monthly Income</td>
-                                <td align="right"><b>$5000</b></td>
+                                <td align="right"><b>$5,000</b></td>
                               </tr>
                               <tr>
                                 <td>Arm Basic</td>
