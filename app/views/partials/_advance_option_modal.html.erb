@@ -76,7 +76,7 @@
                             </tr> -->
                             <tr class="closing-amount">
                               <td><b>Closing Costs</b></td>
-                              <td align="right"><b>$<%=program[:closing_cost].round(0)%></b></td>
+                              <td align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%></b></td>
                             </tr>
                             
                           </tbody>
@@ -169,7 +169,7 @@
                             </tr>
                             <tr>
                               <td>Closing Costs</td>
-                              <td align="right"><b>$<%=program[:closing_cost]%></b></td>
+                              <td align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%></b></td>
                             </tr>
                             <tr>
                               <td>Loan Amount</td>
