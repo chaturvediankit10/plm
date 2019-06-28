@@ -299,6 +299,7 @@
       }
 
       var data = $("#search_form").serialize();
+      data = data+'&commit=commit'
       $.ajax({
         url: '/',
         type: "GET",
@@ -543,12 +544,15 @@
         if ($(this).prop("checked")){
           fha_checked = $('#fha').prop("checked")
           loan_purpose_value = $('#loan_purpose').val();
-          $("#loan_purpose").val('Refinance')
+          $("#loan_purpose").val('Refinance');
+          $("#adv_loan_purpose").val('Refinance');
           $('#fha').prop('checked', true);
           $('#loan_purpose-error').hide();
         } else {
           $('#fha').prop('checked', fha_checked);
           $("#loan_purpose").val(loan_purpose_value)
+          $("#adv_loan_purpose").val(loan_purpose_value)
+
           $('.error-loan-purpose').hide();
         }
       });
