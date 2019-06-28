@@ -4475,6 +4475,7 @@ label.error {
   padding: 15px;
   margin-bottom: 25px;
   background-color: #fff;
+  min-height: 210px;
 }
 
 .rates-tab {
