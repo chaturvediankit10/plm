@@ -10,7 +10,7 @@
           <!-- <img src="//assets/CMG financial.png" alt=""> -->
             <img src="<%= "/assets/"+program[:bank_name] %>.png" >
             <p class="orange-link"><%= program[:bank_name] %></p>
-            <p>NMLS ID 1067</p>
+            <p>NMLS ID <%= Program::NMLS[program[:bank_name]] %></p>
           </div>
           <div class="inner-block">
             <% 
