@@ -4083,7 +4083,35 @@ p.today-rate-link a {
 
 
 /* loan detail overlay css end*/
-
+.btn-load-bg {
+    background-color: #fff;
+    clear: both;
+    padding: 15px 15px 35px;
+    text-align: center;
+  }
+  .btn-load-more {
+    font-size: 15px;
+    font-weight: normal;
+    color: #fff;
+    border-radius: 5px;
+    padding: 12px 40px;
+    background: #fb6324;
+  }
+  .btn-load-more:hover, .btn-load-more:focus {
+    color: #fff;
+  }
+  .loader {
+    position: absolute;
+    font-size: 90px;
+    width: 100%;
+    background-color: transparent;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    color: #2e75bc;
+    text-align: center;
+    margin-top: -40px;
+  }
 .loader-main {
   float: left;
   width: 100%;
