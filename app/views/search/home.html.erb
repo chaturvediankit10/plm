@@ -65,7 +65,7 @@
                 <%= render 'partials/search_api'%>
                 <div class="row">
                   <div class="col-md-12 text-center reset">
-                    <button id="reset_all_btn" class="btn btn-danger" >Reset All</button>
+                    <button type="button" id="reset_all_btn" class="btn btn-danger" >Reset All</button>
 
                     <%#= render 'partials/search_api'%>
                     
@@ -274,6 +274,9 @@
       
       tab_term = $(this).text().replace ( /[^\d.]/g, '' );
       if (tab_term=="51") {
+        $(".arm-basic").show();
+        $("#term").val('');
+        $(".term").hide();
         $('#loan_type').val("ARM");
         $('.term_30').prop('checked', false);
         $('.term_15').prop('checked', false);
@@ -598,20 +601,27 @@
       });
 
       $('#reset_all_btn').click(function(event){
-        if ($('#loan_type').val()=="ARM"){
-          $(".term").hide()
-          $(".arm-basic").show()
-          setArmDefaultValues();
-         }else{
-            $(".arm-basic").hide();
-            $(".term").show();
-          }
-        $('input:checkbox').removeAttr('checked');
+        $('input:checkbox').prop('checked', false);
+        $('input[type="radio"]').prop('checked', false);
+        $('#state').val('All');
+        $('#loan_purpose').val('Purchase');
+        $('#adv_loan_purpose').val('Purchase');
+        $('#home_price').val('300000');
+        $('#down_payment').val('50000');
+        $('#credit_score').val('700-719');
+        $('.term_30').prop('checked', true);
+        $('#point_0').prop('checked', true);
+        $('#lock_period').val('30');
       });
 
       $('.check').on('change', function() {
         $('.check').not(this).prop('checked', false); 
       });
+
+      $('.refinance_checkbox').on('change', function() {
+        $('.refinance_checkbox').not(this).prop('checked', false); 
+      });
+
 
     function load_more(tab_val){
       var size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
