@@ -119,7 +119,7 @@
                             </tr>
                             <tr>
                               <td class="orange-clr"><b>Ending Closing Cost</b></td>
-                              <td class="orange-clr" colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 2)%> / <%=program[:air_point].round(3)%> Points</b></td>
+                              <td class="orange-clr" colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 2)%> / <%= number_to_currency(program[:air_point],  :unit=> "", precision: 2) %> Points</b></td>
                             </tr>
                           </tbody>
                         </table>
