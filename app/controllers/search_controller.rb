@@ -1,7 +1,7 @@
 class SearchController < SearchApi::DashboardController
   
   def home
-    list_of_banks_and_programs_with_search_results
+    api_search
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
     else
