@@ -88,4 +88,3 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'jquery-rails'
 gem "search_api", git: "https://github.com/PureLoan/APIRead.git"
-gem 'finance_math'

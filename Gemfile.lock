@@ -156,7 +156,6 @@ GEM
     ffi (1.11.1)
     figaro (1.1.1)
       thor (~> 0.14)
-    finance_math (1.0.5)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -451,7 +450,6 @@ DEPENDENCIES
   ckeditor
   devise
   figaro (~> 1.1, >= 1.1.1)
-  finance_math
   geocoder (~> 1.4, >= 1.4.9)
   highcharts-rails
   jbuilder (~> 2.5)
