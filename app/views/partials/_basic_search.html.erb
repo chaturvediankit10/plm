@@ -1,0 +1,104 @@
+<section class="banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="banner-headings">
+      <h3>Compare customized mortgage rates instantly</h3>
+      <p>Average savings of $26,169 vs standard rates</p>
+    </div>  
+    <!-- banner main search start-->
+    <div class="search-main adv-search-mb home-main-search">
+      <%= form_tag('/', method: :get, id: :search_form) do %>
+        <div class="row adv-search-main">
+          <%= hidden_field_tag 'source', 0 %>
+          <div class="col-sm-2 col-xs-6">
+            <label>State</label>
+            <div class="search-cat zip-srch purpse-srch">
+               <!-- <input type="text" placeholder="123456" value= <%#=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  calling function defined in Application helper -->
+              <%= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)) %>
+            </div>
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <label>Loan Purpose</label>
+            <div class="search-cat purpse-srch">
+              <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil))%>
+                <span class="error-loan-purpose">Please Select Refinance</span>
+            </div>
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <label>Home Price</label>
+            <div class="search-cat price-srch">
+              <div class="dollar-icn">$</div>
+              <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0) %>
+            </div>
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <label>Down Payment</label>
+            <div class="search-cat price-srch">
+              <div class="dollar-icn">$</div>
+              <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0) %>
+            </div>
+          </div>
+          <div class="col-sm-2 col-xs-6">
+            <label>Credit Score</label>
+            <div class="search-cat cr-srch">
+                <%= select_tag 'credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")) %>
+            </div>
+          </div>
+          <!-- <button class="rates-btn hm-src-btn-main">Get Rates</button> -->
+          <div class="col-sm-2 col-xs-6">
+            <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
+            <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw" %>
+
+          </div>
+        </div>
+        <div class="search-adv-option-box">
+          <a href="javascript:void(0);" id="adv-option" class="desktop-btn">Advanced Options
+            <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
+          </a>
+          <a href="" data-toggle="modal" data-target="#advance-srch-mb"  class="mb-btn">Advanced Options
+            <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
+          </a>
+          <div id="ad-search">
+            <div class="search-adv-option" id="search-adv-option-inner">
+              <div class="row">
+                <%= render 'partials/search_api'%>
+                <div class="row">
+                  <div class="col-md-12 text-center reset">
+                    <button type="button" id="reset_all_btn" class="btn btn-danger" >Reset All</button>
+
+                    <%#= render 'partials/search_api'%>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%end%>
+      <!-- api-search-div start-->
+      <!-- <div class="api-search-div">
+        <%#= render 'partials/search_api'%>
+      </div> -->
+      <!-- api-search-div end-->
+      <%#= render 'partials/search_api'%>
+    </div>
+    <!-- banner main search end-->
+  </div>
+</section>
+<div class="modal fade" id="advance-srch-mb" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content adv-search-mdl-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Advanced Options</h4>
+        <a href="">Reset</a>
+      </div>
+      <div class="modal-body">
+        <%= render 'partials/search_api'%>
+      </div>
+      <div class="modal-footer adv-search-mdl-footer">
+         <button class="rates-btn">Get Rates</button>
+      </div>
+    </div>
+  </div>
+</div>

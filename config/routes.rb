@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   root 'search#home'
   get '/fetch_programs', to: 'search#fetch_programs', as: :fetch_programs
   get 'pages/index'
+  # get 'pages/favorite_program'
 
   get '/refinance+rates', to: 'pages#refinance', as: 'refinance'
   get '/mortgage+rates', to: 'pages#mortgage', as: 'mortgage'
