@@ -15,7 +15,7 @@
             <div class="search-cat zip-srch">
                <!-- <input type="text" placeholder="123456" value= <%#=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  calling function defined in Application helper -->
               <%#= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)) %>
-              <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : '88901') %>
+              <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : '') %>
               <%= hidden_field_tag 'state', (params[:state].present? ? params[:state] : 'All') %>
             </div>
           </div>

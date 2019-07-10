@@ -66,8 +66,13 @@ $(document).ready(function () {
             dataType: 'json',
             data: {longitude: address.coords.longitude, latitude: address.coords.latitude, geo_coder: true },
             success: function(response){
-              $('#zip').val(response.zip_code);
-              $('#state').val(response.state);
+              if (response.zip_code!=undefined && response.zip_code!='') {
+                $('#zip').val(response.zip_code);
+                $('#state').val(response.state);
+              }else{
+                $('#zip').val('88901');
+                $('#state').val('NV');
+              }
             }
           });
         });
