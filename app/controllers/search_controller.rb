@@ -22,7 +22,7 @@ class SearchController < SearchApi::DashboardController
   def set_state_by_zip_code
     zip_code = ''
     if params[:geo_coder].present?
-      results = Geocoder.search([params[:latitude].to_f, params[:longitude].to_f])
+      results = Geocoder.search(request.ip)
       zip_code = results.first.postal_code if results.first.present?
     else
       zip_code = params[:zip].to_i if params[:zip].present?
