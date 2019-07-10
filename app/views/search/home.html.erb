@@ -12,10 +12,12 @@
         <div class="row adv-search-main">
           <%= hidden_field_tag 'source', 0 %>
           <div class="col-sm-2 col-xs-6">
-            <label>State</label>
-            <div class="search-cat zip-srch purpse-srch">
+            <label>Zip Code</label>
+            <div class="search-cat zip-srch">
                <!-- <input type="text" placeholder="123456" value= <%#=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  calling function defined in Application helper -->
-              <%= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)) %>
+              <%#= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)) %>
+              <%= text_field_tag 'zip', '88901' %>
+              <%= hidden_field_tag 'state', 'NV' %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
@@ -317,7 +319,38 @@
     $('.menu-up-adv-search').click(function(){
       $("#search-adv-option-inner").hide("fast").removeClass("display-adv-search");
     });
-  
+
+
+
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(address) {
+        $.ajax({
+          url: '/set_state_by_zip_code',
+          type: 'GET',
+          dataType: 'json',
+          data: {longitude: address.coords.longitude, latitude: address.coords.latitude, geo_coder: true },
+          success: function(response){
+            $('#state').val(response.state);
+            $('#zip').val(response.zip_code);
+          }
+        });
+      });
+    }
+
+    $('#zip').change(function(){
+      if ($(this).val().length>3) {
+        $.ajax({
+          url: '/set_state_by_zip_code',
+          type: 'GET',
+          dataType: 'json',
+          data: {zip: $(this).val()},
+          success: function(response){
+            $('#state').val(response.state);
+          }
+        })
+      }
+    });
+
       $('.state').change(function(){
           id_passed = $(".state option:selected").val();
           $.ajax({
@@ -570,23 +603,7 @@
         $('.error-loan-purpose').hide()
         $('#loan_purpose').val($('#adv_loan_purpose').val())
       });
-
-      $('#state').change(function () {
-        $('#adv_state').val($('#state').val())
-      });
-
-      $('#adv_state').change(function () {
-        $('#state').val($('#adv_state').val())
-      });
-
-      $('#credit_score').change(function () {
-        $('#adv_credit_score').val($('#credit_score').val())
-      });
-
-      $('#adv_credit_score').change(function () {
-        $('#credit_score').val($('#adv_credit_score').val())
-      });
-
+ 
       //when select fannie_mae_product fannie_mae will be true
       $('#fannie_mae_product').click(function () {
         if ($(this).prop("checked")){
@@ -607,7 +624,6 @@
       $('#reset_all_btn').click(function(event){
         $('input:checkbox').prop('checked', false);
         $('input[type="radio"]').prop('checked', false);
-        $('#state').val('All');
         $('#loan_purpose').val('Purchase');
         $('#adv_loan_purpose').val('Purchase');
         $('#home_price').val('300000');
