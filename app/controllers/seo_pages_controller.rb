@@ -1,4 +1,4 @@
-class SeoPagesController < ApplicationController
+class SeoPagesController < SearchController
 =begin
 Developer:      Varun
 Created:        21-05-2018
@@ -6,11 +6,13 @@ Purpose:        display and define logic for all the seo pages
 =end  
   include ApplicationHelper
   include SeoPagesHelper
+
   #apply dry concept for common code
   before_action :city_home, only: [:city_home_mortgage_rates, :city_home_refinance_rates]
   before_action :bank_home, only: [:bank_mortgage_loans, :bank_personal_loans, :bank_auto_loans]
 
   def city_home_mortgage_rates
+    home
     @news_articles = news_article_data(' mortgage')
     # for report section fetching all cities record similer to current city 
     cached_data = FreddieMacCache.find_by('zip_prefix like ? and loan_type = ?', "#{@city.zip.to_s.first(3)+ '%'}", 'P')
@@ -24,6 +26,7 @@ Purpose:        display and define logic for all the seo pages
   end 
 
   def city_home_refinance_rates
+    home
     @news_articles = news_article_data(' refinance')
     # for report section fetching all cities record similer to current city
     # for loan type N & C

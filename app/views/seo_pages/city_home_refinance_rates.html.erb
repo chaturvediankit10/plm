@@ -1,144 +1,435 @@
 <!-- banner search start-->
- <section class="banner search-result-banner mortgage-banner" data-spy = "affix" data-offset-top = "60" data-offset-bottom = "200">
+ <%= render partial: "partials/basic_search" %>
+ <!-- banner end-->
+     <!-- result feed start-->
+ <section class="content-main seo-cities-mortgage seo-cities pt-zero">
     <div class="container">
-       <!-- banner main search start-->
-       <div class="search-main adv-search-mb" id="seo-city-mort-desktop">
-          <div class="row adv-search-main">
-            <div class="col-sm-2 col-xs-6">
-              <label>Zip Code</label>
-              <div class="search-cat zip-srch">
-                <input type="text" placeholder="94305" value= <%=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : @city.zip : @city.zip%> >
-              </div>
-            </div>  
-            <div class="col-sm-2 col-xs-6">
-               <label>Purpose</label>
-              <div class="search-cat purpse-srch">
-                <select>
-                  <option>Refinance</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-2 col-xs-6">
-              <label>Home Price</label>
-              <div class="search-cat price-srch">
-                <div class="dollar-icn">$</div>
-                <input type="text" placeholder="123456">
-              </div>
-            </div>
-            <div class="col-sm-2 col-xs-6">
-              <label>Down Payment</label>
-              <div class="search-cat price-srch">
-                <div class="dollar-icn">$</div>
-                <input type="text" placeholder="123456">
-              </div>
-            </div>
-            <div class="col-sm-2 col-xs-6">
-              <label>Credit Score</label>
-              <div class="search-cat cr-srch">
-                <select>
-                  <option>750+</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-2 col-xs-6">  
-              <button class="rates-btn hm-search-btn-nw">Get Rates</button>
-            </div>
-          </div>
-       </div>
-       <div class="search-main adv-search-mb" id="seo-city-mort-mb">
-          <div class="section-lft-srch-drpdwn-icn" id="srch-edit-mb-only">
-             <i class="fa fa-pencil"></i>
-          </div>
-          <div class="section-lft-srch-price-alert">
-             <a data-toggle="modal" data-target="#create-price-alert" href=""><img src="/images/mobile/mail4_03.png" alt=""></br>
-             Price Alert
-             </a>
-          </div>
-          <div class="section-lft-srch-drpdwn-icn">
-             <!-- <i class="fa fa-angle-double-down"></i> -->
-             <a href="" data-toggle="modal" data-target="#advance-srch-mb" class="mb-btn">
-              <i class="fa fa-pencil"></i>
-             </a>
-
-          </div>
-          <div class="section-lft-srch">
-             <p>$500,00 Home Purchase <span>in <%=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : @city.zip : @city.zip%></span></p>
-             <p>$100,00 Down <span>750 +</span></p>
-          </div>
-       </div>
-       <!-- banner main search end-->
-    </div>
-    <!-- advance search start-->
-    <div class="srch-results-adv-srch inner-mb-changes">
-       <div class="container">
-          <div class="search-adv-option-box">
-             <a href="javascript:void(0);" id="adv-option" class="desktop-btn"><i class="fa fa-angle-double-down"></i> Advanced Options</a>
-             <a href="" data-toggle="modal" data-target="#advance-srch-mb" class="mb-btn"><i class="fa fa-angle-double-down"></i> Advanced Options</a>
-             <a data-toggle="modal" data-target="#login-popup" href="" class="price-alert-btn"><i class="fa fa-envelope"></i> Create Price Alert</a>
-             <div class="search-adv-option" id="search-adv-option-inner">
-                <div class="row">
-                   <h4>desired loan programs?</h4>
-                   <div class="col-xs-12 col-md-2 advance-check">
-                      <div class="form-group"><input type="checkbox" value=""> 30 Year Fixed</div>
-                      <div class="form-group"><input type="checkbox" value=""> 20 Year Fixed</div>
-                      <div class="form-group"><input type="checkbox" value=""> 15 Year Fixed</div>
-                      <div class="form-group"><input type="checkbox" value=""> 10 Year Fixed</div>
-                      <div class="form-group"><input type="checkbox" value=""> 7/1 Arm</div>
-                      <div class="form-group"><input type="checkbox" value=""> 5/1 Arm</div>
-                      <div class="form-group"><input type="checkbox" value=""> 3/1 Arm</div>
-                   </div>
-                   <div class="col-xs-12 col-md-3 drpdown-box">
-                      <select>
-                         <option>Select Occupancy</option>
-                      </select>
-                      <select>
-                         <option>Select Occupancy</option>
-                      </select>
-                      <select>
-                         <option>Select Occupancy</option>
-                      </select>
-                      <select>
-                         <option>Select Occupancy</option>
-                      </select>
-                   </div>
-                   <div class="col-xs-12 col-md-4 drpdown-box">
-                      <select>
-                         <option>Select Prepay Penalty</option>
-                      </select>
-                      <label>Cash Reserves (mos)</label>
-                      <select>
-                         <option>$ 15</option>
-                      </select>
-                      <label>Monthly Debt</label>
-                      <select>
-                         <option>$ 0</option>
-                      </select>
-                      <label>Monthly Income</label>
-                      <select>
-                         <option>$ 5,000</option>
-                      </select>
-                   </div>
-                   <div class="col-xs-12 col-md-3 advance-check">
-                      <p>Owned Properties <span>01</span></p>
-                      <div class="form-group"><input type="checkbox" value=""> Interest Only</div>
-                      <div class="form-group"><input type="checkbox" value=""> Hazard Insuarance Waived</div>
-                      <div class="form-group"><input type="checkbox" value=""> Property Taxes Waived</div>
-                      <div class="form-group"><input type="checkbox" value=""> First Time Home Buyer</div>
-                      <div class="form-group"><input type="checkbox" value=""> Non Perm Resident Alien</div>
-                      <div class="form-group"><input type="checkbox" value=""> Foreign National</div>
-                      <div class="form-group"><input type="checkbox" value=""> Miltary</div>
-                      <div class="form-group"><input type="checkbox" value=""> Rular</div>
-                   </div>
-                   <div class="col-xs-12 col-md-3 menu-up-adv-search"><a href=""><img src="/images/menu-up-white.png" alt=""/></a></div>
+       <div class="row">
+          <div class="col-xs-12 col-md-12">
+             <div class="loan-detail-blocks sectn-wo-bg inner-bx">
+                <h3><%=@city.city%>, <%=state_full_name(@state)%> Refinance Rates</h3>
+                <div class="loan-detail-blocks-cntnt-inner inner-bx">
+                   <p>Here are the most competitive home refinance rates for <%=@city.city%>, <%=state_full_name(@state, true)%> based on around 200 competing banks and lending institutions that offer home refinancing in the cities around  <%=@city.city%>, <%=state_full_name(@state)%>.
+                   </p>
+                   <p class="mb-hide-para">Refinancing options include cash-out refi, positive equity refinancing, and short home refinancing for <%=@city.city%>, <%=state_full_name(@state)%>.</p>
+                   <!-- <span href="" id="para-see-more-link">See More</span>
+                   <span href="" id="para-see-less-link">See Less</span> -->
                 </div>
              </div>
           </div>
        </div>
+       <div class="row">
+          <div class="col-xs-12 col-md-12">
+              <!-- <p class="top-txt-info">
+                <span class="pull-left">
+                  <a href="#30-year-hdng" class="innr-year-link innr-year-link-active">30 Year</a>
+                  <a href="#15-year-hdng" class="innr-year-link">15 Year</a>
+                  <a href="#5-1-arm-hdng" class="innr-year-link">5/1 Arm</a>
+                </span>
+                <span class="pull-right">
+                  Sorted By <a href="" class="">APR</a>
+                </span>
+              </p> -->
+              <%= render partial: "partials/result" %>
+          </div>
+
+        </div>
+       
+
+       
+
+
+       
+       <!-- 15/1 ARM feed end-->
+       <!-- Closing Cost Summary start-->
+       <div class="row">
+          <div class="col-xs-12 col-md-12">
+             <div class="loan-detail-blocks">
+                <h3>Closing Cost Summary for Refinance Rates in <%=@city.city%>, <%=state_full_name(@state)%></h3>
+                <div class="closing-cost-smry-cntnt">
+                   <div class="col-xs-12 col-md-2">
+                      <span>Origination Fee</span>
+                      <p>$2,000</p>
+                   </div>
+                   <div class="col-xs-12 col-md-2">
+                      <span>Appraisal Fee</span>
+                      <p>$400</p>
+                   </div>
+                   <div class="col-xs-12 col-md-2">
+                      <span>Underwriting Fee</span>
+                      <p>$500</p>
+                   </div>
+                   <div class="col-xs-12 col-md-1">
+                      <span>Other Fee</span>
+                      <p>$100</p>
+                   </div>
+                   <div class="col-xs-12 col-md-2">
+                      <span>Discount Points</span>
+                      <p>$2,858</p>
+                   </div>
+                   <div class="col-xs-12 col-md-3">
+                      <span>Estimated  Closing Costs</span>
+                      <p>$5,585</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- Closing Cost Summary end-->
+
+      <%if @report.present? %>
+       <!-- Historical Rates for Albany start-->
+       <div class="row">
+          <div class="col-xs-12 col-md-12">
+             <div class="loan-detail-blocks">
+                <h3>Historical Rates for <%=@city.city%>, <%=state_full_name(@state)%> Refinancings based on Actual Closed Refi Data
+                   <span>We  have compiled refinance rate statistics for <%=@city.city%>, <%=state_full_name(@state)%> to help you understand trends for
+                   your home refinancing process. This data is produced from actual closed loans.
+                   </span>
+                </h3>
+                <div class="graph-box main-table-graph">
+                <div class="dynamic-table-box">
+                <div class="col-md-12 table-data-box">
+                <div class="data-table-inner table-responsive main-table-grapg-box">
+                   <!-- Dynamic report section starts from here-->
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th> </th>
+                          <%@header.each do |report_header|%>
+                          <th>
+                              <%=report_header%>
+                          </th>
+                          <%end%>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>% 30 year fixed mortgage </td>
+                          <%eval(@report['% 30 year fixed mortgage']).each do |k, v|%>
+                            <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                          <%end%>
+                        </tr>
+                        <tr>
+                          <td>avg mortgage rate </td>
+                            <%eval(@report['avg rate(30 yr)']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                        </tr>
+
+                          <tr>
+                            <td> % 15 year fixed mortgage</td>
+                            <%eval(@report['% 15 year fixed mortgage']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                            </tr>
+
+                          <tr>
+                            <td> avg mortgage rate</td>
+                            <%eval(@report['avg rate(15 yr)']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                          </tr>
+                          <tr>
+                            <td> % 10/1 ARM</td>
+                            <%eval(@report['% 10/1 ARM']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                          </tr>
+                          <tr class="row-bordr-botom">
+                            <td> avg mortgage rate</td>
+                            <%eval(@report['avg rate(10 yr)']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                          </tr>
+                          <!-- <tr>
+                            <td> % 7/1 ARM</td>
+                            <%#eval(@report['% 7/1 ARM']).each do |k,v|%>
+                              <td><%#= v ==  nil || v == 0.0 ? '' : v.round(2).to_s+'%'%> </td>
+                            <%#end%>
+                          </tr>
+                          <tr>
+                            <td>avg mortgage rate </td>
+                            <%#eval(@report['avg rate(7 yr)']).each do |k,v|%>
+                              <td><%#= v ==  nil || v == 0.0 ? '' : v.round(2).to_s+'%'%> </td>
+                            <%#end%>
+                          </tr>
+                          <tr>
+                            <td>% 5/1 ARM </td>
+                            <%#eval(@report['% 5/1 ARM']).each do |k,v|%>
+                              <td><%#= v ==  nil || v == 0.0 ? '' : v.round(2).to_s+'%'%> </td>
+                            <%#end%>
+                          </tr>
+                          <tr class="row-bordr-botom">
+                            <td> avg mortgage rate</td>
+                            <%#eval(@report['avg rate(5 yr)']).each do |k,v|%>
+                              <td><%#= v ==  nil || v == 0.0 ? '' : v.round(2).to_s+'%'%> </td>
+                            <%#end%>
+                          </tr> -->
+                          <tr>
+                            <td> Avg credit score</td>
+                            <%eval(@report['Avg credit score']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2)%> </td>
+                            <%end%>
+                          </tr>
+                          <tr>
+                            <td class="class-right"> Avg LTV (loan to value)</td>
+                            <%eval(@report['Avg LTV (loan to value']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                          </tr>
+                          <tr>
+                            <td>Avg  Combined LTV (loan to value) </td>
+                            <%eval(@report['Avg Combined LTV (loan to value)']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                          </tr>
+                          <tr class="row-bordr-botom">
+                            <td class="class-right">Avg DTI (debt to income) </td>
+                            <%eval(@report['Avg DTI (debt to income)']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2)%> </td>
+                            <%end%>
+                          </tr>
+                         <!--  <tr>
+                            <td>% Cash-out refinance </td>
+                            <%#eval(@report['% Cash-out refinance']).each do |k,v|%>
+                              <td><%#= v ==  nil || v == 0.0 ? '' : v.round(2)%> </td>
+                            <%#end%>
+                          </tr>
+                          <tr>
+                            <td class="class-right">% No cash-out refinance</td>
+                            <%#eval(@report['% No cash-out refinance']).each do |k,v|%>
+                              <td><%#= v ==  nil || v == 0.0 ? '' : v.round(2).to_s+'%'%> </td>
+                            <%#end%>
+                          </tr> -->
+                           <tr>
+                            <td> Avg mortgage insurance %</td>
+                            <%eval(@report['Avg mortgage insurance %']).each do |k,v|%>
+                              <td><%= v ==  nil || v == 0.0 ? '' : number_with_precision(v, precision: 2).to_s+'%'%> </td>
+                            <%end%>
+                          </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                   <a class="link-right-inner">Data produced  from US Government reported financials</a>
+                   <p>The table above shows the refinance rates for home loans in <%=@city.city%>, <%=state_full_name(@state, true)%> over the past 10 years. This table is compiled using actual closed refinancings in <%=@city.city%>, <%=state_full_name(@state, true)%>, and this information is disclosed by the US government due to consumer protection laws.</p>
+                   <!-- <a href="" class="see-more-link-common">See More historical data</a> -->
+                </div>
+                </div>
+            </div>
+            </div>
+             </div>
+          </div>
+       <!-- Historical Rates for Albany end-->
+
+       <%end%>
+
+
+       <!-- Online Trends for Refinance Rates start-->
+      <!--  <div class="row">
+          <div class="col-xs-12 col-md-12">
+             <div class="loan-detail-blocks">
+                <h3>Online Trends for Refinance Rates in <%=@city.city%>, <%=state_full_name(@state)%>
+                   <span>We have also created a proprietary engine to monitor online rates for the largest home refinance lenders in the United States, to ensure you are getting the best rates even during the online research phase.</span>
+                </h3>
+                <div class="graph-box">
+                  <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                      <img src="/images/seo-city-mortgage-graph2.png" alt="">
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                      <img src="/images/seo-city-mortgage-graph2.png" alt="">
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                      <img src="/images/seo-city-mortgage-graph2.png" alt="">
+                    </div>
+                  </div>
+                   <p class="para-lft-inner">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+                   <a href="" class="see-more-link-common">See More Graphs</a>
+                </div>
+             </div>
+          </div>
+       </div> -->
+       <!-- Online Trends for refinance Rates end-->
+       <div class="seo-auto-loan-tabs loan-detail-blocks">
+          <h3>Recommended and Best <%=@city.city%>, <%=state_full_name(@state)%> Refinance Companies
+             <span>In addition to online refinance companies, here are some refinance rate specialists in <%=@city.city%>, <%=state_full_name(@state)%>.</span>
+          </h3>
+          <!--Used Car Loans desktop section end-->
+          <div class="tabs-data-main desktop-tabs-data">
+             <div class="tabs-data-hdng">
+                <div class="col-xs-12 col-md-4">Name</div>
+                <div class="col-xs-12 col-md-4">Address</div>
+                <div class="col-xs-12 col-md-4">Contact</div>
+             </div>
+             <%if @loan_officers.present?%>
+                  <%@loan_officers.each_with_index do |loan_officer, i|%>
+                    <%if i < 5%>
+                        <div class="tabs-data-row">
+                          <div class="col-xs-12 col-md-4">
+                              <p><%= remove_unnecessary_keywords(loan_officer.try(:first))%> <%=remove_unnecessary_keywords(loan_officer.try(:last))%></p>
+                              <p><%= remove_unnecessary_keywords(loan_officer.title)%></p>
+                          </div>
+                          <div class="col-xs-12 col-md-4">
+                              <p><%=loan_officer.address%> </p>
+                              <p><%= loan_officer.city%>, <%= loan_officer.state%> </p>
+                          </div>
+                          <div class="col-xs-12 col-md-4">
+                               <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : mobile_no_formatting(loan_officer.phone2)%></p>
+                              <p><%= remove_unnecessary_keywords(loan_officer.email)%></p>
+                          </div>
+                        </div>
+                    <%else%>
+                        <div id='officers_data_<%=i.to_s%>' style= "display:none;">
+                           <div class="tabs-data-row">
+                            <div class="col-xs-12 col-md-4">
+                                <p><%= remove_unnecessary_keywords(loan_officer.try(:first))%> <%=remove_unnecessary_keywords(loan_officer.try(:last))%></p>
+                                <p><%= remove_unnecessary_keywords(loan_officer.title)%></p>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <p><%=loan_officer.address%> </p>
+                                <p><%= loan_officer.city%>, <%= loan_officer.state%> </p>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                 <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : mobile_no_formatting(loan_officer.phone2)%></p>
+                                <p><%= remove_unnecessary_keywords(loan_officer.email)%></p>
+                            </div>
+                          </div>
+                        </div>
+                      <%end%>
+                  <%end%>
+                <%else%>
+                  <div class="tabs-data-row">
+                    No Records Found
+                  </div>
+                <%end%>
+          </div>
+          <!--Used Car Loans Officers mobile tabs end-->
+          <div class="tabs-data-main tabs-accordians-box">
+             <div class="panel-group">
+              <%if @loan_officers.present?%>
+                  <%@loan_officers.each_with_index do |loan_officer, i|%>
+                    <%if i < 3%>
+                      <div class="panel panel-default">
+                         <div class="panel-heading tabs-data-hdng">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapse_<%=i.to_s%>">
+                              <%= remove_unnecessary_keywords(loan_officer.try(:first))%> <%=remove_unnecessary_keywords(loan_officer.try(:last))%>
+                              <br>
+                              <%= remove_unnecessary_keywords(loan_officer.title)%>
+                            </a>
+                         </div>
+                         <div id="collapse_<%=i.to_s%>" class="panel-collapse collapse">
+                            <div class="tabs-data-row">
+                               <div class="col-xs-12 col-md-12">
+                                  <h5>Address</h5>
+                                  <p><%=loan_officer.address%></p>
+                                  <p><%= loan_officer.city%>, <%= loan_officer.state%> </p>
+                               </div>
+                               <div class="col-xs-12 col-md-12">
+                                  <h5>Contact</h5>
+                                   <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : mobile_no_formatting(loan_officer.phone2)%></p>
+                                  <p>Fax  (301) 639-0804</p>
+                                  <p><%= remove_unnecessary_keywords(loan_officer.email)%></p>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                    <%elsif i < 5 %>
+                       <div id='officers_mobile_data_<%=i.to_s%>' style= "display:none;">
+                         <div class="panel panel-default">
+                         <div class="panel-heading tabs-data-hdng">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapse_<%=i.to_s%>">
+                              <%= remove_unnecessary_keywords(loan_officer.try(:first))%> <%=remove_unnecessary_keywords(loan_officer.try(:last))%>
+                              <br>
+                              <%= remove_unnecessary_keywords(loan_officer.title)%>
+                            </a>
+                         </div>
+                         <div id="collapse_<%=i.to_s%>" class="panel-collapse collapse">
+                            <div class="tabs-data-row">
+                               <div class="col-xs-12 col-md-12">
+                                  <h5>Address</h5>
+                                  <p><%=loan_officer.address%></p>
+                                  <p><%= loan_officer.city%>, <%= loan_officer.state%> </p>
+                               </div>
+                               <div class="col-xs-12 col-md-12">
+                                  <h5>Contact</h5>
+                                   <p><%= loan_officer.phone1.present? ? mobile_no_formatting(loan_officer.phone1) : mobile_no_formatting(loan_officer.phone2)%></p>
+                                  <p>Fax  (301) 639-0804</p>
+                                  <p><%= remove_unnecessary_keywords(loan_officer.email)%></p>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      </div>
+                    <%end%>
+                  <%end%>
+                <%end%>
+             </div>
+          </div>
+        <%if @loan_officers.present? %>
+          <%if @loan_officers.length > 5%>
+            <button class= "show-all-specialst-btn pull-right see-more-fdic" id="desktop_loan_off_data">See More</button>
+          <%end%>
+        <%else%>
+          <div class="car-auto-loan-news">
+            No Records Found
+          </div>
+        <%end%>
+       </div>
     </div>
-    <!-- advance search end-->
+    <section class="reviews">
+      <div class="container">
+        <h4 class="main-title text-center font-weight-bold pb-4">News on Low Cost Refi's for <%=@city.city%>, <%=state_full_name(@state)%></h4>
+        <div class="owl-carousel">
+          <!-- card -->
+          <%if @news_articles.present? %>
+            <%@news_articles.each_with_index do |na, i|%>
+              <div class="item">
+                <div class=" card">
+                  <div class="row">
+                    <div class="content-bx-slider">
+                      <div class="slider-icon-bx">
+                        <i class="fa fa-newspaper-o"></i>
+                      </div>
+                      <h4 class="title"><%=link_to na.headline.truncate(42), na.url, target: "_blank"%></h4>
+                      <p><%=na.text.truncate(130)%></p>
+                      <a href="#" class="read-more-link">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+  </section>
+  <div class="container">
+    <div class="volume-auto-loan full-width loan-detail-blocks car-auto-loan-othr-bank-box">
+        <h3>Refinance Rates around <%=@city.city%>, <%=state_full_name(@state)%></h3>
+        <div class="car-auto-loan-othr-bank">
+           <%if @near_by_cities.present? %>
+              <div class="row">
+              <%@near_by_cities.each do |city|%>
+                <div class="col-md-4">
+                  <div class="city-link">
+                    <%#= link_to city.city+', '+city.state_code,city_home_refinance_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id)%>
+                    <%= link_to city_home_refinance_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id) do %>
+                    <span><%=city.city+', '+city.state_code%></span>
+                      <i class="fa fa-angle-double-right"></i>
+                    <% end %>
+                  </div>
+                </div>
+              <%end%>
+            <%else%>
+               No Records Found
+            <%end%>
+          </div>
+        </div>
+     </div>
+  </div>
  </section>
- <!-- banner end-->
-    <%= render partial: "partials/location_rates" %>
+ <!-- search result feed end-->
     <div class="modal fade common-popup-layout signup-login-popup" id="create-price-alert" role="dialog">
       <div class="modal-dialog">
          <!-- Modal content-->
