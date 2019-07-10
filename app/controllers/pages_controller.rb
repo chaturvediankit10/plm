@@ -4,7 +4,7 @@
   Purpose:        Following actions are for status update in admin panel .
 =end
 class PagesController < SearchController
-  extend ActiveSupport::Concern
+  include Onload
   before_action :authenticate_user!, only: [:secret]
   before_action :update_statue, only: [:change_status, :user_mass_activate, :user_mass_deactivate]
 
@@ -28,7 +28,6 @@ class PagesController < SearchController
   end
 
   def refinance
-    set_default
     api_search
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
@@ -38,7 +37,6 @@ class PagesController < SearchController
   end
 
   def mortgage
-    set_default
     api_search
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51

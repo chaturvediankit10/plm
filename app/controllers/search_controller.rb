@@ -1,5 +1,5 @@
 class SearchController < SearchApi::DashboardController
-  
+  include Onload
   def home
     set_default
     api_search
