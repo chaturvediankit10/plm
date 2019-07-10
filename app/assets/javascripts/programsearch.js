@@ -58,7 +58,7 @@ $(document).ready(function () {
       $("#search-adv-option-inner").hide("fast").removeClass("display-adv-search");
     });
   
-    if(navigator.geolocation) {
+    if(params_present && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(address) {
           $.ajax({
             url: '/set_state_by_zip_code',
@@ -66,15 +66,15 @@ $(document).ready(function () {
             dataType: 'json',
             data: {longitude: address.coords.longitude, latitude: address.coords.latitude, geo_coder: true },
             success: function(response){
-              $('#state').val(response.state);
               $('#zip').val(response.zip_code);
+              $('#state').val(response.state);
             }
           });
         });
       }
 
     $('#zip').change(function(){
-      if ($(this).val().length>3) {
+      if ($(this).val().length>2) {
         $.ajax({
           url: '/set_state_by_zip_code',
           type: 'GET',
