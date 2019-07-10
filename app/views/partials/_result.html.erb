@@ -1,0 +1,44 @@
+<section class="content-main">
+  <div class="container">
+    <p class="main-para-hdng">Pureloan searches all the major banks and lenders to give you the best rates. Here are a few sample rates
+      in your area for 30-year Fixed, 15-year Fixed, and 5/1 Adjustable Rate Mortgage (ARM).
+    </p>
+    <div style="position: relative; clear: both;">
+      <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
+      <ul class="nav nav-tabs rates-tab">
+        <li class="<%= @term.to_s == "30" && @loan_type != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
+        <li class="<%= @term.to_s == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
+        <li  class="<%= (@loan_type == "ARM" && @arm_basic == "5") ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
+      </ul>
+    
+      <div class="tab-content rates-tab-content" style="position: relative;">
+        <%= render partial: "partials/tabs", locals: { term_n: @arm_term.to_i, result: @result }%>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="btn-load-bg">
+  <button id="loadMore" class="btn btn-load-more">Load more</button>
+</div>
+<!-- <div id="showLess">Show less</div> -->
+<!-- search result feed end-->
+<%if Expert.where(verified: true).count < 1%>
+<!-- Advertisement with expert start-->
+<section class="advertisement-box">
+  <div class="container">
+    <div class="advertisement">
+      <img class="mb-hide" src="/assets/home-ad.jpg" alt="">
+      <img class="mb-only" src="/assets/expert-ad-mb-img.png" alt="">
+      <h4>Become a mortgage expert on<br> Pureloan.com for Albany, CA</h4>
+      <span class="">Reach hundreds of thousands of home buyers or
+      refi customers every month!</span>
+      <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
+    </div>
+  </div>
+</section>
+<%end%>
+<!-- Advertisement with expert end-->
+<!--Rendering Experts  -->
+<%if Expert.where(verified: true).count >= 1%>
+<%= render 'pages/index'%>
+<%end%>

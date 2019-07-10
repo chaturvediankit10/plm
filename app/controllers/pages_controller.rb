@@ -3,7 +3,7 @@
   Created:        16-03-2018
   Purpose:        Following actions are for status update in admin panel .
 =end
-class PagesController < ApplicationController
+class PagesController < SearchController
   before_action :authenticate_user!, only: [:secret]
   before_action :update_statue, only: [:change_status, :user_mass_activate, :user_mass_deactivate]
 
@@ -27,12 +27,16 @@ class PagesController < ApplicationController
   end
 
   def refinance
-
+    home
   end
 
   def mortgage
-
+    home
   end  
+
+  # def favorite_program
+  #   current_user.present? ? current_user.user_favorites.find_or_create_by(loan_tek_data_id: params[:program_id]) : "You need to sign in first"
+  # end
     
   def calculation
     if params[:amt].present?

@@ -38,9 +38,11 @@ Rails.application.routes.draw do
   root 'search#home'
   get '/fetch_programs', to: 'search#fetch_programs', as: :fetch_programs
   get 'pages/index'
+  get '/set_state_by_zip_code', to: 'search#set_state_by_zip_code', as: :set_state_by_zip_code
+  # get 'pages/favorite_program'
 
-  get '/refinance', to: 'pages#refinance', as: 'refinance'
-  get '/mortgage', to: 'pages#mortgage', as: 'mortgage'
+  get '/refinance+rates', to: 'pages#refinance', as: 'refinance'
+  get '/mortgage+rates', to: 'pages#mortgage', as: 'mortgage'
   post '/contact_us_email', to: 'pages#contact_us_email'
   get '/change_status', to: 'pages#change_status'
   get '/activate', to: 'pages#user_mass_activate'
@@ -105,7 +107,7 @@ Rails.application.routes.draw do
 
   #--------------------------- routes for calculator controller ----------------------------------
 
-  get 'calculator', to: 'calculator#index'
+  get '/mortgage+calculator', to: 'calculator#index', as: 'calculator'
   get 'get_todays_rate', to: 'calculator#get_todays_rate'
 
   #--------------------------- route for wrong requested pages ----------------------------------

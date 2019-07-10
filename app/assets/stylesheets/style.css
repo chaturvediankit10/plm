@@ -4080,7 +4080,9 @@ p.today-rate-link a {
 #loan-dtail-overlay footer {
   display: none;
 }
-
+.loader{
+  color: #fb6325 !important; 
+}
 
 /* loan detail overlay css end*/
 .btn-load-bg {
@@ -8062,7 +8064,7 @@ header.fixed-header.scrolled {
   float: left;
   width: 100%;
   padding: 25px 0 0;
-  background-color: #f5f5f7;
+  background-color: #fff;
 }
 .next-topic{
   clear: both;
@@ -9406,7 +9408,8 @@ p.hiden-txt-mb {
   .volume-auto-loan.loan-chargeoff-recovry p.loan-chargeoff-recovry-inner-data {
     padding: 5px 5px 0px 5px;
   }
-  .signup-login-popup li.cntnt-login .social-login a i {
+
+ .signup-login-popup li.cntnt-login .social-login a i {
   margin-right: 10px;
   font-size: 16px;
   }
@@ -9420,4 +9423,6 @@ p.hiden-txt-mb {
   .view-details-popup .nav-tabs > li > a{
     margin: 0 1px;
   }
+
 }
+

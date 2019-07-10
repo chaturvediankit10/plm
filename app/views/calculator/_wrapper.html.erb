@@ -45,7 +45,6 @@
           </div>
           <div class="form-group">
             <label>Annual Interst Rate</label>
-            <div class="icon-right">%</div>
             <%= text_field_tag :annual_interest_rate, @annual_interest_rate, :class=> "form-control" %>
             <a href="JavaScript:Void(0);" id="today_rate" class="link-to">Use Today's Rate</a>
           </div>
@@ -55,9 +54,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_property_tax, @property_tax[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_property_tax, @monthly_exp_breakdown[:property_tax][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @property_tax[:percentage]%></span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:property_tax][:percentage]%></span>
             </div>
           </div>
 
@@ -66,9 +65,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_home_insurance, @home_insurance[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_home_insurance, @monthly_exp_breakdown[:home_insurance][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @home_insurance[:percentage]%>%</span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:home_insurance][:percentage]%>%</span>
             </div>
           </div>
 
@@ -77,9 +76,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_pmi_insurance, @pmi_insurance[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_pmi_insurance, @monthly_exp_breakdown[:pmi_insurance][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @pmi_insurance[:percentage]%>%</span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:pmi_insurance][:percentage]%>%</span>
             </div>
           </div>
 
@@ -88,9 +87,9 @@
             <div class="flex-group">
               <div class="dollar-icn">$</div>
               <div class="input-section">
-                <%= text_field_tag :monthly_hoa_dues, @hoa_dues[:monthly], :class=> "form-control" %>
+                <%= text_field_tag :monthly_hoa_dues, @monthly_exp_breakdown[:hoa_dues][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @hoa_dues[:percentage]%>%</span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:hoa_dues][:percentage]%>%</span>
             </div>
           </div>
            
@@ -355,7 +354,7 @@
                             <%= number_to_currency(@renter_insurance, unit: "")%>
                             </td>
                           <td width="25%">
-                            <%= number_to_currency((@property_tax[:total]*-1), unit: "")%>
+                            <%= number_to_currency((@monthly_exp_breakdown[:property_tax][:total]*-1), unit: "")%>
                           </td>
                           <td>Property Taxes</td>
                         </tr>
@@ -364,7 +363,7 @@
                           <td></td>
                           <td>
 
-                            <%= number_to_currency((@home_insurance[:total]*-1), unit: "")%>
+                            <%= number_to_currency((@monthly_exp_breakdown[:home_insurance][:total]*-1), unit: "")%>
                           </td>
                           <td>Home Insurance</td>
                         </tr>
@@ -372,7 +371,7 @@
                           <td></td>
                           <td></td>
                           <td>
-                            <%= number_to_currency((@pmi_insurance[:total]*-1), unit: "")%>
+                            <%= number_to_currency((@monthly_exp_breakdown[:pmi_insurance][:total]*-1), unit: "")%>
                           </td>
                           <td>PMI Insurance</td>
                         </tr>
@@ -380,7 +379,7 @@
                           <td></td>
                           <td></td>
                           <td>
-                            <%= number_to_currency(@hoa_dues[:monthly], unit: "")%>
+                            <%= number_to_currency(@monthly_exp_breakdown[:hoa_dues][:monthly], unit: "")%>
                           </td>
                           <td>HOA Dues</td>
                         </tr>
@@ -499,27 +498,22 @@
   $(document).ready(function(){
     ca_keys = <%= raw @ca_affordability.keys.reverse %>
     ca_values = <%= raw @ca_values %>
-
     nation_wide_keys = <%= raw @nation_wide_affordability.keys.reverse %>
     nation_wide_values = <%= raw @nation_wide_values %>
-
     area_chart_max = <%= raw @area_chart_max %>
-
-
     principle_values  = <%= raw @principle.values %>
     interest_values  = <%= raw @interest.values %>
     remaining_values  = <%= raw @remaining.values %>
     total_paid_values  = <%= raw @total_paid.values %>
     x_axis_max_value = <%= raw @principle.values.count %>
     
-    monthly_mortgage_interest = <%= raw @mortgage_interest[:monthly] %>
-    monthly_property_tax = <%= raw @property_tax[:monthly] %>
-    monthly_pmi_insurance = <%= raw @pmi_insurance[:monthly] %>
-    monthly_hoa_dues = <%= raw @hoa_dues[:monthly] %>
-    monthly_mortgage_principal = <%= raw @mortgage_principal[:monthly] %>
-    monthly_home_insurance = <%= raw @home_insurance[:monthly] %>
-    monthly_expenses_sum = <%= raw @monthly_expenses_sum[:monthly].round(2) %>
-
+    monthly_mortgage_principal = <%= raw @monthly_exp_breakdown[:mortgage_principal][:monthly] %>
+    monthly_mortgage_interest = <%= raw @monthly_exp_breakdown[:mortgage_interest][:monthly] %>
+    monthly_home_insurance = <%= raw @monthly_exp_breakdown[:home_insurance][:monthly] %>
+    monthly_pmi_insurance = <%= raw @monthly_exp_breakdown[:pmi_insurance][:monthly] %>
+    monthly_hoa_dues = <%= raw @monthly_exp_breakdown[:hoa_dues][:monthly] %>
+    monthly_expenses_sum = <%= raw @monthly_exp_breakdown[:monthly_expenses_sum][:monthly].round(2) %>
+    monthly_property_tax = <%= raw @monthly_exp_breakdown[:property_tax][:monthly] %>
 
 
     $('#payoff-schedule-graph').highcharts({
@@ -715,84 +709,66 @@
         }
     });
 
-    $(function () {
-        var chart = new Highcharts.Chart({
-            title: {
-              x: 0,
-              verticalAlign: 'middle',
-              y: 0,
-              floating: true,
-              text: '$' + monthly_expenses_sum + '' + '<br /> Monthly Payment',
-              floating: false,
-              align: 'center',
-              style: {
-                fontFamily: 'dinotmedium',
-              }
-            },
-            tooltip: {
-              formatter:function(){
-                var formatter2 = new Intl.NumberFormat('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                  minimumFractionDigits: 0
-                })
-                return '<b>'+ this.point.name+ '</b><br></br>' +': <b>'+ (formatter2.format(this.point.y)) +'</b><br/>'
-              },
-            },
-            chart: {
-              renderTo: 'container-a',
-              type: 'pie'
-            },
-            colors: ['#687b82', '#83b2c2', '#3b86b6', '#592c67', '#7f8930'],
-            plotOptions: {
-              pie: {
-                innerSize: '70%'
-              },
-              series: {
-                dataLabels: {
-                  enabled: true,
-                  borderRadius: 0,
-                  backgroundColor: '#fff',
-                  borderWidth: 2,
-                  borderColor: '#ccc',
-                  boxShadow: '5px 5px 5px #ccc',
-                  formatter: function () {
-                    if (this.y != 0) {
-                      return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable"> $'+ Math.round(this.point.y) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
-                    }
-                    // return ('<div><p>'+this.point.name+'</p><span>'+this.point.y+'</span></div>');
-                  },
-                },
-              }
-            },
-            series: [{
-              data: [
-                ["Home Insurance", monthly_home_insurance],
-                ["Property Tax", monthly_property_tax],
-                ["PMI Insurance", monthly_pmi_insurance],
-                ["HOA Dues", monthly_hoa_dues],
-                ["Principal & Interest", (monthly_mortgage_principal + monthly_mortgage_interest)]
-              ],
-            }, ],
+    var chart = new Highcharts.Chart({
+        title: {
+          x: 0,
+          verticalAlign: 'middle',
+          y: 0,
+          floating: true,
+          text: '$' + monthly_expenses_sum + '' + '<br /> Monthly Payment',
+          floating: false,
+          align: 'center',
+          style: {
+            fontFamily: 'dinotmedium',
+          }
+        },
+        tooltip: {
+          formatter:function(){
+            var formatter2 = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 0
+            })
+            return '<b>'+ this.point.name+ '</b><br></br>' +': <b>'+ (formatter2.format(this.point.y)) +'</b><br/>'
           },
-
-        function (chart) { // on complete
-
-          // var textX = chart.plotLeft + (chart.plotWidth  * 0.5);
-          // var textY = chart.plotTop  + (chart.plotHeight * 0.5);
-          // var span = '<span id="pieChartInfoText" style="position:absolute; text-align:center;">';
-          // span += '<b><span>'+'$' + Number((monthly_expenses_sum).toFixed(2)) +'</span><br>';
-          // span += '<span class="m-payment">Monthly Payment</span></b>';
-          // span += '</span>';
-
-          // $("#addText").append(span);
-          // span = $('#pieChartInfoText');
-          // span.css('left', textX + (span.width() * -0.5));
-          // span.css('top', textY + (span.height() * -0.5));
-        });
+        },
+        chart: {
+          renderTo: 'container-a',
+          type: 'pie'
+        },
+        colors: ['#687b82', '#83b2c2', '#3b86b6', '#592c67', '#7f8930'],
+        plotOptions: {
+          pie: {
+            innerSize: '70%'
+          },
+          series: {
+            dataLabels: {
+              enabled: true,
+              borderRadius: 0,
+              backgroundColor: '#fff',
+              borderWidth: 2,
+              borderColor: '#ccc',
+              boxShadow: '5px 5px 5px #ccc',
+              formatter: function () {
+                if (this.y != 0) {
+                  return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable"> $'+ Math.round(this.point.y) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
+                }
+                // return ('<div><p>'+this.point.name+'</p><span>'+this.point.y+'</span></div>');
+              },
+            },
+          }
+        },
+        series: [{
+          data: [
+            ["Home Insurance", monthly_home_insurance],
+            ["Property Tax", monthly_property_tax],
+            ["PMI Insurance", monthly_pmi_insurance],
+            ["HOA Dues", monthly_hoa_dues],
+            ["Principal & Interest", (monthly_mortgage_principal + monthly_mortgage_interest)]
+          ],
+        }, ],
     });
-
-});
+  });
 
     $(document).ready(function(){
 
@@ -889,7 +865,6 @@
       //     }
       //   }
       // }
-
 
     });
 </script>

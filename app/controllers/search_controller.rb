@@ -1,7 +1,7 @@
 class SearchController < SearchApi::DashboardController
   
   def home
-    list_of_banks_and_programs_with_search_results
+    api_search
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
     else
@@ -16,5 +16,19 @@ class SearchController < SearchApi::DashboardController
 
   def fetch_programs
     fetch_programs_by_bank
+  end
+
+  def set_state_by_zip_code
+    zip_code = ''
+    if params[:geo_coder].present?
+      results = Geocoder.search([params[:latitude].to_f, params[:longitude].to_f])
+      zip_code = results.first.postal_code if results.first.present?
+    else
+      zip_code = params[:zip].to_i if params[:zip].present?
+    end
+    city = City.find_by_zip(zip_code.to_i) if zip_code.present?
+    respond_to do |format|
+      format.json {render :json => {state: city.present? ? city.state_code : "All", zip_code: zip_code }}
+    end
   end
 end
