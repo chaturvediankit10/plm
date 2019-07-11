@@ -97,26 +97,47 @@
                               <td>Adjustment</td>
                               <td colspan="2">Value</td>
                             </tr>
-                            <tr>
+                            <%
+                              if program[:adjustment_pair].present?
+                                program[:adjustment_pair].keys.each_with_index do |key|
+                                  if (program[:adjustment_pair][key]!=0.0)
+                                    if (key.split("/").include?("LTV") || key.split("/").include?("FICO"))%>
+                                      <tr>
+                                        <td>Credit Score</td>
+                                        <td><b><%= program[:adjustment_pair][key]%></b></td>
+                                        <td align="right"></td>
+                                      </tr>
+                                  <%else%>
+                                      <tr>
+                                        <td><%=key%></td>
+                                        <td><b><%= program[:adjustment_pair][key] if program[:adjustment_pair][key].present? %></b></td>
+                                        <td align="right"></td>
+                                      </tr>
+                                  <%end
+                                  end
+                                end
+                              end%>
+                           <!--  <tr>
                               <td>LTV / Credit Score</td>
-                              <td><b><%= @set_ltv %> / <%= @set_credit_score %></b></td>
+                              <td><b><%#= @set_ltv %> / <%#= @set_credit_score %></b></td>
                               <td align="right"><b>+0.10</b></td>
                             </tr>
                             <tr>
                               <td>Loan Amount</td>
-                              <td><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
+                              <td><b> <%#= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
                               <td align="right"><b>+0.10</b></td>
                             </tr>
                             <tr>
                               <td>State</td>
-                              <td><b><%= @state%></b></td>
+                              <td><b><%#= @state%></b></td>
                               <td align="right"><b>+0.10</b></td>
                             </tr>
                             <tr>
                               <td>Property Type</td>
-                              <td><b><%=@property_type%></b></td>
+                              <td><b><%#=@property_type%></b></td>
                               <td align="right"><b>+0.10</b></td>
-                            </tr>
+                            </tr> -->
+
                             <tr>
                               <td class="orange-clr"><b>Ending Closing Cost</b></td>
                               <td class="orange-clr" colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 2)%> / <%= number_to_currency(program[:air_point],  :unit=> "", precision: 2) %> Points</b></td>
