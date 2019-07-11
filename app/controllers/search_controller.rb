@@ -15,7 +15,7 @@ class SearchController < SearchApi::DashboardController
   end
 
   def initilize_state_and_zip_code
-    @zip_code = "88901"
+    @zip_code = "94035"
     results = Geocoder.search(request.ip)
     @zip_code = results.first.postal_code if results.first.present?
     city = City.find_by_zip(@zip_code.to_i) if @zip_code.present?
