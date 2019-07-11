@@ -15,8 +15,8 @@
             <div class="search-cat zip-srch">
                <!-- <input type="text" placeholder="123456" value= <%#=user_location_info.present? ? user_location_info.data["postal"].present? ? user_location_info.data["postal"] : nil : nil%> >  calling function defined in Application helper -->
               <%#= select_tag 'state', options_for_select(Program::STATE, (params[:state] rescue nil)) %>
-              <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : '') %>
-              <%= hidden_field_tag 'state', (params[:state].present? ? params[:state] : 'All') %>
+              <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : @zip_code) %>
+              <%= hidden_field_tag 'state', (params[:state].present? ? params[:state] : @state) %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
@@ -107,24 +107,24 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    let params_present = <%= raw params["commit"].present? ? false : true%>
-    if(params_present) {
-      $.ajax({
-        url: '/set_state_by_zip_code',
-        type: 'GET',
-        dataType: 'json',
-        data: {geo_coder: true },
-        success: function(response){
-          if (response.zip_code!=undefined && response.zip_code!='') {
-            $('#zip').val(response.zip_code);
-            $('#state').val(response.state);
-          }else{
-            $('#zip').val('88901');
-            $('#state').val('NV');
-          }
-        }
-      });
-    }
+    // let params_present = <%#= raw params["commit"].present? ? false : true%>
+    // if(params_present) {
+    //   $.ajax({
+    //     url: '/set_state_by_zip_code',
+    //     type: 'GET',
+    //     dataType: 'json',
+    //     data: {geo_coder: true },
+    //     success: function(response){
+    //       if (response.zip_code!=undefined && response.zip_code!='') {
+    //         $('#zip').val(response.zip_code);
+    //         $('#state').val(response.state);
+    //       }else{
+    //         $('#zip').val('88901');
+    //         $('#state').val('NV');
+    //       }
+    //     }
+    //   });
+    // }
 
     $('#zip').change(function(){
       if ($(this).val().length>2) {
