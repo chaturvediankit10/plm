@@ -1,8 +1,10 @@
 <!-- banner search start-->
-<%= render partial: "partials/basic_search" %>
+<div class="inner-search">
+ <%= render partial: "partials/basic_search" %>
+</div>
 <!-- banner end-->
 <!-- result feed start-->
-<section class="content-main seo-cities-mortgage seo-cities pt-zero">
+<section class="content-main seo-cities-mortgage seo-cities pt-110">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-12">
@@ -213,7 +215,7 @@
    <!--  <div class="row">
       <div class="col-xs-12 col-md-12">
         <div class="loan-detail-blocks">
-          <h3>Online Trends for Mortgage Rates in <%=@city.city%>, <%=state_full_name(@state)%>
+          <h3>Online Trends for Mortgage Rates in <%#=@city.city%>, <%#=state_full_name(@state)%>
             <span>We  have created a proprietary engine to monitor online rates for the largest home lenders in the United Staes,
             to ensure you are getting the best rates even during the online research phase.</span>
           </h3>
@@ -229,7 +231,7 @@
                 <img src="/images/seo-city-mortgage-graph2.png" alt="">
               </div>
             </div>
-            <p class="para-lft-inner">The charts above are the historical interest rates quoted for home loans in <%=@city.city%>, <%=state_full_name(@state, true)%>. This is data generated from our unique data service, and is not seen anywhere else.  We have shown the most relevant metrics (interest rates, APR, and closing costs) for the most popular loan types (30-yr fixed, 15-yr fixed, and 5/1 ARM).</p>
+            <p class="para-lft-inner">The charts above are the historical interest rates quoted for home loans in <%#=@city.city%>, <%#=state_full_name(@state, true)%>. This is data generated from our unique data service, and is not seen anywhere else.  We have shown the most relevant metrics (interest rates, APR, and closing costs) for the most popular loan types (30-yr fixed, 15-yr fixed, and 5/1 ARM).</p>
             <a href="" class="see-more-link-common">See More Graphs</a>
           </div>
         </div>
@@ -353,106 +355,10 @@
       <%end%>
     </div>
   </div>
-  <!-- News section starts from here -->
-  <section class="reviews">
-    <div class="container">
-      <h4 class="main-title text-center font-weight-bold pb-4">News on Mortgages and Reverse Mortgages for <%=@city.city%>, <%=state_full_name(@state)%></h4>
-      <div class="owl-carousel">
-        <!-- card -->
-        <%if @news_articles.present? %>
-          <%@news_articles.each_with_index do |na, i|%>
-            <div class="item">
-              <div class=" card">
-                <div class="row">
-                  <div class="content-bx-slider">
-                    <div class="slider-icon-bx">
-                      <i class="fa fa-newspaper-o"></i>
-                    </div>
-                    <h4 class="title"><%=link_to na.headline.truncate(42), na.url, target: "_blank"%></h4>
-                    <p><%=na.text.truncate(130)%></p>
-                    <a href="#" class="read-more-link">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <%end%>
-        <%end%>
-      </div>
-    </div>
-  </section> 
-  
-  <!-- News section ends here -->
-  <div class="container">
-    <div class="volume-auto-loan full-width loan-detail-blocks car-auto-loan-othr-bank-box">
-      <h3>Mortgage Rates around <%=@city.city%>, <%=state_full_name(@state)%></h3>
-      <div class="car-auto-loan-othr-bank">
-        <%if @near_by_cities.present? %>
-        <div class="row">
-          <%@near_by_cities.each do |city|%>
-          <div class="col-md-4">
-            <%#= link_to city.city+', '+city.state_code,city_home_mortgage_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id)%>
-            <div class="city-link">
-              <%= link_to city_home_mortgage_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id) do %>
-              <span><%=city.city+', '+city.state_code%></span>
-              <i class="fa fa-angle-double-right"></i>
-              <% end %>
-            </div>
-          </div>
-          <%end%>
-          <%else%>
-          <div class="tabs-data-row no-record-box">
-            No Records Found
-          </div>
-          <%end%>
-        </div>
-      </div>
-    </div>
-  </div>
+    <%= render partial: "partials/location_rates" %>
 </section>
 <!-- search result feed end-->
-<div class="modal fade common-popup-layout signup-login-popup" id="create-price-alert" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><img src="/images/cancel_03.png" alt="" class="login-cross-img"></button>
-        <h4><b>Create a Price Alert to obtain lowest Mortgage</b></br>
-          Rates and Save even more!
-        </h4>
-      </div>
-      <div class="modal-body">
-        <%= form_for(:user, :url => session_path(:user), :html => {:id => "login_form"}) do |f| %>
-        <ul class="login-drpdwn">
-          <li>
-            <%= image_tag("login-mail.png", :alt => "login-mail") %>
-            <%= f.email_field :email, autofocus: true %>
-          </li>
-          <li>
-            <%= image_tag("login-pass.png", :alt => "login-pass") %>
-            <%= f.password_field :password, autocomplete: "off" %>
-          </li>
-          <li class="cntnt-login">
-            <button class="rates-btn">Log In</button>
-            <div class="forgot-signup-links">
-              <%= link_to "Forgot Password", new_user_password_path %>
-              or
-              <a href="" data-toggle="modal" data-target="#signup-popup" class="signup-link-clr">Sign up Now</a>
-            </div>
-            <p>or sign up with</p>
-            <div class="social-login">
-              <!-- <a href=""><%#= image_tag("facebook_13.png", :alt => "Facebook") %></a> -->
-              <%= link_to image_tag("facebook_13.png"), user_facebook_omniauth_authorize_url() %>
-              <!-- <a href=""><%#= image_tag("twitter_15.png", :alt => "Twitter") %></a> -->
-              <!-- <a href=""><%#= image_tag("google_13.png", :alt => "Google") %></a> -->
-              <%= link_to image_tag("google_13.png"), user_google_oauth2_omniauth_authorize_url() %>
-            </div>
-          </li>
-        </ul>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+
 <script>
   $("#desktop_loan_off_data").click(function(){
       <%(5..9).each do |i|%>
@@ -542,4 +448,12 @@
           }
       }
   });
+</script>
+<script type="text/javascript">
+  $('#adv-option').click(function () {
+        $("html, body").animate({
+            scrollTop: 160
+        }, 1000);
+        //return false;
+    });
 </script>

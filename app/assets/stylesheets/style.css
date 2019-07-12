@@ -142,8 +142,7 @@ header .navbar-right {
   right: 0;
   padding: 0px;
   border-top: none;
-  box-shadow: 0 0 5px #199396;
-  border-radius: 0 0 3px 3px;
+  border-radius: 6px;
   background: #fff;
   margin-top: 15px;
 }
@@ -312,7 +311,10 @@ header .navbar-right {
 
 /*signup modal css end*/
 
-
+.modal-bx h3{
+  font-size: 18px;
+  margin: 5px 0;
+}
 /*view details modal css start*/
 .loan-property label.error{
   bottom: 0;
@@ -927,6 +929,7 @@ header .navbar-right {
   float: left;
   width: 100%;
   margin-top: 0;
+  text-align: center;
 }
 
 .search-adv-option-box a {
@@ -936,6 +939,7 @@ header .navbar-right {
   text-decoration: none;
   font-weight: bold;
   text-align: center;
+  margin: 0 5px;
 }
 .search-adv-option-box a:focus{
   outline: none;
@@ -1041,6 +1045,7 @@ header .navbar-right {
   width: 100%;
   padding: 130px 0 0 0;
   background-color: #fff;
+  min-height: 500px;
 }
 
 .content-main p {
@@ -3460,7 +3465,28 @@ a.seo-loan-aftr-cntnt-link {
   box-shadow: 0 0 15px #d7d7d7;
   border-radius: 5px;
 }
-
+.inner-search .banner-headings{
+  display: none;
+}
+.pt-110{
+  padding-top: 110px !important;
+}
+.inner-page-link{
+  display: none;
+}
+.inner-search .inner-page-link{
+  display: inline-block;
+}
+.inner-search .banner-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.inner-search .banner {
+  padding: 15px 0;
+  background-position: center;
+}
+.inner-search .banner .search-main{
+  top: 85px;
+}
 .share-research.loan-detail-blocks h3 {
   background: #111;
 }
@@ -4157,7 +4183,7 @@ p.today-rate-link a {
 }
 
 .desktop-btn {
-  display: block;
+  display: inline-block;
 }
 
 .mb-btn {
@@ -4204,6 +4230,7 @@ p.today-rate-link a {
   background: none;
   color: #111;
   padding: 0;
+  margin-top: 0;
 }
 
 .sectn-wo-bg .loan-detail-blocks-cntnt-inner {
@@ -4214,9 +4241,9 @@ p.today-rate-link a {
   font-size: 17px;
 }
 
-.sectn-wo-bg .loan-detail-blocks-cntnt-inner p:last-child {
+/*.sectn-wo-bg .loan-detail-blocks-cntnt-inner p:last-child {
   margin: 0;
-}
+}*/
 
 .mb-scroll-icn {
   display: none;
@@ -4571,6 +4598,9 @@ label.error {
   line-height: 10px;
   font-size: 24px;
   padding: 0;
+}
+.down-arrow .fa.fa-envelope {
+  font-size: 14px;
 }
 
 .banner-overlay {
@@ -8813,7 +8843,6 @@ p.top-txt-info {
 .signup-login-popup .price-alert-header {
   float: left;
   padding: 30px 25px;
-  background: #58a8e1;
   position: relative;
   margin-top: -9px;
 }
@@ -8840,6 +8869,12 @@ p.top-txt-info {
   top: 5px;
   opacity: 1;
   width: auto;
+  background-color: #eee;
+  border-radius: 100%;
+  padding: 2px 5px;
+}
+.signup-login-popup .modal-header .close img{
+  width: 15px;
 }
 
 .signup-login-popup .modal-body {

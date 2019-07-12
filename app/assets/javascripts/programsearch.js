@@ -363,12 +363,13 @@ $(document).ready(function () {
       });
     }
 
-   $('#adv-option').click(function () {
-        $("html, body").animate({
-            scrollTop: 250
-        }, 1000);
-        //return false;
-    });
+   // $('#adv-option').click(function () {
+   //      $("html, body").animate({
+   //          scrollTop: 250
+   //      }, 1000);
+   //      //return false;
+   //  });
+   
 
    $('#adv_loan_purpose').change(function () {
       $('#loan_purpose').val($('#adv_loan_purpose').val())

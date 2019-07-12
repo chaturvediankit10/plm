@@ -2,4 +2,20 @@
 <%= render partial: "partials/basic_search" %>
 <!-- banner end-->
 <!-- search result feed start-->
-<%= render partial: "partials/result" %>
+<section class="content-main ">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+				<%= render partial: "partials/result" %>
+			</div>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+  $('#adv-option').click(function () {
+        $("html, body").animate({
+            scrollTop: 250
+        }, 1000);
+        //return false;
+    });
+</script>

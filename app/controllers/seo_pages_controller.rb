@@ -41,6 +41,7 @@ Purpose:        display and define logic for all the seo pages
   end 
 
   def bank_mortgage_loans
+    home
     @news_articles = bank_news_article(" mortgage")
     @loan_officers = LoanOfficer.loan_officers_gen(@bank, "mortgage")
   end

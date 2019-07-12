@@ -1,10 +1,12 @@
 <!-- banner search start-->
+<div class="inner-search">
  <%= render partial: "partials/basic_search" %>
+</div>
  <!-- banner end-->
      <!-- result feed start-->
- <section class="content-main seo-cities-mortgage seo-cities pt-zero">
-    <div class="container">
-       <div class="row">
+ <section class="content-main seo-cities-mortgage seo-cities pt-110">
+      <div class="container">
+      <div class="row">
           <div class="col-xs-12 col-md-12">
              <div class="loan-detail-blocks sectn-wo-bg inner-bx">
                 <h3><%=@city.city%>, <%=state_full_name(@state)%> Refinance Rates</h3>
@@ -17,8 +19,8 @@
                 </div>
              </div>
           </div>
-       </div>
-       <div class="row">
+      </div>
+      <div class="row">
           <div class="col-xs-12 col-md-12">
               <!-- <p class="top-txt-info">
                 <span class="pull-left">
@@ -32,14 +34,8 @@
               </p> -->
               <%= render partial: "partials/result" %>
           </div>
+      </div>
 
-        </div>
-       
-
-       
-
-
-       
        <!-- 15/1 ARM feed end-->
        <!-- Closing Cost Summary start-->
        <div class="row">
@@ -378,67 +374,18 @@
         <%end%>
        </div>
     </div>
-    <section class="reviews">
-      <div class="container">
-        <h4 class="main-title text-center font-weight-bold pb-4">News on Low Cost Refi's for <%=@city.city%>, <%=state_full_name(@state)%></h4>
-        <div class="owl-carousel">
-          <!-- card -->
-          <%if @news_articles.present? %>
-            <%@news_articles.each_with_index do |na, i|%>
-              <div class="item">
-                <div class=" card">
-                  <div class="row">
-                    <div class="content-bx-slider">
-                      <div class="slider-icon-bx">
-                        <i class="fa fa-newspaper-o"></i>
-                      </div>
-                      <h4 class="title"><%=link_to na.headline.truncate(42), na.url, target: "_blank"%></h4>
-                      <p><%=na.text.truncate(130)%></p>
-                      <a href="#" class="read-more-link">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <%end%>
-          <%end%>
-        </div>
-      </div>
-  </section>
-  <div class="container">
-    <div class="volume-auto-loan full-width loan-detail-blocks car-auto-loan-othr-bank-box">
-        <h3>Refinance Rates around <%=@city.city%>, <%=state_full_name(@state)%></h3>
-        <div class="car-auto-loan-othr-bank">
-           <%if @near_by_cities.present? %>
-              <div class="row">
-              <%@near_by_cities.each do |city|%>
-                <div class="col-md-4">
-                  <div class="city-link">
-                    <%#= link_to city.city+', '+city.state_code,city_home_refinance_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id)%>
-                    <%= link_to city_home_refinance_rates_path(state: city.state_code, city: city.city.tr(' ', '+'),city_id: city.id) do %>
-                    <span><%=city.city+', '+city.state_code%></span>
-                      <i class="fa fa-angle-double-right"></i>
-                    <% end %>
-                  </div>
-                </div>
-              <%end%>
-            <%else%>
-               No Records Found
-            <%end%>
-          </div>
-        </div>
-     </div>
-  </div>
+    <%= render partial: "partials/location_rates" %>
  </section>
  <!-- search result feed end-->
-    <div class="modal fade common-popup-layout signup-login-popup" id="create-price-alert" role="dialog">
+    <div class="modal fade common-popup-layout signup-login-popup modal-bx" id="create-price-alert" role="dialog">
       <div class="modal-dialog">
          <!-- Modal content-->
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal"><img src="/images/cancel_03.png" alt="" class="login-cross-img"></button>
-               <h4><b>Create a Price Alert to obtain lowest Mortgage</b></br>
+               <h3>Create a Price Alert to obtain lowest Mortgage</br>
                   Rates and Save even more!
-               </h4>
+               </h3>
             </div>
             <div class="modal-body">
                <%= form_for(:user, :url => session_path(:user), :html => {:id => "login_form"}) do |f| %>
@@ -561,4 +508,14 @@
       }
     }
   });
+  
+</script>
+
+<script type="text/javascript">
+  $('#adv-option').click(function () {
+        $("html, body").animate({
+            scrollTop: 160
+        }, 1000);
+        //return false;
+    });
 </script>

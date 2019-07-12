@@ -49,7 +49,7 @@
           <!-- <button class="rates-btn hm-src-btn-main">Get Rates</button> -->
           <div class="col-sm-2 col-xs-6">
             <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
-            <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw" %>
+            <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw", :id => "get_rates"  %>
 
           </div>
         </div>
@@ -60,6 +60,8 @@
           <a href="" data-toggle="modal" data-target="#advance-srch-mb"  class="mb-btn">Advanced Options
             <span class="down-arrow"><i class="fa fa-angle-down"></i></span>
           </a>
+          <a data-toggle="modal" data-target="#login-popup" href="" class="price-alert-btn inner-page-link">Create Price Alert
+          	<span class="down-arrow"><i class="fa fa-envelope"></i></span> </a>
           <div id="ad-search">
             <div class="search-adv-option" id="search-adv-option-inner">
               <div class="row">
