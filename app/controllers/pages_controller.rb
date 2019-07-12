@@ -4,7 +4,7 @@
   Purpose:        Following actions are for status update in admin panel .
 =end
 class PagesController < SearchController
-  include Onload
+  include InitilizeZipCode
   before_action :authenticate_user!, only: [:secret]
   before_action :update_statue, only: [:change_status, :user_mass_activate, :user_mass_deactivate]
 
@@ -29,6 +29,7 @@ class PagesController < SearchController
 
   def refinance
     api_search
+    initilize_state_and_zip_code
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
     else
@@ -38,6 +39,7 @@ class PagesController < SearchController
 
   def mortgage
     api_search
+    initilize_state_and_zip_code
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
     else
