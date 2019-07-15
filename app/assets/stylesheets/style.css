@@ -779,7 +779,7 @@ header .navbar-right {
   float: left;
   width: 100%;
   margin: 0 0 5px 0;
-  font-size: 16px;
+  font-size: 15px;
   color: #fff;
   font-weight: bold;
 }
@@ -929,13 +929,13 @@ header .navbar-right {
   float: left;
   width: 100%;
   margin-top: 0;
-  text-align: center;
+  text-align: left;
 }
 
 .search-adv-option-box a {
   color: #fff;
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 13px;
   text-decoration: none;
   font-weight: bold;
   text-align: center;
@@ -3469,7 +3469,10 @@ a.seo-loan-aftr-cntnt-link {
   display: none;
 }
 .pt-110{
-  padding-top: 110px !important;
+  padding-top: 50px !important;
+}
+.margin-left-30{
+  margin-left: 30px;
 }
 .inner-page-link{
   display: none;
@@ -3481,11 +3484,11 @@ a.seo-loan-aftr-cntnt-link {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .inner-search .banner {
-  padding: 15px 0;
+  padding: 10px 0;
   background-position: center;
 }
 .inner-search .banner .search-main{
-  top: 85px;
+  top: 0;
 }
 .share-research.loan-detail-blocks h3 {
   background: #111;

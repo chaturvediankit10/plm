@@ -142,7 +142,7 @@
                 <%= text_field_tag 'monthly_income', '' %>
               </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 padding-zero">
               <span class="input-leble">Income/mo</span>
             </div>
           </div>
@@ -156,7 +156,7 @@
                 <%= text_field_tag 'monthly_debt', '' %>
               </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 padding-zero">
               <span class="input-leble">Debt/mo</span>
             </div>
           </div>
@@ -169,8 +169,8 @@
                 <input type="text" name="" id="" value="80%">
               </div>
             </div>
-            <div class="col-xs-6">
-              <span class="input-leble">Combine/LTV</span>
+            <div class="col-xs-6 padding-zero">
+              <span class="input-leble">Combine LTV</span>
             </div>
           </div>
         </div>
@@ -199,14 +199,14 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="row">
+          <div class="row" style="margin-left: 15px;">
             <div class="col-xs-6">
               <div class="input-area">
                 <div class="dollar-icn">$</div>
                 <input type="text" name="" id="" value="">
               </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 padding-zero">
               <span class="input-leble">Cash out</span>
             </div>
           </div>
@@ -234,20 +234,23 @@
           <%= select_tag 'lock_period', options_for_select(Program::LOCK_PERIOD_LIST, @lock_period) %>
         </div>
         <div class="form-group">
-          <div class="checkbox radio">
-            <label class="radio-bx"> <%= radio_button_tag 'point', '0', true %> 0 points
-              <span class="checkmark"></span>
-            </label>
-          </div>
-          <div class="checkbox radio">
-            <label class="radio-bx"> <%= radio_button_tag 'point', '1', params[:point]=="1" ? true : false %> 1 points
-              <span class="checkmark"></span>
-            </label>
-          </div>
-          <div class="checkbox radio">
-            <label class="radio-bx"> <%= radio_button_tag 'point', '2',  params[:point]=="2" ? true : false %> 2 points
-              <span class="checkmark"></span>
-            </label>
+          <label>Points / Fees</label>
+          <div class="margin-left-30">
+            <div class="checkbox radio">
+              <label class="radio-bx"> <%= radio_button_tag 'point', '0', true %> 0 points
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="checkbox radio">
+              <label class="radio-bx"> <%= radio_button_tag 'point', '1', params[:point]=="1" ? true : false %> 1 points
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="checkbox radio">
+              <label class="radio-bx"> <%= radio_button_tag 'point', '2',  params[:point]=="2" ? true : false %> 2 points
+                <span class="checkmark"></span>
+              </label>
+            </div>
           </div>
         </div>
         <div class="form-group slect-tag">
@@ -295,7 +298,10 @@
   margin-bottom: 5px;
 }
 .mar-22{
-  margin-left: 22px;
+  margin-left: 35px;
+}
+.padding-zero{
+  padding: 0 !important;
 }
 .field-wrapper .form-group{
   margin-bottom: 10px;
@@ -394,7 +400,7 @@
   .radio-bx {
     display: block;
     position: relative;
-    padding-left: 35px !important;
+    padding-left: 30px !important;
     margin-bottom: 12px !important;
     cursor: pointer !important;
     font-size: 16px !important;
