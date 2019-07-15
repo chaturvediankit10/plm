@@ -1,2 +1,4 @@
+<% title = t('directories.mortgage_state_cities.title', :state => "#{state_full_name(@state_name)}", :date => "#{Date.today.strftime("%B %d, %Y")}") %>
+<% meta_description = t('directories.mortgage_state_cities.description' ,:state => "#{state_full_name(@state_name)}" ) %>
 <%=render 'state_cities'%>
 

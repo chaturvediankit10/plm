@@ -31,3 +31,73 @@
 
 en:
   hello: "Hello world"
+  pages:
+    refinance:
+      title: "Current Refinance Rates | Lower Your Mortgage Cost | Pureloan.com"
+      description: "Learn about current refinance rates including fees and taxes and save money on your mortgage."
+    mortgage:
+      title: "Current Mortgage Rates | All Major Lenders in Your Area | Pureloan.com"
+      description: "Search once and instantly see current mortgage rates personalized for you from hundreds of lenders."
+    show:
+      contact:
+        title: "Contact Us | Pureloan.com"
+        description: "We would love to hear from you. Drop us a line!"
+      about:
+        title: "About Us | Pureloan.com"
+        description: "Learn more about Pureloan.com."
+      terms:
+        title: "Terms and Conditions | Pureloan.com"
+        description: ""
+  calculator:
+    index:
+      title: "Mortgage Calculator | Get Free Payoff Schedule Report | Pureloan.com"
+      description: "The most powerful mortgage calculator offered to you for FREE. See your monthly payoff schedule and learn about impact from taxes, insurance, PMI, etc."
+  buttercms:
+    posts:
+      index:
+        title: "Mortgage Research | Learn Mortgage Trends and More | Pureloan.com"
+        description: "Utilize our research center to learn about mortgage and macroeconomic trends that might impact your mortgage decision."
+  directories:
+    directory_root:
+      title: "Directory | Pureloan.com"
+      description: "The most comprehensive mortgage directory covering all cities in the United States and thousands of institutions nationwide."
+    mortgage_state_cities:
+      title: "Best Mortgage Rates in %{state} | %{date} | Pureloan.com"
+      description: "Get the best mortgage rates in %{state}. We search all the major mortgage lenders daily for the best rates and personalize for you through our proprietary algorithm."
+    refinance_state_cities:
+      title: "Best Refinance Rates in %{state} | %{date} | Pureloan.com"
+      description: "Get the best refinance rates in %{state}. We search all the major refi lenders daily for the best rates and personalize for you through our proprietary algorithm."
+    mortgage_state_cities_list:
+      title: "Best Mortgage Rates in %{state} | %{date} | Pureloan.com"
+      description: "Get the best mortgage rates in %{state}. We search all the major mortgage lenders daily for the best rates and personalize for you through our proprietary algorithm."
+    refinance_state_cities_list:
+      title: "Best Refinance Rates in %{state} | %{date} | Pureloan.com"
+      description: "Get the best refinance rates in %{state}. We search all the major refi lenders daily for the best rates and personalize for you through our "
+    mortgage_state_banks:
+      title: "Mortgage Lender Directory | Pureloan.com"
+      description: "The most comprehensive mortgage lender directory with thousands of institutions nationwide. "
+    mortgage_state_banks_list:
+      title: "Mortgage Lender Directory | Pureloan.com"
+      description: "The most comprehensive mortgage lender directory with thousands of institutions nationwide. "
+    personal_loan_state_banks:
+      title: "Personal Loan Lender Directory | Pureloan.com"
+      state: "The most comprehensive personal loan lender directory with thousands of institutions nationwide. "
+    personal_loan_state_banks_list:
+      title: "Personal Loan Lender Directory | Pureloan.com"
+      state: "The most comprehensive personal loan lender directory with thousands of institutions nationwide. "
+    auto_loan_state_banks:
+      title: "Auto Loan Lender Directory | Pureloan.com"
+      description: "The most comprehensive auto loan lender directory with thousands of institutions nationwide. "
+  seo_pages:
+    city_home_mortgage_rates:
+      title: "Best Mortgage Rates in %{city}, %{state} | %{date} | Pureloan.com"
+      description: "Get the best mortgage rates in %{city}, %{state}. We search all the major mortgage lenders daily for the best rates and personalize for you through our proprietary algorithm."
+    city_home_refinance_rates:
+      title: "Best Refinance Rates in %{city}, %{state} | %{date} | Pureloan.com"
+      description: "Get the best refinance rates in %{city}, %{state}. We search all the major refi lenders daily for the best rates and personalize for you through our proprietary algorithm."
+    bank_mortgage_loans:
+      title: "%{bank} Mortgage Rates | Pureloan.com"
+      description: "Get the latest mortgage rates from %{bank} and related financial news."
+    bank_personal_loans:
+      title: "%{bank} Personal Loans Rates | Pureloan.com"
+      description: "Get the latest personal loans rates from %{bank} and related financial news."

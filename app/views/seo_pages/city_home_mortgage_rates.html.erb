@@ -4,6 +4,9 @@
 </div>
 <!-- banner end-->
 <!-- result feed start-->
+<% title = t('seo_pages.city_home_mortgage_rates.title', :city => "#{@city.city}", :state => "#{state_full_name(@state)}", :date => "#{Date.today.strftime("%B %d, %Y")}" ) %>
+<% meta_description = t('seo_pages.city_home_mortgage_rates.description' , :city => "#{@city.city}", :state => "#{state_full_name(@state)}") %>
+
 <section class="content-main seo-cities-mortgage seo-cities pt-110">
   <div class="container">
     <div class="row">
