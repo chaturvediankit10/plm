@@ -11,12 +11,13 @@
     </title>
     <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"> -->
-    <% if yield(:meta_description).present? %>
-      <meta name="description" content="<%= yield(:meta_description) %>" />
-    <% else %>
-      <meta name="description" content="Get the most savings on your mortgage. We search all the major mortgage lenders daily for the best rates and personalize for you through our proprietary algorithm." />
-    <% end %>
+    
     <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1">
+      <% if yield(:meta_description).present? %>
+        <meta name="description" content="<%= yield(:meta_description) %>" />
+      <% else %>
+        <meta name="description" content="Get the most savings on your mortgage. We search all the major mortgage lenders daily for the best rates and personalize for you through our proprietary algorithm." />
+      <% end %>
       <%= csrf_meta_tags %>
       <!-- required stylesheets link -->
       <%= stylesheet_link_tag "bootstrap.min"%>
