@@ -6,6 +6,10 @@ module ApplicationHelper
   def title(page_title)
     content_for(:title) { page_title }
   end
+
+  def meta_description(blog_text)
+    content_for(:meta_description) { blog_text }
+  end
   
   #function for getting users location 
   def user_location_info
