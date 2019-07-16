@@ -929,9 +929,16 @@ header .navbar-right {
   float: left;
   width: 100%;
   margin-top: 0;
-  text-align: left;
-}
+  text-align: center;
 
+}
+.inner-search .search-adv-option-box {
+  position: relative;
+  top: -18px;
+}
+.inner-search .search-main{
+  padding: 10px 25px 0;
+}
 .search-adv-option-box a {
   color: #fff;
   text-transform: uppercase;
@@ -3479,6 +3486,13 @@ a.seo-loan-aftr-cntnt-link {
 }
 .inner-search .inner-page-link{
   display: inline-block;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
 }
 .inner-search .banner-overlay {
   background-color: rgba(0, 0, 0, 0.2);
@@ -4920,9 +4934,16 @@ header.fixed-header.scrolled {
   .search-adv-option-box a {
     color: #fff;
     font-weight: normal;
-    margin: 10px 0;
+    margin: 10px;
     float: none;
     font-size: 12px !important;
+  }
+  .inner-search .search-adv-option-box {
+    position: relative;
+    top: 0;
+  }
+  .inner-search .inner-page-link{
+    font-size: 10px;
   }
   .search-adv-option-box a.price-alert-btn {
     float: right;
