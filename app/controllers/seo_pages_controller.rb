@@ -9,11 +9,11 @@ Purpose:        display and define logic for all the seo pages
   include InitilizeZipCode
 
   #apply dry concept for common code
+  before_action :default_programs, only: [:city_home_mortgage_rates, :city_home_refinance_rates, :bank_mortgage_loans]
   before_action :city_home, only: [:city_home_mortgage_rates, :city_home_refinance_rates]
   before_action :bank_home, only: [:bank_mortgage_loans, :bank_personal_loans, :bank_auto_loans]
 
   def city_home_mortgage_rates
-    home
     initilize_state_and_zip_code
     @news_articles = news_article_data(' mortgage')
     # for report section fetching all cities record similer to current city 
@@ -28,7 +28,6 @@ Purpose:        display and define logic for all the seo pages
   end 
 
   def city_home_refinance_rates
-    home
     initilize_state_and_zip_code
     @news_articles = news_article_data(' refinance')
     # for report section fetching all cities record similer to current city
@@ -44,7 +43,6 @@ Purpose:        display and define logic for all the seo pages
   end 
 
   def bank_mortgage_loans
-    home
     initilize_state_and_zip_code
     @news_articles = bank_news_article(" mortgage")
     @loan_officers = LoanOfficer.loan_officers_gen(@bank, "mortgage")
@@ -101,4 +99,8 @@ Purpose:        display and define logic for all the seo pages
       return bank_news_articles.order(id: :desc).first(10)
     end
 
+    def default_programs
+      params.delete :bank_name if params[:action] == "bank_mortgage_loans"
+      home
+    end
 end

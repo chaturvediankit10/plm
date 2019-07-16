@@ -3493,8 +3493,6 @@ a.seo-loan-aftr-cntnt-link {
   font-weight: bold;
   text-align: center;
   margin: 0;
-  position: relative;
-  z-index: 999;
 }
 .inner-search .banner-overlay {
   background-color: rgba(0, 0, 0, 0.2);
@@ -9486,4 +9484,3 @@ p.hiden-txt-mb {
   }
 
 }
-

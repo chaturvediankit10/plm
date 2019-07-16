@@ -23,6 +23,10 @@ module ApplicationHelper
     return @user_info
   end
 
+  def get_dynamic_path(params)
+    params[:action] == "home" ? params[:action] : request.url.split("com/").last
+  end
+
   #mappping state code with state name
   def state_full_name(state_code,flag = false)
     state = {
