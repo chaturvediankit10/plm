@@ -104,3 +104,8 @@ en:
     bank_auto_loans:
       title: "Farmers and Merchants %{bank} Auto Loans Rates | Pureloan.com"
       description: "Get the latest auto loan rates from Merchants %{bank} and related financial news. "
+  search:
+    home:
+      title: "Pureloan.com | A Smart Way to Get the Best Mortgage Rates for Today"
+      description: "Get the most savings on your mortgage. We search all the major mortgage lenders daily for the best rates and personalize for you through our proprietary algorithm. "
+      
