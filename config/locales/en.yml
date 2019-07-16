@@ -101,3 +101,6 @@ en:
     bank_personal_loans:
       title: "%{bank} Personal Loans Rates | Pureloan.com"
       description: "Get the latest personal loans rates from %{bank} and related financial news."
+    bank_auto_loans:
+      title: "Farmers and Merchants %{bank} Auto Loans Rates | Pureloan.com"
+      description: "Get the latest auto loan rates from Merchants %{bank} and related financial news. "
