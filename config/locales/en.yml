@@ -88,6 +88,9 @@ en:
     auto_loan_state_banks:
       title: "Auto Loan Lender Directory | Pureloan.com"
       description: "The most comprehensive auto loan lender directory with thousands of institutions nationwide. "
+    auto_loan_state_banks_list:
+      title: "Auto Loan Lender Directory | Pureloan.com"
+      description: "The most comprehensive auto loan lender directory with thousands of institutions nationwide. "
   seo_pages:
     city_home_mortgage_rates:
       title: "Best Mortgage Rates in %{city}, %{state} | %{date} | Pureloan.com"
