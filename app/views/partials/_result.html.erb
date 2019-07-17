@@ -1,10 +1,9 @@
-
 <div style="position: relative; clear: both;">
   <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
   <ul class="nav nav-tabs rates-tab">
     <li class="<%= @term.to_s == "30" && @loan_type != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
     <li class="<%= @term.to_s == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
-    <li  class="<%= (@loan_type == "ARM" && @arm_basic == "5") ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
+    <li  class="<%= (@loan_type == "ARM" && @arm_basic == "5/1") ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
   </ul>
 
   <div class="tab-content rates-tab-content" style="position: relative;">

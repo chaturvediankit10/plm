@@ -937,7 +937,10 @@ header .navbar-right {
   top: -18px;
 }
 .inner-search .search-main{
-  padding: 10px 25px 0;
+  padding: 10px 0 0;
+}
+.inner-search .adv-search-main{
+  padding: 0 25px;
 }
 .search-adv-option-box a {
   color: #fff;
