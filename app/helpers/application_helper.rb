@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def get_dynamic_path(params)
-    params[:action] == "home" ? params[:action] : request.url.split("com/").last
+    params[:action] == "home" ? "" : request.url.split("com/").last
   end
 
   #mappping state code with state name
