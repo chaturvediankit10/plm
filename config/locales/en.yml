@@ -81,10 +81,10 @@ en:
       description: "The most comprehensive mortgage lender directory with thousands of institutions nationwide. "
     personal_loan_state_banks:
       title: "Personal Loan Lender Directory | Pureloan.com"
-      state: "The most comprehensive personal loan lender directory with thousands of institutions nationwide. "
+      description: "The most comprehensive personal loan lender directory with thousands of institutions nationwide. "
     personal_loan_state_banks_list:
       title: "Personal Loan Lender Directory | Pureloan.com"
-      state: "The most comprehensive personal loan lender directory with thousands of institutions nationwide. "
+      description: "The most comprehensive personal loan lender directory with thousands of institutions nationwide. "
     auto_loan_state_banks:
       title: "Auto Loan Lender Directory | Pureloan.com"
       description: "The most comprehensive auto loan lender directory with thousands of institutions nationwide. "
