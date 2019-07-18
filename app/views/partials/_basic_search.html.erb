@@ -110,6 +110,13 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    form_submitted = <%= raw params[:commit].present? ? false : true %>
+
+    if (form_submitted && location.href.includes("refinance")) {
+      $('#loan_purpose').val('Refinance');
+      $('#adv_loan_purpose').val('Refinance');
+    }
+
     $('#zip').change(function(){
       if ($(this).val().length>2) {
         $.ajax({

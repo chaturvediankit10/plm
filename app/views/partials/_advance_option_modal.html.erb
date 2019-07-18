@@ -233,8 +233,8 @@
                                 <td align="right"><b><%= program[:va] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
-                                <td>Full Foc</td>
-                                <td align="right"><b><%= program[:full_doc] ? "Yes" : "No" %></b></td>
+                                <td nowrap="nowrap">USDA</td>
+                                <td align="right"><b><%= program[:usda] ? "Yes" : "No" %></b></td>
                               </tr>
                             </tbody>
                           </table>
@@ -262,16 +262,16 @@
                                 <td align="right"><b><%= loan_size_value %></b></td>
                               </tr>
                               <tr>
+                                <td>Loan Term</td>
+                                <td align="right"><b><%= pro_term %> Years</b></td>
+                              </tr>
+                              <tr>
                                 <td>Credit Score</td>
                                 <td align="right"><b><%= @set_credit_score %></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Amount</td>
                                 <td align="right"><b> <%= number_to_currency(loan_amount_value, :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil%></b></td>
-                              </tr>
-                              <tr>
-                                <td>Loan Term</td>
-                                <td align="right"><b><%= pro_term %> Years</b></td>
                               </tr>
                               <tr>
                                 <td nowrap="nowrap">Fannie Mae Product</td>
@@ -290,8 +290,8 @@
                                 <td align="right"><b><%= program[:streamline] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
-                                <td nowrap="nowrap">USDA</td>
-                                <td align="right"><b><%= program[:usda] ? "Yes" : "No" %></b></td>
+                                <td>Full Doc</td>
+                                <td align="right"><b><%= program[:full_doc] ? "Yes" : "No" %></b></td>
                               </tr>
                               <tr>
                                 <td>Arm</td>
@@ -305,7 +305,6 @@
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
