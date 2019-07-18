@@ -342,6 +342,11 @@ $(document).ready(function () {
       $('#adv_loan_purpose').val($('#loan_purpose').val())
     });
 
+    if (location.href.includes("refinance")) {
+      $('#loan_purpose').val('Refinance');
+      $('#adv_loan_purpose').val('Refinance');
+    }
+
    // $('.favorite').click(function () {
    //    program_id = this.id
    //    $.ajax({

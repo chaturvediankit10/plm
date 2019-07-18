@@ -28,6 +28,7 @@ class PagesController < SearchController
   end
 
   def refinance
+    params[:loan_purpose] = "Refinance"
     api_search
     initilize_state_and_zip_code
     if params[:loan_type] == "ARM" && params[:arm_basic].present?

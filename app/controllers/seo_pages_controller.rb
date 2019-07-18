@@ -100,6 +100,9 @@ Purpose:        display and define logic for all the seo pages
     end
 
     def default_programs
+      if params[:action] == "city_home_refinance_rates"
+        params[:loan_purpose] = "Refinance"
+      end
       params.delete :bank_name if params[:action] == "bank_mortgage_loans"
       home
     end
