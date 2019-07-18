@@ -44,35 +44,7 @@
     <!-- Closing Cost Summary start-->
     <div class="row">
       <div class="col-xs-12 col-md-12">
-        <div class="loan-detail-blocks">
-          <h3>Closing Cost Summary for Mortgage Rates in <%=@city.city%>, <%=state_full_name(@state)%></h3>
-          <div class="closing-cost-smry-cntnt">
-            <div class="col-xs-12 col-md-2">
-              <span>Origination Fee</span>
-              <p>$2,000</p>
-            </div>
-            <div class="col-xs-12 col-md-2">
-              <span>Appraisal Fee</span>
-              <p>$400</p>
-            </div>
-            <div class="col-xs-12 col-md-2">
-              <span>Underwriting Fee</span>
-              <p>$500</p>
-            </div>
-            <div class="col-xs-12 col-md-1">
-              <span>Other Fee</span>
-              <p>$100</p>
-            </div>
-            <div class="col-xs-12 col-md-2">
-              <span>Discount Points</span>
-              <p>$2,858</p>
-            </div>
-            <div class="col-xs-12 col-md-3">
-              <span>Estimated  Closing Costs</span>
-              <p>$5,585</p>
-            </div>
-          </div>
-        </div>
+        <%= render partial: "partials/closing_cost_summary" %>
       </div>
     </div>
     <!-- Closing Cost Summary end-->

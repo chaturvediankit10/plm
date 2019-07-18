@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var tab_val = $('.active .js-trigger').attr('data-tab');
     load_more(tab_val);
+    average_closing_cost(tab_val,20)
     $('.tab-btn').click(function (e) {
 
       tab_val = $(this).text().replace ( /[^\d.]/g, '' ); 
@@ -283,8 +284,46 @@ $(document).ready(function () {
       $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
       $('#loadMore').click(function () {
         x = (x+10 <= size_li) ? x+10 : size_li;
+        average_closing_cost(tab_val,x)
         $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
       });
+    }
+
+    function average_closing_cost(tab_val,x){
+      var size_li = $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")")
+      var air_total = 0
+      var apr_total = 0
+      var saving_total = 0
+      var monthly_payment_total = 0
+      var closing_cost_total = 0
+      for (i = 0; i < size_li.length; i++) { 
+        air = size_li[i].querySelector('.a_air').textContent.trim().split('%')[0];
+        apr = size_li[i].querySelector('.a_apr').textContent.trim().split('%')[0];
+        saving = size_li[i].querySelector('.a_saving').textContent.trim().replace(/[$\,]/g,"")
+        monthly_payment = size_li[i].querySelector('.a_monthly_payment').textContent.trim().replace(/\,/g,"").split('$')[1];
+        closing_cost = size_li[i].querySelector('.a_closing_cost').textContent.trim().replace(/\,/g,"").split('$')[1];
+        air = parseFloat(air);
+        apr = parseFloat(apr);
+        saving = parseInt(saving);
+        monthly_payment = parseInt(monthly_payment);
+        closing_cost = parseInt(closing_cost);
+        air_total += air
+        apr_total += apr
+        saving_total += saving
+        monthly_payment_total += monthly_payment
+        closing_cost_total += closing_cost
+      }
+        avg_air = (air_total/size_li.length).toFixed(3)
+        avg_apr = (apr_total/size_li.length).toFixed(3)
+        avg_saving = "$"+(saving_total/size_li.length).toFixed(3)
+        avg_monthly_payment = "$"+(monthly_payment_total/size_li.length).toFixed(3)
+        avg_closing_cost = "$"+(closing_cost_total/size_li.length).toFixed(3)
+
+        document.getElementById("air_avg").innerHTML = avg_air;
+        document.getElementById("apr_avg").innerHTML = avg_apr;
+        document.getElementById("saving_avg").innerHTML = avg_saving;
+        document.getElementById("monthly_payment_avg").innerHTML = avg_monthly_payment;
+        document.getElementById("closing_cost_avg").innerHTML = avg_closing_cost;
     }
 
    // $('#adv-option').click(function () {
