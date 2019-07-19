@@ -1,26 +1,25 @@
 <div class="loan-detail-blocks">
-	<%#debugger%>
 	<h3><%= @city.present? ? "Closing Cost Summary for Mortgage Rates in " + @city.city+ ", "+ state_full_name(@state) : "Closing Cost Summary" %></h3>
   <!-- <h3>Closing Cost Summary for Mortgage Rates in <%#=@city.city%>, <%#=state_full_name(@state)%></h3> -->
   <div class="closing-cost-smry-cntnt">
     <div class="col-xs-12 col-md-2">
-      <span>Average Of Apr</span>
-      <p id = "apr_avg"></p>
-    </div>
-    <div class="col-xs-12 col-md-3">
-      <span>Average Of Expected Saving</span>
-      <p id = "saving_avg"></p>
-    </div>
-    <div class="col-xs-12 col-md-2">
-      <span>Average Of Air</span>
+      <span>Rate</span>
       <p id = "air_avg"></p>
     </div>
-    <div class="col-xs-12 col-md-3">
-      <span>Average Of Monthly Payment</span>
-      <p id = "monthly_payment_avg"></p>
+    <div class="col-xs-12 col-md-2">
+      <span>APR</span>
+      <p id = "apr_avg"></p>
     </div>
     <div class="col-xs-12 col-md-2">
-      <span>Average Of Total Closing Cost</span>
+      <span>Expected Savings</span>
+      <p id = "saving_avg"></p>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <span>Monthly Payment</span>
+      <p id = "monthly_payment_avg"></p>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <span>Total Closing Costs</span>
       <p id = "closing_cost_avg"></p>
     </div>
     <!-- <div class="col-xs-12 col-md-3">
