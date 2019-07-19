@@ -3653,12 +3653,22 @@ p.top-txt-info {
   font-size: 16px;
   color: #111;
   border-right: 1px solid #ddd;
-  padding: 10px 0;
+  padding: 0;
+}
+
+.home_closing .closing-cost-smry-cntnt .col-xs-12{
+  padding: 0;
+}
+.home_closing .closing-cost-smry-cntnt .col-xs-12 p{
+  font-size: 14px;
+}
+.home_closing .closing-cost-smry-cntnt span{
+  font-size: 13px;
 }
 .closing-cost-smry-cntnt span{
   display: block;
   background-color: #f1f1f1;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 0;
 }
 .closing-cost-smry-cntnt .col-xs-12:last-child {
@@ -6397,7 +6407,28 @@ header.fixed-header.scrolled {
     top: 0;
   }
 }
-
+@media(min-width:375px) and (max-width:1024px) {
+  .home_closing{
+    padding: 0;
+  }
+ .home_closing .closing-cost-smry-cntnt .col-xs-12 {
+      padding: 0;
+      background-color: #eee;
+      margin-bottom: 2px;
+  }
+  .home_closing .closing-cost-smry-cntnt span {
+      display: inline-block;
+      padding: 10px;
+      font-size: 16px;
+  }
+  .home_closing .closing-cost-smry-cntnt .col-xs-12 p {
+    padding: 10px;
+    font-size: 14px;
+    float: right;
+    width: auto;
+    background: none;
+  }
+}
 @media(min-width:768px) and (max-width:1024px) {
   #global-nav {
     padding: 0;
@@ -7357,6 +7388,7 @@ header.fixed-header.scrolled {
     background-color: #eee;
     margin-bottom: 2px;
   }
+
   .seo-cities-mortgage.seo-cities .closing-cost-smry-cntnt span{
     display: inline-block;
     padding: 10px;

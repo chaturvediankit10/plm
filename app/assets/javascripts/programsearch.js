@@ -3,7 +3,6 @@ $(document).ready(function () {
     load_more(tab_val);
     average_closing_cost(tab_val,20)
     $('.tab-btn').click(function (e) {
-
       tab_val = $(this).text().replace ( /[^\d.]/g, '' ); 
       load_more(tab_val);
     });
@@ -286,6 +285,9 @@ $(document).ready(function () {
         x = (x+10 <= size_li) ? x+10 : size_li;
         average_closing_cost(tab_val,x)
         $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+        if(x == size_li){
+          $('#loadMore').hide();
+        }
       });
     }
 
@@ -313,18 +315,34 @@ $(document).ready(function () {
         monthly_payment_total += monthly_payment
         closing_cost_total += closing_cost
       }
-        avg_air = (air_total/size_li.length).toFixed(3)
-        avg_apr = (apr_total/size_li.length).toFixed(3)
-        avg_saving = "$"+(saving_total/size_li.length).toFixed(3)
-        avg_monthly_payment = "$"+(monthly_payment_total/size_li.length).toFixed(3)
-        avg_closing_cost = "$"+(closing_cost_total/size_li.length).toFixed(3)
-
+        avg_air = (air_total/size_li.length).toFixed(3)+"%"
+        avg_apr = (apr_total/size_li.length).toFixed(3)+"%"
+        avg_saving = (saving_total/size_li.length)
+        avg_saving = "$"+formatMoney(avg_saving)
+        avg_monthly_payment = (monthly_payment_total/size_li.length)
+        avg_monthly_payment = "$"+formatMoney(avg_monthly_payment)
+        avg_closing_cost = (closing_cost_total/size_li.length)
+        avg_closing_cost = "$"+formatMoney(avg_closing_cost)
+        
         document.getElementById("air_avg").innerHTML = avg_air;
         document.getElementById("apr_avg").innerHTML = avg_apr;
         document.getElementById("saving_avg").innerHTML = avg_saving;
         document.getElementById("monthly_payment_avg").innerHTML = avg_monthly_payment;
         document.getElementById("closing_cost_avg").innerHTML = avg_closing_cost;
     }
+    function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+      try {
+        decimalCount = Math.abs(decimalCount);
+        decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+        const negativeSign = amount < 0 ? "-" : "";
+        let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+        let j = (i.length > 3) ? i.length % 3 : 0;
+        // return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+        return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands)
+      } catch (e) {
+        console.log(e)
+      }
+    };
 
    // $('#adv-option').click(function () {
    //      $("html, body").animate({
