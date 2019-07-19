@@ -344,12 +344,12 @@ $(document).ready(function () {
       }
     };
 
-   // $('#adv-option').click(function () {
-   //      $("html, body").animate({
-   //          scrollTop: 250
-   //      }, 1000);
-   //      //return false;
-   //  });
+   $('.mb-adv-search').click(function () {
+        $("html, body").animate({
+            scrollTop: 300
+        }, 1000);
+        //return false;
+    });
    
 
    $('#adv_loan_purpose').change(function () {
