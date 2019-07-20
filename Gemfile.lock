@@ -1,22 +1,11 @@
 GIT
   remote: https://github.com/PureLoan/APIRead.git
-  revision: 8c410c27d3c1a897330a3896dfb23faaefbb00d7
+  revision: 1e3a71a220063d5fecca09c2946a32ca6e0698e3
   specs:
     search_api (0.1.0)
       activesupport
-      bootsnap (>= 1.1.0)
-      bootstrap
-      csv
-      google_drive
+      finance_math
       jquery-datatables
-      jquery-rails
-      jquery-validation-rails
-      redis-rails
-      roo (~> 2.7.0)
-      roo-xls
-      select2-rails
-      sidekiq
-      tzinfo-data
 
 GEM
   remote: https://rubygems.org/
@@ -138,9 +127,6 @@ GEM
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.4)
-    csv (3.1.1)
-    declarative (0.0.10)
-    declarative-option (0.1.0)
     devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -156,6 +142,7 @@ GEM
     ffi (1.11.1)
     figaro (1.1.1)
       thor (~> 0.14)
+    finance_math (1.0.5)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -165,32 +152,12 @@ GEM
     geocoder (1.5.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    google-api-client (0.30.6)
-      addressable (~> 2.5, >= 2.5.1)
-      googleauth (>= 0.5, < 0.10.0)
-      httpclient (>= 2.8.1, < 3.0)
-      mini_mime (~> 1.0)
-      representable (~> 3.0)
-      retriable (>= 2.0, < 4.0)
-      signet (~> 0.10)
-    google_drive (3.0.3)
-      google-api-client (>= 0.11.0, < 0.31.0)
-      googleauth (>= 0.5.0, < 1.0.0)
-      nokogiri (>= 1.5.3, < 2.0.0)
-    googleauth (0.8.1)
-      faraday (~> 0.12)
-      jwt (>= 1.4, < 3.0)
-      memoist (~> 0.16)
-      multi_json (~> 1.11)
-      os (>= 0.9, < 2.0)
-      signet (~> 0.7)
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     hashie (3.6.0)
     highcharts-rails (6.0.3)
       railties (>= 3.1)
-    httpclient (2.8.3)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.10.0)
@@ -230,7 +197,6 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     maskmoney-rails (3.0.2.0)
-    memoist (0.16.0)
     method_source (0.9.2)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
@@ -265,7 +231,6 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
-    os (1.0.1)
     paperclip (5.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -316,38 +281,9 @@ GEM
       ffi (~> 1.0)
     rchardet (1.8.0)
     redis (4.1.2)
-    redis-actionpack (5.0.2)
-      actionpack (>= 4.0, < 6)
-      redis-rack (>= 1, < 3)
-      redis-store (>= 1.1.0, < 2)
-    redis-activesupport (5.0.7)
-      activesupport (>= 3, < 6)
-      redis-store (>= 1.3, < 2)
-    redis-rack (2.0.5)
-      rack (>= 1.5, < 3)
-      redis-store (>= 1.2, < 2)
-    redis-rails (5.0.2)
-      redis-actionpack (>= 5.0, < 6)
-      redis-activesupport (>= 5.0, < 6)
-      redis-store (>= 1.2, < 2)
-    redis-store (1.6.0)
-      redis (>= 2.2, < 5)
-    representable (3.0.4)
-      declarative (< 0.1.0)
-      declarative-option (< 0.2.0)
-      uber (< 0.2.0)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
-    retriable (3.1.2)
-    roo (2.7.1)
-      nokogiri (~> 1)
-      rubyzip (~> 1.1, < 2.0.0)
-    roo-xls (1.2.0)
-      nokogiri
-      roo (>= 2.0.0, < 3)
-      spreadsheet (> 0.9.0)
-    ruby-ole (1.2.12.2)
     ruby_dep (1.5.0)
     rubyzip (1.2.3)
     rufus-scheduler (3.6.0)
@@ -372,8 +308,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    select2-rails (4.0.3)
-      thor (~> 0.14)
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -382,13 +316,6 @@ GEM
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    signet (0.11.0)
-      addressable (~> 2.3)
-      faraday (~> 0.9)
-      jwt (>= 1.5, < 3.0)
-      multi_json (~> 1.10)
-    spreadsheet (1.2.4)
-      ruby-ole (>= 1.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -410,9 +337,6 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2019.2)
-      tzinfo (>= 1.0.0)
-    uber (0.1.0)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     warden (1.2.8)
