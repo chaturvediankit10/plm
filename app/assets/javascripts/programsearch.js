@@ -288,15 +288,15 @@ $(document).ready(function () {
       size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
       // $("."+tab_val+"years").addClass('active')
       $("#"+tab_val+"years .demo-items-"+tab_val).hide();
-        
         if (!flag) {
           x = (x+20 <= size_li) ? x+20 : size_li;
           $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
           average_closing_cost(tab_val,x)
         }else{
-          // x=20;
           if (seo_link.includes('/mortgage/') ||seo_link.includes('/mortgage/') ) {
             x = 10
+          }else{
+            x = 20
           }
           $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
           average_closing_cost(tab_val,x)
