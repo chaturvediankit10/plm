@@ -1,10 +1,16 @@
 $(document).ready(function () {
+    seo_link = $(location).attr("href");
     var tab_val = $('.active .js-trigger').attr('data-tab');
-    load_more(tab_val);
+    var size_li = 0
+    let x = 20
+    if (seo_link.includes('/mortgage/') ||seo_link.includes('/mortgage/') ) {
+      x = 10
+    }
+    load_more(tab_val, true);
     average_closing_cost(tab_val,20)
     $('.tab-btn').click(function (e) {
       tab_val = $(this).text().replace ( /[^\d.]/g, '' ); 
-      load_more(tab_val);
+      // load_m`ore(tab_val);
     });
 
     tab_term =  $('.active .js-trigger').attr('data-tab');
@@ -50,6 +56,9 @@ $(document).ready(function () {
         data: data,
         success: function(response) {
           $(".loader").hide();
+          tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
+          $('#loadMore').show();
+          load_more(tab_val, true);
         }
       });
     });
@@ -275,35 +284,45 @@ $(document).ready(function () {
       });
 
 
-    function load_more(tab_val){
-      var size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
+    function load_more(tab_val, flag){
+      size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
       // $("."+tab_val+"years").addClass('active')
       $("#"+tab_val+"years .demo-items-"+tab_val).hide();
-      x=20;
-      $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
-      $('#loadMore').click(function () {
-        x = (x+10 <= size_li) ? x+10 : size_li;
-        average_closing_cost(tab_val,x)
-        $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
-        if(x == size_li){
+        
+        if (!flag) {
+          x = (x+20 <= size_li) ? x+20 : size_li;
+          $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+          average_closing_cost(tab_val,x)
+        }else{
+          // x=20;
+          if (seo_link.includes('/mortgage/') ||seo_link.includes('/mortgage/') ) {
+            x = 10
+          }
+          $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+          average_closing_cost(tab_val,x)
+        }
+        if(x == size_li || size_li < 20){
           $('#loadMore').hide();
         }
-      });
     }
+      $('#loadMore').click(function () {
+        tab_val = tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
+        load_more(tab_val, false);
+      });
 
     function average_closing_cost(tab_val,x){
-      var size_li = $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")")
+      var size_li2 = $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")")
       var air_total = 0
       var apr_total = 0
       var saving_total = 0
       var monthly_payment_total = 0
       var closing_cost_total = 0
-      for (i = 0; i < size_li.length; i++) { 
-        air = size_li[i].querySelector('.a_air').textContent.trim().split('%')[0];
-        apr = size_li[i].querySelector('.a_apr').textContent.trim().split('%')[0];
-        saving = size_li[i].querySelector('.a_saving').textContent.trim().replace(/[$\,]/g,"")
-        monthly_payment = size_li[i].querySelector('.a_monthly_payment').textContent.trim().replace(/\,/g,"").split('$')[1];
-        closing_cost = size_li[i].querySelector('.a_closing_cost').textContent.trim().replace(/\,/g,"").split('$')[1];
+      for (i = 0; i < size_li2.length; i++) { 
+        air = size_li2[i].querySelector('.a_air').textContent.trim().split('%')[0];
+        apr = size_li2[i].querySelector('.a_apr').textContent.trim().split('%')[0];
+        saving = size_li2[i].querySelector('.a_saving').textContent.trim().replace(/[$\,]/g,"")
+        monthly_payment = size_li2[i].querySelector('.a_monthly_payment').textContent.trim().replace(/\,/g,"").split('$')[1];
+        closing_cost = size_li2[i].querySelector('.a_closing_cost').textContent.trim().replace(/\,/g,"").split('$')[1];
         air = parseFloat(air);
         apr = parseFloat(apr);
         saving = parseInt(saving);
@@ -315,13 +334,13 @@ $(document).ready(function () {
         monthly_payment_total += monthly_payment
         closing_cost_total += closing_cost
       }
-        avg_air = (air_total/size_li.length).toFixed(3)+"%"
-        avg_apr = (apr_total/size_li.length).toFixed(3)+"%"
-        avg_saving = (saving_total/size_li.length)
+        avg_air = (air_total/size_li2.length).toFixed(3)+"%"
+        avg_apr = (apr_total/size_li2.length).toFixed(3)+"%"
+        avg_saving = (saving_total/size_li2.length)
         avg_saving = "$"+formatMoney(avg_saving)
-        avg_monthly_payment = (monthly_payment_total/size_li.length)
+        avg_monthly_payment = (monthly_payment_total/size_li2.length)
         avg_monthly_payment = "$"+formatMoney(avg_monthly_payment)
-        avg_closing_cost = (closing_cost_total/size_li.length)
+        avg_closing_cost = (closing_cost_total/size_li2.length)
         avg_closing_cost = "$"+formatMoney(avg_closing_cost)
         
         document.getElementById("air_avg").innerHTML = avg_air;
