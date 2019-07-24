@@ -49,11 +49,17 @@
           <div class="col-sm-2 col-xs-6">
             <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
             <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw", :id => "get_rates"  %>
-            <a data-toggle="modal" data-target="#login-popup" href="" class="price-alert-btn inner-page-link">
-              <i class="fa fa-envelope"></i>
-              Create Price Alert
-            </a>
-
+            <% if current_user.present? %>
+              <a href="/users/edit#" class="price-alert-btn inner-page-link">
+                <i class="fa fa-envelope"></i>
+                Create Price Alert
+              </a>
+            <% else %>
+              <a data-toggle="modal" data-target="#login-popup" href="" class="price-alert-btn inner-page-link">
+                <i class="fa fa-envelope"></i>
+                Create Price Alert
+              </a>
+            <% end %>
           </div>
         </div>
         <div class="search-adv-option-box">

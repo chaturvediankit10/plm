@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hi User</h3>
+      <% if @favorites.present? %>
+      	<% @favorites.each do |fvt| %>
+      		<!-- Favorites codes go here -->
+      	<% end %>
+      <% end %>
+  </body>
+</html>
