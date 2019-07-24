@@ -1,5 +1,5 @@
 <div data-id="<%=term_n%>" id="<%=term_n%>years" class="tab-pane for-test fade in active">
-  
+
   <div class="cntnt-list-box">
     <h5><%= params[:loan_type] == "ARM" ? params[:arm_basic] + " Arm Basic" :  term_n.to_s+" Year Fixed" %> Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
     <% if result.present? %>
@@ -13,7 +13,7 @@
             <p>NMLS ID <%= Program::NMLS[program[:bank_name]] %></p>
           </div>
           <div class="inner-block">
-            <% 
+            <%
               base_rate = (program[:base_rate].to_f).round(3).to_s
               final_rate = (program[:final_rate].sum).round(3).to_s
             %>
@@ -53,8 +53,13 @@
             </div>
           </div>
           <div class="inner-block-btn">
-            <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite" id ="<%=program[:id]%>" >
-            <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+"years"+index.to_s%>" class="dtail-btn">View Details</a>
+            <%if current_user.present? %>
+              <img src= "<%= current_user.user_favorites.present? && current_user.user_favorites.pluck(:loan_tek_data_id).include?(program[:id]) ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" >
+            <% else %>
+              <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" data-toggle="modal" data-target="#login-popup">
+              <!-- <a href="" data-toggle="modal" data-target="#login-popup" class="login-btn">LOGIN</a> -->
+            <% end %>
+              <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+"years"+index.to_s%>" class="dtail-btn">View Details</a>
             <a href="" class="lendr-web-link">Lender Website</a>
           </div>
           <div class="mb-scroll-icn">
@@ -62,7 +67,21 @@
           </div>
         </div>
         <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate:  number_with_precision(program[:air].to_s, :precision => 3)  } %>
+
+
       <% end %>
     <% end %>
   </div>
 </div>
+
+<script>
+  $(".favorite").click(function() {
+      program_id = parseInt(this.id.split("_")[1])
+     $.ajax({
+          url: 'pages/favorite_program',
+          type: "GET",
+          data: {program_id: program_id},
+      });
+  });
+
+</script>
