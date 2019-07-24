@@ -77,11 +77,20 @@
 <script>
   $(".favorite").click(function() {
       program_id = parseInt(this.id.split("_")[1])
-      document.getElementById(this.id).src = "/assets/red_heart.png";
+      img_id = this.id
+      var form_data = {}
+      $('#search_form').serializeArray().filter((item)=>{
+        form_data[item.name] = item.value
+      })
      $.ajax({
           url: 'pages/favorite_program',
           type: "GET",
-          data: {program_id: program_id},
+          data: {program_id: program_id, form_data: form_data },
+          success: function(response) {
+            if (response.status) {
+              document.getElementById(img_id).src = "/assets/red_heart.png";
+            }
+          }
       });
   });
 

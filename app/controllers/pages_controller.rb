@@ -49,7 +49,16 @@ class PagesController < SearchController
   end
 
   def favorite_program
-    current_user.present? ? current_user.user_favorites.find_or_create_by(loan_tek_data_id: params[:program_id]) : "You need to sign in first"
+    if current_user.present?
+      user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program_id].to_i, favorite_data: params[:form_data].except(:authenticity_token, :utf8))
+      respond_to do |format|
+        format.json  { render :json => {status: true} }
+      end
+    else
+     respond_to do |format|
+        format.json  { render :json => {status: false} }
+      end
+    end
   end
 
   def calculation
