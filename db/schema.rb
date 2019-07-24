@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190529100943) do
+ActiveRecord::Schema.define(version: 20190724141335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
   enable_extension "hstore"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -1655,7 +1656,7 @@ ActiveRecord::Schema.define(version: 20190529100943) do
     t.boolean "usda", default: false
     t.boolean "streamline", default: false
     t.boolean "full_doc", default: false
-    t.text "adjustments"
+    t.text "adjustment_ids"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "loan_category"
@@ -1680,7 +1681,11 @@ ActiveRecord::Schema.define(version: 20190529100943) do
     t.string "arm_benchmark"
     t.float "arm_margin"
     t.string "arm_caps"
-    t.string "adjustment_ids"
+    t.index ["bank_name"], name: "index_programs_on_bank_name"
+    t.index ["loan_category"], name: "index_programs_on_loan_category"
+    t.index ["loan_purpose", "loan_type", "arm_basic"], name: "index_programs_on_loan_purpose_and_loan_type_and_arm_basic"
+    t.index ["loan_purpose", "loan_type", "term"], name: "index_programs_on_loan_purpose_and_loan_type_and_term"
+    t.index ["program_category"], name: "index_programs_on_program_category"
   end
 
   create_table "sheets", force: :cascade do |t|
@@ -1702,6 +1707,9 @@ ActiveRecord::Schema.define(version: 20190529100943) do
     t.integer "loan_tek_data_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "program_id"
+    t.text "favorite_data"
+    t.string "favorite_url"
     t.index ["loan_tek_data_id"], name: "index_user_favorites_on_loan_tek_data_id"
     t.index ["user_id"], name: "index_user_favorites_on_user_id"
   end
