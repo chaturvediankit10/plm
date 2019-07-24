@@ -77,6 +77,7 @@
 <script>
   $(".favorite").click(function() {
       program_id = parseInt(this.id.split("_")[1])
+      document.getElementById(this.id).src = "/assets/red_heart.png";
      $.ajax({
           url: 'pages/favorite_program',
           type: "GET",
