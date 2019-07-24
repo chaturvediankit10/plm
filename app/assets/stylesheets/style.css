@@ -3659,12 +3659,12 @@ p.top-txt-info {
 .home_closing .closing-cost-smry-cntnt .col-xs-12{
   padding: 0;
 }
-.home_closing .closing-cost-smry-cntnt .col-xs-12 p{
+/*.home_closing .closing-cost-smry-cntnt .col-xs-12 p{
   font-size: 14px;
 }
 .home_closing .closing-cost-smry-cntnt span{
   font-size: 13px;
-}
+}*/
 .closing-cost-smry-cntnt span{
   display: block;
   background-color: #f1f1f1;
