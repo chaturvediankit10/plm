@@ -252,9 +252,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  config.omniauth :facebook, '356863861497721', '0ca43ed52593c6c80817fe8271174f16', scope: "email"
+  config.omniauth :facebook, '2522354944475482', '21ff892408a81e3ee69d835f8635c950'
   #config.omniauth :google_oauth2, "1042468504695-ol16q6m11h5l66ss5l225n3qs84l2ema.apps.googleusercontent.com", "iecfu5fXQMHXiQoFU8EBDy75", scope: 'userinfo.email,userinfo.profile'
-  
+
   #new gmail account credentials (email: info.pureloan@gmail.com, pwd: pureloan123)
   # config.omniauth :google_oauth2, "263674585472-f3ttj58vra748dm39558pqb70p9nehsq.apps.googleusercontent.com", "zmvAOkMCid9DYYQlq-Zv1dMd", scope: 'userinfo.email,userinfo.profile'
   config.omniauth :google_oauth2, "959232508968-ddg4ufmf6ji3a4j23fpd2g6j44olqk7i.apps.googleusercontent.com", "BlWOBimEy3QuhHOD6EZa2tBq", scope: 'userinfo.email,userinfo.profile'
