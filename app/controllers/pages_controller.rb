@@ -17,13 +17,13 @@ class PagesController < SearchController
     # if page
     #   @page = page
     # else
-    #    content_not_found  
+    #    content_not_found
     # end
     page = params[:page_slug]
     if page
       @page = page
     else
-      content_not_found  
+      content_not_found
     end
   end
 
@@ -46,12 +46,12 @@ class PagesController < SearchController
     else
       @arm_term = params[:term].present? ? params[:term] : @term
     end
-  end  
+  end
 
-  # def favorite_program
-  #   current_user.present? ? current_user.user_favorites.find_or_create_by(loan_tek_data_id: params[:program_id]) : "You need to sign in first"
-  # end
-    
+  def favorite_program
+    current_user.present? ? current_user.user_favorites.find_or_create_by(loan_tek_data_id: params[:program_id]) : "You need to sign in first"
+  end
+
   def calculation
     if params[:amt].present?
       if params[:amt].present? && params[:amt].to_i > 0
@@ -60,25 +60,25 @@ class PagesController < SearchController
 
         if params[:lock_period] == "15 days" && params[:rate] == "5.125"
           @additional_points =  3.602
-        elsif params[:lock_period] == "15 days" && params[:rate] == "5.000" 
+        elsif params[:lock_period] == "15 days" && params[:rate] == "5.000"
           @additional_points = 3.253
-        elsif params[:lock_period] == "30 days" && params[:rate] == "5.125" 
-          @additional_points = 3.502 
-        elsif params[:lock_period] == "30 days" && params[:rate] == "5.000" 
+        elsif params[:lock_period] == "30 days" && params[:rate] == "5.125"
+          @additional_points = 3.502
+        elsif params[:lock_period] == "30 days" && params[:rate] == "5.000"
          @additional_points = 3.153
-        end 
-           
+        end
+
         if params[:cs] == ">= 740" && params[:ltv] == '80 <= 85'
           @additional_points = @additional_points - 0.250
         elsif params[:cs] == ">= 740" && params[:ltv] == '>85 <= 90'
           @additional_points = @additional_points - 0.250
         elsif params[:cs] == '720 & <= 739' && params[:ltv] == '80 <= 85'
           @additional_points = @additional_points - 0.500
-        elsif params[:cs] == '720 & <= 739' && params[:ltv] == '>85 <= 90'              
+        elsif params[:cs] == '720 & <= 739' && params[:ltv] == '>85 <= 90'
           @additional_points = @additional_points - 0.500
         end
         @p_amt = (@p_amt * @additional_points / 100) + @p_amt
-        @p_amt -= 795 # Conventional Conforming Wholesale Fee 
+        @p_amt -= 795 # Conventional Conforming Wholesale Fee
         years = params[:time_period] == '30 years' ?  30 : 20
         months = 12 * years
         rate = params[:rate].to_f / 100
@@ -89,10 +89,10 @@ class PagesController < SearchController
         @cs = params[:cs]
         @ltv = params[:ltv]
         @total = @final_amt_per_month * months
-        @interest_amt = @total - @amt  
+        @interest_amt = @total - @amt
       else
         flash[:danger] = 'You entered wrong value.'
-        redirect_to calculation_path  
+        redirect_to calculation_path
       end
     end
   end
@@ -119,7 +119,7 @@ class PagesController < SearchController
         else
           file = ""
           file_name = ""
-        end           
+        end
         ResearchMailer.research_email(rec, params[:name], params[:email], params[:website], params[:message],file_name,file).deliver
       end
     flash[:notice] = 'Research submitted successfully.'
@@ -134,14 +134,14 @@ class PagesController < SearchController
     else
       file = ""
       file_name = ""
-    end           
+    end
     ResearchPostMailer.research_post_email(@admin_user, params[:name], params[:email], params[:phone_no], params[:research_summary],file_name,file, params[:title]).deliver
 
     flash[:notice] = 'Research posted successfully.'
     redirect_back fallback_location: root_path
   end
   # for sending emails from different different modules ends here
-  
+
   #For update user details from admin panel starts from here
   def update_profile
     @user = User.find_by(id: params[:user][:id])
@@ -149,7 +149,7 @@ class PagesController < SearchController
     begin
      @user.save!
       flash[:notice]= 'Your account has been updated successfully.'
-    rescue => e 
+    rescue => e
       flash[:danger]= "Your account has not updated because '#{e.message}'."
     end
       redirect_to edit_user_registration_path
@@ -176,7 +176,7 @@ class PagesController < SearchController
     redirect_to admin_root_path, notice: 'Selected Users Deactivated Succesfully.'
   end
   #For update user details from admin panel ends here
-  
+
   def expert_user_registration
       @expert_user = Expert.new expert_params
       city_zip = params[:expert][:city].split(',')
@@ -186,7 +186,7 @@ class PagesController < SearchController
         @expert_user.save!
         flash[:notice] = 'You are succesfully registered as expert.'
       rescue => e
-        flash[:danger] = "Your account has not created." 
+        flash[:danger] = "Your account has not created."
       end
       redirect_back fallback_location: root_path
   end
@@ -205,7 +205,7 @@ class PagesController < SearchController
      zip = City.where(city: params[:city]).sort_by(&:zip).pluck(:zip)
      render json: zip
     end
-  end 
+  end
 
   #Calling all the background workers for creating dynamic reports for city pages
   def city_freddie_cache_data
@@ -219,20 +219,20 @@ class PagesController < SearchController
     FreddieMacCacheGWorker.perform_async(["OR", "PA", "PR", "RI", "SC"])
     FreddieMacCacheHWorker.perform_async(["SD", "TN", "TX", "UT", "VA"])
     FreddieMacCacheIWorker.perform_async(["VT", "WA", "WI", "WV", "WY"])
-    redirect_to admin_freddie_mac_caches_path, notice: 'Data Cache start for Cities.'  
-  end   
+    redirect_to admin_freddie_mac_caches_path, notice: 'Data Cache start for Cities.'
+  end
 
   private
     def update_statue
       all_ids = params[:id].reject{|a| a.blank?}
       @user = User.find(all_ids)
-    end  
-    
+    end
+
     def user_params
         params.require(:user).permit(:id,:first_name,:last_name,:email,:phone_number,:zip_code,:purpose, :home_price, :down_payment, :credit_score,:password, :password_confirmation, :current_password,:price_alert)
     end
 
     def expert_params
       params.require(:expert).permit(:first_name, :last_name, :phone, :email, :state, :city, :license_number, :specialty, :website, :image, :zip, :loan_type, :verified, :email)
-    end 
+    end
 end
