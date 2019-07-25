@@ -54,7 +54,7 @@
           </div>
           <div class="inner-block-btn">
             <%if current_user.present? %>
-              <img src= "<%= current_user.user_favorites.present? && current_user.user_favorites.pluck(:loan_tek_data_id).include?(program[:id]) ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" >
+              <img src= "<%= current_user.user_favorites.present? && current_user.user_favorites.pluck(:program_id).include?(program[:id]) ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" >
             <% else %>
               <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" data-toggle="modal" data-target="#login-popup">
               <!-- <a href="" data-toggle="modal" data-target="#login-popup" class="login-btn">LOGIN</a> -->

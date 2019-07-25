@@ -2,7 +2,7 @@
 <div class="inner-search">
   <%= render partial: "partials/basic_search" %>
 </div>
-  
+
 <!-- banner search end-->
 <!-- search result feed start-->
 <% title t('seo_pages.bank_mortgage_loans.title', :bank => "#{@bank.name}" ) %>
@@ -38,7 +38,7 @@
 
     <%= render partial: "partials/result" %>
     <!--30 Years feed start-->
-    
+
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <%= render partial: "partials/closing_cost_summary" %>
@@ -204,7 +204,7 @@
     </div>
     <!-- Home Equity Loan Officers end-->
     <!-- News of Bank start-->
-    
+
     <!-- News end here -->
   </div>
   <section class="reviews">
@@ -232,7 +232,7 @@
         <%end%>
       </div>
     </div>
-  </section> 
+  </section>
   <div class="container">
     <!-- Loans from Similar Bank start-->
     <div class="volume-auto-loan full-width loan-detail-blocks car-auto-loan-othr-bank-box">
@@ -270,7 +270,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><img src="/images/cancel_03.png" alt="" class="login-cross-img"></button>
+        <button type="button" class="close" data-dismiss="modal"><img src="/assets/close-icon.png" alt="" class="login-cross-img"></button>
         <h4><b>Create a Price Alert to obtain lowest Mortgage</b></br>
           Rates and Save even more!
         </h4>
@@ -293,9 +293,9 @@
   // Load google charts
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
-  
+
   // Draw the chart and set the chart values
-  
+
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
     ['Loans', 'Percentage'],
@@ -303,15 +303,15 @@
     ['Personal Loans', <%= ((63.3 * (100 - ((@fdic_cal_data.m_lnre/@fdic_cal_data.m_lnlsgr) * 100).round(1)))/100).round(1) %>],
     ['Auto Loans', <%= ((36.7 * (100 - ((@fdic_cal_data.m_lnre/@fdic_cal_data.m_lnlsgr) * 100).round(1)))/100).round(1) %>],
   ]);
-  
+
     // Optional; add a title and set the width and height of the chart
     var options = {'title':' ', 'width': 500, 'height': 300};
     // Display the chart inside the <div> element with id="piechart"
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     chart.draw(data, options);
   }
-  
-  
+
+
   $(document).ready(function(){
             $('.section-lft-srch-drpdwn-icn').click(function(){
               //$('.section-lft-srch-price-alert, .section-lft-srch-drpdwn-icn').hide();
@@ -336,7 +336,7 @@
               $('.header-main').removeClass("black-head");
             });
             });
-  
+
   // section for web view
   $("#desktop_news_data").click(function(){
     <%(5..9).each do |i|%>
@@ -344,7 +344,7 @@
     <%end%>
      $("#desktop_news_data").hide();
   });
-  
+
   $("#mobile_news_data").click(function(){
   //section for mobile view
      <%(3..9).each do |i|%>
@@ -356,7 +356,7 @@
     $("#bank_details").addClass('show-box');
   $(".initial-section").hide();
   })
-  
+
   $("#fdic_mobile_data_section_btn").click(function(){
     $("#fdic_mobile_data_section").removeClass("mb-hide")
   $("#fdic_mobile_data_section_btn").hide();

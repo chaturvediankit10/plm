@@ -14,7 +14,7 @@
                   </span>
                   <div class="extra-wrap">
                     <h1><%= program[:bank_name] %></h1>
-                    <p>NMLS ID 54645</p>
+                    <p>NMLS ID <%= Program::NMLS[program[:bank_name]]%></p>
                   </div>
                 </div>
               </div>
@@ -68,11 +68,11 @@
                               <td>Monthly Payment</td>
                               <td align="right"><b><%=number_to_currency(program[:monthly_payment],  :unit=> "$", precision: 0) if program[:monthly_payment].present?%></b></td>
                             </tr>
-                            <tr class="closing-amount">
-                              <td><b>Closing Costs</b></td>
-                              <td align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 2)%></b></td>
+                            <tr>
+                              <td>Closing Cost</td>
+                              <td align="right"><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%></td>
                             </tr>
-                            
+
                           </tbody>
                         </table>
                       </div>
@@ -113,7 +113,7 @@
                               end%>
                             <tr>
                               <td class="orange-clr"><b>Ending Closing Cost</b></td>
-                              <td class="orange-clr" colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 2)%> / <%= number_to_currency(program[:air_point],  :unit=> "", precision: 2) %> Points</b></td>
+                              <td class="orange-clr" colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> / <%= number_to_currency(program[:air_point],  :unit=> "", precision: 2) %> Points</b></td>
                             </tr>
                           </tbody>
                         </table>
@@ -131,11 +131,11 @@
                               <td>
                                 <img src="/assets/save-icon.png">
                               </td>
-                              <td>Did you know you can save <strong>$2400</strong> or <strong>1.2</strong> points by lowering the loan LTV from <br/> <strong>68%</strong> to <strong>60%</strong> ?</td>
+                              <td>Did you know you can save <strong>$2,400</strong> or <strong>1.2</strong> points by lowering the loan LTV from <br/> <strong><%= @set_ltv.split('-')[0]%> %</strong> to <strong><%= @set_ltv.split('-')[1]%> %</strong> ?</td>
                             </tr>
                             <tr>
                               <td><img src="/assets/save-icon.png"></td>
-                              <td>Did you know you can save <strong>$2400</strong> or <br/> <strong>1.3</strong> points by Increasing your credit score <br/> rom <strong>680</strong> to <strong>720?</strong> </td>
+                              <td>Did you know you can save <strong>$2,400</strong> or <br/> <strong>1.3</strong> points by Increasing your credit score <br/> from <strong><%= @set_credit_score.split('-')[0]%></strong> to <strong><%= @set_credit_score.split('-')[1]%></strong> </td>
                             </tr>
                             <tr>
                               <td><img src="/assets/save-icon.png"></td>
@@ -202,7 +202,7 @@
                               </tr>
                               <tr>
                                 <td nowrap="nowrap">Home Price</td>
-                                <td align="right"><b> <%= number_to_currency(@home_price.present? ? @home_price : 0,  :unit=> "$", precision: 0) %></b></td> 
+                                <td align="right"><b> <%= number_to_currency(@home_price.present? ? @home_price : 0,  :unit=> "$", precision: 0) %></b></td>
                               </tr>
                               <tr>
                                 <td>Down Payment</td>
@@ -244,7 +244,7 @@
                             <tbody>
                               <tr>
                                 <td>Loan Size</td>
-                                <% 
+                                <%
                                 loan_size_value = ""
                                 if program[:loan_size].present?
                                 program[:loan_size].split("&").map do |loan_size|%>
@@ -256,7 +256,7 @@
                                     end
                                   %>
                                 <%
-                                  end 
+                                  end
                                 end
                                 %>
                                 <td align="right"><b><%= loan_size_value %></b></td>

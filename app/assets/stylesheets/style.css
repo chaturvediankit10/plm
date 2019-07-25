@@ -357,7 +357,7 @@ header .navbar-right {
   margin-bottom: 15px;
 }
 .view-details-popup .content-bx-content .table-condensed > tbody > tr > td{
-  padding: 5px 
+  padding: 5px
 }
 .view-details-popup .content-btns{
   float: none;
@@ -431,7 +431,7 @@ header .navbar-right {
 .view-details-popup .content-bx-content .saving-table strong{
   color: #f76225;
 }
- 
+
 .bank-logos {
   padding: 5px 15px 0;
 }
@@ -1903,7 +1903,7 @@ footer span {
   position: absolute;
   right: 7px;
   top: 0;
-  opacity: 1;
+  opacity: 0.2;
   width: auto;
 }
 
@@ -2850,10 +2850,11 @@ input.error {
   position: absolute;
   font-size: 7px;
   z-index: 0;
-  top: 33px;
+  top: 0;
   opacity: 0;
   min-height: 36px;
   cursor: pointer;
+  width: 100%;
 }
 
 #expert-app-overlay.common-popup-layout .rates-btn {
@@ -3163,7 +3164,7 @@ input.error {
 }
 .seo-auto-loan-tabs .tabs-data-row:nth-child(odd) {background-color: #f1f1f1;}
 .main-table-grapg-box.data-table-inner thead tr{
-  background-color: #f1f1f1; 
+  background-color: #f1f1f1;
 }
 
 .data-table-inner tr:nth-child(even) {
@@ -4139,7 +4140,7 @@ p.today-rate-link a {
   display: none;
 }
 .loader{
-  color: #fb6325 !important; 
+  color: #fb6325 !important;
 }
 
 /* loan detail overlay css end*/
@@ -4995,7 +4996,7 @@ header.fixed-header.scrolled {
     line-height: 21px;
   }
   .sectn-wo-bg .loan-detail-blocks-cntnt-inner p{
-    font-size: 14px; 
+    font-size: 14px;
     margin: 0;
   }
   .cntnt-list-box {
@@ -8184,7 +8185,7 @@ header.fixed-header.scrolled {
   position: relative;
   min-height: 195px;
   box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
-  
+
 }
 .blog-post a{
   color: #111;
@@ -8367,7 +8368,7 @@ header.fixed-header.scrolled {
   background: #fff;
   text-align: center;
   box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
-  
+
 }
 
 .rght-sidebar-box-dtail p {
@@ -8788,7 +8789,7 @@ h4#sheet-title{
   #advance-srch-mb .modal-dialog {
     width: 100% !important;
   }
-  
+
 }
 
 .src-btn-inner {
@@ -8930,12 +8931,16 @@ p.top-txt-info {
   top: 5px;
   opacity: 1;
   width: auto;
-  background-color: #eee;
+  /*background-color: #eee;*/
   border-radius: 100%;
   padding: 2px 5px;
 }
 .signup-login-popup .modal-header .close img{
-  width: 15px;
+  width: 21px;
+  opacity: 0.2;
+}
+.signup-login-popup .modal-header .close:hover img{
+  opacity: 0.5;
 }
 
 .signup-login-popup .modal-body {
@@ -9147,7 +9152,7 @@ p.top-txt-info {
 @media( min-width:320px) and ( max-width:991px) {
   .bank-logos {
     padding: 10px 0 !important;
-    
+
   }
 }
 
