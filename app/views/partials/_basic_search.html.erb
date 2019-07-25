@@ -4,7 +4,7 @@
     <div class="banner-headings">
       <h3>Compare customized mortgage rates instantly</h3>
       <p>Average savings of $26,169 vs standard rates</p>
-    </div>  
+    </div>
     <!-- banner main search start-->
     <div class="search-main adv-search-mb home-main-search">
       <% form_path = get_dynamic_path(params) %>
@@ -29,14 +29,14 @@
             <label>Home Price</label>
             <div class="search-cat price-srch">
               <div class="dollar-icn">$</div>
-              <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0) %>
+              <%= text_field_tag :home_price, (params[:home_price].present? ? params[:home_price] : @home_price) %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
             <label>Down Payment</label>
             <div class="search-cat price-srch">
               <div class="dollar-icn">$</div>
-              <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0) %>
+              <%= text_field_tag :down_payment,(params[:down_payment].present? ? params[:down_payment] : @down_payment) %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
@@ -78,7 +78,7 @@
                     <button type="button" id="reset_all_btn" class="btn btn-danger" >Reset All</button>
 
                     <%#= render 'partials/search_api'%>
-                    
+
                   </div>
                 </div>
               </div>

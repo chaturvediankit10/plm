@@ -34,12 +34,12 @@ Rails.application.routes.draw do
   get 'pages/expert_city_and_zip', to: 'pages#expert_city_and_zip', as: 'expert_city_and_zip'
 
   # root 'search#index'
-  # get 'search/index' 
+  # get 'search/index'
   root :to => "search#home", via: [ :post, :get]
   get '/fetch_programs', to: 'search#fetch_programs', as: :fetch_programs
   get 'pages/index'
   get '/set_state_by_zip_code', to: 'search#set_state_by_zip_code', as: :set_state_by_zip_code
-  get 'pages/favorite_program'
+  get '/favorite_program', to: 'pages#favorite_program', as: :favorite_program
 
   # get '/refinance+rates', to: 'pages#refinance', as: 'refinance'
   match '/refinance+rates' => 'pages#refinance', as: 'refinance', via: [ :post, :get]

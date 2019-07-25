@@ -76,16 +76,18 @@
 
 <script>
   $(".favorite").click(function() {
-      program_id = parseInt(this.id.split("_")[1])
-      img_id = this.id
+      var program_id = parseInt(this.id.split("_")[1])
+      var img_id = this.id
       var form_data = {}
+      debugger
+      var favorite_url = location.href+'?'+$('#search_form').serialize()
       $('#search_form').serializeArray().filter((item)=>{
         form_data[item.name] = item.value
       })
      $.ajax({
-          url: 'pages/favorite_program',
+          url: '/favorite_program',
           type: "GET",
-          data: {program_id: program_id, form_data: form_data },
+          data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url},
           success: function(response) {
             if (response.status) {
               document.getElementById(img_id).src = "/assets/red_heart.png";
