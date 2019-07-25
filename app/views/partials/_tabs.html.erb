@@ -79,7 +79,6 @@
       var program_id = parseInt(this.id.split("_")[1])
       var img_id = this.id
       var form_data = {}
-      debugger
       var favorite_url = location.href+'?'+$('#search_form').serialize()
       $('#search_form').serializeArray().filter((item)=>{
         form_data[item.name] = item.value
