@@ -54,19 +54,20 @@ Return:         hash
            <p>or sign up with</p>
            <div class="social-login">
             <ul>
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li>
+                <%= link_to user_facebook_omniauth_authorize_url(), class: "btn btn-block btn-social btn-twitter" do %>
+                   <i class="fa fa-facebook"></i>
+                <% end %>
+              </li>
               <li>
                 <a href="#"><i class="fa fa-twitter"></i></a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-google"></i></a>
+                <%= link_to user_google_oauth2_omniauth_authorize_url(), class: "btn btn-block btn-social btn-twitter" do %>
+                   <i class="fa fa-google"></i>
+                <% end %>
               </li>
             </ul>
-            <%#= link_to image_tag("facebook_13.png"), user_facebook_omniauth_authorize_url() %>
-            <%#= link_to image_tag("google_13.png"), user_google_oauth2_omniauth_authorize_url() %>
-             <!-- <a href=""><%#= image_tag("facebook_13.png", :alt => "Facebook") %></a>
-             <a href=""><%#= image_tag("twitter_15.png", :alt => "Twitter") %></a>
-             <a href=""><%#= image_tag("google_13.png", :alt => "Google") %></a> -->
            </div>
           </div>
         </div>
