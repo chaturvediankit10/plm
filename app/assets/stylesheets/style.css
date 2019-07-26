@@ -262,16 +262,23 @@ header .navbar-right {
   left: auto;
   cursor: pointer;
 }
-
+.divider span {
+    background: #fff;
+    padding: 0 15px;
+    margin: 0;
+    border: none;
+    float: none;
+    color: #333;
+}
 .forgot-signup-links {
-  float: left;
+  float: none;
   width: 100%;
   display: flex;
   justify-content: space-between;
   text-align: center;
   font-size: 16px;
   color: #838cb9;
-  margin: 30px 0 30px 0;
+  margin: 15px 0;
 }
 
 .forgot-signup-links a {
@@ -2185,9 +2192,9 @@ footer span {
 
 /*login signup page css start*/
 
-.login-page {
+/*.login-page {
   border-top: 1px solid #152545;
-}
+}*/
 
 .login-page h1 {
   float: left;
@@ -2202,11 +2209,13 @@ footer span {
 .login-page-cntnt {
   float: none;
   margin: auto;
-  width: 600px;
+  width: 100%;
   max-width: 100%;
-  padding: 30px 0 0 0;
+  overflow-y: auto;
+  border: 1px solid #e2e2e2;
+  padding: 20px;
+  margin-bottom: 50px;
 }
-
 .login-rows {
   width: 100%;
   margin: 10px 0 5px 0;
@@ -2215,7 +2224,23 @@ footer span {
   border-bottom: 1px solid #e2e2e2;
   position: relative;
 }
-
+.login-wrapper .login-rows{
+  position: relative;
+}
+.login-wrapper .login-rows{
+  position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px 0px 10px 60px;
+    border: 1px solid #e2e2e2;
+    position: relative;
+}
+.login-wrapper .login-rows .fa {
+  position: absolute;
+  font-size: 23px !important;
+  color: #fb6325;
+  left: 13px;
+}
 .login-rows img {
   left: 5px;
   position: absolute;
@@ -2245,11 +2270,32 @@ footer span {
 }
 
 .login-rows .social-login {
-  float: left;
+/*  float: none;
   width: 100%;
-  min-height: 52px;
+  min-height: 52px;*/
 }
-
+.login-rows .social-login ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.login-rows .social-login ul li{
+  display: inline-block;
+  padding: 0 5px;
+}
+.login-rows .social-login ul li .fa{
+  position: inherit;
+}
+.login-rows .social-login ul li a .fa-facebook{
+  color: #395693;
+}
+.login-rows .social-login ul li a .fa-google{
+  color: #c63027;
+}
+.login-rows .social-login ul li a .fa-twitter{
+  color: #429dec;
+}
 .login-rows .social-login a {
   float: none;
   width: auto;
@@ -2299,7 +2345,7 @@ footer span {
 .login-rows.cntnt-login p {
   float: left;
   width: 100%;
-  margin: 12px 0 25px 0;
+  margin: 0;
   font-size: 15px;
   color: #111;
   text-transform: uppercase;
@@ -4354,6 +4400,7 @@ p.today-rate-link a {
   padding: 12px 40px;
   background: #fb6324;
   text-transform: uppercase;
+
 }
 
 .contact-page {
@@ -4439,20 +4486,14 @@ label.error {
 .login-rows input.login-page-btn {
   float: none !important;
   width: auto !important;
-  margin: 25px auto;
-  background: #fb6325 !important;
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
   border-radius: 5px;
-  border: 4px solid #fff;
+  padding: 12px 40px;
+  background: #fb6324 !important;
   text-transform: uppercase;
-  color: #fff !important;
-  box-shadow: 0 0 20px #fcbb0d;
-  padding: 17px 60px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-decoration: none !important;
-  min-width: 250px !important;
+  min-width: 200px;
 }
 
 

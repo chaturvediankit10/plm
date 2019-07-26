@@ -7,45 +7,69 @@ Params:         first_name mail password password_confirmation
 Return:         hash
 =end %>
 <% title 'Sign Up'%>
-<section class="content-main login-page">
+<section class="banner directory-banner">
+  <div class="banner-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-banner-title">
+          <h1>Sign Up</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content-main login-page pt-zero">
  <div class="container">
-  <h1>Sign Up</h1>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'sign_up_form'}) do |f| %>
     <%= devise_error_messages! %>
-    <div class="login-page-cntnt">
-      <div class="login-rows">
-       <%= image_tag("login-user.png", :alt => "User") %>
-       <%= f.text_field :first_name, autofocus: true, placeholder: "First Name" %>
-      </div>
-      <div class="login-rows">
-       <%= image_tag("login-user.png", :alt => "User") %>
-       <%= f.text_field :last_name, autofocus: true, placeholder: "Last Name" %>
-      </div>
-      <div class="login-rows">
-       <%= image_tag("login-mail.png", :alt => "login-mail") %>
-       <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
-      </div>
-      <div class="login-rows">
-       <%= image_tag("login-pass.png", :alt => "Password") %>
-       <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
-      </div>
-      <div class="login-rows">
-       <%= image_tag("login-pass.png", :alt => "Password") %>
-       <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confrim Password" %>
-      </div>
-      <div class="login-rows cntnt-login">
-       <%= f.submit "Sign Up", class: "login-page-btn" %>
-       <div class="forgot-signup-links">
-        <%= link_to "Sign In", new_session_path(resource_name), class: "signup-link-clr" %>
-       </div>
-       <p>or sign up with</p>
-       <div class="social-login">
-        <%= link_to image_tag("facebook_13.png"), user_facebook_omniauth_authorize_url() %>
-        <%= link_to image_tag("google_13.png"), user_google_oauth2_omniauth_authorize_url() %>
-         <!-- <a href=""><%#= image_tag("facebook_13.png", :alt => "Facebook") %></a>
-         <a href=""><%#= image_tag("twitter_15.png", :alt => "Twitter") %></a>
-         <a href=""><%#= image_tag("google_13.png", :alt => "Google") %></a> -->
-       </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="login-page-cntnt login-wrapper">
+          <div class="login-rows">
+            <i class="fa fa-user"></i>
+           <%= f.text_field :first_name, autofocus: true, placeholder: "First Name" %>
+          </div>
+          <div class="login-rows">
+            <i class="fa fa-user"></i>
+           <%= f.text_field :last_name, autofocus: true, placeholder: "Last Name" %>
+          </div>
+          <div class="login-rows">
+            <i class="fa fa-envelope-o"></i>
+           <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
+          </div>
+          <div class="login-rows">
+            <i class="fa fa-key"></i>
+           <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+          </div>
+          <div class="login-rows">
+            <i class="fa fa-key"></i>
+           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password" %>
+          </div>
+          <div class="login-rows cntnt-login">
+           <%= f.submit "Sign Up", class: "login-page-btn signup-btn" %>
+           <div class="forgot-signup-links">
+            <center><%= link_to "Sign In", new_session_path(resource_name), class: "signup-link-clr " %></center>
+           </div>
+           <p>or sign up with</p>
+           <div class="social-login">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-google"></i></a>
+              </li>
+            </ul>
+            <%#= link_to image_tag("facebook_13.png"), user_facebook_omniauth_authorize_url() %>
+            <%#= link_to image_tag("google_13.png"), user_google_oauth2_omniauth_authorize_url() %>
+             <!-- <a href=""><%#= image_tag("facebook_13.png", :alt => "Facebook") %></a>
+             <a href=""><%#= image_tag("twitter_15.png", :alt => "Twitter") %></a>
+             <a href=""><%#= image_tag("google_13.png", :alt => "Google") %></a> -->
+           </div>
+          </div>
+        </div>
       </div>
     </div>
    <% end %>
