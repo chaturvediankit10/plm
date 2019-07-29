@@ -6,7 +6,7 @@
     <li  class="<%= (@loan_type == "ARM" && @arm_basic == "5/1") ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
   </ul>
 
-  <div class="tab-content rates-tab-content" style="position: relative;">
+  <div class="tab-content rates-tab-content aaa" style="position: relative;">
     <%= render partial: "partials/tabs", locals: { term_n: @arm_term.to_i, result: @result }%>
   </div>
 </div>
