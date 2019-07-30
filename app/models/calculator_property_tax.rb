@@ -1,10 +1,9 @@
+require 'roo'
 class CalculatorPropertyTax < ApplicationRecord
 
 	def self.calculator_import_csv_file
-    puts "Cron testing"
     file = File.join(Rails.root, 'state_and_city_related_data.xlsx')
     xlsx = Roo::Spreadsheet.open(file)
-
     xlsx.sheets.each do |sheet|
       if (sheet == "The Table of Average Cost of Homeowners Insurance")
         sheet_data = xlsx.sheet(sheet)

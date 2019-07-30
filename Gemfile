@@ -88,4 +88,5 @@ gem 'jquery-datatables'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'jquery-rails'
+gem "roo", "~> 2.8.0"
 gem "search_api", git: "https://github.com/PureLoan/APIRead.git"

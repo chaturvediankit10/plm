@@ -15,7 +15,7 @@
             <label>Zip Code</label>
             <div class="search-cat zip-srch">
               <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : @zip_code) %>
-              <%= hidden_field_tag 'state', (params[:state].present? ? params[:state] : @state) %>
+              <%= hidden_field_tag 'state_code', (params[:state_code].present? ? params[:state_code] : @state_code) %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
@@ -131,7 +131,7 @@
           dataType: 'json',
           data: {zip: $(this).val()},
           success: function(response){
-            $('#state').val(response.state);
+            $('#state_code').val(response.state);
           }
         })
       }
