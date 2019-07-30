@@ -378,5 +378,4 @@ $(document).ready(function () {
    $('#loan_purpose').change(function () {
       $('#adv_loan_purpose').val($('#loan_purpose').val())
     });
-
   });
