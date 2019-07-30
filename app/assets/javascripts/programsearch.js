@@ -379,22 +379,28 @@ $(document).ready(function () {
       $('#adv_loan_purpose').val($('#loan_purpose').val())
     });
 
+    function get_program_results(){
+      $(".loader").show();
+      $('.term_10').prop('checked', false);
+      $('.arm_basic_7').prop('checked', false);
+      $('.arm_basic_5').prop('checked', false);
+      $('.term_15').prop('checked', false);
+      $('.term_30').prop('checked', true);
+      var data = $("#search_form").serialize();
+      data = data+'&commit=commit'
+      $.ajax({
+        url: '/',
+        type: "GET",
+        dataType: "script",
+        data: data,
+        success: function(response) {
+          $(".loader").hide();
+          tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
+          $('#loadMore').show();
+          load_more(tab_val, true);
+        }
+      });
+    }
 
-    $('.cntnt-list-box').hide();
-    $(".loader").show();
-    setTimeout(function(){
-      $(".loader").hide();
-      $('.cntnt-list-box').show();
-    }, 2000);
-   // $('.favorite').click(function () {
-   //    program_id = this.id
-   //    $.ajax({
-   //      url: '/pages/favorite_program',
-   //      type: "GET",
-   //      data: {program_id: program_id},
-   //      success: function(response) {
-   //        // $(".loader").hide();
-   //      }
-   //    });
-   //  });
+    get_program_results();
   });

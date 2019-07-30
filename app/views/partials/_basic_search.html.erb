@@ -15,7 +15,7 @@
             <label>Zip Code</label>
             <div class="search-cat zip-srch">
               <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : @zip_code) %>
-              <%= hidden_field_tag 'state_code', (params[:state_code].present? ? params[:state_code] : @state_code) %>
+              <%= hidden_field_tag 'state_code', (params[:state_code].present? ? params[:state_code] : "All") %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
@@ -29,14 +29,14 @@
             <label>Home Price</label>
             <div class="search-cat price-srch">
               <div class="dollar-icn">$</div>
-              <%= text_field_tag :home_price, (params[:home_price].present? ? params[:home_price] : @home_price) %>
+              <%= text_field_tag :home_price, (params[:home_price].present? ? params[:home_price] : "300000") %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
             <label>Down Payment</label>
             <div class="search-cat price-srch">
               <div class="dollar-icn">$</div>
-              <%= text_field_tag :down_payment,(params[:down_payment].present? ? params[:down_payment] : @down_payment) %>
+              <%= text_field_tag :down_payment,(params[:down_payment].present? ? params[:down_payment] : "50000") %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">

@@ -2,7 +2,8 @@ class SearchController < SearchApi::DashboardController
   include InitilizeZipCode
 
   def home
-    api_search
+    api_search if params[:commit].present?
+    @term = params[:term].present? ? params[:term] : "30"
     initilize_state_and_zip_code
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
