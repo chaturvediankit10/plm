@@ -380,6 +380,12 @@ $(document).ready(function () {
     });
 
 
+    $('.cntnt-list-box').hide();
+    $(".loader").show();
+    setTimeout(function(){
+      $(".loader").hide();
+      $('.cntnt-list-box').show();
+    }, 2000);
    // $('.favorite').click(function () {
    //    program_id = this.id
    //    $.ajax({
