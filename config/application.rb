@@ -11,6 +11,7 @@ module AdminDevise
     config.load_defaults 5.1
     config.app_generators.scaffold_controller = :scaffold_controller
     config.assets.initialize_on_precompile = false
+    config.assets.paths << Rails.root.join("app", "assets", "images", "bankicons")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
