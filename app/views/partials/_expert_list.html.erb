@@ -1,0 +1,27 @@
+<div class="seo-auto-loan-tabs loan-detail-blocks">
+  <h3>Our Expert</h3>
+  <div class="tabs-data-main desktop-tabs-data">
+    <div class="tabs-data-hdng">
+      <div class="col-xs-12 col-md-6">Name</div>
+      <div class="col-xs-12 col-md-6">Contact</div>
+    </div>
+    <%if @expert_list.present?%>
+    <% @expert_list.each do |expert|%>
+    <div class="tabs-data-row">
+      <div class="col-xs-12 col-md-6">
+        <p><%= expert.first_name%> <%= expert.last_name%></p>
+        <p><%#= remove_unnecessary_keywords(loan_officer.title)%></p>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <p><%= mobile_no_formatting(expert.phone) if expert.phone.present? %>
+        </p>
+      </div>
+    </div>
+    <%end%>
+    <%else%>
+    <div class="tabs-data-row no-record-box">
+      No Records Found
+    </div>
+    <%end%>
+  </div>
+</div>

@@ -2,14 +2,21 @@ class SearchController < SearchApi::DashboardController
   include InitilizeZipCode
 
   def home
+    initilize_state_and_zip_code
     api_search if params[:commit].present?
     @term = params[:term].present? ? params[:term] : "30"
-    initilize_state_and_zip_code
+    if @state_code == "All"
+      @expert_list = Expert.all
+    else
+      @expert_list = Expert.where(state: @state_code).sort_by { |m| [m.created_at] }.reverse
+    end
+
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
     else
       @arm_term = params[:term].present? ? params[:term] : @term
     end
+
     respond_to do |format|
 	    format.html
 	    format.js # actually means: if the client ask for js -> return file.js

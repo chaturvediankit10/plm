@@ -15,7 +15,7 @@
             <label>Zip Code</label>
             <div class="search-cat zip-srch">
               <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : @zip_code) %>
-              <%= hidden_field_tag 'state_code', (params[:state_code].present? ? params[:state_code] : "All") %>
+              <%= hidden_field_tag 'state_code', (params[:state_code].present? ? params[:state_code] : @state_code) %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
@@ -117,11 +117,11 @@
 <script type="text/javascript">
   $(document).ready(function() {
     form_submitted = <%= raw params[:commit].present? ? false : true %>
-
     if (form_submitted && location.href.includes("refinance")) {
       $('#loan_purpose').val('Refinance');
       $('#adv_loan_purpose').val('Refinance');
     }
+    get_form_submitted(form_submitted);
   });
 
 </script>

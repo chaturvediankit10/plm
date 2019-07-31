@@ -1,3 +1,110 @@
+function get_form_submitted(flag){
+  if (flag) {
+    get_program_results();
+  }
+}
+
+function get_program_results(){
+  $(".loader").show();
+  $('.term_10').prop('checked', false);
+  $('.arm_basic_7').prop('checked', false);
+  $('.arm_basic_5').prop('checked', false);
+  $('.term_15').prop('checked', false);
+  $('.term_30').prop('checked', true);
+  var data = $("#search_form").serialize();
+  data = data+'&commit=commit'
+  $.ajax({
+    url: '/',
+    type: "GET",
+    dataType: "script",
+    data: data,
+    success: function(response) {
+      setTimeout(function(){
+       $('#loadMore').show();
+       $(".loader").hide(); 
+      }, 2000);
+      tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
+      load_more(tab_val, true);
+    }
+  });
+}
+
+function load_more(tab_val, flag){
+    size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
+    // $("."+tab_val+"years").addClass('active')
+    $("#"+tab_val+"years .demo-items-"+tab_val).hide();
+      if (!flag) {
+        x = (x+20 <= size_li) ? x+20 : size_li;
+        $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+        average_closing_cost(tab_val,x)
+      }else{
+        if (seo_link.includes('/mortgage/') ||seo_link.includes('/mortgage/') ) {
+          x = 10
+        }else{
+          x = 20
+        }
+        $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
+        average_closing_cost(tab_val,x)
+      }
+      if(x == size_li || size_li < 20){
+        $('#loadMore').hide();
+      }
+  }
+
+  function average_closing_cost(tab_val,x){
+    var size_li2 = $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")")
+    var air_total = 0
+    var apr_total = 0
+    var saving_total = 0
+    var monthly_payment_total = 0
+    var closing_cost_total = 0
+    for (i = 0; i < size_li2.length; i++) { 
+      air = size_li2[i].querySelector('.a_air').textContent.trim().split('%')[0];
+      apr = size_li2[i].querySelector('.a_apr').textContent.trim().split('%')[0];
+      saving = size_li2[i].querySelector('.a_saving').textContent.trim().replace(/[$\,]/g,"")
+      monthly_payment = size_li2[i].querySelector('.a_monthly_payment').textContent.trim().replace(/\,/g,"").split('$')[1];
+      closing_cost = size_li2[i].querySelector('.a_closing_cost').textContent.trim().replace(/\,/g,"").split('$')[1];
+      air = parseFloat(air);
+      apr = parseFloat(apr);
+      saving = parseInt(saving);
+      monthly_payment = parseInt(monthly_payment);
+      closing_cost = parseInt(closing_cost);
+      air_total += air
+      apr_total += apr
+      saving_total += saving
+      monthly_payment_total += monthly_payment
+      closing_cost_total += closing_cost
+    }
+      avg_air = (air_total/size_li2.length).toFixed(3)+"%"
+      avg_apr = (apr_total/size_li2.length).toFixed(3)+"%"
+      avg_saving = (saving_total/size_li2.length)
+      avg_saving = "$"+formatMoney(avg_saving)
+      avg_monthly_payment = (monthly_payment_total/size_li2.length)
+      avg_monthly_payment = "$"+formatMoney(avg_monthly_payment)
+      avg_closing_cost = (closing_cost_total/size_li2.length)
+      avg_closing_cost = "$"+formatMoney(avg_closing_cost)
+      
+      document.getElementById("air_avg").innerHTML = avg_air;
+      document.getElementById("apr_avg").innerHTML = avg_apr;
+      document.getElementById("saving_avg").innerHTML = avg_saving;
+      document.getElementById("monthly_payment_avg").innerHTML = avg_monthly_payment;
+      document.getElementById("closing_cost_avg").innerHTML = avg_closing_cost;
+  }
+
+  function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+    try {
+      decimalCount = Math.abs(decimalCount);
+      decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+      const negativeSign = amount < 0 ? "-" : "";
+      let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+      let j = (i.length > 3) ? i.length % 3 : 0;
+      // return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+      return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands)
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
 $(document).ready(function () {
     seo_link = $(location).attr("href");
     var tab_val = $('.active .js-trigger').attr('data-tab');
@@ -283,85 +390,13 @@ $(document).ready(function () {
         $('.refinance_checkbox').not(this).prop('checked', false); 
       });
 
-
-    function load_more(tab_val, flag){
-      size_li = $("#"+tab_val+"years .demo-items-"+tab_val).length;
-      // $("."+tab_val+"years").addClass('active')
-      $("#"+tab_val+"years .demo-items-"+tab_val).hide();
-        if (!flag) {
-          x = (x+20 <= size_li) ? x+20 : size_li;
-          $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
-          average_closing_cost(tab_val,x)
-        }else{
-          if (seo_link.includes('/mortgage/') ||seo_link.includes('/mortgage/') ) {
-            x = 10
-          }else{
-            x = 20
-          }
-          $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")").show();
-          average_closing_cost(tab_val,x)
-        }
-        if(x == size_li || size_li < 20){
-          $('#loadMore').hide();
-        }
-    }
       $('#loadMore').click(function () {
         tab_val = tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
         load_more(tab_val, false);
       });
 
-    function average_closing_cost(tab_val,x){
-      var size_li2 = $("#"+tab_val+"years .demo-items-"+tab_val+":lt("+x.toString()+")")
-      var air_total = 0
-      var apr_total = 0
-      var saving_total = 0
-      var monthly_payment_total = 0
-      var closing_cost_total = 0
-      for (i = 0; i < size_li2.length; i++) { 
-        air = size_li2[i].querySelector('.a_air').textContent.trim().split('%')[0];
-        apr = size_li2[i].querySelector('.a_apr').textContent.trim().split('%')[0];
-        saving = size_li2[i].querySelector('.a_saving').textContent.trim().replace(/[$\,]/g,"")
-        monthly_payment = size_li2[i].querySelector('.a_monthly_payment').textContent.trim().replace(/\,/g,"").split('$')[1];
-        closing_cost = size_li2[i].querySelector('.a_closing_cost').textContent.trim().replace(/\,/g,"").split('$')[1];
-        air = parseFloat(air);
-        apr = parseFloat(apr);
-        saving = parseInt(saving);
-        monthly_payment = parseInt(monthly_payment);
-        closing_cost = parseInt(closing_cost);
-        air_total += air
-        apr_total += apr
-        saving_total += saving
-        monthly_payment_total += monthly_payment
-        closing_cost_total += closing_cost
-      }
-        avg_air = (air_total/size_li2.length).toFixed(3)+"%"
-        avg_apr = (apr_total/size_li2.length).toFixed(3)+"%"
-        avg_saving = (saving_total/size_li2.length)
-        avg_saving = "$"+formatMoney(avg_saving)
-        avg_monthly_payment = (monthly_payment_total/size_li2.length)
-        avg_monthly_payment = "$"+formatMoney(avg_monthly_payment)
-        avg_closing_cost = (closing_cost_total/size_li2.length)
-        avg_closing_cost = "$"+formatMoney(avg_closing_cost)
-        
-        document.getElementById("air_avg").innerHTML = avg_air;
-        document.getElementById("apr_avg").innerHTML = avg_apr;
-        document.getElementById("saving_avg").innerHTML = avg_saving;
-        document.getElementById("monthly_payment_avg").innerHTML = avg_monthly_payment;
-        document.getElementById("closing_cost_avg").innerHTML = avg_closing_cost;
-    }
-    function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
-      try {
-        decimalCount = Math.abs(decimalCount);
-        decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
-        const negativeSign = amount < 0 ? "-" : "";
-        let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
-        let j = (i.length > 3) ? i.length % 3 : 0;
-        // return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
-        return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands)
-      } catch (e) {
-        console.log(e)
-      }
-    };
+    
+    
 
    $('.mb-adv-search').click(function () {
         $("html, body").animate({
@@ -379,42 +414,6 @@ $(document).ready(function () {
       $('#adv_loan_purpose').val($('#loan_purpose').val())
     });
 
-   function get_program_results(){
-      $(".loader").show();
-      $('.term_10').prop('checked', false);
-      $('.arm_basic_7').prop('checked', false);
-      $('.arm_basic_5').prop('checked', false);
-      $('.term_15').prop('checked', false);
-      $('.term_30').prop('checked', true);
-      var data = $("#search_form").serialize();
-      data = data+'&commit=commit'
-      $.ajax({
-        url: '/',
-        type: "GET",
-        dataType: "script",
-        data: data,
-        success: function(response) {
-          setTimeout(function(){ $(".loader").hide(); }, 2000);
-          tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
-          $('#loadMore').show();
-          load_more(tab_val, true);
-        }
-      });
-    }
-
-    function set_state_code(){
-      $.ajax({
-        url: '/set_state_by_zip_code',
-        type: 'GET',
-        dataType: 'json',
-        data: {zip: $('#zip').val()},
-        success: function(response){
-          $('#state_code').val(response.state);
-          get_program_results()
-        }
-      })
-    }
-
     $('#zip').change(function(){
       if ($(this).val().length>2) {
         $.ajax({
@@ -428,6 +427,5 @@ $(document).ready(function () {
         })
       }
     });
-    set_state_code();
 
   });
