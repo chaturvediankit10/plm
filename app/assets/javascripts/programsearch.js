@@ -379,28 +379,4 @@ $(document).ready(function () {
       $('#adv_loan_purpose').val($('#loan_purpose').val())
     });
 
-    function get_program_results(){
-      $(".loader").show();
-      $('.term_10').prop('checked', false);
-      $('.arm_basic_7').prop('checked', false);
-      $('.arm_basic_5').prop('checked', false);
-      $('.term_15').prop('checked', false);
-      $('.term_30').prop('checked', true);
-      var data = $("#search_form").serialize();
-      data = data+'&commit=commit'
-      $.ajax({
-        url: '/',
-        type: "GET",
-        dataType: "script",
-        data: data,
-        success: function(response) {
-          $(".loader").hide();
-          tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
-          $('#loadMore').show();
-          load_more(tab_val, true);
-        }
-      });
-    }
-
-    get_program_results();
   });
