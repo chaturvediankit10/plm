@@ -6,11 +6,15 @@
       <%# @all_resultes = term_n == 51 ? get_results_arm(result, "5") : get_results(result, term_n) %>
       <% result.each_with_index do |program, index|%>
         <div class="cntnt-list-inner col-md-12 demo-items-<%=term_n%>">
+          
           <div class="inner-logo">
           <!-- <img src="//assets/CMG financial.png" alt=""> -->
             <img src="<%= "/assets/"+program[:bank_name] %>.png" >
             <p class="orange-link"><%= program[:bank_name] %></p>
             <p>NMLS ID <%= Program::NMLS[program[:bank_name]] %></p>
+          </div>
+          <div>
+            <b><%= program[:program_name] %></b>
           </div>
           <div class="inner-block">
             <%

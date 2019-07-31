@@ -378,4 +378,56 @@ $(document).ready(function () {
    $('#loan_purpose').change(function () {
       $('#adv_loan_purpose').val($('#loan_purpose').val())
     });
+
+   function get_program_results(){
+      $(".loader").show();
+      $('.term_10').prop('checked', false);
+      $('.arm_basic_7').prop('checked', false);
+      $('.arm_basic_5').prop('checked', false);
+      $('.term_15').prop('checked', false);
+      $('.term_30').prop('checked', true);
+      var data = $("#search_form").serialize();
+      data = data+'&commit=commit'
+      $.ajax({
+        url: '/',
+        type: "GET",
+        dataType: "script",
+        data: data,
+        success: function(response) {
+          setTimeout(function(){ $(".loader").hide(); }, 2000);
+          tab_val = $('.active .js-trigger').attr('data-tab') == "5" ? "51" : $('.active .js-trigger').attr('data-tab')
+          $('#loadMore').show();
+          load_more(tab_val, true);
+        }
+      });
+    }
+
+    function set_state_code(){
+      $.ajax({
+        url: '/set_state_by_zip_code',
+        type: 'GET',
+        dataType: 'json',
+        data: {zip: $('#zip').val()},
+        success: function(response){
+          $('#state_code').val(response.state);
+          get_program_results()
+        }
+      })
+    }
+
+    $('#zip').change(function(){
+      if ($(this).val().length>2) {
+        $.ajax({
+          url: '/set_state_by_zip_code',
+          type: 'GET',
+          dataType: 'json',
+          data: {zip: $(this).val()},
+          success: function(response){
+            $('#state_code').val(response.state);
+          }
+        })
+      }
+    });
+    set_state_code();
+
   });
