@@ -204,6 +204,7 @@ header .navbar-right {
   float: left;
   width: 100%;
   min-height: 52px;
+  padding: 0 10px;
 }
 
 .signup-login-popup li.cntnt-login .social-login a {
@@ -2438,17 +2439,20 @@ input.error {
 
 /*profile page css start*/
 
-.profile-page {
+/*.profile-page {
   border-top: 1px solid #152545;
-}
+}*/
 
 .profile-blocks {
   float: left;
-  width: 70%;
-  background: #eef1f5;
-  border-radius: 5px;
-  box-shadow: 0 0 15px #d7d7d7;
-  margin: 0 0 50px 0;
+  width: 100%;
+  box-shadow: 0 10px 20px 0 rgba(57,58,61,.15);
+  border: 1px solid #eee;
+  background-color: #fff;
+  float: none;
+  overflow-y: auto;
+  margin: 0 0 15px 0;
+  padding: 15px;
 }
 
 .profile-blocks-full {
@@ -2456,25 +2460,35 @@ input.error {
 }
 
 .profile-blocks h3 {
-  float: left;
   width: 100%;
-  background: #58a9e1;
-  border-radius: 5px 5px 0 0;
-  padding: 12px 40px;
-  color: #fff;
-  font-size: 21px;
-  font-weight: bold;
+  background: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  color: #111;
+  font-size: 24px;
+  font-weight: 500;
   margin: 0;
+  min-height: 40px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .profile-blocks-cntnt {
   float: left;
   width: 100%;
   border-radius: 0 0 5px 5px;
-  padding: 20px 40px;
+  padding: 20px 0 0;
   margin: 0;
 }
-
+.fav-search-layout{
+  padding: 0 0 0;
+}
+.fav-search-layout .row:nth-child(even) {
+    background-color: #f1f1f1;
+}
+.fav-search-layout .row{
+  margin: 0;
+  clear: both;
+}
 .profile-blocks h5 {
   font-size: 19px;
   color: #293752;
@@ -2485,7 +2499,7 @@ input.error {
 }
 
 .profile-blocks-cntnt .form-group {
-  margin: 0 0 13px 0;
+  margin: 0 0 15px 0;
   border: none;
   background: none;
   box-shadow: none;
@@ -2500,7 +2514,7 @@ input.error {
 .profile-blocks-cntnt label {
   float: left;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
   color: #111;
   margin: 0 0 6px 0;
   line-height: normal;
@@ -2513,9 +2527,9 @@ input.error {
   float: left;
   width: 100%;
   border-radius: 3px;
-  border: 1px solid #e8ecf0;
+  border: 1px solid #ddd;
   background: #fff;
-  font-size: 17px;
+  font-size: 16px;
   color: #111;
   margin: 0;
   line-height: normal;
@@ -2538,7 +2552,7 @@ input.error {
 }
 
 .profile-blocks-cntnt input.ornage-btn-dark-shadow {
-  float: none;
+  /*float: none;
   background: #fb6325;
   border-radius: 5px;
   box-shadow: 0px 3px 0 #d6460c;
@@ -2553,20 +2567,76 @@ input.error {
   font-weight: bold;
   letter-spacing: 1px;
   min-width: 170px;
-  margin-bottom: -5px;
+  margin-bottom: -5px;*/
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px 40px;
+  background: #fb6324;
+  text-transform: uppercase;
+  width: auto;
+  float: none;
+  min-width: 160px;
+    /* box-shadow: 0px 5px 0 #d6460c; */
+}
+.profile-blocks-cntnt .checkbox-custm-row input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.checkbox-custm-row {
-  float: left;
+.profile-blocks-cntnt .checkbox-custm-row .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.profile-blocks-cntnt .checkbox-custm-row:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.profile-blocks-cntnt .checkbox-custm-row input:checked ~ .checkmark {
+  background-color: #fb6324;
+}
+
+.profile-blocks-cntnt .checkbox-custm-row .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.profile-blocks-cntnt .checkbox-custm-row input:checked ~ .checkmark:after {
+  display: block;
+}
+.profile-blocks-cntnt .checkbox-custm-row .checkmark:after {
+   top: 5px;
+   left: 5px;
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background: white;
+}
+.profile-blocks-cntnt .checkbox-custm-row {
+  float: none;
   width: auto;
-  margin-right: 50px;
   font-size: 16px;
   color: #111;
   font-weight: normal;
   text-align: center;
   padding: 2px;
+  position: relative;
+  padding-left: 35px;
+  margin-right: 25px;
+  margin-top: 15px;
 }
-
+.profile-blocks-cntnt .checkbox-custm-row .checkmark{
+  border: none;
+  outline: none;
+}
 .checkbox-custm-row input[type="checkbox"] {
   float: left;
   width: auto;
@@ -2578,27 +2648,32 @@ input.error {
   float: left;
 }
 
-.fav-search-date .fav-search-white-block {
+/*.fav-search-date .fav-search-white-block {
   border-left: 1px solid #e8ecf0;
+}*/
+.remove-item{
+  font-size: 18px;
+  color: #ff0000 !important;
 }
-
 .fav-search-cntnt-comon p {
   float: left;
   width: 100%;
   color: #111;
   font-size: 16px;
-  font-weight: bold;
-  margin: 0 0 10px 0;
+  font-weight: normal;
+  margin: 0;
   text-align: center;
   line-height: normal;
   min-height: 20px;
+  padding: 15px 0;
+  height: auto !important;
 }
 
 .fav-search-white-block {
   float: left;
   width: 100%;
-  background: #fff;
-  border: 1px solid #e8ecf0;
+  /*background: #fff;*/
+  /*border: 1px solid #e8ecf0;*/
   min-height: 50px;
   text-align: center;
   line-height: 45px;
@@ -4762,7 +4837,7 @@ header.fixed-header.scrolled {
 .signup-login-popup li.cntnt-login .social-login a.facebook-btn {
   background: #395693;
   color: #fff;
-  padding: 8px 20px;
+  padding: 8px 14px;
   margin-right: 10px;
   font-size: 18px;
 }
@@ -4770,23 +4845,38 @@ header.fixed-header.scrolled {
 .signup-login-popup li.cntnt-login .social-login a.google-plus-btn {
   background: #c63027;
   color: #fff;
-  padding: 8px 20px;
+  padding: 8px 14px;
   font-size: 18px;
 }
 
 .signup-login-popup li.cntnt-login .social-login a.twitter-btn {
   background: #51a6e8;
   color: #fff;
-  padding: 8px 20px;
+  padding: 8px 14px;
   font-size: 16px;
   margin-right: 10px;
 }
+.modal-close {
+    position: absolute;
+    z-index: 999;
+    right: 5px;
+    top: 8px;
+    font-size: 24px;
+    opacity: .2;
+    border: none;
+    font-weight: bold;
+}
 
+.modal-close:hover {
+    opacity: 0.5;
+    background-color: transparent;
+}
 .form-icon {
   position: absolute;
   font-size: 23px !important;
   color: #fb6325;
   left: 13px;
+  top: 10px;
 }
 
 .navbar-collapse {
