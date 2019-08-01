@@ -213,214 +213,109 @@ Return:         hash
                 <%if current_user.user_favorites.present? %>
                   <%current_user.user_favorites.each do |user_favorite| %>
                      <div class="row">
-                        <% if user_favorite.favorite_data.present? %>
-                        <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
-                           <div class="fav-search-white-block"><%=user_favorite.created_at.strftime("%B %d, %Y")%></div>
-                        </div>
-                        <div class="fav-search-date-cntnt col-xs-12 col-md-6">
-                           <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                              <div class="fav-search-white-block"><%= user_favorite.favorite_data["zip"]%></div>
-                           </div>
-                           <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                              <div class="fav-search-white-block"><%= user_favorite.favorite_data["loan_purpose"]%></div>
-                           </div>
-                           <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                              <div class="fav-search-white-block"><%= number_to_currency((user_favorite.favorite_data["home_price"].tr("^0-9", '').to_i) - (user_favorite.favorite_data["down_payment"].tr("^0-9", '').to_i)) %> </div>
-                           </div>
-                           <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                              <div class="fav-search-white-block"><%= number_to_currency(user_favorite.favorite_data["down_payment"]) %> </div>
-                           </div>
-                        </div>
-                        <div class="fav-search-date-cntnt col-xs-12 col-md-5">
-                           <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                              <div class="fav-search-white-block"><%=  user_favorite.favorite_data["credit_score"] %></div>
-                           </div>
-                           <div class="fav-search-cntnt-comon col-xs-5 col-md-5">
-                              <div class="fav-search-white-block"><a href="">Full Search Details</a></div>
-                           </div>
-                           <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                              <div class="fav-search-white-block"><a href="<%= user_favorite.favorite_url%>">Search</a></div>
-                           </div>
-                           <div class="fav-search-cntnt-comon col-xs-1 col-md-1">
-                              <div class="fav-search-white-block">
-                                 <%= link_to image_tag("bin_03.png", :alt => "Bin"),"#" %>
-                                 <!-- <a href=""><img src="images/bin_03.png" alt=""></a> -->
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <%end%>
-                  <%end%>
-              <%end%>
-              <!--  <div class="row fav-search-inner-row gray-row-mb">
-                  <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
-                     <p class="hiden-txt-desktop hiden-txt-mb"></p>
-                     <div class="fav-search-white-block">Oct 14,2017</div>
-                  </div>
-                  <div class="fav-search-date-cntnt col-xs-12 col-md-6">
-                     <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                        <p class="hiden-txt-desktop">Zip</p>
-                        <div class="fav-search-white-block">94305</div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                        <p class="hiden-txt-desktop">Purpose</p>
-                        <div class="fav-search-white-block">Purchase</div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                        <p class="hiden-txt-desktop">Loan Amount</p>
-                        <div class="fav-search-white-block">$300,000 </div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="hiden-txt-desktop">Down Payment</p>
-                        <div class="fav-search-white-block">$100,000 </div>
-                     </div>
-                  </div>
-                  <div class="fav-search-date-cntnt col-xs-12 col-md-5">
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="hiden-txt-desktop">Credit Score</p>
-                        <div class="fav-search-white-block">650-700</div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-5 col-md-5">
-                        <p class="hiden-txt-desktop"></p>
-                        <div class="fav-search-white-block"><a href="">Full Search Details</a></div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                        <p class="hiden-txt-desktop"></p>
-                        <div class="fav-search-white-block"><a href="">Search</a></div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-1 col-md-1">
-                        <p class="hiden-txt-desktop"></p>
-                        <div class="fav-search-white-block">
-                           <%#= link_to image_tag("bin_03.png", :alt => "Bin"),"#" %>
-                           <a href=""><img src="images/bin_03.png" alt=""></a>
-                        </div>
-                     </div>
-                  </div>
-               </div> -->
-               <h5>Favorites Loans</h5>
-               <!-- <div class="row fav-search-inner-row no-margn-botom">
-                  <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
-                     <p class="hiden-txt-mb">Created</p>
-                     <div class="fav-search-white-block">Oct 10,2017</div>
-                  </div>
-                  <div class="fav-search-date-cntnt col-xs-12 col-md-6">
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="">Bank</p>
-                        <div class="fav-search-white-block">Citybank</div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="">Term</p>
-                        <div class="fav-search-white-block">30 - Year Fixed</div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="">Interest Rate</p>
-                        <div class="fav-search-white-block">2.45%</div>
-                     </div>
-                  </div>
-                  <div class="fav-search-date-cntnt col-xs-7 col-md-3">
-                     <div class="fav-search-cntnt-comon col-xs-8 col-md-8">
-                        <p class="hiden-txt-mb ipad-nw"></p>
-                        <div class="fav-search-white-block"><a href="">View Website</a></div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="hiden-txt-mb ipad-nw"></p>
-                        <div class="fav-search-white-block">
-                           <%= link_to image_tag("bin_03.png", :alt => "Bin"),"#" %>
-                           <!-- <a href=""><img src="images/bin_03.png" alt=""></a> -->
-                        </div>
-                     </div>
-                  </div>
-               <!-- </div> -->
-               <!-- <div class="row fav-search-inner-row gray-row-mb">
-                  <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
-                     <p class="hiden-txt-desktop">Created</p>
-                     <div class="fav-search-white-block">Oct 10,2017</div>
-                  </div>
-                  <div class="fav-search-date-cntnt col-xs-12 col-md-6">
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="hiden-txt-desktop">Bank</p>
-                        <div class="fav-search-white-block">Citybank</div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="hiden-txt-desktop">Team</p>
-                        <div class="fav-search-white-block">30 - Year Fixed</div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="hiden-txt-desktop">Interest Rate</p>
-                        <div class="fav-search-white-block">2.45%</div>
-                     </div>
-                  </div>
-                  <div class="fav-search-date-cntnt col-xs-7 col-md-3">
-                     <div class="fav-search-cntnt-comon col-xs-8 col-md-8">
-                        <p class="hiden-txt-desktop"></p>
-                        <div class="fav-search-white-block"><a href="">View Website</a></div>
-                     </div>
-                     <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                        <p class="hiden-txt-desktop"></p>
-                        <div class="fav-search-white-block">
-                           <%= link_to image_tag("bin_03.png", :alt => "Bin"),"#" %>
-                           <!-- <a href=""><img src="images/bin_03.png" alt=""></a> -->
-                        </div>
-                     </div>
-                  </div>
-               <!-- </div> --> 
-               <div class="container">
-                  <%if current_user.user_favorites.present? %>
-                    <%current_user.user_favorites.each do |user_favorite| %>
                       <% if user_favorite.favorite_data.present? %>
-                        <div class="cntnt-list-inner col-md-12 demo-items-30">
-                            <div class="inner-logo">
-                              <img src="/assets/NewRez.png">
-                              <p class="orange-link">NewRez</p>
-                              <p>NMLS ID 3013</p>
+                          <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
+                            <div class="fav-search-white-block">
+                              <%=user_favorite.created_at.strftime("%B %d, %Y")%>
                             </div>
-                            <div>
-                              <b>FHA 30 Yr Fixed</b>
-                            </div>
-                             <div class="inner-block">
-                               <span class="hdng-big a_air">
-                                   3.000% Rate
-                               </span>
-                               <p class="hiden-txt-mb a_apr">
-                                   <!-- % APR -->
-                                   3.000% APR
-                               </p>
-                               <p>30 Year Fixed</p>
-                               <!-- <p> </p> -->
-                               <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+                          </div>
+                          <div class="fav-search-date-cntnt col-xs-12 col-md-6">
+                             <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
+                                <div class="fav-search-white-block"><%= user_favorite.favorite_data["zip"]%></div>
                              </div>
-                             <div class="inner-block-combined">
-                               <div class="inner-block inner-block-small">
-                                 <span class="hdng-big a_saving">$103,794</span>
-                                 <p><span class="hiden-txt-mb">Expected</span> Savings</p>
-                               </div>
-                               <div class="inner-block inner-block-small">
+                             <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
+                                <div class="fav-search-white-block"><%= user_favorite.favorite_data["loan_purpose"]%></div>
+                             </div>
+                             <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
+                                <div class="fav-search-white-block"><%= number_to_currency((user_favorite.favorite_data["home_price"].tr("^0-9", '').to_i) - (user_favorite.favorite_data["down_payment"].tr("^0-9", '').to_i)) %> </div>
+                             </div>
+                             <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
+                                <div class="fav-search-white-block"><%= number_to_currency(user_favorite.favorite_data["down_payment"]) %> </div>
+                             </div>
+                          </div>
+                          <div class="fav-search-date-cntnt col-xs-12 col-md-5">
+                             <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
+                                <div class="fav-search-white-block"><%=  user_favorite.favorite_data["credit_score"] %></div>
+                             </div>
+                             <div class="fav-search-cntnt-comon col-xs-5 col-md-5">
+                                <div class="fav-search-white-block"><a href="">Full Search Details</a></div>
+                             </div>
+                             <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
+                                <div class="fav-search-white-block"><a href="<%= user_favorite.favorite_url%>">Search</a></div>
+                             </div>
+                             <div class="fav-search-cntnt-comon col-xs-1 col-md-1">
+                                <div class="fav-search-white-block">
+                                   <%= link_to image_tag("bin_03.png", :alt => "Bin"),"#" %>
+                                   <!-- <a href=""><img src="images/bin_03.png" alt=""></a> -->
+                                </div>
+                             </div>
+                          </div>
+                      <%end%>
+                     </div>
+                  <%end%>
+                <%end%>
+                <h5>Favorites Loans</h5>
+                <div class="">
+          <%if current_user.user_favorites.present? %>
+            <%current_user.user_favorites.each do |user_favorite| %>
+              <% if user_favorite.favorite_loan.present? %>
+                <div class="cntnt-list-inner col-md-12 demo-items-30">
+                    <div class="inner-logo">
+                      <img src="<%= "/assets/"+ user_favorite.favorite_loan['bank_name']%>.png">
 
-                                 <span class="hdng-big a_monthly_payment">$1,054</span>
-                                 <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
-                               </div>
-                               <div class="inner-block inner-block-small">
-                                 <span class="hdng-big a_closing_cost">
-                                   -$6,133
-                                   </span>
-                                 <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
-                               </div>
-                             </div>
-                             <div class="inner-block-btn">
-                                 <img src="/assets/red_heart.png" alt="" class="wishlist-icn-fill favorite" ,="" id="favorite_6422">
-                                 <a href="" data-toggle="modal" data-target="#view-details-popup-30years0" class="dtail-btn">View Details</a>
-                               <a href="" class="lendr-web-link">Lender Website</a>
-                             </div>
-                             <div class="mb-scroll-icn">
-                               <a href="" data-toggle="modal" data-target="#view-details-popup-30years0"><i class="fa fa-angle-right"></i></a>
-                             </div>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  <% end %>
+
+                      <p class="orange-link"><%= user_favorite.favorite_loan["bank_name"]%></p>
+                      <p>NMLS ID <%= Program::NMLS[user_favorite.favorite_loan['bank_name']] %></p>
+                    </div>
+                    <div>
+                      <b><%= user_favorite.favorite_loan["program_name"]%></b>
+                    </div>
+                     <div class="inner-block">
+                       <span class="hdng-big a_air"><%=
+                           number_to_percentage(user_favorite.favorite_loan["air"], precision: 3)%> Rate
+                       </span>
+                       <p class="hiden-txt-mb a_apr">
+                           <!-- % APR -->
+
+                           <%=number_to_percentage(user_favorite.favorite_loan["apr"], precision: 3)%> APR
+                       </p>
+                       <p><%= user_favorite.favorite_loan["loan_type"] == "ARM" ? user_favorite.favorite_loan["arm_basic"] + " Arm" :  user_favorite.favorite_loan["term"].to_s + " Year Fixed"%></p>
+                       <!-- <p> </p> -->
+                       <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+                     </div>
+                     <div class="inner-block-combined">
+                       <div class="inner-block inner-block-small">
+                         <span class="hdng-big a_saving"><%=number_to_currency(user_favorite.favorite_loan["saving"],  :unit=> "$", precision: 0)%></span>
+                         <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+                       </div>
+                       <div class="inner-block inner-block-small">
+
+                         <span class="hdng-big a_monthly_payment"><%=number_to_currency(user_favorite.favorite_loan["monthly_payment"],  :unit=> "$", precision: 0)%></span>
+                         <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+                       </div>
+                       <div class="inner-block inner-block-small">
+                         <span class="hdng-big a_closing_cost"><%=
+
+                           number_to_currency(user_favorite.favorite_loan["closing_cost"],  :unit=> "$", precision: 0)%>
+                           </span>
+                         <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+                       </div>
+                     </div>
+                     <div class="inner-block-btn">
+                         <a href="" data-toggle="modal" data-target="#view-details-popup-30years0" class="dtail-btn">View Details</a>
+                       <a href="" class="lendr-web-link">Lender Website</a>
+                     </div>
+                     <div class="mb-scroll-icn">
+                       <a href="" data-toggle="modal" data-target="#view-details-popup-30years0"><i class="fa fa-angle-right"></i></a>
+                     </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
               </div>
-            </div>
-          </div>
+           </div>
+        </div>
       </div>
    </section>
    
