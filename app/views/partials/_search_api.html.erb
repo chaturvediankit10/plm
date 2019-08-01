@@ -231,7 +231,7 @@
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Closing</label>
-          <%= select_tag 'lock_period', options_for_select(Program::LOCK_PERIOD_LIST, @lock_period) %>
+          <%= select_tag 'lock_period', options_for_select(Program::LOCK_PERIOD_LIST, (params[:lock_period].present? ? params[:lock_period] : "30")) %>
         </div>
         <div class="form-group">
           <label>Points / Fees</label>
