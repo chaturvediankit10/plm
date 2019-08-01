@@ -4,13 +4,6 @@ class SearchController < SearchApi::DashboardController
   def home
     initilize_state_and_zip_code
     api_search if params[:commit].present?
-    @term = params[:term].present? ? params[:term] : "30"
-    if @state_code == "All"
-      @expert_list = Expert.all
-    else
-      @expert_list = Expert.where(state: @state_code).sort_by { |m| [m.created_at] }.reverse
-    end
-
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
     else

@@ -15,12 +15,6 @@ Purpose:        display and define logic for all the seo pages
 
   def city_home_mortgage_rates
     initilize_state_and_zip_code
-    @term = params[:term].present? ? params[:term] : "30"
-    if @state_code == "All"
-      @expert_list = Expert.all
-    else
-      @expert_list = Expert.where(state: @state_code).sort_by { |m| [m.created_at] }.reverse
-    end
     @news_articles = news_article_data(' mortgage')
     # for report section fetching all cities record similer to current city 
     cached_data = FreddieMacCache.find_by('zip_prefix like ? and loan_type = ?', "#{@city.zip.to_s.first(3)+ '%'}", 'P')
@@ -35,12 +29,6 @@ Purpose:        display and define logic for all the seo pages
 
   def city_home_refinance_rates
     initilize_state_and_zip_code
-    @term = params[:term].present? ? params[:term] : "30"
-    if @state_code == "All"
-      @expert_list = Expert.all
-    else
-      @expert_list = Expert.where(state: @state_code).sort_by { |m| [m.created_at] }.reverse
-    end
     @news_articles = news_article_data(' refinance')
     # for report section fetching all cities record similer to current city
     # for loan type N & C
@@ -56,12 +44,6 @@ Purpose:        display and define logic for all the seo pages
 
   def bank_mortgage_loans
     initilize_state_and_zip_code
-    @term = params[:term].present? ? params[:term] : "30"
-    if @state_code == "All"
-      @expert_list = Expert.all
-    else
-      @expert_list = Expert.where(state: @state_code).sort_by { |m| [m.created_at] }.reverse
-    end
     @news_articles = bank_news_article(" mortgage")
     @loan_officers = LoanOfficer.loan_officers_gen(@bank, "mortgage")
   end
