@@ -116,6 +116,13 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+
+    var items = document.querySelectorAll("#home_price, #down_payment");
+    for (var i = 0; i < items.length; i++)
+    {
+      $(items[i]).maskMoney({decimal: ',', thousands: ',', allowEmpty: false, precision: 0, allowZero: false}).maskMoney('mask');
+    }
+
     form_submitted = <%= raw params[:commit].present? ? false : true %>
     if (form_submitted && location.href.includes("refinance")) {
       $('#loan_purpose').val('Refinance');
