@@ -6,7 +6,8 @@
       <%# @all_resultes = term_n == 51 ? get_results_arm(result, "5") : get_results(result, term_n) %>
       <% result.each_with_index do |program, index|%>
         <div class="cntnt-list-inner col-md-12 demo-items-<%=term_n%>">
-          
+          <!-- <p id = >  </p> -->
+          <input id="program-<%=program[:id]%>"  type="hidden" value=<%= program.to_json %>>
           <div class="inner-logo">
           <!-- <img src="//assets/CMG financial.png" alt=""> -->
             <img src="<%= "/assets/"+program[:bank_name] %>.png" >
@@ -59,7 +60,7 @@
           </div>
           <div class="inner-block-btn">
             <%if current_user.present? %>
-              <img src= "<%= current_user.user_favorites.present? && current_user.user_favorites.pluck(:program_id).include?(program[:id]) ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" >
+              <img src= "<%= current_user.user_favorites.present? && current_user.user_favorites.pluck(:program_id).include?(program[:id]) ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="" class="wishlist-icn-fill favorite", id="favorite_<%=program[:id]%>", data-program="<%= program.to_json %>" >
             <% else %>
               <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" data-toggle="modal" data-target="#login-popup">
               <!-- <a href="" data-toggle="modal" data-target="#login-popup" class="login-btn">LOGIN</a> -->
@@ -85,6 +86,8 @@
         var program_id = parseInt(this.id.split("_")[1])
         var img_id = this.id
         var form_data = {}
+        // var program = $('#program-'+program_id.toString()).val();
+        var program = JSON.parse(this.dataset['program'])
         var favorite_url = location.href+'?'+$('#search_form').serialize()
         $('#search_form').serializeArray().filter((item)=>{
           form_data[item.name] = item.value
@@ -92,7 +95,8 @@
        $.ajax({
             url: '/favorite_program',
             type: "GET",
-            data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url},
+            dataType: "json",
+            data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url,program: program},
             success: function(response) {
               if (response.status) {
                 document.getElementById(img_id).src = "/assets/red_heart.png";

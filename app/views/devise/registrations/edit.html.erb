@@ -175,8 +175,8 @@ Return:         hash
          <!-- user favourites start-->
          <div class="profile-blocks fav-srch-blocks profile-blocks-full">
             <h3>Favorites</h3>
-            <div class="profile-blocks-cntnt fav-search-layout">
-               <h5>Favorites Searches</h5>
+              <div class="profile-blocks-cntnt fav-search-layout">
+                <h5>Favorites Searches</h5>
                <div class="row">
                   <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
                      <p class="hiden-txt-mb">Created</p>
@@ -213,6 +213,7 @@ Return:         hash
                 <%if current_user.user_favorites.present? %>
                   <%current_user.user_favorites.each do |user_favorite| %>
                      <div class="row">
+                        <% if user_favorite.favorite_data.present? %>
                         <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
                            <div class="fav-search-white-block"><%=user_favorite.created_at.strftime("%B %d, %Y")%></div>
                         </div>
@@ -248,6 +249,7 @@ Return:         hash
                            </div>
                         </div>
                      </div>
+                     <%end%>
                   <%end%>
               <%end%>
               <!--  <div class="row fav-search-inner-row gray-row-mb">
@@ -296,7 +298,7 @@ Return:         hash
                   </div>
                </div> -->
                <h5>Favorites Loans</h5>
-               <div class="row fav-search-inner-row no-margn-botom">
+               <!-- <div class="row fav-search-inner-row no-margn-botom">
                   <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
                      <p class="hiden-txt-mb">Created</p>
                      <div class="fav-search-white-block">Oct 10,2017</div>
@@ -328,8 +330,8 @@ Return:         hash
                         </div>
                      </div>
                   </div>
-               </div>
-               <div class="row fav-search-inner-row gray-row-mb">
+               <!-- </div> -->
+               <!-- <div class="row fav-search-inner-row gray-row-mb">
                   <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-1">
                      <p class="hiden-txt-desktop">Created</p>
                      <div class="fav-search-white-block">Oct 10,2017</div>
@@ -361,9 +363,64 @@ Return:         hash
                         </div>
                      </div>
                   </div>
-               </div>
+               <!-- </div> --> 
+               <div class="container">
+                  <%if current_user.user_favorites.present? %>
+                    <%current_user.user_favorites.each do |user_favorite| %>
+                      <% if user_favorite.favorite_data.present? %>
+                        <div class="cntnt-list-inner col-md-12 demo-items-30">
+                            <div class="inner-logo">
+                              <img src="/assets/NewRez.png">
+                              <p class="orange-link">NewRez</p>
+                              <p>NMLS ID 3013</p>
+                            </div>
+                            <div>
+                              <b>FHA 30 Yr Fixed</b>
+                            </div>
+                             <div class="inner-block">
+                               <span class="hdng-big a_air">
+                                   3.000% Rate
+                               </span>
+                               <p class="hiden-txt-mb a_apr">
+                                   <!-- % APR -->
+                                   3.000% APR
+                               </p>
+                               <p>30 Year Fixed</p>
+                               <!-- <p> </p> -->
+                               <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
+                             </div>
+                             <div class="inner-block-combined">
+                               <div class="inner-block inner-block-small">
+                                 <span class="hdng-big a_saving">$103,794</span>
+                                 <p><span class="hiden-txt-mb">Expected</span> Savings</p>
+                               </div>
+                               <div class="inner-block inner-block-small">
+
+                                 <span class="hdng-big a_monthly_payment">$1,054</span>
+                                 <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
+                               </div>
+                               <div class="inner-block inner-block-small">
+                                 <span class="hdng-big a_closing_cost">
+                                   -$6,133
+                                   </span>
+                                 <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
+                               </div>
+                             </div>
+                             <div class="inner-block-btn">
+                                 <img src="/assets/red_heart.png" alt="" class="wishlist-icn-fill favorite" ,="" id="favorite_6422">
+                                 <a href="" data-toggle="modal" data-target="#view-details-popup-30years0" class="dtail-btn">View Details</a>
+                               <a href="" class="lendr-web-link">Lender Website</a>
+                             </div>
+                             <div class="mb-scroll-icn">
+                               <a href="" data-toggle="modal" data-target="#view-details-popup-30years0"><i class="fa fa-angle-right"></i></a>
+                             </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+              </div>
             </div>
-         </div>
-         <!-- user favourites end-->
+          </div>
       </div>
    </section>
+   
