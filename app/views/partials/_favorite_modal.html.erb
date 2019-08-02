@@ -1,0 +1,322 @@
+<!-- view details popup start-->
+<div class="modal fade view-details-popup" id="view-details-popup-<%=program["term"]%>years<%=index.to_s%>" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="modal-close" data-dismiss="modal">
+        <i class="fa fa-times"></i>
+      </button>
+      <div class="modal-header">
+        <section class="tab-header">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="bank-logos">
+                  <span>
+                    <img src="<%= "/assets/"+program["bank_name"] %>.png" >
+                  </span>
+                  <div class="extra-wrap">
+                    <h1><%= program["bank_name"] %></h1>
+                    <p>NMLS ID <%= Program::NMLS[program["bank_name"]]%></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#tab1warning-<%=program["term"].to_s+"years"+index.to_s%>" data-toggle="tab">Loan Overview</a></li>
+                  <li><a href="#tab2warning-<%=program["term"].to_s+"years"+index.to_s%>" data-toggle="tab">Monthly Calculator</a></li>
+                  <li><a href="#tab3warning-<%=program["term"].to_s+"years"+index.to_s%>" data-toggle="tab">Loan Parameters</a></li>
+                </ul>
+              </div>
+            </div>
+        </section>
+      </div>
+      <div class="modal-body">
+        <div class="with-nav-tabs panel-warning">
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="tab1warning-<%=program["term"].to_s+"years"+index.to_s%>">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="content-bx">
+                      <h1>Loan Overview</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <%
+                              pro_term = ''
+                              if program["term"].present?
+                                if program["term"].to_s.length >2
+                                  pro_term = (program["term"]/100).to_s+"-"+(program["term"]%100).to_s
+                                else
+                                  pro_term = program["term"].to_s
+                                end
+                              end
+                              %>
+                              <td>Loan Amount</td>
+                              <% loan_amount_value = (@home_price.to_i - @down_payment.to_i) rescue nil %>
+                              <td align="right"><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
+                            </tr>
+                            <tr>
+                              <td>Interest Rate</td>
+                              <td align="right"><b><%=final_rate%>%</b></td>
+                            </tr>
+                            <tr>
+                              <td>Term</td>
+                              <td align="right"><b><%= pro_term%> <%= pro_term.present? ? "Year" : ""%></b></td>
+                            </tr>
+                            <tr>
+                              <td>Monthly Payment</td>
+                              <td align="right"><b><%=number_to_currency(program["monthly_payment"],  :unit=> "$", precision: 0) if program["monthly_payment"].present?%></b></td>
+                            </tr>
+                            <tr>
+                              <td>Closing Cost</td>
+                              <td align="right"><b><%=number_to_currency(program["closing_cost"],  :unit=> "$", precision: 0)%></b></td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <span class="small-p">Updated Aug 8/30 day rate lock</span> -->
+                    <div class="content-bx">
+                      <h1>Closing Costs Breakdown</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <td>Starting Base Point</td>
+                              <td align="right" colspan="2"><b><%= program["starting_base_point"] %></b></td>
+                            </tr>
+                            <tr>
+                              <td>Adjustment</td>
+                              <td colspan="2">Value</td>
+                            </tr>
+                            <%
+                              if program["adjustment_pair"].present?
+                                program["adjustment_pair"].keys.each_with_index do |key|
+                                  if (program["adjustment_pair"][key]!=0.0)
+                                    if (key.split("/").include?("LTV") || key.split("/").include?("FICO"))%>
+                                      <tr>
+                                        <td>Credit Score</td>
+                                        <td><b><%= program["adjustment_pair"][key]%></b></td>
+                                        <td align="right"></td>
+                                      </tr>
+                                  <%else%>
+                                      <tr>
+                                        <td><%=key%></td>
+                                        <td><b><%= program["adjustment_pair"][key] if program["adjustment_pair"][key].present? %></b></td>
+                                        <td align="right"></td>
+                                      </tr>
+                                  <%end
+                                  end
+                                end
+                              end%>
+                            <tr>
+                              <td>Ending Closing Cost</td>
+                              <td colspan="2" align="right"><b><%=number_to_currency(program["closing_cost"],  :unit=> "$", precision: 0)%> / <%= number_to_currency(program["air_point"],  :unit=> "", precision: 2) %> Points</b></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <span class="small-p">*Negative value in closing calculation Indicates a Rebate</span> -->
+                  </div>
+                  <div class="col-md-6">
+                    <div class="content-bx">
+                      <h1>Extra Savings</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed saving-table">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <img src="/assets/save-icon.png">
+                              </td>
+                              <td>Did you know you can save <strong>$2,400</strong> or <strong>1.2</strong> points by lowering the loan LTV from <strong><%#= @set_ltv.split('-')[0]%> %</strong> to <strong><%#= @set_ltv.split('-')[1]%> %</strong> ?</td>
+                            </tr>
+                            <tr>
+                              <td><img src="/assets/save-icon.png"></td>
+                              <td>Did you know you can save <strong>$2,400</strong> or <strong>1.3</strong> points by Increasing your credit score from <strong><%#= @set_credit_score.split('-')[0]%></strong> to <strong><%#= @set_credit_score.split('-')[1]%></strong> </td>
+                            </tr>
+                            <tr>
+                              <td><img src="/assets/save-icon.png"></td>
+                              <td>For these savings and more, get in touch with <span class="orange-clr"><%= program["bank_name"]%></span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="tab2warning-<%=program["term"].to_s+"years"+index.to_s%>">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="content-bx">
+                      <h1>Loan Overview</h1>
+                      <div class="content-bx-content">
+                        <table class="table table-striped table-condensed">
+                          <tbody>
+                            <tr>
+                              <td><%= pro_term.present? ? pro_term + " Year Fixed" : program["arm_basic"].to_s + "/1 Arm Basic"%></td>
+                              <td align="right"><b><%= final_rate %>% Rate</b></td>
+                            </tr>
+                            <tr>
+                              <td>Closing Costs</td>
+                              <td align="right"><b><%=number_to_currency(program["closing_cost"],  :unit=> "$", precision: 2)%></b></td>
+                            </tr>
+                            <tr>
+                              <td>Loan Amount</td>
+                              <td align="right"><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <span class="small-p">Updated Aug 8/30 day rate lock</span> -->
+                  </div>
+                  <div class="col-md-12">
+                    <div class="content-bx">
+                      <h1>Calculate Monthly Payment</h1>
+                      <div class="content-bx-content">
+                        <div class="chart-box">
+                          <!-- <img src="/assets/ec_piechart_status.png" width="450"> -->
+                          <div id="cmp_pie_chart-<%=(program["term"].present? ? program["term"].to_s : index.to_s)+"years"+index.to_s%>"> Hello</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="tab3warning-<%=program["term"].to_s+"years"+index.to_s%>">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="content-bx">
+                      <h1>Loan Parameter</h1>
+                      <div class="content-bx-content row loan-para mCustomScrollbar sb-container-scroll">
+                        <div class="col-md-6 padding-5">
+                          <table class="table table-striped table-condensed">
+                            <tbody>
+                              <tr>
+                                <td>Loan Type</td>
+                                <td align="right"><b><%= program["loan_type"] %></b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">Home Price</td>
+                                <td align="right"><b> <%= number_to_currency(@home_price.present? ? @home_price : 0,  :unit=> "$", precision: 0) %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Down Payment</td>
+                                <td align="right"><b><%= number_to_currency(@down_payment,  :unit=> "$", precision: 0) %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Loan Purpose</td>
+                                <td align="right"><b><%= program["loan_purpose"]%></b></td>
+                              </tr>
+                              <tr>
+                                <td>Fannie Mae DU</td>
+                                <td align="right"><b><%= program["fannie_mae_du"] ? "Yes" : "No" %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Freddie Mac LP</td>
+                                <td align="right"><b><%= program["freddie_mac_lp"] ? "Yes" : "No" %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Interest Rate</td>
+                                <td align="right"><b><%= final_rate%></b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">FHA</td>
+                                <td align="right"><b><%= program["fha"] ? "Yes" : "No" %></b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">VA</td>
+                                <td align="right"><b><%= program["va"] ? "Yes" : "No" %></b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">USDA</td>
+                                <td align="right"><b><%= program["usda"] ? "Yes" : "No" %></b></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-md-6 padding-5">
+                          <table class="table table-striped table-condensed">
+                            <tbody>
+                              <tr>
+                                <td>Loan Size</td>
+                                <%
+                                loan_size_value = ""
+                                if program["loan_size"].present?
+                                program["loan_size"].split("&").map do |loan_size|%>
+                                  <%
+                                    if loan_size_value.present?
+                                      loan_size_value = loan_size_value+"/"+ loan_size
+                                    else
+                                      loan_size_value = loan_size
+                                    end
+                                  %>
+                                <%
+                                  end
+                                end
+                                %>
+                                <td align="right"><b><%= loan_size_value %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Loan Term</td>
+                                <td align="right"><b><%= pro_term %> Years</b></td>
+                              </tr>
+                              <tr>
+                                <td>Credit Score</td>
+                                <td align="right"><b><%= @set_credit_score %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Loan Amount</td>
+                                <td align="right"><b> <%= number_to_currency(loan_amount_value, :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil%></b></td>
+                              </tr>
+                              <tr>
+                                <td nowrap="nowrap">Fannie Mae Product</td>
+                                <td align="right"><b><%= program["fannie_mae_product"] %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Freddie Mac Product</td>
+                                <td align="right"><b><%= program["freddie_mac_product"] %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Lock Period</td>
+                                <td align="right"><b><%= @lock_period %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Streamline</td>
+                                <td align="right"><b><%= program["streamline"] ? "Yes" : "No" %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Full Doc</td>
+                                <td align="right"><b><%= program["full_doc"] ? "Yes" : "No" %></b></td>
+                              </tr>
+                              <tr>
+                                <td>Arm</td>
+                                <td align="right"><b><%= program["arm_basic"] %> <%= program["arm_advanced"].present? ? 'and ' + program["arm_advanced"] : nil %> </b></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer adv-search-mdl-footer">
+        <div class="content-btns">
+          <p>Get Started with <%= program["bank_name"]%></p>
+          <a href="#" class="btn btn-orange">Contact lender</a>
+          <a href="#" class="mb-adv-search btn btn-orange reverse-btn close" data-dismiss="modal">Continue Searching</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- view details popup end-->
