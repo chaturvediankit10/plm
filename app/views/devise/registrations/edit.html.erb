@@ -147,16 +147,22 @@ Return:         hash
            <div class="row">
               <div class="col-xs-12 col-md-12">
                  <div class="form-group">
-                    <label>Email me the latest, up to date pricing for my favorited or last mortage search.</label>
-                    <span class="checkbox-custm-row">
-                      <%= f.radio_button :price_alert,current_user.price_alert == 0 ? current_user.price_alert : 0 %> Daily
-                    </span>
-                    <span class="checkbox-custm-row">
-                      <%= f.radio_button :price_alert,current_user.price_alert == 1 ? current_user.price_alert : 1 %> Weekly
-                    </span>
-                    <span class="checkbox-custm-row">
-                     <%= f.radio_button :price_alert,current_user.price_alert == 2 ? current_user.price_alert : 2%> Never
-                   </span>
+                    <p style="margin-bottom: 10px">Email me the latest, up to date pricing for my favorited or last mortage search.</p>
+                    <label class="checkbox-custm-row">
+                      Daily
+                      <%= f.radio_button :price_alert,current_user.price_alert == 0 ? current_user.price_alert : 0 %> 
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-custm-row">
+                      Weekly
+                      <%= f.radio_button :price_alert,current_user.price_alert == 1 ? current_user.price_alert : 1 %> 
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-custm-row">
+                      Never
+                     <%= f.radio_button :price_alert,current_user.price_alert == 2 ? current_user.price_alert : 2%> 
+                     <span class="checkmark"></span>
+                   </label>
                  </div>
                  <%= f.hidden_field :id, value: current_user.id%>
               </div>
