@@ -1,9 +1,8 @@
 <div data-id="<%=term_n%>" id="<%=term_n%>years" class="tab-pane for-test fade in active">
 
   <div class="cntnt-list-box">
-    <h5><%= params[:loan_type] == "ARM" ? params[:arm_basic] + " Arm Basic" :  term_n.to_s+" Year Fixed" %> Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
     <% if result.present? %>
-      <%# @all_resultes = term_n == 51 ? get_results_arm(result, "5") : get_results(result, term_n) %>
+      <h5><%= params[:loan_type] == "ARM" ? params[:arm_basic] + " Arm Basic" :  term_n.to_s+" Year Fixed" %> Rates Customized for <%= Date.today.strftime("%B %d, %Y")%></h5>
       <% result.each_with_index do |program, index|%>
         <div class="cntnt-list-inner col-md-12 demo-items-<%=term_n%>">
           <!-- <p id = >  </p> -->
@@ -73,9 +72,9 @@
           </div>
         </div>
         <%= render partial: "partials/advance_option_modal" , locals: { program: program, index: index,final_rate:  number_with_precision(program[:air].to_s, :precision => 3)  } %>
-
-
       <% end %>
+    <% else %>
+      <h5>No suitable program is found</h5>
     <% end %>
   </div>
 </div>

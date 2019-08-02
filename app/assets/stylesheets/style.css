@@ -1129,8 +1129,8 @@ header .navbar-right {
 
 .cntnt-list-inner .inner-logo {
   float: left;
-  width: 13%;
-  margin: 0 2% 0 0;
+  width: 15%;
+  margin: 0 1% 0 0;
 }
 
 .inner-logo a {
@@ -4865,6 +4865,7 @@ header.fixed-header.scrolled {
     opacity: .2;
     border: none;
     font-weight: bold;
+    background-color: transparent;
 }
 
 .modal-close:hover {
