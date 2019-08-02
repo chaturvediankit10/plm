@@ -13,9 +13,6 @@
             <p class="orange-link"><%= program[:bank_name] %></p>
             <p>NMLS ID <%= Program::NMLS[program[:bank_name]] %></p>
           </div>
-          <div>
-            <b><%= program[:program_name] %></b>
-          </div>
           <div class="inner-block">
             <%
               base_rate = (program[:base_rate].to_f).round(3).to_s
@@ -32,7 +29,7 @@
                 <%= number_with_precision(program[:apr].to_s.split("e").first.to_s, :precision => 3) rescue nil %>% APR
              <%end%>
             </p>
-            <p><%= params[:loan_type] == "ARM" ? params[:arm_basic] + " Arm" :  term_n.to_s + " Year Fixed"%></p>
+            <p><%= program[:program_name] %></p>
             <!-- <p><%#= term_n == 51 ? "5/1 Arm" : term_n.to_s + " Year Fixed" %> </p> -->
             <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
           </div>
