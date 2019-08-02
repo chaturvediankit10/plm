@@ -8,7 +8,7 @@
     <!-- banner main search start-->
     <div class="search-main adv-search-mb home-main-search">
       <% form_path = get_dynamic_path(params) %>
-      <%= form_tag("results"+form_path , method: :post, id: :search_form) do %>
+      <%= form_tag("/"+form_path , method: :post, id: :search_form) do %>
         <div class="row adv-search-main">
           <%= hidden_field_tag 'source', 0 %>
           <div class="col-sm-2 col-xs-6">
