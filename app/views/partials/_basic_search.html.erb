@@ -7,6 +7,16 @@
     </div>
     <!-- banner main search start-->
     <div class="search-main adv-search-mb home-main-search">
+      <span class="fav-icon">
+        <img src="/assets/heart_03.png">
+      </span>
+      <span class="fav-icon">
+        <%if current_user.present? %>
+          <img src="/assets/heart_03.png" class="favorite_search" id ="favorite_search">
+        <% else %>
+          <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite_search", id ="favorite_search" data-toggle="modal" data-target="#login-popup">
+        <% end %>
+      </span>
       <% form_path = get_dynamic_path(params) %>
       <%= form_tag("/"+form_path , method: :post, id: :search_form) do %>
         <div class="row adv-search-main">
@@ -75,6 +85,7 @@
                 <%= render 'partials/search_api'%>
                 <div class="row">
                   <div class="col-md-12 text-center reset">
+
                     <button type="button" id="reset_all_btn" class="btn btn-danger" >Reset All</button>
 
                     <%#= render 'partials/search_api'%>
@@ -129,6 +140,29 @@
       $('#adv_loan_purpose').val('Refinance');
     }
     get_form_submitted(form_submitted);
+
+    $(".favorite_search").click(function() {
+        // var program_id = parseInt(this.id.split("_")[1])
+        var img_id = this.id
+        var form_data = {}
+        // // var program = $('#program-'+program_id.toString()).val();
+        // var program = JSON.parse(this.dataset['program'])
+        var favorite_url = location.href+'?'+$('#search_form').serialize()
+        $('#search_form').serializeArray().filter((item)=>{
+          form_data[item.name] = item.value
+        })
+       $.ajax({
+            url: '/favorite_searches',
+            type: "GET",
+       //      dataType: "json",
+            data: {form_data: form_data,favorite_url: favorite_url},
+            success: function(response) {
+              if (response.status) {
+                document.getElementById(img_id).src = "/assets/red_heart.png";
+              }
+            }
+        });
+    });
   });
 
 </script>

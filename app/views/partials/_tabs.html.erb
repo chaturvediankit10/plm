@@ -84,18 +84,19 @@
     $(".favorite").click(function() {
         var program_id = parseInt(this.id.split("_")[1])
         var img_id = this.id
-        var form_data = {}
+        // var form_data = {}
         // var program = $('#program-'+program_id.toString()).val();
         var program = JSON.parse(this.dataset['program'])
-        var favorite_url = location.href+'?'+$('#search_form').serialize()
-        $('#search_form').serializeArray().filter((item)=>{
-          form_data[item.name] = item.value
-        })
+        // var favorite_url = location.href+'?'+$('#search_form').serialize()
+        // $('#search_form').serializeArray().filter((item)=>{
+        //   form_data[item.name] = item.value
+        // })
        $.ajax({
             url: '/favorite_program',
             type: "GET",
             dataType: "json",
-            data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url,program: program},
+            // data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url,program: program},
+            data: {program_id: program_id,program: program},
             success: function(response) {
               if (response.status) {
                 document.getElementById(img_id).src = "/assets/red_heart.png";
