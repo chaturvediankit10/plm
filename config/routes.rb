@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get 'pages/index'
   get '/set_state_by_zip_code', to: 'search#set_state_by_zip_code', as: :set_state_by_zip_code
   get '/favorite_program', to: 'pages#favorite_program', as: :favorite_program
+  get '/favorite_searches', to: 'pages#favorite_searches', as: :favorite_searches
 
   # get '/refinance+rates', to: 'pages#refinance', as: 'refinance'
   match '/refinance+rates' => 'pages#refinance', as: 'refinance', via: [ :post, :get]
