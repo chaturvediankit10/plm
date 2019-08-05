@@ -45,8 +45,12 @@ Rails.application.routes.draw do
   get '/favorite_searches', to: 'pages#favorite_searches', as: :favorite_searches
 
   # get '/refinance+rates', to: 'pages#refinance', as: 'refinance'
-  match '/refinance+rates' => 'pages#refinance', as: 'refinance', via: [ :post, :get]
-  match '/mortgage+rates' => 'pages#mortgage', as: 'mortgage', via: [ :post, :get]
+  get '/refinance+rates' => 'pages#refinance', as: 'refinance'
+  post "/refinance+rates/results" => "pages#refinance" , via: [ :post]
+  # match '/mortgage+rates' => 'pages#mortgage', as: 'mortgage', via: [ :post, :get]
+  post '/mortgage+rates/results' => 'pages#mortgage', via: [ :post]
+  get '/mortgage+rates' => 'pages#mortgage', as: 'mortgage'
+
   post '/contact_us_email', to: 'pages#contact_us_email'
   get '/change_status', to: 'pages#change_status'
   get '/activate', to: 'pages#user_mass_activate'
@@ -70,7 +74,9 @@ Rails.application.routes.draw do
   get '/mortgage/lender/:alphabet-(:bank_from)-(:bank_to)/:bank_list', to: 'directories#mortgage_state_banks_list', as: 'mortgage_banks_list'
 
   # get 'mortgage/lender-(:cert)/(:bank_name+mortgage)', to: 'seo_pages#bank_mortgage_loans', as: 'bank_home_mortgage_loan'
-  match '/mortgage/lender-(:cert)/(:bank_name+mortgage)' => 'seo_pages#bank_mortgage_loans', as: 'bank_home_mortgage_loan', via: [ :post, :get]
+  # match '/mortgage/lender-(:cert)/(:bank_name+mortgage)' => 'seo_pages#bank_mortgage_loans', as: 'bank_home_mortgage_loan', via: [ :post, :get]
+  post '/mortgage/lender-(:cert)/(:bank_name+mortgage)/results' => 'seo_pages#bank_mortgage_loans', via: [ :post]
+  get '/mortgage/lender-(:cert)/(:bank_name+mortgage)' => 'seo_pages#bank_mortgage_loans', as: 'bank_home_mortgage_loan'
 
 
   #--------------------------- routes for personal loan pages ----------------------------------
@@ -96,7 +102,9 @@ Rails.application.routes.draw do
   #-------------------------- routes for city mortgage pages------------------------------
   # get '/mortgage/:state-(:city_id)(/:city+mortgage+rates)', to: 'seo_pages#city_home_mortgage_rates', as: 'city_home_mortgage_rates'
 
-  match '/mortgage/:state-(:city_id)(/:city+mortgage+rates)' => 'seo_pages#city_home_mortgage_rates', as: 'city_home_mortgage_rates', via: [ :post, :get]
+  # match '/mortgage/:state-(:city_id)(/:city+mortgage+rates)' => 'seo_pages#city_home_mortgage_rates', as: 'city_home_mortgage_rates', via: [ :post, :get]
+  post '/mortgage/:state-(:city_id)(/:city+mortgage+rates)/results' => 'seo_pages#city_home_mortgage_rates', via: [ :post]
+  get '/mortgage/:state-(:city_id)(/:city+mortgage+rates)' => 'seo_pages#city_home_mortgage_rates', as: 'city_home_mortgage_rates'
 
   get '/mortgage/:state', to: 'directories#mortgage_state_cities', as: 'mortgage_state_cities'
 
@@ -107,7 +115,9 @@ Rails.application.routes.draw do
 
   # get '/refinance/:state-(:city_id)(/:city+refinance+rates)', to: 'seo_pages#city_home_refinance_rates', as: 'city_home_refinance_rates'
 
-  match '/refinance/:state-(:city_id)(/:city+refinance+rates)' => 'seo_pages#city_home_refinance_rates', as: 'city_home_refinance_rates', via: [ :post, :get]
+  # match '/refinance/:state-(:city_id)(/:city+refinance+rates)' => 'seo_pages#city_home_refinance_rates', as: 'city_home_refinance_rates', via: [ :post, :get]
+  post '/refinance/:state-(:city_id)(/:city+refinance+rates)/results' => 'seo_pages#city_home_refinance_rates', via: [ :post]
+  get '/refinance/:state-(:city_id)(/:city+refinance+rates)' => 'seo_pages#city_home_refinance_rates', as: 'city_home_refinance_rates'
 
 
   get '/refinance/:state', to: 'directories#refinance_state_cities', as: 'refinance_state_cities'
