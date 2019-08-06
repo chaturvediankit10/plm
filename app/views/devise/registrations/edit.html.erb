@@ -256,8 +256,9 @@ Return:         hash
                             <div class="fav-search-white-block"><%=  user_favorite.favorite_search["credit_score"] %></div>
                          </div>
                          <div class="fav-search-cntnt-comon col-xs-5 col-md-5">
-                            <div class="fav-search-white-block"><a href="">Full Search Details</a></div>
+                            <div class="fav-search-white-block"><a href="" data-toggle="modal" data-target="#full-search-<%=user_favorite[:id]%>">Full Search Details</a></div>
                          </div>
+                         <%= render partial: "partials/view_search_detail" , locals: { program: user_favorite.favorite_search, program_id: user_favorite[:id] } %>
                          <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
                             <div class="fav-search-white-block"><a href="<%= user_favorite.favorite_url%>" target="_blank">Search</a></div>
                          </div>
@@ -320,7 +321,6 @@ Return:         hash
                              <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
                            </div>
                          </div>
-                         <%#debugger%>
                          <div class="inner-block-btn">
                              <a href="" data-toggle="modal" data-target="#view-details-popup-<%=user_favorite.favorite_loan["term"]%>years<%=index%>" class="dtail-btn">View Details</a>
                            <a href="" class="lendr-web-link">Lender Website</a>
@@ -339,4 +339,6 @@ Return:         hash
     </div>
   </div>
 </section>
+ 
+
  
