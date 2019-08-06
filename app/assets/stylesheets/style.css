@@ -93,7 +93,9 @@ header .navbar-right {
   border-top: 5px solid transparent;
   padding: 20px;
 }
-
+#forgot_signup_form_pop li input{
+  width: 70%;
+}
 .navbar-default .nav li a.login-btn {
   border-radius: 5px;
   border: 2px solid #fa6221;
@@ -992,7 +994,11 @@ header .navbar-right {
   left: 0;
   box-shadow: 0 8px 8px 0px #BABABA;
 }
-
+.advanced-search-bx  .field-wrapper input[type="text"], .advanced-search-bx .field-wrapper select{
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 999;
+}
 .search-adv-option h4 {
   float: left;
   width: 100%;
