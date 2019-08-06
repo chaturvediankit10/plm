@@ -25,9 +25,9 @@ $(document).ready(function() {
 
 	$("#adv-option").click(function(){
 		if( $("#search-adv-option-inner").hasClass("display-adv-search")){
-			$("#search-adv-option-inner").hide("fast").removeClass("display-adv-search");
+			$("#search-adv-option-inner").slideToggle("slow").removeClass("display-adv-search");
 		} else {
-			$("#search-adv-option-inner").addClass("display-adv-search").show("fast");
+			$("#search-adv-option-inner").addClass("display-adv-search").slideToggle("slow");
 		}
 	});
 	// Show/hide signin/signup modals

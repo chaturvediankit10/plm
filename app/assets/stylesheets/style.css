@@ -978,14 +978,14 @@ header .navbar-right {
   font-size: 15px;
   text-decoration: underline;
   font-weight: bold;
-  display: none;
+  /*display: none;*/
 }
 .active-option .down-arrow{
   -ms-transform: rotate(180deg); /* IE 9 */
   -webkit-transform: rotate(180deg); /* Safari prior 9.0 */
   transform: rotate(180deg); /* Standard syntax */
 }
-.search-adv-option.display-adv-search {
+.search-adv-option {
   display: block;
   position: absolute;
   top: 100%;
@@ -997,6 +997,7 @@ header .navbar-right {
   border-radius: 0 0 5px 5px;
   left: 0;
   box-shadow: 0 8px 8px 0px #BABABA;
+  display: none;
 }
 .advanced-search-bx  .field-wrapper input[type="text"], .advanced-search-bx .field-wrapper select{
   background-color: transparent;
