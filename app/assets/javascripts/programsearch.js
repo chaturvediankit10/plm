@@ -5,6 +5,7 @@ function get_form_submitted(flag){
 }
 
 function get_program_results(){
+  $(".suitable-program").hide()
   $(".loader").show();
   $('.term_10').prop('checked', false);
   $('.arm_basic_7').prop('checked', false);
@@ -19,6 +20,7 @@ function get_program_results(){
     dataType: "script",
     data: data,
     success: function(response) {
+      $(".suitable-program").show()
       setTimeout(function(){
        $('#loadMore').show();
        $(".loader").hide(); 
