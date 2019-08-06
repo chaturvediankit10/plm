@@ -980,11 +980,15 @@ header .navbar-right {
   font-weight: bold;
   display: none;
 }
-
+.active-option .down-arrow{
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari prior 9.0 */
+  transform: rotate(180deg); /* Standard syntax */
+}
 .search-adv-option.display-adv-search {
   display: block;
   position: absolute;
-  top: 94%;
+  top: 100%;
   z-index: 9;
   border-top: 1px solid #d1d3db;
   width: 100%;
