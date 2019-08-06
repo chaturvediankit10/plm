@@ -21,9 +21,12 @@ module InitilizeZipCode
 
   def initilize_zip_code_for_seo_pages
     @zip_code = "94035"
+    if params[:zip].present?
+      @zip_code = params[:zip]
+    else
     if params[:state].present? && params[:city].present?
       city = City.where(state_code: params[:state], city: params[:city]).first
-      @zip_code = city.zip.present? ? city.zip : "94035"
+      @zip_code = city.zip.present? ? city.zip : @zip_code
     end
     @state_code = city.present? ? city.state_code : "All"
     @term = params[:term].present? ? params[:term] : "30"
