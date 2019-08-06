@@ -23,7 +23,7 @@ module InitilizeZipCode
     @zip_code = "94035"
     if params[:zip].present?
       @zip_code = params[:zip]
-    else
+    end
     if params[:state].present? && params[:city].present?
       city = City.where(state_code: params[:state], city: params[:city]).first
       @zip_code = city.zip.present? ? city.zip : @zip_code
