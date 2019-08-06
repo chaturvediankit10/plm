@@ -50,10 +50,17 @@ class PagesController < SearchController
 
   def favorite_program
     if current_user.present?
+      if current_user.user_favorites.pluck(:program_id).include?(params[:program_id].to_i)
+        UserFavorite.find_by_program_id(params[:program_id]).delete
+        data = "delete"
+      else
+        user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program_id].to_i, favorite_loan: params[:program])
+        data = "create"
+      end
       # user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program_id].to_i, favorite_data: params[:form_data].except(:authenticity_token, :utf8),favorite_url: params[:favorite_url], favorite_loan: params[:program])
-      user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program_id].to_i, favorite_loan: params[:program])
+      
       respond_to do |format|
-        format.json  { render :json => {status: true} }
+        format.json  { render :json => {status: true,data: data} }
       end
     else
      respond_to do |format|
