@@ -95,8 +95,10 @@
             // data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url,program: program},
             data: {program_id: program_id,program: program},
             success: function(response) {
-              if (response.status) {
+              if (response.data == "create") {
                 document.getElementById(img_id).src = "/assets/red_heart.png";
+              }else {
+                document.getElementById(img_id).src = "/assets/heart_03.png";
               }
             }
         });
