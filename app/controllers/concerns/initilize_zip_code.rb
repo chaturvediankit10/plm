@@ -18,4 +18,19 @@ module InitilizeZipCode
       @expert_list = Expert.where(city: city.city).sort_by { |m| [m.created_at] }.reverse
     end
   end
+
+  def initilize_zip_code_for_seo_pages
+    @zip_code = "94035"
+    if params[:state].present? && params[:city].present?
+      city = City.where(state_code: params[:state], city: params[:city]).first
+      @zip_code = city.zip.present? ? city.zip : "94035"
+    end
+    @state_code = city.present? ? city.state_code : "All"
+    @term = params[:term].present? ? params[:term] : "30"
+    if @state_code == "All"
+      @expert_list = Expert.all.sort_by { |m| [m.created_at] }.reverse
+    else
+      @expert_list = Expert.where(city: city.city).sort_by { |m| [m.created_at] }.reverse
+    end
+  end
 end
