@@ -25,7 +25,8 @@ module InitilizeZipCode
       @zip_code = params[:zip]
     end
     if params[:state].present? && params[:city].present?
-      city = City.where(state_code: params[:state], city: params[:city]).first
+      city_name = params[:city].include?('+') ? params[:city].tr('+', ' ') : params[:city]
+      city = City.where(state_code: params[:state], city: city_name).first
       @zip_code = city.present? ? city.zip : @zip_code
     end
     @state_code = city.present? ? city.state_code : "All"
