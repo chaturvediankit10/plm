@@ -96,6 +96,13 @@ class PagesController < SearchController
     end
   end
 
+  def send_mail
+    User.all.where(price_alert: 1).each do |user|
+      ContactUsMailer.daily_price_alert_email(user).deliver
+    end
+    redirect_to edit_user_registration_path
+  end
+
   def calculation
     if params[:amt].present?
       if params[:amt].present? && params[:amt].to_i > 0

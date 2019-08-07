@@ -193,6 +193,8 @@ Return:         hash
      <!-- user favourites start-->
      <div class="profile-blocks fav-srch-blocks profile-blocks-full">
         <h3>Favorites</h3>
+          <!-- <input type="submit" value="send mail" class="ornage-btn-dark-shadow"> -->
+          <%= button_to "Send Mail" , pages_send_mail_path, method: :get, :class => "ornage-btn-dark-shadow"%>
           <div class="profile-blocks-cntnt fav-search-layout">
             <h5 class="heading-small">Favorites Searches</h5>
            <div class="row">

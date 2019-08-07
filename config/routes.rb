@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get '/favorite_program', to: 'pages#favorite_program', as: :favorite_program
   get '/favorite_searches', to: 'pages#favorite_searches', as: :favorite_searches
   delete '/delete_favorite', to: 'pages#delete_favorite', as: :delete_favorite
+  get '/pages/send_mail'
   # get '/refinance+rates', to: 'pages#refinance', as: 'refinance'
   match "/refinance+rates/results" => "pages#refinance" , via: [:post, :get]
   get '/refinance+rates' => 'pages#refinance', as: 'refinance'
