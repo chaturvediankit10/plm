@@ -1294,23 +1294,23 @@ header .navbar-right {
 .advertisement-box {
   float: left;
   width: 100%;
-  padding: 15px 0 20px;
+  padding: 50px 0 50px;
   margin: 0;
-  /*background: url(../assets/submit-app-bg.png) no-repeat top center;*/
-  background-size: 100%;
+  background: url(../assets/submit-app-bg.png) no-repeat top center;
+  background-size: cover;
 }
 .advertisement-box h2{
   color: #19214d;
-  margin-bottom: 35px;
   margin-top: 0;
   font-weight: bold;
   font-family: Lato;
+  padding: 0 0 25px;
 }
 .advertisement {
   float: left;
   width: 90%;
   padding: 10px 0;
-  margin: 0 5% 50px 5%;
+  margin: 0 5% 0px 5%;
   padding: 15px 15px 15px 225px;
   box-shadow: 0 0 15px #d7d7d7;
   min-height: 188px;
