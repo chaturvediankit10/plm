@@ -230,48 +230,50 @@ Return:         hash
            </div>
             <%if current_user.user_favorites.present? %>
               <%current_user.user_favorites.each do |user_favorite| %>
-                 <div class="row">
-                  <% if user_favorite.favorite_search.present? %>
-                      <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-2">
-                        <div class="fav-search-white-block">
-                          <%=user_favorite.created_at.strftime("%B %d, %Y")%>
+                <div id="<%=user_favorite[:id].to_s+"-favorite"%>">
+                  <div class="row">
+                    <% if user_favorite.favorite_search.present? %>
+                        <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-2">
+                          <div class="fav-search-white-block">
+                            <%=user_favorite.created_at.strftime("%B %d, %Y")%>
+                          </div>
                         </div>
-                      </div>
-                      <div class="fav-search-date-cntnt col-xs-12 col-md-6">
-                         <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                            <div class="fav-search-white-block"><%= user_favorite.favorite_search["zip"]%></div>
-                         </div>
-                         <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                            <div class="fav-search-white-block"><%= user_favorite.favorite_search["loan_purpose"]%></div>
-                         </div>
-                         <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                            <div class="fav-search-white-block"><%= number_to_currency((user_favorite.favorite_search["home_price"].tr("^0-9", '').to_i) - (user_favorite.favorite_search["down_payment"].tr("^0-9", '').to_i)) %> </div>
-                         </div>
-                         <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                            <div class="fav-search-white-block"><%= number_to_currency(user_favorite.favorite_search["down_payment"]) %> </div>
-                         </div>
-                      </div>
-                      <div class="fav-search-date-cntnt col-xs-12 col-md-4">
-                         <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                            <div class="fav-search-white-block"><%=  user_favorite.favorite_search["credit_score"] %></div>
-                         </div>
-                         <div class="fav-search-cntnt-comon col-xs-5 col-md-5">
-                            <div class="fav-search-white-block"><a href="" data-toggle="modal" data-target="#full-search-<%=user_favorite[:id]%>">Full Search Details</a></div>
-                         </div>
-                         <%= render partial: "partials/view_search_detail" , locals: { program: user_favorite.favorite_search, program_id: user_favorite[:id] } %>
-                         <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                            <div class="fav-search-white-block"><a href="<%= user_favorite.favorite_url%>" target="_blank">Search</a></div>
-                         </div>
-                         <div class="fav-search-cntnt-comon col-xs-1 col-md-1">
-                            <div class="fav-search-white-block">
-                               <%#= link_to image_tag("bin_03.png", :alt => "Bin"),"#" %>
-                               <a href="#"><i class="fa fa-trash remove-item"></i></a>
-                               <!-- <a href=""><img src="images/bin_03.png" alt=""></a> -->
-                            </div>
-                         </div>
-                      </div>
-                  <%end%>
-                 </div>
+                        <div class="fav-search-date-cntnt col-xs-12 col-md-6">
+                           <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
+                              <div class="fav-search-white-block"><%= user_favorite.favorite_search["zip"]%></div>
+                           </div>
+                           <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
+                              <div class="fav-search-white-block"><%= user_favorite.favorite_search["loan_purpose"]%></div>
+                           </div>
+                           <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
+                              <div class="fav-search-white-block"><%= number_to_currency((user_favorite.favorite_search["home_price"].tr("^0-9", '').to_i) - (user_favorite.favorite_search["down_payment"].tr("^0-9", '').to_i)) %> </div>
+                           </div>
+                           <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
+                              <div class="fav-search-white-block"><%= number_to_currency(user_favorite.favorite_search["down_payment"]) %> </div>
+                           </div>
+                        </div>
+                        <div class="fav-search-date-cntnt col-xs-12 col-md-4">
+                           <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
+                              <div class="fav-search-white-block"><%=  user_favorite.favorite_search["credit_score"] %></div>
+                           </div>
+                           <div class="fav-search-cntnt-comon col-xs-5 col-md-5">
+                              <div class="fav-search-white-block"><a href="" data-toggle="modal" data-target="#full-search-<%=user_favorite[:id]%>">Full Search Details</a></div>
+                           </div>
+                           <%= render partial: "partials/view_search_detail" , locals: { program: user_favorite.favorite_search, program_id: user_favorite[:id] } %>
+                           <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
+                              <div class="fav-search-white-block"><a href="<%= user_favorite.favorite_url%>" target="_blank">Search</a></div>
+                           </div>
+                           <div class="fav-search-cntnt-comon col-xs-1 col-md-1">
+                              <div class="fav-search-white-block">
+                                 <%#= link_to image_tag("bin_03.png", :alt => "Bin"),"#" %>
+                                 <a href="JavaScript:void(0);"><i class="fa fa-trash remove-item" id="<%=user_favorite[:id]%>"></i></a>
+                                 <!-- <a href=""><img src="images/bin_03.png" alt=""></a> -->
+                              </div>
+                           </div>
+                        </div>
+                    <%end%>
+                  </div>
+                </div>
               <%end%>
             <%end%>
             <h5 class="heading-small" style="margin-top: 15px !important;">Favorites Loans</h5>
@@ -340,5 +342,21 @@ Return:         hash
   </div>
 </section>
  
-
- 
+<script type="text/javascript">
+  $('.remove-item').click(function(){
+    fav_id = this.id
+    current_user = <%= current_user.id%>
+    $.ajax({
+      url: '/delete_favorite',
+      type: "DELETE",
+      data: {fav_id: fav_id, user_id: current_user},
+      success: function(response) {
+        if (response.status) {
+          var record_id = "#"+response.fav_id+"-favorite"
+          $(record_id).hide()
+          // document.getElementById(img_id).src = "/assets/red_heart.png";
+        }
+      }
+    });
+  })
+</script>>
