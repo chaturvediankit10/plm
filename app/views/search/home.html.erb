@@ -31,16 +31,76 @@
 <%if Expert.where(verified: true).count < 1%>
 <!-- Advertisement with expert start-->
 <section class="advertisement-box">
-  <div class="container">
-    <div class="advertisement">
-      <img class="mb-hide" src="/assets/home-ad.jpg" alt="">
-      <img class="mb-only" src="/assets/expert-ad-mb-img.png" alt="">
-      <h4>Become a mortgage expert on<br> Pureloan.com for Albany, CA</h4>
-      <span class="">Reach hundreds of thousands of home buyers or
-      refi customers every month!</span>
-      <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
+  <% if user_signed_in? %>
+    <div class="container">
+      <h2 class="text-center">Martage Experts that specilize in Albany, CA</h2>
+      <div class="expert-box">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <img class="card-img-top" src="/assets/profile-4.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h4>James Adamson</h4>
+                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
+                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img class="card-img-top" src="/assets/profile-3.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h4>James Adamson</h4>
+                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
+                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img class="card-img-top" src="/assets/profile-2.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h4>James Adamson</h4>
+                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
+                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img class="card-img-top" src="/assets/profile-1.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h4>James Adamson</h4>
+                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
+                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="submit-app">
+              <p>Become an Expert on X.com and reach hundreds of thousands of home buyers of refi customers every month!</p>
+              <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  <%else%>
+    <div class="container">
+      <div class="advertisement">
+        <img class="mb-hide" src="/assets/home-ad.jpg" alt="">
+        <img class="mb-only" src="/assets/expert-ad-mb-img.png" alt="">
+        <h4>Become a mortgage expert on Pureloan.com for Albany, CA</h4>
+        <span class="">Reach hundreds of thousands of home buyers or
+        refi customers every month!</span>
+        <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
+      </div>
+    </div> 
+  <%end%>
 </section>
 <%end%>
 <!-- Advertisement with expert end-->
