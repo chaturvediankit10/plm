@@ -17,6 +17,11 @@ module InitilizeZipCode
     else
       @expert_list = Expert.where(city: city.city).sort_by { |m| [m.created_at] }.reverse
     end
+    if params[:loan_type] == "ARM" && params[:arm_basic].present?
+      @arm_term = 51
+    else
+      @arm_term = params[:term].present? ? params[:term] : @term
+    end
   end
 
   def initilize_zip_code_for_seo_pages
@@ -36,5 +41,11 @@ module InitilizeZipCode
     else
       @expert_list = Expert.where(city: city.city).sort_by { |m| [m.created_at] }.reverse
     end
+    if params[:loan_type] == "ARM" && params[:arm_basic].present?
+      @arm_term = 51
+    else
+      @arm_term = params[:term].present? ? params[:term] : @term
+    end
   end
+
 end
