@@ -1,18 +1,34 @@
-# development:
-#   host: localhost
-#   adapter: postgresql
-#   encoding: unicode
-#   username: root
-#   password: root
-#   pool: 5
-#   database: pure_loan_development_new_Ankit_test
+development:
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  username: root
+  password: root
+  pool: 5
+  database: pure_loan_development_new_Ankit_test
 
 default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
 
-development:
+# development:
+#   <<: *default
+#   database: pureloan
+#   username: relativity
+#   password: plruby00$$
+#   host: pureloan.cvsru2cdh1jm.us-east-1.rds.amazonaws.com
+#   port: 5432
+
+production:
+  <<: *default
+  database: pureloan
+  username: relativity
+  password: plruby00$$
+  host: pureloan.cvsru2cdh1jm.us-east-1.rds.amazonaws.com
+  port: 5432
+
+staging:
   <<: *default
   database: pureloan
   username: relativity
