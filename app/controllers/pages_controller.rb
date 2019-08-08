@@ -96,6 +96,15 @@ class PagesController < SearchController
     end
   end
 
+  def send_mail
+    if current_user.present?
+      if current_user.price_alert == 1
+        ContactUsMailer.daily_price_alert_email(current_user).deliver
+      end
+    end
+    redirect_to edit_user_registration_path
+  end
+
   def calculation
     if params[:amt].present?
       if params[:amt].present? && params[:amt].to_i > 0
