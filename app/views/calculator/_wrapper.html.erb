@@ -510,6 +510,7 @@
     monthly_mortgage_principal = <%= raw @monthly_exp_breakdown[:mortgage_principal][:monthly] %>
     monthly_mortgage_interest = <%= raw @monthly_exp_breakdown[:mortgage_interest][:monthly] %>
     monthly_home_insurance = <%= raw @monthly_exp_breakdown[:home_insurance][:monthly] %>
+    // monthly_home_insurance = <%#= raw number_to_currency(@monthly_exp_breakdown[:home_insurance][:monthly], :unit=> "$", precision: 0) %>
     monthly_pmi_insurance = <%= raw @monthly_exp_breakdown[:pmi_insurance][:monthly] %>
     monthly_hoa_dues = <%= raw @monthly_exp_breakdown[:hoa_dues][:monthly] %>
     monthly_expenses_sum = <%= raw @monthly_exp_breakdown[:monthly_expenses_sum][:monthly].round(2) %>
@@ -748,6 +749,7 @@
               backgroundColor: '#fff',
               borderWidth: 2,
               borderColor: '#ccc',
+              y: -25,
               boxShadow: '5px 5px 5px #ccc',
               formatter: function () {
                 if (this.y != 0) {
