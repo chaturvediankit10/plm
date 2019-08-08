@@ -97,8 +97,10 @@ class PagesController < SearchController
   end
 
   def send_mail
-    User.all.where(price_alert: 1).each do |user|
-      ContactUsMailer.daily_price_alert_email(user).deliver
+    if current_user.present?
+      if current_user.price_alert == 1
+        ContactUsMailer.daily_price_alert_email(current_user).deliver
+      end
     end
     redirect_to edit_user_registration_path
   end
