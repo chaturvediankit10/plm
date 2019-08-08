@@ -4,11 +4,6 @@ class SearchController < SearchApi::DashboardController
   def home
     initilize_state_and_zip_code
     api_search if params[:commit].present?
-    if params[:loan_type] == "ARM" && params[:arm_basic].present?
-      @arm_term = 51
-    else
-      @arm_term = params[:term].present? ? params[:term] : @term
-    end
 
     respond_to do |format|
 	    format.html

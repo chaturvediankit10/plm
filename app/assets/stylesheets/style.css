@@ -978,14 +978,14 @@ header .navbar-right {
   font-size: 15px;
   text-decoration: underline;
   font-weight: bold;
-  display: none;
+  /*display: none;*/
 }
 .active-option .down-arrow{
   -ms-transform: rotate(180deg); /* IE 9 */
   -webkit-transform: rotate(180deg); /* Safari prior 9.0 */
   transform: rotate(180deg); /* Standard syntax */
 }
-.search-adv-option.display-adv-search {
+.search-adv-option {
   display: block;
   position: absolute;
   top: 100%;
@@ -997,6 +997,7 @@ header .navbar-right {
   border-radius: 0 0 5px 5px;
   left: 0;
   box-shadow: 0 8px 8px 0px #BABABA;
+  display: none;
 }
 .advanced-search-bx  .field-wrapper input[type="text"], .advanced-search-bx .field-wrapper select{
   background-color: transparent;
@@ -1293,59 +1294,67 @@ header .navbar-right {
 .advertisement-box {
   float: left;
   width: 100%;
-  padding: 50px 0 0;
+  padding: 50px 0 50px;
   margin: 0;
   background: url(../assets/submit-app-bg.png) no-repeat top center;
-  background-size: 100%;
+  background-size: cover;
 }
-
+.advertisement-box h2{
+  color: #19214d;
+  margin-top: 0;
+  font-weight: bold;
+  font-family: Lato;
+  padding: 0 0 25px;
+}
 .advertisement {
   float: left;
-  width: 100%;
+  width: 90%;
   padding: 10px 0;
-  margin: 0 0 50px 5%;
-  padding: 0 15px 0 225px;
-  /*box-shadow:0 0 15px #d7d7d7;*/
+  margin: 0 5% 0px 5%;
+  padding: 15px 15px 15px 225px;
+  box-shadow: 0 0 15px #d7d7d7;
   min-height: 188px;
   position: relative;
+  background: #fff;
+  border-radius: 10px;
 }
 
 .advertisement img {
   position: absolute;
-  left: 0;
-  top: 0;
-  border: 5px solid #f7f7f7;
+  left: 4px;
+  top: 2px;
+  border: 10px solid #f7f7f7;
 }
 
 .advertisement h4 {
   float: left;
   width: 100%;
-  color: #111;
-  font-size: 32px;
+  color: #19214d;
+  font-size: 26px;
   font-weight: bold;
-  margin: 2px 0 15px 0;
+  margin: 2px 0 7px 0;
+  font-family: 'Lato', sans-serif;
 }
 
 .advertisement span {
   float: left;
   width: 52%;
-  color: #111;
-  font-size: 24px;
+  color: #19214d;
+  font-size: 21px;
   font-weight: 300;
   line-height: 34px;
-  margin: 0 0 15px;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
 }
 
 .advertisement a {
-  float: none;
+  float: right;
   background: #fb6325;
   border-radius: 5px;
-  border: none;
-  display: block;
-  clear: both;
+  border: 4px solid #fff;
   text-transform: uppercase;
   color: #fff;
-  /*box-shadow: 0 0 20px #fcbb0d;*/
+  box-shadow: 0 0 20px #fcbb0d;
   padding: 17px 0;
   text-align: center;
   width: 245px;
@@ -1355,7 +1364,71 @@ header .navbar-right {
   letter-spacing: 1px;
 }
 
+.expert-box {
+  width: 90%;
+  margin: 0 auto 20px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 0 15px #d7d7d7;
+  font-family: Lato;
+  height: 290px;
+}
+.expert-box .card {
+  height: 170px;
+}
+.expert-box .card-body {
+  text-align: center;
+}
+.expert-box img {
+  width: 100%;
+  height: 100%;
+  object-position: top;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.expert-box h4 {
+  color: #333;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Lato;
+  margin: 8px 0 5px;
+}
+.expert-box p {
+  color: #807e7e;
+  font-family: Lato;
+  margin: 0 0 5px;
+}
+.submit-app {
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+}
+.submit-app p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 26px;
+}   
 
+.submit-app a {
+  background: #fb6325;
+  border-radius: 5px;
+  border: 0;
+  text-transform: uppercase;
+  color: #fff;
+  box-shadow: none;
+  padding:20px 15px;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: block;
+}
 /*expert ad box css end*/
 
 
@@ -2606,6 +2679,18 @@ input.error {
   float: none;
   min-width: 160px;
     /* box-shadow: 0px 5px 0 #d6460c; */
+}
+.mail-btn{
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 5px;
+  padding: 12px 40px;
+  background: #fb6324;
+  text-transform: uppercase;
+  width: auto;
+  float: none;
+  min-width: 160px
 }
 .profile-blocks-cntnt .checkbox-custm-row input {
   position: absolute;

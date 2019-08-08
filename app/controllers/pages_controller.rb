@@ -71,6 +71,8 @@ class PagesController < SearchController
 
   def favorite_searches
     if current_user.present?
+      # debugger
+      # params[:form_data].except(:authenticity_token, :utf8)  
       user_favorite_search = current_user.user_favorites.find_or_create_by(favorite_search: params[:form_data].except(:authenticity_token, :utf8),favorite_url: params[:favorite_url])
       respond_to do |format|
         format.json  { render :json => {status: true} }
@@ -80,6 +82,27 @@ class PagesController < SearchController
         format.json  { render :json => {status: false} }
       end
     end
+  end
+
+  def delete_favorite
+    user = User.find(params[:user_id])
+    if user.present?
+      user_favorite = user.user_favorites.find_by(id: params[:fav_id])
+      if user_favorite.delete
+        respond_to do |format|
+          format.json  { render :json => {status: true, fav_id: params[:fav_id]} }
+        end
+      end
+    end
+  end
+
+  def send_mail
+    if current_user.present?
+      if current_user.price_alert == 1
+        ContactUsMailer.daily_price_alert_email(current_user).deliver
+      end
+    end
+    redirect_to edit_user_registration_path
   end
 
   def calculation

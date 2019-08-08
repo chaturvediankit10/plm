@@ -24,7 +24,14 @@ module ApplicationHelper
   end
 
   def get_dynamic_path(params)
-    params[:action] == "home" ? "" : request.url.split("com/").last
+    params[:action] == "home" ? "" : request.url
+  end
+
+  def titleize(sentence)
+    little_words = %w(fha va usda) 
+    sentence.capitalize.gsub(/(\w+)/) do |word| 
+      little_words.include?(word.downcase) ? word.upcase : word.capitalize 
+    end 
   end
 
   #mappping state code with state name
