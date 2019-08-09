@@ -368,7 +368,24 @@ Return:         hash
           }
         }
       });
-    // }
+    }
+
+  $('.add-fav').click(function(){
+    if ((this.src.split("/assets/")[1] == "heart_03.png")) {
+      fav_id = parseInt(this.id)
+      fav_added_loan = JSON.parse(this.dataset['favorite'])
+      $.ajax({
+        url: '/add_favorite_program',
+        type: "GET",
+        dataType: "json",
+        data: {program: fav_added_loan},
+        success: function(response) {
+          if (response.status) {   
+            document.getElementById(fav_id).src = "/assets/red_heart.png";
+          }
+        }
+      });
+    }
   })
 
   $('.favorite-added').click(function(){
@@ -387,24 +404,6 @@ Return:         hash
               var record_id = "#"+response.fav_id+"-favorite"
               $(record_id).hide()
             }
-          }
-        }
-      });
-    }
-
-
-  $('.add-fav').click(function(){
-    if ((this.src.split("/assets/")[1] == "heart_03.png")) {
-      fav_id = parseInt(this.id)
-      fav_added_loan = JSON.parse(this.dataset['favorite'])
-      $.ajax({
-        url: '/add_favorite_program',
-        type: "GET",
-        dataType: "json",
-        data: {program: fav_added_loan},
-        success: function(response) {
-          if (response.status) {   
-            document.getElementById(fav_id).src = "/assets/red_heart.png";
           }
         }
       });
