@@ -7,16 +7,16 @@
     </div>
     <!-- banner main search start-->
     <div class="search-main adv-search-mb home-main-search">
-      <span class="fav-icon">
+      <!-- <span class="fav-icon">
         <img src="/assets/heart_03.png">
-      </span>
-      <span class="fav-icon">
-        <%if current_user.present? %>
-          <img src="/assets/heart_03.png" class="favorite_search" id ="favorite_search">
-        <% else %>
-          <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite_search", id ="favorite_search" data-toggle="modal" data-target="#login-popup">
-        <% end %>
-      </span>
+      </span -->
+      <!-- <span class="fav-icon"> -->
+        <%#if current_user.present? %>
+          <!-- <img src="/assets/heart_03.png" class="favorite_search" id ="favorite_search"> -->
+        <%# else %>
+          <!-- <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite_search", id ="favorite_search" data-toggle="modal" data-target="#login-popup"> -->
+        <%# end %>
+      <!-- </span> -->
       <% form_path = get_dynamic_path(params) %>
       <% path = form_path.include?("results") ? form_path : form_path+"/results"%>
       <%= form_tag(path , method: :post, id: :search_form) do %>
@@ -61,7 +61,7 @@
             <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
             <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw", :id => "get_rates"  %>
             <% if current_user.present? %>
-              <a href="/users/edit#" class="price-alert-btn inner-page-link">
+              <a href="JavaScript:void(0);" class="price-alert-btn inner-page-link favorite_search" id="favorite_search">
                 <i class="fa fa-envelope"></i>
                 Create Price Alert
               </a>
@@ -159,7 +159,8 @@
             data: {form_data: form_data,favorite_url: favorite_url},
             success: function(response) {
               if (response.status) {
-                document.getElementById(img_id).src = "/assets/red_heart.png";
+                // document.getElementById(img_id).src = "/assets/red_heart.png";
+                $('#favorite_search').find($(".fa")).removeClass('fa fa-envelope').addClass('fa fa-heart-o');
               }
             }
         });
