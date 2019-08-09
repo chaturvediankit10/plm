@@ -90,7 +90,7 @@ class PagesController < SearchController
       user_favorite = user.user_favorites.find_by(id: params[:fav_id])
       if user_favorite.delete
         respond_to do |format|
-          format.json  { render :json => {status: true, fav_id: params[:fav_id]} }
+          format.json  { render :json => {status: true, fav_id: params[:fav_id], fav_loan: params[:fav_loan]} }
         end
       end
     end
