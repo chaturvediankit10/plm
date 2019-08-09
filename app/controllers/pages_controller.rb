@@ -69,6 +69,15 @@ class PagesController < SearchController
     end
   end
 
+  def add_favorite_program
+    if current_user.present?
+      user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program][:id].to_i, favorite_loan: params[:program][:favorite_loan])
+      respond_to do |format|
+        format.json  { render :json => {status: true} }
+      end
+    end
+  end
+
   def favorite_searches
     if current_user.present?
       # debugger
