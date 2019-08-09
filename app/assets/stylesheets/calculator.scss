@@ -224,6 +224,19 @@ p.small-heading {
 .calculator_weapper .form-wrapper input {
     padding: 8px 15px 6px 25px;
 }
+
+.calculator_weapper .form-wrapper #zip_code{
+  padding-left: 12px;
+}
+
+.calculator_weapper .form-wrapper #mortgage_month{
+  background-color: #fff;
+}
+
+.calculator_weapper .form-wrapper #purpose{
+  padding-left: 10px;
+}
+
 .calculator_weapper .form-wrapper #today_rate {
     font-size: 16px;
     color: #FF6032;

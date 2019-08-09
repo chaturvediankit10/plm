@@ -15,7 +15,7 @@
             <img src="/assets/home-image.jpg">
           </div>
           <div class="form-group">
-            <label>Zip Code</label>
+            <label>Zip Code3</label>
             <%= text_field_tag :zip_code, @zip_code, :class=> "form-control" %>
           </div>
           <div class="form-group search-section">
@@ -40,7 +40,7 @@
               <div class="search-section">
                 <%= select_tag 'mortgage_term', options_for_select(@mortgage_term_list, @mortgage_term), :class=> "form-control" %>
               </div>
-              <%= text_field_tag :mortgage_month, '', :class=> "form-control padding-left" %>
+              <%= text_field_tag :mortgage_month, '', :class=> "form-control padding-left", :readonly => true %>
             </div>
           </div>
           <div class="form-group">
@@ -525,14 +525,17 @@
           enabled: false
         },
         xAxis: {
+          title: {
+             text: 'Time (M)'
+           },
           endOnTick: true,
           max: x_axis_max_value,
           min: 1
        },
         yAxis: {
             title: {
-                text: ''
-            },
+             text: 'Mortgage Payoff (dollar)'
+           },
             plotLines: [{
                 value: 0,
                 width: 1,
@@ -603,13 +606,18 @@
             enabled: false
         },
         xAxis: {
+          title: {
+             text: 'Time (Y)'
+           },
             categories: ca_keys,
             labels:{
               rotation:-30,
             }
         },
         yAxis:{
-          title: "",
+          title: {
+             text: 'Price (thousands of dollars)'
+           },
           max: area_chart_max,
           gridLineDashStyle:"Dash",
         },
@@ -661,13 +669,18 @@
             enabled: false
         },
         xAxis: {
-            categories: nation_wide_keys,
-            labels:{
-              rotation:-30,
-            }
+          title: {
+             text: 'Time (Y)'
+           },
+          categories: nation_wide_keys,
+          labels:{
+            rotation:-30,
+          }
         },
         yAxis:{
-          title: "",
+          title: {
+             text: 'Price (thousands of dollars)'
+           },
           max: area_chart_max,
           gridLineDashStyle:"Dash",
         },
