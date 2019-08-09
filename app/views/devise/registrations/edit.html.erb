@@ -326,7 +326,7 @@ Return:         hash
                            </div>
                          </div>
                          <div class="inner-block-btn">
-                             <img src= "<%= user_favorite.favorite_loan.present? ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="loan" class="wishlist-icn-fill favorite-added", id="<%=user_favorite[:id]%>">
+                             <img src= "<%= user_favorite.favorite_loan.present? ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="loan" class="wishlist-icn-fill favorite-added add-fav", id="<%=user_favorite[:id]%>", data-favorite="<%= user_favorite.to_json %>">
 
                         </div>
                          <div class="inner-block-btn">
@@ -350,22 +350,42 @@ Return:         hash
  
 <script type="text/javascript">
   $('.remove-item, .favorite-added').click(function(){
-    fav_id = this.id
-    current_user = <%= current_user.id%>
-    $.ajax({
-      url: '/delete_favorite',
-      type: "DELETE",
-      data: {fav_id: fav_id, user_id: current_user, fav_loan: this.alt},
-      success: function(response) {
-        if (response.status) {
-          if (response.fav_loan == "loan") {
-            document.getElementById(fav_id).src = "/assets/heart_03.png";
-          } else {
-            var record_id = "#"+response.fav_id+"-favorite"
-            $(record_id).hide()
+    if (this.src.split("/assets/")[1] == "red_heart.png") {
+      fav_id = this.id
+      current_user = <%= current_user.id%>
+      $.ajax({
+        url: '/delete_favorite',
+        type: "DELETE",
+        data: {fav_id: fav_id, user_id: current_user, fav_loan: this.alt},
+        success: function(response) {
+          if (response.status) {
+            if (response.fav_loan == "loan") {
+              document.getElementById(fav_id).src = "/assets/heart_03.png";
+            } else {
+              var record_id = "#"+response.fav_id+"-favorite"
+              $(record_id).hide()
+            }
           }
         }
-      }
-    });
+      });
+    }
+  })
+
+  $('.add-fav').click(function(){
+    if ((this.src.split("/assets/")[1] == "heart_03.png")) {
+      fav_id = parseInt(this.id)
+      fav_added_loan = JSON.parse(this.dataset['favorite'])
+      $.ajax({
+        url: '/add_favorite_program',
+        type: "GET",
+        dataType: "json",
+        data: {program: fav_added_loan},
+        success: function(response) {
+          if (response.status) {   
+            document.getElementById(fav_id).src = "/assets/red_heart.png";
+          }
+        }
+      });
+    }
   })
 </script>>
