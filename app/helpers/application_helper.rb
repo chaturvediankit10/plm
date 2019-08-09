@@ -27,10 +27,19 @@ module ApplicationHelper
     params[:action] == "home" ? "" : request.url
   end
 
+  def capitalized_word(word)
+    special_words = {homeready: "HomeReady"}
+    if special_words[word.to_sym].present?
+      return special_words[word.to_sym]
+    else
+      return word.capitalize
+    end
+  end
+
   def titleize(sentence)
-    little_words = %w(fha va usda) 
+    little_words = %w(fha va usda fnma fhlmc)
     sentence.capitalize.gsub(/(\w+)/) do |word| 
-      little_words.include?(word.downcase) ? word.upcase : word.capitalize 
+      little_words.include?(word.downcase) ? word.upcase : capitalized_word(word.downcase)
     end 
   end
 
