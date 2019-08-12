@@ -84,6 +84,9 @@
         // var form_data = {}
         // var program = $('#program-'+program_id.toString()).val();
         var program = JSON.parse(this.dataset['program'])
+        program['home_price'] = $('#home_price').val();
+        program['down_payment'] = $('#down_payment').val();
+        program['credit_score'] = $('#credit_score').val();
         // var favorite_url = location.href+'?'+$('#search_form').serialize()
         // $('#search_form').serializeArray().filter((item)=>{
         //   form_data[item.name] = item.value
