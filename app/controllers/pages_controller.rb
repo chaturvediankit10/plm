@@ -80,8 +80,6 @@ class PagesController < SearchController
 
   def favorite_searches
     if current_user.present?
-      # debugger
-      # params[:form_data].except(:authenticity_token, :utf8)  
       user_favorite_search = current_user.user_favorites.find_or_create_by(favorite_search: params[:form_data].except(:authenticity_token, :utf8),favorite_url: params[:favorite_url])
       respond_to do |format|
         format.json  { render :json => {status: true} }

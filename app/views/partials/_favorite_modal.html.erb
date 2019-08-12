@@ -53,7 +53,7 @@
                               end
                               %>
                               <td>Loan Amount</td>
-                              <% loan_amount_value = (@home_price.to_i - @down_payment.to_i) rescue nil %>
+                              <% loan_amount_value = (program["home_price"].tr(',','').to_i - program["down_payment"].tr(',','').to_i) rescue nil %>
                               <td align="right"><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
                             </tr>
                             <tr>
@@ -202,11 +202,11 @@
                               </tr>
                               <tr>
                                 <td nowrap="nowrap">Home Price</td>
-                                <td align="right"><b> <%= number_to_currency(@home_price.present? ? @home_price : 0,  :unit=> "$", precision: 0) %></b></td>
+                                <td align="right"><b> <%= program["home_price"]  %></b></td>
                               </tr>
                               <tr>
                                 <td>Down Payment</td>
-                                <td align="right"><b><%= number_to_currency(@down_payment,  :unit=> "$", precision: 0) %></b></td>
+                                <td align="right"><b><%= program["down_payment"] %></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Purpose</td>
@@ -267,7 +267,7 @@
                               </tr>
                               <tr>
                                 <td>Credit Score</td>
-                                <td align="right"><b><%= @set_credit_score %></b></td>
+                                <td align="right"><b><%= program["credit_score"] %></b></td>
                               </tr>
                               <tr>
                                 <td>Loan Amount</td>
@@ -320,3 +320,82 @@
   </div>
 </div>
 <!-- view details popup end-->
+
+<!-- <View detail donugh chart start> -->
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+        monthly_mortgage_principal = <%= raw program["monthly_breakdown"]["mortgage_principal"]["monthly"] %>
+        monthly_mortgage_interest = <%= raw program["monthly_breakdown"]["mortgage_interest"]["monthly"] %>
+        monthly_home_insurance = <%= raw program["monthly_breakdown"]["home_insurance"]["monthly"] %>
+        monthly_pmi_insurance = <%= raw program["monthly_breakdown"]["pmi_insurance"]["monthly"] %>
+        monthly_hoa_dues = <%= raw program["monthly_breakdown"]["hoa_dues"]["monthly"] %>
+        monthly_expenses_sum = <%= raw program["monthly_breakdown"]["monthly_expenses_sum"]["monthly"] %>
+        monthly_property_tax = <%= raw program["monthly_breakdown"]["property_tax"]["monthly"] %>
+        term = <%= raw program["term"].to_s %>
+        index = <%= raw index.to_s %>
+        cmp_pie_chart = 'cmp_pie_chart-'+term+'years'+index
+
+        var chart = new Highcharts.Chart({
+          title: {
+            x: 0,
+            verticalAlign: 'middle',
+            y: 0,
+            floating: true,
+            text: '$' + monthly_expenses_sum + '' + '<br /> Monthly Payment',
+            floating: false,
+            align: 'center',
+            style: {
+              fontFamily: 'dinotmedium',
+            }
+          },
+          tooltip: {
+            formatter:function(){
+              var formatter2 = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0
+              })
+              return '<b>'+ this.point.name+ '</b><br></br>' +': <b>'+ (formatter2.format(this.point.y)) +'</b><br/>'
+            },
+          },
+          chart: {
+            renderTo: cmp_pie_chart,
+            type: 'pie'
+          },
+          colors: ['#687b82', '#83b2c2', '#3b86b6', '#592c67', '#7f8930'],
+          plotOptions: {
+            pie: {
+              innerSize: '70%'
+            },
+            series: {
+              dataLabels: {
+                y: -22,
+                enabled: true,
+                borderRadius: 0,
+                backgroundColor: '#fff',
+                borderWidth: 2,
+                borderColor: '#ccc',
+                boxShadow: '5px 5px 5px #ccc',
+                formatter: function () {
+                  if (this.y != 0) {
+                    return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable"> $'+ Math.round(this.point.y) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
+                  }
+                  // return ('<div><p>'+this.point.name+'</p><span>'+this.point.y+'</span></div>');
+                },
+              },
+            }
+          },
+          series: [{
+            data: [
+              ["Home Insurance", monthly_home_insurance],
+              ["Property Tax", monthly_property_tax],
+              ["PMI Insurance", monthly_pmi_insurance],
+              ["HOA Dues", monthly_hoa_dues],
+              ["Principal & Interest", (monthly_mortgage_principal + monthly_mortgage_interest)]
+            ],
+          }],
+        });
+    });
+
+</script>
