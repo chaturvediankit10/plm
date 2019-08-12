@@ -346,7 +346,7 @@ $(document).ready(function(){
         verticalAlign: 'middle',
         y: 0,
         floating: true,
-        text: formatter2.format(monthly_expenses_sum) + '' + '<br /> Monthly Payment',
+        text: formatter2.format((Math.round(monthly_expenses_sum)).toString()) + '' + '<br /> Monthly Payment',
         floating: false,
         align: 'center',
         style: {

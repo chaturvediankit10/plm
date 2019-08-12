@@ -127,6 +127,12 @@
                <span class="checkmark"></span>
             </label>
           </div>
+          <div class="checkbox radio">
+            <label class="radio-bx">
+              <%= check_box_tag 'others', 'others', params[:others].present? ? true : false %> Others
+               <span class="checkmark"></span>
+            </label>
+          </div>
         </div>
       </div>
     </div>

@@ -516,6 +516,11 @@
     monthly_expenses_sum = <%= raw @monthly_exp_breakdown[:monthly_expenses_sum][:monthly].round(2) %>
     monthly_property_tax = <%= raw @monthly_exp_breakdown[:property_tax][:monthly] %>
 
+    var formatter2 = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    })
 
     $('#payoff-schedule-graph').highcharts({
         title: {
@@ -729,7 +734,7 @@
           verticalAlign: 'middle',
           y: 0,
           floating: true,
-          text: '$' + monthly_expenses_sum + '' + '<br /> Monthly Payment',
+          text: formatter2.format(monthly_expenses_sum) + '' + '<br /> Monthly Payment',
           floating: false,
           align: 'center',
           style: {
@@ -738,11 +743,6 @@
         },
         tooltip: {
           formatter:function(){
-            var formatter2 = new Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency: 'USD',
-              minimumFractionDigits: 0
-            })
             return '<b>'+ this.point.name+ '</b><br></br>' +': <b>'+ (formatter2.format(this.point.y)) +'</b><br/>'
           },
         },
@@ -762,11 +762,11 @@
               backgroundColor: '#fff',
               borderWidth: 2,
               borderColor: '#ccc',
-              y: -25,
+              y: -20,
               boxShadow: '5px 5px 5px #ccc',
               formatter: function () {
                 if (this.y != 0) {
-                  return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable"> $'+ Math.round(this.point.y) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
+                  return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable">'+ formatter2.format(Math.round(this.point.y)) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
                 }
                 // return ('<div><p>'+this.point.name+'</p><span>'+this.point.y+'</span></div>');
               },
