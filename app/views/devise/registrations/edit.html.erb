@@ -369,28 +369,6 @@ Return:         hash
       });
   })
 
-  $('.favorite-added').click(function(){
-    if (this.src.split("/assets/")[1] == "red_heart.png") {
-      fav_id = this.id
-      current_user = <%= current_user.id%>
-      $.ajax({
-        url: '/delete_favorite',
-        type: "DELETE",
-        data: {fav_id: fav_id, user_id: current_user, fav_loan: this.alt},
-        success: function(response) {
-          if (response.status) {
-            if (response.fav_loan == "loan") {
-              document.getElementById(fav_id).src = "/assets/heart_03.png";
-            } else {
-              var record_id = "#"+response.fav_id+"-favorite"
-              $(record_id).hide()
-            }
-          }
-        }
-      });
-    }
-
-
   $('.add-fav').click(function(){
     if ((this.src.split("/assets/")[1] == "heart_03.png")) {
       fav_id = parseInt(this.id)
