@@ -165,7 +165,7 @@ class PagesController < SearchController
       receivers.each do |rec|
         ContactUsMailer.contact_us_email(rec,params).deliver
       end
-    flash[:notice] = 'Email sent successfully.'
+    flash[:notice] = "Thank you! Your message has been submitted."
     redirect_back fallback_location: root_path
 	end
 
