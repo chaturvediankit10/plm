@@ -350,7 +350,6 @@ Return:         hash
  
 <script type="text/javascript">
   $('.remove-item').click(function(){
-    // if (this.src.split("/assets/")[1] == "red_heart.png") {
       fav_id = this.id
       current_user = <%= current_user.id%>
       $.ajax({
@@ -368,7 +367,6 @@ Return:         hash
           }
         }
       });
-    // }
   })
 
   $('.favorite-added').click(function(){
@@ -411,4 +409,4 @@ Return:         hash
       });
     }
   })
-</script>>
+</script>
