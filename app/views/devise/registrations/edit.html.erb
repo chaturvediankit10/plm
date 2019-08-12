@@ -350,7 +350,6 @@ Return:         hash
  
 <script type="text/javascript">
   $('.remove-item').click(function(){
-    // if (this.src.split("/assets/")[1] == "red_heart.png") {
       fav_id = this.id
       current_user = <%= current_user.id%>
       $.ajax({
@@ -368,7 +367,24 @@ Return:         hash
           }
         }
       });
-    // }
+  })
+
+  $('.add-fav').click(function(){
+    if ((this.src.split("/assets/")[1] == "heart_03.png")) {
+      fav_id = parseInt(this.id)
+      fav_added_loan = JSON.parse(this.dataset['favorite'])
+      $.ajax({
+        url: '/add_favorite_program',
+        type: "GET",
+        dataType: "json",
+        data: {program: fav_added_loan},
+        success: function(response) {
+          if (response.status) {   
+            document.getElementById(fav_id).src = "/assets/red_heart.png";
+          }
+        }
+      });
+    }
   })
 
   $('.favorite-added').click(function(){
@@ -392,23 +408,4 @@ Return:         hash
       });
     }
   })
-
-
-  $('.add-fav').click(function(){
-    if ((this.src.split("/assets/")[1] == "heart_03.png")) {
-      fav_id = parseInt(this.id)
-      fav_added_loan = JSON.parse(this.dataset['favorite'])
-      $.ajax({
-        url: '/add_favorite_program',
-        type: "GET",
-        dataType: "json",
-        data: {program: fav_added_loan},
-        success: function(response) {
-          if (response.status) {   
-            document.getElementById(fav_id).src = "/assets/red_heart.png";
-          }
-        }
-      });
-    }
-  })
-</script>>
+</script>
