@@ -90,4 +90,4 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem "roo", "~> 2.8.0"
 gem "search_api", git: "https://github.com/PureLoan/APIRead.git"
-ruby "2.4.0"
+# ruby "2.4.0"
