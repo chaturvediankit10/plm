@@ -21,5 +21,10 @@ class ContactUsMailer < ApplicationMailer
     @favorites = user.user_favorites
     mail(to: user.email, subject: "Daily Price Alert")
   end
+
+  def monthly_price_alert_email(user)
+    @favorites = user.user_favorites
+    mail(to: user.email, subject: "Daily Price Alert")  
+  end
   
 end
