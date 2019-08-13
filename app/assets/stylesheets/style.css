@@ -3749,6 +3749,9 @@ a.seo-loan-aftr-cntnt-link {
   position: relative;
   z-index: 999;
 }
+.inner-page-link, .inner-page-link:hover, .inner-page-link:focus{
+   color: #fff;
+}
 .inner-search .banner-overlay {
   background-color: rgba(0, 0, 0, 0.2);
 }
