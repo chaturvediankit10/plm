@@ -336,13 +336,19 @@
         index = <%= raw index.to_s %>
         cmp_pie_chart = 'cmp_pie_chart-'+term+'years'+index
 
+        var formatter2 = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0
+        })
+
         var chart = new Highcharts.Chart({
           title: {
             x: 0,
             verticalAlign: 'middle',
             y: 0,
             floating: true,
-            text: '$' + monthly_expenses_sum + '' + '<br /> Monthly Payment',
+            text: formatter2.format((Math.round(monthly_expenses_sum)).toString()) + '' + '<br /> Monthly Payment',
             floating: false,
             align: 'center',
             style: {
@@ -351,11 +357,6 @@
           },
           tooltip: {
             formatter:function(){
-              var formatter2 = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 0
-              })
               return '<b>'+ this.point.name+ '</b><br></br>' +': <b>'+ (formatter2.format(this.point.y)) +'</b><br/>'
             },
           },
@@ -379,7 +380,7 @@
                 boxShadow: '5px 5px 5px #ccc',
                 formatter: function () {
                   if (this.y != 0) {
-                    return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable"> $'+ Math.round(this.point.y) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
+                    return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable"> '+ formatter2.format(Math.round(this.point.y)) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
                   }
                   // return ('<div><p>'+this.point.name+'</p><span>'+this.point.y+'</span></div>');
                 },

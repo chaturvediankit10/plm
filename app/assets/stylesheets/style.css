@@ -3065,7 +3065,9 @@ input.error {
   font-size: 14px;
   height: auto;
   border: 1px solid #ddd;
-  background-color: #fff;
+  background-color: transparent;
+  position: relative;
+  z-index: 99999;
 }
 
 #expert-app-overlay .form-group label span {

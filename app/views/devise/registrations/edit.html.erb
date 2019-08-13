@@ -287,12 +287,8 @@ Return:         hash
                         <div class="inner-logo">
                           <img src="<%= "/assets/"+ user_favorite.favorite_loan['bank_name']%>.png">
 
-
-                          <p class="orange-link"><%= user_favorite.favorite_loan["bank_name"]%></p>
+                           <p class="orange-link"><%= user_favorite.favorite_loan["bank_name"]%></p>
                           <p>NMLS ID <%= Program::NMLS[user_favorite.favorite_loan['bank_name']] %></p>
-                        </div>
-                        <div>
-                          <b><%= user_favorite.favorite_loan["program_name"]%></b>
                         </div>
                          <div class="inner-block">
                            <span class="hdng-big a_air"><%=
@@ -303,7 +299,7 @@ Return:         hash
 
                                <%=number_to_percentage(user_favorite.favorite_loan["apr"], precision: 3)%> APR
                            </p>
-                           <p><%= user_favorite.favorite_loan["loan_type"] == "ARM" ? user_favorite.favorite_loan["arm_basic"] + " Arm" :  user_favorite.favorite_loan["term"].to_s + " Year Fixed"%></p>
+                           <p><%= user_favorite.favorite_loan["program_name"] %></p>
                            <!-- <p> </p> -->
                            <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
                          </div>
