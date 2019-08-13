@@ -184,7 +184,8 @@ class PagesController < SearchController
         end
         ResearchMailer.research_email(rec, params[:name], params[:email], params[:website], params[:message],file_name,file).deliver
       end
-    flash[:notice] = 'Research submitted successfully.'
+    flash[:notice] = 'Thank you! Your message has been submitted.'
+    # flash[:notice] = 'Research submitted successfully.'
     redirect_back fallback_location: root_path
   end
 
@@ -246,7 +247,8 @@ class PagesController < SearchController
       @expert_user.zip = city_zip[1]
       begin
         @expert_user.save!
-        flash[:notice] = 'You are succesfully registered as expert.'
+        # flash[:notice] = 'You are succesfully registered as expert.'
+        flash[:notice] = 'Thank you! Your message has been submitted.'
       rescue => e
         flash[:danger] = "Your account has not created."
       end

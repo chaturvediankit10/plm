@@ -244,6 +244,9 @@ $(document).ready(function () {
           "expert[license_number]":{
               required: true
           },
+          "expert[specialty]":{
+              required: true
+          },
           "expert[website]":{
             required: true
           },
@@ -268,7 +271,7 @@ $(document).ready(function () {
               email: "Please enter valid email address.",
           },
           "expert[state]":{
-              required: "Please selcet a state"
+              required: "Please select a state"
           },
           "expert[city]":{
               required: "Please selcet a city"
@@ -278,6 +281,9 @@ $(document).ready(function () {
           },
           "expert[license_number]":{
               required: "Please enter your license number."
+          },
+          "expert[specialty]":{
+            required: "Please enter specialty."
           },
           "expert[website]":{
             required: "Please enter website."

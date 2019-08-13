@@ -74,8 +74,8 @@
               </div>
               <div>
                 <span class="wpcf7-form-control-wrap popup-upload-btn">
-                  <img src="/images/upload-nw-icn.png"> Upload File
                   <%= f.file_field :attachment,autofocus: true%>
+                  <img src="/images/upload-nw-icn.png"> Upload File
                 </span>
               </div>
               <p>
@@ -251,3 +251,16 @@
   })
   })
 </script>
+
+<style type="text/css">
+  #attachment-error{
+    margin-bottom: 15px;
+  }
+  .image-upload > input{
+   display: none;
+  }
+  .image-upload > label{
+  cursor:pointer;
+  }
+  
+</style>
