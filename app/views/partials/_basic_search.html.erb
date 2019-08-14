@@ -61,15 +61,15 @@
             <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
             <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw", :id => "get_rates"  %>
             <% if current_user.present? %>
-              <a href="JavaScript:void(0);" class="price-alert-btn inner-page-link favorite_search" id="favorite_search">
-                <i class="fa fa-envelope"></i>
+              <center><a href="JavaScript:void(0);" class="price-alert-btn inner-page-link favorite_search" id="favorite_search">
+                <i class="fa fa-heart-o"></i>
                 Save Search
-              </a>
+              </a></center>
             <% else %>
-              <a data-toggle="modal" data-target="#login-popup" href="" class="price-alert-btn inner-page-link">
-                <i class="fa fa-envelope"></i>
+              <center><a data-toggle="modal" data-target="#login-popup" href="" class="price-alert-btn inner-page-link">
+                <i class="fa fa-heart-o"></i>
                 Save Search
-              </a>
+              </a></center>
             <% end %>
           </div>
         </div>
@@ -143,11 +143,8 @@
     get_form_submitted(form_submitted);
 
     $(".favorite_search").click(function() {
-        // var program_id = parseInt(this.id.split("_")[1])
         var img_id = this.id
         var form_data = {}
-        // // var program = $('#program-'+program_id.toString()).val();
-        // var program = JSON.parse(this.dataset['program'])
         var favorite_url = location.href+'?'+$('#search_form').serialize()
         $('#search_form').serializeArray().filter((item)=>{
           form_data[item.name] = item.value
@@ -155,12 +152,10 @@
        $.ajax({
             url: '/favorite_searches',
             type: "GET",
-       //      dataType: "json",
             data: {form_data: form_data,favorite_url: favorite_url},
             success: function(response) {
               if (response.status) {
-                // document.getElementById(img_id).src = "/assets/red_heart.png";
-                $('#favorite_search').find($(".fa")).removeClass('fa fa-envelope').addClass('fa fa-heart-o');
+                $('#favorite_search').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
               }
             }
         });
