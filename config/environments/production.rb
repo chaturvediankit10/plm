@@ -111,8 +111,10 @@ Rails.application.configure do
    :port => 587,
    :authentication => :plain,
    :domain => 'gmail.com',
-   :user_name => ENV['SMTP_USERNAME'],
-   :password => ENV['SMTP_PASSWORD'],
+   # :user_name => ENV['SMTP_USERNAME'],
+   # :password => ENV['SMTP_PASSWORD'],
+   :user_name => 'pureloan.dev@gmail.com',
+   :password => 'relativity@987',
    :enable_starttls_auto => true
  }
   config.mailer_sender = 'hello@pureloan.com'
