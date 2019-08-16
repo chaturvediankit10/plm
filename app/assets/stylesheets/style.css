@@ -4632,7 +4632,9 @@ p.today-rate-link a {
   font-size: 14px;
   box-shadow: none;
 }
-
+#contact_us_form .login-rows textarea{
+  border: 1px solid #ddd;
+}
 .contact-page .gray-box-cntnt h3 {
   line-height: 28px;
 }
@@ -8865,6 +8867,7 @@ header.fixed-header.scrolled {
 .popup-upload-btn img {
   display: inline-block;
   margin-right: 10px;
+  width: 18px;
 }
 
 .popup-upload-btn input[type="file"] {
