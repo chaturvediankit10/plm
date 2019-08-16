@@ -17,9 +17,9 @@
           <!-- <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite_search", id ="favorite_search" data-toggle="modal" data-target="#login-popup"> -->
         <%# end %>
       <!-- </span> -->
-      <% form_path = get_dynamic_path(params) %>
-      <% path = form_path.include?("results") ? form_path : form_path+"/results"%>
-      <%= form_tag(path , method: :post, id: :search_form) do %>
+      <%# form_path = get_dynamic_path(params) %>
+      <%# path = form_path.include?("results") ? form_path : form_path+"/results"%>
+      <%= form_tag("/results" , method: :post, id: :search_form) do %>
         <div class="row adv-search-main">
           <%= hidden_field_tag 'source', 0 %>
           <div class="col-sm-2 col-xs-6">
