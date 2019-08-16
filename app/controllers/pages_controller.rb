@@ -107,7 +107,7 @@ class PagesController < SearchController
 
   def send_mail
     if current_user.present?
-      if current_user.price_alert == 1
+      if current_user.price_alert.present?
         ContactUsMailer.daily_price_alert_email(current_user).deliver
       end
     end

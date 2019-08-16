@@ -106,15 +106,13 @@ Rails.application.configure do
   # authentication:       'plain',
   # ssl:                  false,
   # enable_starttls_auto: true  }
-  config.action_mailer.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
    :address => "smtp.gmail.com",
    :port => 587,
    :authentication => :plain,
    :domain => 'gmail.com',
-   # :user_name => ENV['SMTP_USERNAME'],
-   # :password => ENV['SMTP_PASSWORD'],
-   :user_name => 'pureloan.dev@gmail.com',
-   :password => 'relativity@987',
+   :user_name => ENV['SMTP_USERNAME'],
+   :password => ENV['SMTP_PASSWORD'],
    :enable_starttls_auto => true
  }
   config.mailer_sender = 'hello@pureloan.com'
