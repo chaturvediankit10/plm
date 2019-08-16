@@ -4,7 +4,7 @@
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Loan Purpose</label>
-          <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), {:id => 'adv_loan_purpose'}%>
+          <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), {:id => 'adv_loan_purpose', :class => "fvrt-search"}%>
                 <span class="error-loan-purpose">Please Select Refinance</span>
         </div>
         <div class="form-group slect-tag">
@@ -21,31 +21,31 @@
             </label> -->
             <% term_30_flag = ((params[:term].present? && params[:term]!="30") || params[:arm_basic].present?) ? false : true %>
             <label class="radio-bx">
-              <%= check_box_tag :term, "30", term_30_flag , :class => "check term_30" %>30 Year fixed
+              <%= check_box_tag :term, "30", term_30_flag , :class => "check term_30 fvrt-search" %>30 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :term, "15",  params[:term]=="15" ? true : false , :class => "check term_15" %>15 Year fixed
+              <%= check_box_tag :term, "15",  params[:term]=="15" ? true : false , :class => "check term_15 fvrt-search" %>15 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :term, "10",  params[:term]=="10" ? true : false , :class => "check term_10" %>10 Year fixed
+              <%= check_box_tag :term, "10",  params[:term]=="10" ? true : false , :class => "check term_10 fvrt-search" %>10 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :arm_basic, "7/1",  params[:arm_basic]=="7/1" ? true : false , :class => "check arm_basic_7" %>7/1 ARM
+              <%= check_box_tag :arm_basic, "7/1",  params[:arm_basic]=="7/1" ? true : false , :class => "check arm_basic_7 fvrt-search" %>7/1 ARM
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :arm_basic, "5/1",  params[:arm_basic]=="5/1" ? true : false , :class => "check arm_basic_5" %>5/1 ARM
+              <%= check_box_tag :arm_basic, "5/1",  params[:arm_basic]=="5/1" ? true : false , :class => "check arm_basic_5 fvrt-search" %>5/1 ARM
                <span class="checkmark"></span>
             </label>
           </div>
@@ -59,19 +59,19 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'fha', 'fha', params[:fha].present? ? true : false %>FHA (Income-based)
+              <%= check_box_tag 'fha', 'fha', params[:fha].present? ? true : false, :class => "fvrt-search"  %>FHA (Income-based)
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'streamline', 'streamline', params[:streamline].present? ? true : false  %>Only Streamline
+              <%= check_box_tag 'streamline', 'streamline', params[:streamline].present? ? true : false, :class => "fvrt-search"  %>Only Streamline
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'va', 'va', params[:va].present? ? true : false %>Militory (VA)
+              <%= check_box_tag 'va', 'va', params[:va].present? ? true : false, :class => "fvrt-search" %>Militory (VA)
                <span class="checkmark"></span>
             </label>
           </div>
@@ -82,7 +82,7 @@
           </div> -->
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'usda', 'usda', params[:usda].present? ? true : false %> Rural (USDA)
+              <%= check_box_tag 'usda', 'usda', params[:usda].present? ? true : false, :class => "fvrt-search" %> Rural (USDA)
                <span class="checkmark"></span>
             </label>
           </div>
@@ -93,43 +93,43 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'fannie_mae', 'fannie_mae', params[:fannie_mae].present? ? true : false %> Fannie Mae
+              <%= check_box_tag 'fannie_mae', 'fannie_mae', params[:fannie_mae].present? ? true : false, :class => "fvrt-search" %> Fannie Mae
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'fannie_mae_du', 'fannie_mae_du', params[:fannie_mae_du].present? ? true : false %> DU
+              <%= check_box_tag 'fannie_mae_du', 'fannie_mae_du', params[:fannie_mae_du].present? ? true : false, :class => "fvrt-search" %> DU
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'fannie_mae_product', 'HomeReady', params[:fannie_mae_product].present? ? true : false %> HomeReady
+              <%= check_box_tag 'fannie_mae_product', 'HomeReady', params[:fannie_mae_product].present? ? true : false, :class => "fvrt-search" %> HomeReady
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'freddie_mac', 'freddie_mac', params[:freddie_mac].present? ? true : false %> Freddie Mac
+              <%= check_box_tag 'freddie_mac', 'freddie_mac', params[:freddie_mac].present? ? true : false, :class => "fvrt-search" %> Freddie Mac
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'freddie_mac_lp', 'freddie_mac_lp', params[:freddie_mac_lp].present? ? true : false %> LP
+              <%= check_box_tag 'freddie_mac_lp', 'freddie_mac_lp', params[:freddie_mac_lp].present? ? true : false, :class => "fvrt-search" %> LP
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'freddie_mac_product', 'Home Possible', params[:freddie_mac_product].present? ? true : false %> Home Possible
+              <%= check_box_tag 'freddie_mac_product', 'Home Possible', params[:freddie_mac_product].present? ? true : false, :class => "fvrt-search" %> Home Possible
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'others', 'others', params[:others].present? ? true : false %> Others
+              <%= check_box_tag 'others', 'others', params[:others].present? ? true : false, :class => "fvrt-search" %> Others
                <span class="checkmark"></span>
             </label>
           </div>
@@ -183,7 +183,7 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'financing_type', 'Subordinate Financing', params[:financing_type].present? ? true : false %> Subordinated Financing
+              <%= check_box_tag 'financing_type', 'Subordinate Financing', params[:financing_type].present? ? true : false, :class => "fvrt-search" %> Subordinated Financing
                <span class="checkmark"></span>
             </label>
           </div>
@@ -199,7 +199,7 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'refinance_option', 'Cash Out', params[:refinance_option].present? ? true : false, :class => "refinance_checkbox" %> Cash Out Refinance
+              <%= check_box_tag 'refinance_option', 'Cash Out', params[:refinance_option].present? ? true : false, :class => "refinance_checkbox fvrt-search" %> Cash Out Refinance
                <span class="checkmark"></span>
             </label>
           </div>
@@ -220,13 +220,13 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'refinance_option', 'Rate and Term', params[:refinance_option].present? ? true : false, :class => "refinance_checkbox" %> Rate and Term
+              <%= check_box_tag 'refinance_option', 'Rate and Term', params[:refinance_option].present? ? true : false, :class => "refinance_checkbox fvrt-search" %> Rate and Term
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'refinance_option', 'IRRRL', params[:refinance_option].present? ? true : false, :class => "refinance_checkbox" %> IRRRL
+              <%= check_box_tag 'refinance_option', 'IRRRL', params[:refinance_option].present? ? true : false, :class => "refinance_checkbox fvrt-search" %> IRRRL
                <span class="checkmark"></span>
             </label>
           </div>
@@ -237,23 +237,23 @@
       <div class="field-wrapper">
         <div class="form-group slect-tag">
           <label>Closing</label>
-          <%= select_tag 'lock_period', options_for_select(Program::LOCK_PERIOD_LIST, (params[:lock_period].present? ? params[:lock_period] : "30")) %>
+          <%= select_tag 'lock_period', options_for_select(Program::LOCK_PERIOD_LIST, (params[:lock_period].present? ? params[:lock_period] : "30")), :class => "fvrt-search" %>
         </div>
         <div class="form-group">
           <label>Points / Fees</label>
           <div class="margin-left-30">
             <div class="checkbox radio">
-              <label class="radio-bx"> <%= radio_button_tag 'point', '0', true %> 0 points
+              <label class="radio-bx"> <%= radio_button_tag 'point', '0', true, :class => "fvrt-search" %> 0 points
                 <span class="checkmark"></span>
               </label>
             </div>
             <div class="checkbox radio">
-              <label class="radio-bx"> <%= radio_button_tag 'point', '1', params[:point]=="1" ? true : false %> 1 points
+              <label class="radio-bx"> <%= radio_button_tag 'point', '1', params[:point]=="1" ? true : false, :class => "fvrt-search" %> 1 points
                 <span class="checkmark"></span>
               </label>
             </div>
             <div class="checkbox radio">
-              <label class="radio-bx"> <%= radio_button_tag 'point', '2',  params[:point]=="2" ? true : false %> 2 points
+              <label class="radio-bx"> <%= radio_button_tag 'point', '2',  params[:point]=="2" ? true : false, :class => "fvrt-search" %> 2 points
                 <span class="checkmark"></span>
               </label>
             </div>
@@ -269,7 +269,7 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'full_doc', 'full_doc', params[:full_doc].present? ? true : false %> Full doc
+              <%= check_box_tag 'full_doc', 'full_doc', params[:full_doc].present? ? true : false, :class => "fvrt-search" %> Full doc
                <span class="checkmark"></span>
             </label>
           </div>

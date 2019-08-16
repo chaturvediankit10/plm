@@ -25,14 +25,14 @@
           <div class="col-sm-2 col-xs-6">
             <label>Zip Code</label>
             <div class="search-cat zip-srch">
-              <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : @zip_code) %>
+              <%= text_field_tag 'zip', (params[:zip].present? ? params[:zip] : @zip_code), :class => "fvrt-search" %>
               <%= hidden_field_tag 'state_code', (params[:state_code].present? ? params[:state_code] : @state_code) %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
             <label>Loan Purpose</label>
             <div class="search-cat purpse-srch">
-              <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil))%>
+              <%= select_tag 'loan_purpose', options_for_select(Program::LOAN_PURPOSE.flatten.sort_by!{ |m| m.downcase }, (params[:loan_purpose] rescue nil)), :class => "fvrt-search" %>
                 <span class="error-loan-purpose">Please Select Refinance</span>
             </div>
           </div>
@@ -40,20 +40,20 @@
             <label>Home Price</label>
             <div class="search-cat price-srch">
               <div class="dollar-icn">$</div>
-              <%= text_field_tag :home_price, (params[:home_price].present? ? params[:home_price] : "300000") %>
+              <%= text_field_tag :home_price, (params[:home_price].present? ? params[:home_price] : "300000"), :class => "fvrt-search" %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
             <label>Down Payment</label>
             <div class="search-cat price-srch">
               <div class="dollar-icn">$</div>
-              <%= text_field_tag :down_payment,(params[:down_payment].present? ? params[:down_payment] : "50000") %>
+              <%= text_field_tag :down_payment,(params[:down_payment].present? ? params[:down_payment] : "50000"), :class => "fvrt-search" %>
             </div>
           </div>
           <div class="col-sm-2 col-xs-6">
             <label>Credit Score</label>
             <div class="search-cat cr-srch">
-                <%= select_tag 'credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")) %>
+                <%= select_tag 'credit_score', options_for_select(Program::CREDIT_SCORE_LIST, (params[:credit_score].present? ? params[:credit_score] : "700-719")), :class => "fvrt-search" %>
             </div>
           </div>
           <!-- <button class="rates-btn hm-src-btn-main">Get Rates</button> -->
@@ -161,9 +161,40 @@
         });
     });
 
+    // $(".favorite_search").click(function() {
+    //   debugger
+    // })
+
     $("#adv-option").click(function(){
       $("#adv-option").toggleClass("active-option");
     });
+
+    $('#body').ready(function(){
+      matchFavoriteSearch();
+    });
+
+    $('.fvrt-search').change(function(){
+      matchFavoriteSearch();
+    })
+
+     function matchFavoriteSearch(){
+      var form_data = {}
+      $('#search_form').serializeArray().filter((item)=>{
+          form_data[item.name] = item.value
+      })
+      $.ajax({
+        url: '/favorite_search_heart',
+        type: 'GET',
+        data: {form_data: form_data},
+        success: function(response) {
+          if (response.status) {
+            $('#favorite_search').find($(".fa")).removeClass('fa fa-heart').addClass('fa fa-heart-o');
+          }else{
+            $('#favorite_search').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
+          }
+        }
+      })
+     }
   });
 
 </script>
