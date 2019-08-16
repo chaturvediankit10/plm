@@ -36,9 +36,9 @@
       <h2 class="text-center">Mortgage Experts that specilize in Albany, CA</h2>
       <div class="expert-box">
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-sm-9">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-sm-3">
                 <div class="card">
                   <img class="card-img-top" src="/assets/profile-4.jpg" alt="Card image cap">
                   <div class="card-body">
@@ -48,7 +48,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-sm-3">
                 <div class="card">
                   <img class="card-img-top" src="/assets/profile-3.jpg" alt="Card image cap">
                   <div class="card-body">
@@ -58,7 +58,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-sm-3">
                 <div class="card">
                   <img class="card-img-top" src="/assets/profile-2.jpg" alt="Card image cap">
                   <div class="card-body">
@@ -68,7 +68,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-sm-3">
                 <div class="card">
                   <img class="card-img-top" src="/assets/profile-1.jpg" alt="Card image cap">
                   <div class="card-body">
@@ -80,7 +80,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-sm-3">
             <div class="submit-app">
               <p>Become an Expert on X.com and reach hundreds of thousands of home buyers of refi customers every month!</p>
               <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
@@ -198,9 +198,9 @@
           <div class="col-xs-12 col-md-6">
             <div class="form-group custm-file-input">
               <label>Photo</label>
-              <%= expert_user.file_field :image %>
+              <%= expert_user.file_field :image, id: 'image'%>
               <span><i class="fa fa-camera"></i> Upload Your Photo</span>
-
+              <b><p id="image-holder" style=" margin-left: 91px;"></p></b>
             </div>
           </div>
         </div>
@@ -215,8 +215,6 @@
   </div>
 </div>
 <!-- expert application overlay popup end-->
-
-
 <script type="text/javascript">
   $('#adv-option').click(function () {
         $("html, body").animate({
@@ -224,4 +222,34 @@
         }, 1000);
         //return false;
     });
+</script>
+
+<script type="text/javascript">
+      $(document).ready(function() {
+        $("#image").on('change', function() {
+          //Get count of selected filesW
+          var countFiles = $(this)[0].files.length;
+          var imgPath = $(this)[0].value;
+          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+          document.getElementById('image-holder').innerHTML = imgPath.replace(/^.*[\\\/]/, '');
+          var image_holder = $("#image-holder");
+          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+            if (typeof(FileReader) != "undefined") {
+              //loop for each file selected for uploaded.
+              for (var i = 0; i < countFiles; i++) 
+              {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                image_holder.show();
+                }
+                reader.readAsDataURL($(this)[0].files[i]);
+              }
+            } else {
+              alert("This browser does not support FileReader.");
+            }
+          } else {
+            alert("Pls select only images");
+          }
+        });
+      });
 </script>

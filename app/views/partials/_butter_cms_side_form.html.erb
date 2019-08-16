@@ -74,8 +74,9 @@
               </div>
               <div>
                 <span class="wpcf7-form-control-wrap popup-upload-btn">
-                  <%= f.file_field :attachment,autofocus: true%>
+                  <%= f.file_field :attachment,autofocus: true, id: 'image'%>
                   <img src="/images/upload-nw-icn.png"> Upload File
+                  <b><p id="image-holder" style="margin-left: 35px; margin-bottom: 30px; margin-right: 30px;"></p></b>
                 </span>
               </div>
               <p>
@@ -159,7 +160,6 @@
   $.validator.addMethod('filesize', function (value, element, param) {
       return this.optional(element) || (element.files[0].size <= param)
   }, 'File size must be less than 2-Mb');
-
   $('#research_form').validate({
     rules: {
       "name": {
@@ -200,12 +200,10 @@
           required: "Please enter your message."
       },
       "attachment": {
-        extension: "File must be JPG, PDF or DOC."
+        extension: "Supported file types: .jpg, .pdf, .doc"
       }
     }
   })
-
-
   $('#post_research_form').validate({
     rules: {
       "name": {
@@ -245,14 +243,14 @@
           required: "Please enter your research summary."
       },
       "attachment": {
-        extension: "File must be JPG, PDF or DOC."
+        extension: "Supported file types: .jpg, .pdf, .doc"
       }
     }
   })
   })
 </script>
 
-<style type="text/css">
+<!-- <style type="text/css">
   #attachment-error{
     margin-bottom: 15px;
   }
@@ -263,4 +261,48 @@
   cursor:pointer;
   }
   
+</style> -->
+
+<script type="text/javascript">
+      $(document).ready(function() {
+        $("#image").on('change', function() {
+          //Get count of selected filesW
+          var countFiles = $(this)[0].files.length;
+          var imgPath = $(this)[0].value;
+          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+          document.getElementById('image-holder').innerHTML = imgPath.replace(/^.*[\\\/]/, '');
+          var image_holder = $("#image-holder");
+          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+            if (typeof(FileReader) != "undefined") {
+              //loop for each file selected for uploaded.
+              for (var i = 0; i < countFiles; i++) 
+              {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                image_holder.show();
+                }
+                reader.readAsDataURL($(this)[0].files[i]);
+              }
+            } else {
+              alert("This browser does not support FileReader.");
+            }
+          } else {
+            //alert("Pls select only images");
+          }
+        });
+      });
+</script>
+
+<style type="text/css">
+  #image-error{
+  margin-bottom: 44px;
+  margin-left: 120px;
+  font-size: 10px;
+  color: red;
+
+  }
+  p#image-holder {
+    font-weight: normal;
+    text-transform: inherit;
+}
 </style>
