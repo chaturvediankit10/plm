@@ -106,7 +106,7 @@ Rails.application.configure do
   # authentication:       'plain',
   # ssl:                  false,
   # enable_starttls_auto: true  }
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
    :address => "smtp.gmail.com",
    :port => 587,
    :authentication => :plain,
