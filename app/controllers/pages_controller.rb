@@ -250,7 +250,7 @@ class PagesController < SearchController
         # flash[:notice] = 'You are succesfully registered as expert.'
         flash[:notice] = 'Thank you! Your message has been submitted.'
       rescue => e
-        flash[:danger] = "Your account has not created."
+        flash[:danger] = "Your account already exists."
       end
       redirect_back fallback_location: root_path
   end
