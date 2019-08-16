@@ -93,6 +93,20 @@ class PagesController < SearchController
     end
   end
 
+  def favorite_search_heart
+    if current_user.present?
+      if current_user.user_favorites.find_by_favorite_search(params[:form_data].except(:authenticity_token, :utf8)) == nil
+        respond_to do |format|
+          format.json  { render :json => {status: true} }
+        end
+      else
+        respond_to do |format|
+          format.json  { render :json => {status: false} }
+        end
+      end
+    end
+  end
+
   def delete_favorite
     user = User.find(params[:user_id])
     if user.present?
