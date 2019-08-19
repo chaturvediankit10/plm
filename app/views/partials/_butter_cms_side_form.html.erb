@@ -76,6 +76,7 @@
                 <span class="wpcf7-form-control-wrap popup-upload-btn">
                   <%= f.file_field :attachment,autofocus: true, id: 'image'%>
                   <img src="/images/upload-nw-icn.png"> Upload File
+                  <!-- <p id="image-error" class="error" for="image">Supported file types: .jpg, .pdf, .doc</p> -->
                   <b><p id="image-holder" style="margin-left: 35px; margin-bottom: 30px; margin-right: 30px;"></p></b>
                 </span>
               </div>
@@ -298,9 +299,8 @@
   margin-bottom: 44px;
   margin-left: 120px;
   font-size: 10px;
-  color: red;
-
-  }
+  color: black;
+}
   p#image-holder {
     font-weight: normal;
     text-transform: inherit;
