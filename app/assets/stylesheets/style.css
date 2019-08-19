@@ -1374,7 +1374,7 @@ header .navbar-right {
   font-family: Lato;
   height: 290px;
 }
-.expert-box .card {
+.expert-box .card-img {
   height: 170px;
 }
 .expert-box .card-body {
@@ -5077,7 +5077,16 @@ header.fixed-header.scrolled {
   }
 }
 @media(min-width:320px) and (max-width:767px) {
-
+  .expert-box {
+    height: auto;
+    padding: 15px 0;
+  }
+  .expert-box .card-img {
+    height: 250px;
+  }
+  .expert-box .card {
+    margin-bottom: 20px;
+  }
   .view-details-popup .panel-body{
     max-height: inherit;
     min-height: inherit;
@@ -5386,7 +5395,7 @@ header.fixed-header.scrolled {
     top: 102%;
   }
   .advertisement-box {
-    padding: 0 0 0 0;
+    padding: 15px 0 15px 0;
     background-position: right top;
     background-size: cover;
   }
@@ -6698,6 +6707,13 @@ header.fixed-header.scrolled {
   }
 }
 @media(min-width:768px) and (max-width:1024px) {
+  .expert-box .card-img {
+    height: auto;
+  }
+  .expert-box {
+    height: auto;
+  }
+
   #global-nav {
     padding: 0;
   }
@@ -8263,7 +8279,11 @@ header.fixed-header.scrolled {
   }
 }
 
-@media(min-width:1025px) and (max-width:1199px) {
+@media(min-width:1024px) and (max-width:1199px) {
+  .expert-box .card-img {
+    height: 200px;
+  }
+
   .navbar-default .nav li a {
     padding: 20px 10px;
   }
