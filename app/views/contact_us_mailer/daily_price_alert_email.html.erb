@@ -164,9 +164,11 @@
                                   </tr>
                                 <% end %>
                               </table>
-                              <div style="text-align: center; margin-top: 15px">
+                              <% if fav_search.count > 50 %>
+                                <div style="text-align: center; margin-top: 15px">
                                   <a href="http://www.pureloan.com/users/edit" style="background-color: #fb6324; padding: 5px 10px;border-radius: 5px;color: #fff;text-transform: uppercase;text-decoration: none; font-size: 12px;">View More</a>
                                 </div>
+                              <% end %>
                             </div>
                              <div style="margin-bottom: 15PX;">
                               <h3 style="font-size: 18px;margin: 0px;padding: 5px 15px;background-color: #1d75bc;color: #fff;font-weight: normal; margin-top: 30px;">Favorites Loans</h3>
@@ -202,9 +204,11 @@
                                   </tr>
                                 <% end %>
                               </table>
-                              <div style="text-align: center; margin-top: 15px;">
-                                  <a href="http://www.pureloan.com/users/edit" style="background-color: #fb6324; padding: 5px 10px;border-radius: 5px;color: #fff;text-transform: uppercase;text-decoration: none; font-size: 12px;">View More</a>
-                                </div>
+                                <% if fav_loan.count > 50 %>
+                                  <div style="text-align: center; margin-top: 15px;">
+                                    <a href="http://www.pureloan.com/users/edit" style="background-color: #fb6324; padding: 5px 10px;border-radius: 5px;color: #fff;text-transform: uppercase;text-decoration: none; font-size: 12px;">View More</a>
+                                  </div>
+                                <% end %>
                             </div>
                           </td>
                         </tr>
