@@ -59,7 +59,7 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'fha', 'fha', params[:fha].present? ? true : false, :class => "fvrt-search"  %>FHA (Income-based)
+              <%= check_box_tag 'fha', 'fha', (params[:commit].present? ? (params[:fha].present? ? true : false) : true), :class => "fvrt-search"  %>FHA (Income-based)
                <span class="checkmark"></span>
             </label>
           </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'va', 'va', params[:va].present? ? true : false, :class => "fvrt-search" %>Militory (VA)
+              <%= check_box_tag 'va', 'va', (params[:commit].present? ? (params[:va].present? ? true : false) : true), :class => "fvrt-search" %>Militory (VA)
                <span class="checkmark"></span>
             </label>
           </div>
@@ -82,7 +82,7 @@
           </div> -->
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'usda', 'usda', params[:usda].present? ? true : false, :class => "fvrt-search" %> Rural (USDA)
+              <%= check_box_tag 'usda', 'usda', (params[:commit].present? ? (params[:usda].present? ? true : false) : true), :class => "fvrt-search" %> Rural (USDA)
                <span class="checkmark"></span>
             </label>
           </div>
@@ -93,43 +93,43 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'fannie_mae', 'fannie_mae', params[:fannie_mae].present? ? true : false, :class => "fvrt-search" %> Fannie Mae
+              <%= check_box_tag 'fannie_mae', 'fannie_mae', (params[:commit].present? ? (params[:fannie_mae].present? ? true : false) : true), :class => "fvrt-search" %> Fannie Mae
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'fannie_mae_du', 'fannie_mae_du', params[:fannie_mae_du].present? ? true : false, :class => "fvrt-search" %> DU
+              <%= check_box_tag 'fannie_mae_du', 'fannie_mae_du', (params[:commit].present? ? (params[:fannie_mae_du].present? ? true : false) : true), :class => "fvrt-search" %> DU
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'fannie_mae_product', 'HomeReady', params[:fannie_mae_product].present? ? true : false, :class => "fvrt-search" %> HomeReady
+              <%= check_box_tag 'fannie_mae_product', 'HomeReady', (params[:commit].present? ? (params[:fannie_mae_product].present? ? true : false) : true), :class => "fvrt-search" %> HomeReady
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'freddie_mac', 'freddie_mac', params[:freddie_mac].present? ? true : false, :class => "fvrt-search" %> Freddie Mac
+              <%= check_box_tag 'freddie_mac', 'freddie_mac', (params[:commit].present? ? (params[:freddie_mac].present? ? true : false) : true), :class => "fvrt-search" %> Freddie Mac
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'freddie_mac_lp', 'freddie_mac_lp', params[:freddie_mac_lp].present? ? true : false, :class => "fvrt-search" %> LP
+              <%= check_box_tag 'freddie_mac_lp', 'freddie_mac_lp', (params[:commit].present? ? (params[:freddie_mac_lp].present? ? true : false) : true), :class => "fvrt-search" %> LP
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio mar-22">
             <label class="radio-bx">
-              <%= check_box_tag 'freddie_mac_product', 'Home Possible', params[:freddie_mac_product].present? ? true : false, :class => "fvrt-search" %> Home Possible
+              <%= check_box_tag 'freddie_mac_product', 'Home Possible', (params[:commit].present? ? (params[:freddie_mac_product].present? ? true : false) : true), :class => "fvrt-search" %> Home Possible
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'others', 'others', params[:others].present? ? true : false, :class => "fvrt-search" %> Others
+              <%= check_box_tag 'others', 'others', (params[:commit].present? ? (params[:others].present? ? true : false) : true), :class => "fvrt-search" %> Others
                <span class="checkmark"></span>
             </label>
           </div>
