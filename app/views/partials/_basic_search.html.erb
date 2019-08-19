@@ -156,6 +156,8 @@
             success: function(response) {
               if (response.status) {
                 $('#favorite_search').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
+              }else{
+                $('#favorite_search').find($(".fa")).removeClass('fa fa-heart').addClass('fa fa-heart-o');
               }
             }
         });

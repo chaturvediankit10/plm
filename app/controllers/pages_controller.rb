@@ -85,6 +85,11 @@ class PagesController < SearchController
         respond_to do |format|
           format.json  { render :json => {status: true} }
         end
+      elsif current_user.user_favorites.find_by_favorite_search(params[:form_data].except(:authenticity_token, :utf8)).present?
+        current_user.user_favorites.find_by_favorite_search(params[:form_data].except(:authenticity_token, :utf8)).delete
+        respond_to do |format|
+          format.json  { render :json => {status: false} }
+        end
       end
     else
       respond_to do |format|
