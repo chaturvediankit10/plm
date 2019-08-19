@@ -41,11 +41,22 @@
   font-family: 'Poppins', sans-serif !important;
   font-weight: 400;
   line-height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: nowrap;
 }
+
+
 .read-more-link {
     color: #fb6325 !important;
     font-size: 16px !important;
     font-weight: 300 !important;
+    display: inline-block;
+  text-overflow: unset !important;
+  overflow: unset !important;
+  word-break: unset  !important;
+  white-space: unset   !important;
 }
 .owl-nav {
   position: absolute;
@@ -135,11 +146,11 @@
 }
 
 @media (min-width: 768px) {
-  .reviews .active.center .item {
+  /*.reviews .active.center .item {
       -webkit-transform: scale(1.05);
       -ms-transform: scale(1.05);
       transform: scale(1.05);
-  }
+  }*/
 }
 
 .reviews .item {
