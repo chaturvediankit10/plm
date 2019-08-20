@@ -67,6 +67,7 @@
                   <%= f.url_field :website, autofocus: true, placeholder: "Website",class: "wpcf7-form-control wpcf7-text" %>
                 </span>
               </div>
+              <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
               <div>
                 <span class="wpcf7-form-control-wrap your-message">
                   <%= f.text_area :message, size: "55x5", autofocus: true, placeholder: "Research summary and key insights", style: 'max-width: 100%', class: "wpcf7-form-control wpcf7-textarea"%>
@@ -76,12 +77,14 @@
                 <span class="wpcf7-form-control-wrap popup-upload-btn">
                   <%= f.file_field :attachment,autofocus: true, id: 'image'%>
                   <img src="/images/upload-nw-icn.png"> Upload File
-                  <!-- <p id="image-error" class="error" for="image">Supported file types: .jpg, .pdf, .doc</p> -->
+                  <label id="image-error"></label>
                   <b><p id="image-holder" style="margin-left: 35px; margin-bottom: 30px; margin-right: 30px;"></p></b>
                 </span>
               </div>
               <p>
-                <%= f.submit "SHARE RESEARCH", class: "rates-btn"%>
+                <%#= f.submit "SHARE RESEARCH", class: "rates-btn btn btn-success success",id: "submit"%>
+                <%= f.submit "SHARE RESEARCH", class: "rates-btn btn btn-success success",type: "submit",value: "SUBMIT"%>
+
                 <span class="ajax-loader"></span>
               </p>
             <% end %>
@@ -91,6 +94,7 @@
     </div>
    </div>
   </div>
+
 <!-- research contact form ends here -->
 
 <!-- Research post form starts frm here-->
@@ -180,10 +184,6 @@
       },
       "message":{
           required: true
-      },
-      "attachment": {
-        extension: "jpg,jpeg,pdf,docx,doc",
-        filesize:   2097152
       }
     },
     messages: {
@@ -199,10 +199,8 @@
       },
       "message":{
           required: "Please enter your message."
-      },
-      "attachment": {
-        extension: "Supported file types: .jpg, .pdf, .doc"
       }
+      
     }
   })
   $('#post_research_form').validate({
@@ -224,10 +222,6 @@
       },
       "research_summary":{
           required: true
-      },
-      "attachment": {
-        extension: "jpg,jpeg,pdf,docx,doc",
-        filesize:   2097152
       }
     },
     messages: {
@@ -242,9 +236,6 @@
       },
       "research_summary":{
           required: "Please enter your research summary."
-      },
-      "attachment": {
-        extension: "Supported file types: .jpg, .pdf, .doc"
       }
     }
   })
@@ -273,7 +264,7 @@
           var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
           document.getElementById('image-holder').innerHTML = imgPath.replace(/^.*[\\\/]/, '');
           var image_holder = $("#image-holder");
-          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+          if (extn == "pdf" || extn == "docx" || extn == "jpg" || extn == "jpeg" || extn == "doc") {  
             if (typeof(FileReader) != "undefined") {
               //loop for each file selected for uploaded.
               for (var i = 0; i < countFiles; i++) 
@@ -284,20 +275,28 @@
                 }
                 reader.readAsDataURL($(this)[0].files[i]);
               }
+               document.getElementById('image-error').innerHTML = ''
             } else {
-              alert("This browser does not support FileReader.");
+              document.getElementById('image-error').innerHTML = 'This browser does not support FileReader.'
             }
           } else {
-            //alert("Pls select only images");
+            document.getElementById('image-error').innerHTML = 'Supported file types: .jpg, .pdf, .doc'
+            // $('#image-error').val('Supported file types: .jpg, .pdf, .doc')
+            // alert("Pls select only images");
           }
         });
       });
 </script>
 
+<!-- <script type="text/javascript">
+  $('#submit').click(function(){
+      $('#research_form').submit();
+      alert('Thank you! Your message has been submitted.');
+  });
+</script> -->
+
 <style type="text/css">
   #image-error{
-  margin-bottom: 44px;
-  margin-left: 120px;
   font-size: 10px;
   color: black;
 }
@@ -306,3 +305,25 @@
     text-transform: inherit;
 }
 </style>
+<script type="text/javascript">
+
+$(function(){
+    $('#research_form').on('submit', function(e){
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url:  '/research_contact_us_email', //this is the submit URL
+            type: 'POST', //or POST
+            data: $('#research_form').serialize(),
+            success: function(data){
+              $('.loader').hide();
+              alert('Thank you! Your message has been submitted.');
+              $("#research_contact_form").modal("hide");
+                   //$('#research_form').reset();
+                   // $('#research_form').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
+
+            }
+        });
+    });
+});
+</script>
