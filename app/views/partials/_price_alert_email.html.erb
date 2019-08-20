@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pureloan</title>
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Happy New year Newsletter templates, Email Templates, Newsletters, Marketing  templates,
+      Advertising templates, free Newsletter" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins:100italic,200,300,400,500,600' rel='stylesheet' type='text/css'>
+    <!--style-->
+    <style type="text/css">
+      body{
+      width:100%;
+      background:#c0c0c0;
+      margin:0;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      padding:0;
+      }
+      table{
+      font-size: 14px;
+      border: 0;
+      }
+      @media only screen and (max-width: 800px){
+      .container {width: 754px !important;}
+      }
+      @media only screen and (max-width: 768px){
+      .container {width: 700px !important;}
+      .middle-container {width: 620px;}
+      }
+      @media only screen and (max-width: 640px){
+      .container {width: 580px !important;}
+      .middle-container {width: 500px;}
+      .log {font-size: .85em;}
+      .season {font-size: 2em !important;}
+      }
+      @media only screen and (max-width: 480px){
+      .container {width: 400px !important;}
+      .middle-container {width: 355px;}
+      .log {font-size: .65em;}
+      .season {font-size: 1.8em !important;}
+      }
+      @media only screen and (max-width: 320px){
+      .container {width: 295px !important;}
+      .middle-container {width: 276px;}
+      .banner-text {font-size: 2em !important;}
+      .season {font-size: 1.6em !important;}
+      .top {height: 30px;}
+      }
+    </style>
+    <!--style-->
+  </head>
+  <body>
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td height="40" class="top"></td>
+        </tr>
+        <!---header--->
+        <tr>
+          <td>
+            <table width="800" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#fff" class="container">
+              <tbody>
+                <tr>
+                  <td>
+                    <table width="100%" border="0" align="center" cellpadding="0" bgcolor="#fff" cellspacing="0" class="main-img" style="border-bottom: 1px solid #ccc;">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table width="700" border="0" cellpadding="0" cellspacing="0" align="center" class="middle-container">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <table class="log" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td align="center" style="color: #fff;padding: 5px 0 10px;">
+                                            <a href="#" style="text-decoration:none;font-size:3em; text-transform:capitalize;color:#333;font-family:Candara; font-weight:normal;text-transform:capitalize">
+                                            <img style="vertical-align: middle;" src="images/logo.png"/>
+                                            </a>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!---header--->
+                    <!--banner-bottom-->
+                <tr>
+                  <td>
+                    <table width="760" border="0" cellpadding="0" cellspacing="0" align="center" class="middle-container">
+                      <tbody>
+                        <!--1 email-->
+                        <tr>
+                          <td height="30"></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size:1.5em;font-weight: 300; text-decoration:none; color:#333;text-align:left;" class="season">
+                            <div>
+                              <center>
+                                <h3 style="font-size: 24px;color: #333;margin: 0px;padding: 10px; text-align: center;}">Summary of Favorites</h3>
+                              </center>
+                              <h3 style="font-size: 18px;margin: 0px;padding: 5px 15px;background-color: #1d75bc;color: #fff;font-weight: normal;">Newly Added Favorites</h3>
+                              <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="border: 1px solid #ccc">
+                                <thead>
+                                  <%fav_search = @favorites.where.not(favorite_search: nil) %>
+                                  <%fav_loan = @favorites.where.not(favorite_loan: nil) %>
+                                  <tr>
+                                    <th style="color: #333;margin: 0px;padding: 10px 15px;background-color: #ededed;border-bottom: 1px solid #ccc;}"></th>
+                                    <th style="color: #333;margin: 0px;padding: 10px 15px;background-color: #ededed;border-bottom: 1px solid #ccc;}">Past Week</th>
+                                    <th style="color: #333;margin: 0px;padding: 10px 15px;background-color: #ededed;border-bottom: 1px solid #ccc;}">Past Month</th>
+                                    <th style="color: #333;margin: 0px;padding: 10px 15px;background-color: #ededed;border-bottom: 1px solid #ccc;}">Past Year</th>
+                                    <th style="color: #333;margin: 0px;padding: 10px 15px;background-color: #ededed;border-bottom: 1px solid #ccc;}">Total</th>
+                                  </tr>
+                                </thead>
+                                <tr>
+                                  <td style="padding: 10px 15px; background-color: #FFF;">Searches</td>
+                                  <td style="padding: 10px 15px;background-color: #fff;"><%= fav_search.where('created_at >= ?', 1.week.ago).count %></td>
+                                  <td style="padding: 10px 15px; background-color: #fff;"><%= fav_search.where('created_at >= ?', 1.month.ago).count %></td>
+                                  <td style="padding: 10px 15px;background-color: #fff;"><%= fav_search.where('created_at >= ?', 1.year.ago).count %></td>
+                                  <td style="padding: 10px 15px;background-color: #fff;"><%= fav_search.count %></td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 10px 15px; background-color: #ededed;">Loan</td>
+                                  <td style="padding: 10px 15px;background-color: #ededed;"><%= fav_loan.where('created_at >= ?', 1.week.ago).count %></td>
+                                  <td style="padding: 10px 15px; background-color: #ededed;"><%= fav_loan.where('created_at >= ?', 1.month.ago).count %></td>
+                                  <td style="padding: 10px 15px;background-color: #ededed;"><%= fav_loan.where('created_at >= ?', 1.year.ago).count %></td>
+                                  <td style="padding: 10px 15px;background-color: #ededed;"><%= fav_loan.count %></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div>
+                              <h3 style="font-size: 18px;margin: 0px;padding: 5px 15px;background-color: #1d75bc;color: #fff;font-weight: normal; margin-top: 30px;">Favorites Searches</h3>
+                              <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="border: 1px solid #ccc">
+                                <thead>
+                                  <tr>
+                                    <th style="padding: 10px 15px;background-color: #ededed;">Created</th>
+                                    <th style="padding: 10px 15px;background-color: #ededed;">Zip</th>
+                                    <th style="padding: 10px 15px;background-color: #ededed;">Purpose</th>
+                                    <th style="padding: 10px 15px;background-color: #ededed;">Loan Amount</th>
+                                    <th style="padding: 10px 15px;background-color: #ededed;">Down Payment</th>
+                                    <th style="padding: 10px 15px;background-color: #ededed;">Credit Score</th>
+                                    <th style="padding: 10px 15px;background-color: #ededed;"></th>
+                                    <th style="padding: 10px 15px;background-color: #ededed;"></th>
+                                  </tr>
+                                </thead>
+                                <% fav_search.to_a.each do |fav| %>
+                                <tr>
+                                  <td style="padding: 10px; background-color: #fff;"><%= fav.created_at.strftime("%B %d, %Y") %></td>
+                                  <td style="padding: 10px;background-color: #fff;"><%= fav.favorite_search["zip"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;"><%= fav.favorite_search["loan_purpose"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;">$<%=fav.favorite_search["home_price"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;">$<%= fav.favorite_search["down_payment"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;"><%= fav.favorite_search["credit_score"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;"><a href="http://www.pureloan.com/users/edit">Full Search Details</a></td>
+                                  <td style="padding: 10px;background-color: #fff;"><a href="<%=fav.favorite_url%>">Search</a></td>
+                                </tr>
+                                <% end %>
+                              </table>
+                              <% if fav_search.count > 50 %>
+                              <div style="text-align: center; margin-top: 15px">
+                                <a href="http://www.pureloan.com/users/edit" style="background-color: #fb6324; padding: 5px 10px;border-radius: 5px;color: #fff;text-transform: uppercase;text-decoration: none; font-size: 12px;">View More</a>
+                              </div>
+                              <% end %>
+                            </div>
+                            <div style="margin-bottom: 15PX;">
+                              <h3 style="font-size: 18px;margin: 0px;padding: 5px 15px;background-color: #1d75bc;color: #fff;font-weight: normal; margin-top: 30px;">Favorites Loans</h3>
+                              <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="border: 1px solid #ccc">
+                                <% fav_loan.to_a.each do |fav| %>
+                                <tr>
+                                  <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;">
+                                    <img src="http://www.pureloan.com/assets/NewRez.png" width="50">
+                                  <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= fav.favorite_loan["air"]%>% Rate</h1>
+                                    <span style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0;"><%= fav.favorite_loan["apr"].to_f.round(3) %>% APR</span>
+                                    <p style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0; text-transform: uppercase;"><%= fav.favorite_loan["program_name"] %></p>
+                                  </td>
+                                  <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= number_to_currency(fav.favorite_loan["saving"],  :unit=> "$", precision: 0)%></h1>
+                                    <span style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0;">Expected Savings</span>
+                                  </td>
+                                  <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= number_to_currency(fav.favorite_loan["monthly_payment"],  :unit=> "$", precision: 0) %></h1>
+                                    <span style="font-weight: normal;float: left;font-size: 14px;color: #333;width: 100%;margin: 0;">Monthly Payment</span>
+                                  </td>
+                                  <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"> <%= number_to_currency(fav.favorite_loan["closing_cost"],  :unit=> "$", precision: 0) %></h1>
+                                    <span style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0;">Total Closing Coste</span>
+                                  </td>
+                                  <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
+                                    <a href="http://www.pureloan.com/users/edit" style="background-color: #fb6324; padding: 5px 10px;border-radius: 5px;color: #fff;text-transform: uppercase;text-decoration: none; font-size: 12px;">View Details</a>
+                                  </td>
+                                </tr>
+                                <% end %>
+                              </table>
+                              <% if fav_loan.count > 50 %>
+                              <div style="text-align: center; margin-top: 15px;">
+                                <a href="http://www.pureloan.com/users/edit" style="background-color: #fb6324; padding: 5px 10px;border-radius: 5px;color: #fff;text-transform: uppercase;text-decoration: none; font-size: 12px;">View More</a>
+                              </div>
+                              <% end %>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td height="20"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <!--banner-bottom-->
+                <tr>
+                  <td height="30"></td>
+                </tr>
+                <!--footer-->
+                <tr>
+                  <td>
+                    <table width="800"  align="center" bgcolor="#a7a6ac" border="0" cellpadding="0" cellspacing="0" class="container" >
+                      <tbody>
+                        <tr>
+                          <td height="40" bgcolor="#a7a6ac" align="center" style="color: #fff;font-size: .9em;">
+                            © 2019 Pureloan.com All rights reserved. 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <!--footer-->
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="40"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
