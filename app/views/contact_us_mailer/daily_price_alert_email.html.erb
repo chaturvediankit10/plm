@@ -123,14 +123,14 @@
                                   <td style="padding: 10px 15px;background-color: #fff;"><%= fav_search.where('created_at >= ?', 1.week.ago).count %></td>
                                   <td style="padding: 10px 15px; background-color: #fff;"><%= fav_search.where('created_at >= ?', 1.month.ago).count %></td>
                                   <td style="padding: 10px 15px;background-color: #fff;"><%= fav_search.where('created_at >= ?', 1.year.ago).count %></td>
-                                  <td style="padding: 10px 15px;background-color: #fff;"><%= fav_search.where('created_at >= ?', 1.week.ago).count + fav_search.where('created_at >= ?', 1.month.ago).count + fav_search.where('created_at >= ?', 1.year.ago).count %></td>
+                                  <td style="padding: 10px 15px;background-color: #fff;"><%= fav_search.count %></td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 10px 15px; background-color: #ededed;">Loan</td>
                                   <td style="padding: 10px 15px;background-color: #ededed;"><%= fav_loan.where('created_at >= ?', 1.week.ago).count %></td>
                                   <td style="padding: 10px 15px; background-color: #ededed;"><%= fav_loan.where('created_at >= ?', 1.month.ago).count %></td>
                                   <td style="padding: 10px 15px;background-color: #ededed;"><%= fav_loan.where('created_at >= ?', 1.year.ago).count %></td>
-                                  <td style="padding: 10px 15px;background-color: #ededed;"><%= fav_loan.where('created_at >= ?', 1.week.ago).count + fav_loan.where('created_at >= ?', 1.month.ago).count + fav_loan.where('created_at >= ?', 1.year.ago).count %></td>
+                                  <td style="padding: 10px 15px;background-color: #ededed;"><%= fav_loan.count %></td>
                                 </tr>
                                 
                               </table>
