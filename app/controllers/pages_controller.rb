@@ -261,9 +261,12 @@ class PagesController < SearchController
 
   def expert_user_registration
       @expert_user = Expert.new expert_params
-      city_zip = params[:expert][:city].split(',')
-      @expert_user.city = city_zip[0]
-      @expert_user.zip = city_zip[1]
+      # city_zip = params[:expert][:city].split(',')
+      city_zip = params[:expert]
+      # @expert_user.city = city_zip[0]
+      @expert_user.city = city_zip[:city]
+      # @expert_user.zip = city_zip[1]
+      @expert_user.zip = city_zip[:zip]
       begin
         @expert_user.save!
         # flash[:notice] = 'You are succesfully registered as expert.'
