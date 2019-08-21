@@ -95,23 +95,13 @@
                             </tr>
                             <%
                               if program[:adjustment_pair].present?
-                                program[:adjustment_pair].keys.each_with_index do |key|
-                                  if (program[:adjustment_pair][key]!=0.0)
-                                    if (key.split("/").include?("LTV") || key.split("/").include?("FICO"))%>
-                                      <tr>
-                                        <td>Credit Score</td>
-                                        <td><b><%= program[:adjustment_pair][key]%></b></td>
-                                        <td align="right"></td>
-                                      </tr>
-                                  <%else%>
-                                      <tr>
-                                        <td><%=key%></td>
-                                        <td><b><%= program[:adjustment_pair][key] if program[:adjustment_pair][key].present? %></b></td>
-                                        <td align="right"></td>
-                                      </tr>
-                                  <%end
-                                  end
-                                end
+                                closing_costs_filter(program[:adjustment_pair]).each_with_index do |key|%>
+                                    <tr>
+                                      <td><%= adj_key_name(key.first) %></td>
+                                      <td><b><%= key.last %></b></td>
+                                      <td align="right"><b>+0.10</b></td>
+                                    </tr>
+                              <%end
                               end%>
                             <tr>
                               <td>Ending Closing Cost</td>
