@@ -88,12 +88,15 @@ module SearchHelper
 	end
 	def adj_key_value(program, primary_key)
 		begin
-			arr = %w[state_code term financing_type refinance_option property_type misc_adjuster premium_type interest lock_period program_category dti home_price down_payment point_mode arm_basic arm_advanced arm_caps arm_benchmark arm_margin full_doc  term loan_size cltv]
+			arr = %w[state_code term financing_type refinance_option property_type misc_adjuster premium_type interest lock_period program_category dti home_price down_payment point_mode arm_basic arm_advanced arm_caps arm_benchmark arm_margin full_doc  term loan_size]
 			program_arr = %w[loan_category term loan_type loan_purpose fha va usda]
 			key_value = ''
 			primary_key.split("/").each do |key|
 				key = "credit_score" if key == "FICO"
 				key = "lock_period" if key == "LockDay"
+				key = "state_code" if key == "State"
+				key = "ltv" if key == "CLTV"
+
 				if arr.include?(key.underscore)
 					value = instance_variable_get("@"+key.underscore).to_s
 					key_value  = key_value + '/' if key_value.present? && value.present?
