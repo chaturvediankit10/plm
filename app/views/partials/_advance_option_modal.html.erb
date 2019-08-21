@@ -98,14 +98,14 @@
                                 closing_costs_filter(program[:adjustment_pair]).each_with_index do |key|%>
                                     <tr>
                                       <td><%= adj_key_name(key.first) %></td>
-                                      <td><b><%= key.last %></b></td>
-                                      <td align="right"><b>+0.10</b></td>
+                                      <td><b><%= adj_key_value(program, key.first) %></b></td>
+                                      <td align="right"><b><%= key.last %></b></td>
                                     </tr>
                               <%end
                               end%>
                             <tr>
                               <td>Ending Closing Cost</td>
-                              <td colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> / <%= number_to_currency(program[:air_point],  :unit=> "", precision: 2) %> Points</b></td>
+                              <td colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> / <%= number_to_currency(closing_cost_sum(program[:adj_points],  program[:starting_base_point]),  :unit=> "", precision: 3) %> Points</b></td>
                             </tr>
                           </tbody>
                         </table>
