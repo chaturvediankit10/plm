@@ -134,6 +134,8 @@ Rails.application.routes.draw do
   get '/mortgage+calculator', to: 'calculator#index', as: 'calculator'
   get 'get_todays_rate', to: 'calculator#get_todays_rate'
 
+  get '/bank_page_info' => 'pages#bank_page_info', as: 'bank_page_info'
+
   #--------------------------- route for wrong requested pages ----------------------------------
 
   # match '*path', to: redirect('/'), via: :all

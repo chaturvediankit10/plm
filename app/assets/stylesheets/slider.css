@@ -167,6 +167,7 @@
   box-shadow: 0 0 2px 0 #999;
   padding: 35px 15px 15px;
   background-color: #fff;
+  min-height: 240px;
 }
 
 .reviews .item .card .info-col {

@@ -314,7 +314,9 @@
       <div class="modal-footer adv-search-mdl-footer">
         <div class="content-btns">
           <p>Get Started with <%= program[:bank_name]%></p>
-          <a href="#" class="btn btn-orange">Contact lender</a>
+          <!-- <a href="<%= bank_page_info_path%>" class="btn btn-orange">Contact lender</a> -->
+          <%= link_to 'Contact lender', bank_page_info_path({bank_name:  program[:bank_name]}), :class => "btn btn-orange" %>
+
           <a href="#" class="mb-adv-search btn btn-orange reverse-btn close" data-dismiss="modal">Continue Searching</a>
         </div>
       </div>

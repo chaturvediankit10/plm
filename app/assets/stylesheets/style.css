@@ -5,6 +5,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
+  position: relative;
+  height: 100%;
+  margin-bottom:50px;
 }
 
 li {
@@ -1598,6 +1601,7 @@ footer {
   padding: 20px 0 10px 0;
   margin: 0;
   background-color: #a7a6ac;
+
 }
 
 footer ul {
@@ -5059,9 +5063,52 @@ header.fixed-header.scrolled {
 }
 /**-------------Ends----------------**/
 
+/**Bank details css**/
+.bank-content {
+  padding: 50px 0px 174px;
+  min-height: 100%;
+}
+.bank-details {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 30px 15px 20px;
+  background: #eee;
+}
+.bank-details p {
+  font-size: 14px;
+  padding-bottom: 0px;
+  margin: 0;
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+span.title-head {
+  font-weight: bold;
+  color: #666;
+  margin-right: 10px;
+}
+.bank-logo {
+  text-align: center;
+  width: 150px;
+  height: 150px;
+}
+.bank-logo img {
+  width: 150px;
+  text-align: center;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+}
 
 /*mobile device css start*/
 @media(min-width:1025px) and (max-width:1200px) {
+  .expert-box {
+    height: auto;
+  }
+  .expert-box p{
+    font-size: 12px;
+  }
   .advertisement {
     margin: 0 0 50px 0;
   }
@@ -5078,6 +5125,10 @@ header.fixed-header.scrolled {
   }
 }
 @media(min-width:320px) and (max-width:767px) {
+  .bank-logo {
+    margin: 0 auto 20px;
+  }
+
   .expert-box {
     height: auto;
     padding: 15px 0;
@@ -6708,6 +6759,9 @@ header.fixed-header.scrolled {
   }
 }
 @media(min-width:768px) and (max-width:1024px) {
+  .bank-logo {
+    margin: 0 auto 20px;
+  }
   .expert-box .card-img {
     height: auto;
   }

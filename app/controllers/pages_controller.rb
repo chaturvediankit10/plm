@@ -308,6 +308,10 @@ class PagesController < SearchController
     redirect_to admin_freddie_mac_caches_path, notice: 'Data Cache start for Cities.'
   end
 
+  def bank_page_info
+    @bank = Bank.find_by_name(params[:bank_name])
+  end
+
   private
     def update_statue
       all_ids = params[:id].reject{|a| a.blank?}
