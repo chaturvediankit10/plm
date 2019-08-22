@@ -264,7 +264,7 @@
           var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
           document.getElementById('image-holder').innerHTML = imgPath.replace(/^.*[\\\/]/, '');
           var image_holder = $("#image-holder");
-          if (extn == "pdf" || extn == "docx" || extn == "jpg" || extn == "jpeg" || extn == "doc") {  
+          if (extn == "pdf" || extn == "docx" ||  extn == "doc" || extn == "rtf" || extn == "txt") {  
             if (typeof(FileReader) != "undefined") {
               //loop for each file selected for uploaded.
               for (var i = 0; i < countFiles; i++) 
@@ -280,7 +280,7 @@
               document.getElementById('image-error').innerHTML = 'This browser does not support FileReader.'
             }
           } else {
-            document.getElementById('image-error').innerHTML = 'Supported file types: .jpg, .pdf, .doc'
+            document.getElementById('image-error').innerHTML = 'Supported file types: .pdf, .doc/.docx, .rtf, .txt'
             // $('#image-error').val('Supported file types: .jpg, .pdf, .doc')
             // alert("Pls select only images");
           }
@@ -299,6 +299,7 @@
   #image-error{
   font-size: 10px;
   color: black;
+  margin-left: 6px;
 }
   p#image-holder {
     font-weight: normal;
