@@ -145,14 +145,14 @@
     $(".favorite_search").click(function() {
         var img_id = this.id
         var form_data = {}
-        var favorite_url = location.href+'?'+$('#search_form').serialize()
+        var fav_search_url = location.href+'?'+$('#search_form').serialize()
         $('#search_form').serializeArray().filter((item)=>{
           form_data[item.name] = item.value
         })
        $.ajax({
             url: '/favorite_searches',
             type: "GET",
-            data: {form_data: form_data,favorite_url: favorite_url},
+            data: {form_data: form_data,fav_search_url: fav_search_url},
             success: function(response) {
               if (response.status) {
                 $('#favorite_search').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
@@ -162,10 +162,6 @@
             }
         });
     });
-
-    // $(".favorite_search").click(function() {
-    //   debugger
-    // })
 
     $("#adv-option").click(function(){
       $("#adv-option").toggleClass("active-option");

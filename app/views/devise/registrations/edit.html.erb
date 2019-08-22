@@ -238,7 +238,7 @@ Return:         hash
               <%current_user.user_favorites.each do |user_favorite| %>
                 <div id="<%=user_favorite[:id].to_s+"-favorite"%>">
                   <div class="row">
-                    <% if user_favorite.favorite_search.present? %>
+                    <% if user_favorite.fav_search_data.present? %>
                         <div class="fav-search-date fav-search-cntnt-comon col-xs-12 col-md-2">
                           <div class="fav-search-white-block">
                             <%=user_favorite.created_at.strftime("%B %d, %Y")%>
@@ -246,28 +246,28 @@ Return:         hash
                         </div>
                         <div class="fav-search-date-cntnt col-xs-12 col-md-6">
                            <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                              <div class="fav-search-white-block"><%= user_favorite.favorite_search["zip"]%></div>
+                              <div class="fav-search-white-block"><%= user_favorite.fav_search_data["zip"]%></div>
                            </div>
                            <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                              <div class="fav-search-white-block"><%= user_favorite.favorite_search["loan_purpose"]%></div>
+                              <div class="fav-search-white-block"><%= user_favorite.fav_search_data["loan_purpose"]%></div>
                            </div>
                            <div class="fav-search-cntnt-comon col-xs-3 col-md-3">
-                              <div class="fav-search-white-block"><%= number_to_currency((user_favorite.favorite_search["home_price"].tr("^0-9", '').to_i) - (user_favorite.favorite_search["down_payment"].tr("^0-9", '').to_i)) %> </div>
+                              <div class="fav-search-white-block"><%= number_to_currency((user_favorite.fav_search_data["home_price"].tr("^0-9", '').to_i) - (user_favorite.fav_search_data["down_payment"].tr("^0-9", '').to_i)) %> </div>
                            </div>
                            <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                              <div class="fav-search-white-block"><%= number_to_currency(user_favorite.favorite_search["down_payment"]) %> </div>
+                              <div class="fav-search-white-block"><%= number_to_currency(user_favorite.fav_search_data["down_payment"]) %> </div>
                            </div>
                         </div>
                         <div class="fav-search-date-cntnt col-xs-12 col-md-4">
                            <div class="fav-search-cntnt-comon col-xs-4 col-md-4">
-                              <div class="fav-search-white-block"><%=  user_favorite.favorite_search["credit_score"] %></div>
+                              <div class="fav-search-white-block"><%=  user_favorite.fav_search_data["credit_score"] %></div>
                            </div>
                            <div class="fav-search-cntnt-comon col-xs-5 col-md-5">
                               <div class="fav-search-white-block"><a href="" data-toggle="modal" data-target="#full-search-<%=user_favorite[:id]%>">Full Search Details</a></div>
                            </div>
-                           <%= render partial: "partials/view_search_detail" , locals: { program: user_favorite.favorite_search, program_id: user_favorite[:id] } %>
+                           <%= render partial: "partials/view_search_detail" , locals: { program: user_favorite.fav_search_data, program_id: user_favorite[:id] } %>
                            <div class="fav-search-cntnt-comon col-xs-2 col-md-2">
-                              <div class="fav-search-white-block"><a href="<%= user_favorite.favorite_url%>" target="_blank">Search</a></div>
+                              <div class="fav-search-white-block"><a href="<%= user_favorite.fav_search_url%>" target="_blank">Search</a></div>
                            </div>
                            <div class="fav-search-cntnt-comon col-xs-1 col-md-1">
                               <div class="fav-search-white-block">
@@ -286,58 +286,58 @@ Return:         hash
             <div class="">
               <%if current_user.user_favorites.present? %>
                 <%current_user.user_favorites.each_with_index do |user_favorite,index| %>
-                  <% if user_favorite.favorite_loan.present? %>
+                  <% if user_favorite.fav_loan_data.present? %>
                     <div class="cntnt-list-inner col-md-12 demo-items-30">
                         <div class="inner-logo">
-                          <img src="<%= "/assets/"+ user_favorite.favorite_loan['bank_name']%>.png">
+                          <img src="<%= "/assets/"+ user_favorite.fav_loan_data['bank_name']%>.png">
 
-                           <p class="orange-link"><%= user_favorite.favorite_loan["bank_name"]%></p>
-                          <p>NMLS ID <%= Program::NMLS[user_favorite.favorite_loan['bank_name']] %></p>
+                           <p class="orange-link"><%= user_favorite.fav_loan_data["bank_name"]%></p>
+                          <p>NMLS ID <%= Program::NMLS[user_favorite.fav_loan_data['bank_name']] %></p>
                         </div>
                          <div class="inner-block">
                            <span class="hdng-big a_air"><%=
-                               number_to_percentage(user_favorite.favorite_loan["air"], precision: 3)%> Rate
+                               number_to_percentage(user_favorite.fav_loan_data["air"], precision: 3)%> Rate
                            </span>
                            <p class="hiden-txt-mb a_apr">
                                <!-- % APR -->
 
-                               <%=number_to_percentage(user_favorite.favorite_loan["apr"], precision: 3)%> APR
+                               <%=number_to_percentage(user_favorite.fav_loan_data["apr"], precision: 3)%> APR
                            </p>
-                           <p><%= user_favorite.favorite_loan["program_name"] %></p>
+                           <p><%= user_favorite.fav_loan_data["program_name"] %></p>
                            <!-- <p> </p> -->
                            <a href="" class="more-dtail-link hiden-txt-mb d-none">More Details</a>
                          </div>
                          <div class="inner-block-combined">
                            <div class="inner-block inner-block-small">
-                             <span class="hdng-big a_saving"><%=number_to_currency(user_favorite.favorite_loan["saving"],  :unit=> "$", precision: 0)%></span>
+                             <span class="hdng-big a_saving"><%=number_to_currency(user_favorite.fav_loan_data["saving"],  :unit=> "$", precision: 0)%></span>
                              <p><span class="hiden-txt-mb">Expected</span> Savings</p>
                            </div>
                            <div class="inner-block inner-block-small">
 
-                             <span class="hdng-big a_monthly_payment"><%=number_to_currency(user_favorite.favorite_loan["monthly_payment"],  :unit=> "$", precision: 0)%></span>
+                             <span class="hdng-big a_monthly_payment"><%=number_to_currency(user_favorite.fav_loan_data["monthly_payment"],  :unit=> "$", precision: 0)%></span>
                              <p><span class="hiden-txt-mb">Monthly</span> Payment</p>
                            </div>
                            <div class="inner-block inner-block-small">
                              <span class="hdng-big a_closing_cost"><%=
 
-                               number_to_currency(user_favorite.favorite_loan["closing_cost"],  :unit=> "$", precision: 0)%>
+                               number_to_currency(user_favorite.fav_loan_data["closing_cost"],  :unit=> "$", precision: 0)%>
                                </span>
                              <p><span class="hiden-txt-mb">Total Closing</span> Costs</p>
                            </div>
                          </div>
                          <div class="inner-block-btn">
-                             <img src= "<%= user_favorite.favorite_loan.present? ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="loan" class="wishlist-icn-fill favorite-added add-fav", id="<%=user_favorite[:id]%>", data-favorite="<%= user_favorite.to_json %>">
+                             <img src= "<%= user_favorite.fav_loan_data.present? ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="loan" class="wishlist-icn-fill favorite-added add-fav", id="<%=user_favorite[:id]%>", data-favorite="<%= user_favorite.to_json %>">
 
                         </div>
                          <div class="inner-block-btn">
-                             <a href="" data-toggle="modal" data-target="#view-details-popup-<%=user_favorite.favorite_loan["term"]%>years<%=index%>" class="dtail-btn">View Details</a>
+                             <a href="" data-toggle="modal" data-target="#view-details-popup-<%=user_favorite.fav_loan_data["term"]%>years<%=index%>" class="dtail-btn">View Details</a>
                            <a href="" class="lendr-web-link">Lender Website</a>
                          </div>
                          <div class="mb-scroll-icn">
-                           <a href="" data-toggle="modal" data-target="#view-details-popup-<%=user_favorite.favorite_loan["term"]%>years<%=index%>"><i class="fa fa-angle-right"></i></a>
+                           <a href="" data-toggle="modal" data-target="#view-details-popup-<%=user_favorite.fav_loan_data["term"]%>years<%=index%>"><i class="fa fa-angle-right"></i></a>
                          </div>
                     </div>
-                    <%= render partial: "partials/favorite_modal" , locals: { program: user_favorite.favorite_loan, index: index,final_rate:  number_with_precision(user_favorite.favorite_loan["air"].to_s, :precision => 3)  } %>
+                    <%= render partial: "partials/favorite_modal" , locals: { program: user_favorite.fav_loan_data, index: index,final_rate:  number_with_precision(user_favorite.fav_loan_data["air"].to_s, :precision => 3)  } %>
                   <% end %>
                 <% end %>
               <% end %>

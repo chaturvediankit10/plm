@@ -56,7 +56,7 @@
           </div>
           <div class="inner-block-btn">
             <%if current_user.present? %>
-              <img src= "<%= current_user.user_favorites.present? && current_user.user_favorites.pluck(:program_id).include?(program[:id]) ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="" class="wishlist-icn-fill favorite", id="favorite_<%=program[:id]%>", data-program="<%= program.to_json %>" >
+              <img src= "<%= current_user.user_favorites.present? && current_user.user_favorites.pluck(:fav_loan_program_id).include?(program[:id]) ? "/assets/red_heart.png" : "/assets/heart_03.png" %>" alt="" class="wishlist-icn-fill favorite", id="favorite_<%=program[:id]%>", data-program="<%= program.to_json %>" >
             <% else %>
               <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" data-toggle="modal" data-target="#login-popup">
               <!-- <a href="" data-toggle="modal" data-target="#login-popup" class="login-btn">LOGIN</a> -->
@@ -79,7 +79,7 @@
 <script>
   $( document ).ready(function() {
     $(".favorite").click(function() {
-        var program_id = parseInt(this.id.split("_")[1])
+        var fav_loan_program_id = parseInt(this.id.split("_")[1])
         var img_id = this.id
         // var form_data = {}
         // var program = $('#program-'+program_id.toString()).val();
@@ -96,7 +96,7 @@
             type: "GET",
             dataType: "json",
             // data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url,program: program},
-            data: {program_id: program_id,program: program},
+            data: {fav_loan_program_id: fav_loan_program_id,program: program},
             success: function(response) {
               if (response.data == "create") {
                 document.getElementById(img_id).src = "/assets/red_heart.png";

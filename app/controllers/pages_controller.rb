@@ -50,14 +50,14 @@ class PagesController < SearchController
 
   def favorite_program
     if current_user.present?
-      if current_user.user_favorites.pluck(:program_id).include?(params[:program_id].to_i)
-        UserFavorite.find_by_program_id(params[:program_id]).delete
+      if current_user.user_favorites.pluck(:fav_loan_program_id).include?(params[:fav_loan_program_id].to_i)
+        UserFavorite.find_by_fav_loan_program_id(params[:fav_loan_program_id]).delete
         data = "delete"
       else
-        user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program_id].to_i, favorite_loan: params[:program])
+        user_favorite =  current_user.user_favorites.find_or_create_by(fav_loan_program_id: params[:fav_loan_program_id].to_i, fav_loan_data: params[:program])
         data = "create"
       end
-      # user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program_id].to_i, favorite_data: params[:form_data].except(:authenticity_token, :utf8),favorite_url: params[:favorite_url], favorite_loan: params[:program])
+      # user_favorite =  current_user.user_favorites.find_or_create_by(fav_loan_program_id: params[:fav_loan_program_id].to_i, favorite_data: params[:form_data].except(:authenticity_token, :utf8),fav_search_url: params[:fav_search_url], fav_loan_data: params[:program])
       
       respond_to do |format|
         format.json  { render :json => {status: true,data: data} }
@@ -71,7 +71,7 @@ class PagesController < SearchController
 
   def add_favorite_program
     if current_user.present?
-      user_favorite =  current_user.user_favorites.find_or_create_by(program_id: params[:program][:id].to_i, favorite_loan: params[:program][:favorite_loan])
+      user_favorite =  current_user.user_favorites.find_or_create_by(fav_loan_program_id: params[:program][:id].to_i, fav_loan_data: params[:program][:fav_loan_data])
       respond_to do |format|
         format.json  { render :json => {status: true} }
       end
@@ -80,13 +80,13 @@ class PagesController < SearchController
 
   def favorite_searches
     if current_user.present?
-      if current_user.user_favorites.find_by_favorite_search(params[:form_data].except(:authenticity_token, :utf8)) == nil
-        user_favorite_search = current_user.user_favorites.find_or_create_by(favorite_search: params[:form_data].except(:authenticity_token, :utf8),favorite_url: params[:favorite_url])
+      if current_user.user_favorites.find_by_fav_search_data(params[:form_data].except(:authenticity_token, :utf8)) == nil
+        user_favorite_search = current_user.user_favorites.find_or_create_by(fav_search_data: params[:form_data].except(:authenticity_token, :utf8),fav_search_url: params[:fav_search_url])
         respond_to do |format|
           format.json  { render :json => {status: true} }
         end
-      elsif current_user.user_favorites.find_by_favorite_search(params[:form_data].except(:authenticity_token, :utf8)).present?
-        current_user.user_favorites.find_by_favorite_search(params[:form_data].except(:authenticity_token, :utf8)).delete
+      elsif current_user.user_favorites.find_by_fav_search_data(params[:form_data].except(:authenticity_token, :utf8)).present?
+        current_user.user_favorites.find_by_fav_search_data(params[:form_data].except(:authenticity_token, :utf8)).delete
         respond_to do |format|
           format.json  { render :json => {status: false} }
         end
@@ -100,7 +100,7 @@ class PagesController < SearchController
 
   def favorite_search_heart
     if current_user.present?
-      if current_user.user_favorites.find_by_favorite_search(params[:form_data].except(:authenticity_token, :utf8)) == nil
+      if current_user.user_favorites.find_by_fav_search_data(params[:form_data].except(:authenticity_token, :utf8)) == nil
         respond_to do |format|
           format.json  { render :json => {status: true} }
         end

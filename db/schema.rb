@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190724141335) do
+ActiveRecord::Schema.define(version: 20190822071603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
-  enable_extension "pg_stat_statements"
   enable_extension "pg_trgm"
+  enable_extension "hstore"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -86,6 +85,7 @@ ActiveRecord::Schema.define(version: 20190724141335) do
     t.string "state_eligibility"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state", default: [], array: true
   end
 
   create_table "calculator_home_affordabilities", force: :cascade do |t|
@@ -1704,13 +1704,12 @@ ActiveRecord::Schema.define(version: 20190724141335) do
 
   create_table "user_favorites", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "loan_tek_data_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "program_id"
-    t.text "favorite_data"
-    t.string "favorite_url"
-    t.index ["loan_tek_data_id"], name: "index_user_favorites_on_loan_tek_data_id"
+    t.integer "fav_loan_program_id"
+    t.string "fav_search_url"
+    t.string "fav_loan_data"
+    t.text "fav_search_data"
     t.index ["user_id"], name: "index_user_favorites_on_user_id"
   end
 
