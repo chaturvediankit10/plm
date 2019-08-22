@@ -421,19 +421,4 @@ $(document).ready(function () {
    $('#loan_purpose').change(function () {
       $('#adv_loan_purpose').val($('#loan_purpose').val())
     });
-
-    $('#zip').change(function(){
-      if ($(this).val().length>2) {
-        $.ajax({
-          url: '/set_state_by_zip_code',
-          type: 'GET',
-          dataType: 'json',
-          data: {zip: $(this).val()},
-          success: function(response){
-            $('#state_code').val(response.state);
-          }
-        })
-      }
-    });
-
   });
