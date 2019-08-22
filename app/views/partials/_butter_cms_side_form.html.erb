@@ -64,7 +64,7 @@
               </div>
               <div>
                 <span class="wpcf7-form-control-wrap your-subject">
-                  <%= f.url_field :website, autofocus: true, placeholder: "Website",class: "wpcf7-form-control wpcf7-text" %>
+                  <%= f.url_field :website, autofocus: true, placeholder: "Website",class: "" %>
                 </span>
               </div>
               <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
@@ -179,9 +179,9 @@
           },
           email: true
       },
-      "website":{
-        required: true
-      },
+      // "website":{
+      //   required: true
+      // },
       "message":{
           required: true
       }
@@ -194,9 +194,9 @@
           required: "Please enter your email.",
           email: "Please enter valid email address.",
       },
-      "website":{
-        required: "Please enter wesite."
-      },
+      // "website":{
+      //   required: "Please enter wesite."
+      // },
       "message":{
           required: "Please enter your message."
       }
@@ -280,7 +280,7 @@
               document.getElementById('image-error').innerHTML = 'This browser does not support FileReader.'
             }
           } else {
-            document.getElementById('image-error').innerHTML = 'Supported file types: .pdf, .doc/.docx, .rtf, .txt'
+            document.getElementById('image-error').innerHTML = '(Supported file types: .pdf, .doc/.docx, .rtf, .txt)'
             // $('#image-error').val('Supported file types: .jpg, .pdf, .doc')
             // alert("Pls select only images");
           }
@@ -300,10 +300,12 @@
   font-size: 10px;
   color: black;
   margin-left: 6px;
+  color: gray;
 }
   p#image-holder {
     font-weight: normal;
     text-transform: inherit;
+    color: black;
 }
 </style>
 <script type="text/javascript">
