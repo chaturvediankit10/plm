@@ -106,8 +106,8 @@
                               <h3 style="font-size: 18px;margin: 0px;padding: 5px 15px;background-color: #1d75bc;color: #fff;font-weight: normal;">Newly Added Favorites</h3>
                               <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="border: 1px solid #ccc">
                                 <thead>
-                                  <%fav_search = @favorites.where.not(favorite_search: nil) %>
-                                  <%fav_loan = @favorites.where.not(favorite_loan: nil) %>
+                                  <%fav_search = @favorites.where.not(fav_search_data: nil) %>
+                                  <%fav_loan = @favorites.where.not(fav_loan_data: nil) %>
                                   <tr>
                                     <th style="color: #333;margin: 0px;padding: 10px 15px;background-color: #ededed;border-bottom: 1px solid #ccc;}"></th>
                                     <th style="color: #333;margin: 0px;padding: 10px 15px;background-color: #ededed;border-bottom: 1px solid #ccc;}">Past Week</th>
@@ -150,13 +150,13 @@
                                 <% fav_search.to_a.each do |fav| %>
                                 <tr>
                                   <td style="padding: 10px; background-color: #fff;"><%= fav.created_at.strftime("%B %d, %Y") %></td>
-                                  <td style="padding: 10px;background-color: #fff;"><%= fav.favorite_search["zip"] %></td>
-                                  <td style="padding: 10px;background-color: #fff;"><%= fav.favorite_search["loan_purpose"] %></td>
-                                  <td style="padding: 10px;background-color: #fff;">$<%=fav.favorite_search["home_price"] %></td>
-                                  <td style="padding: 10px;background-color: #fff;">$<%= fav.favorite_search["down_payment"] %></td>
-                                  <td style="padding: 10px;background-color: #fff;"><%= fav.favorite_search["credit_score"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;"><%= fav.fav_search_data["zip"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;"><%= fav.fav_search_data["loan_purpose"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;">$<%=fav.fav_search_data["home_price"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;">$<%= fav.fav_search_data["down_payment"] %></td>
+                                  <td style="padding: 10px;background-color: #fff;"><%= fav.fav_search_data["credit_score"] %></td>
                                   <td style="padding: 10px;background-color: #fff;"><a href="http://www.pureloan.com/users/edit">Full Search Details</a></td>
-                                  <td style="padding: 10px;background-color: #fff;"><a href="<%=fav.favorite_url%>">Search</a></td>
+                                  <td style="padding: 10px;background-color: #fff;"><a href="<%=fav.fav_search_url%>">Search</a></td>
                                 </tr>
                                 <% end %>
                               </table>
@@ -174,20 +174,20 @@
                                   <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;">
                                     <img src="http://www.pureloan.com/assets/NewRez.png" width="50">
                                   <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
-                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= fav.favorite_loan["air"]%>% Rate</h1>
-                                    <span style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0;"><%= fav.favorite_loan["apr"].to_f.round(3) %>% APR</span>
-                                    <p style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0; text-transform: uppercase;"><%= fav.favorite_loan["program_name"] %></p>
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= fav.fav_loan_data["air"]%>% Rate</h1>
+                                    <span style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0;"><%= fav.fav_loan_data["apr"].to_f.round(3) %>% APR</span>
+                                    <p style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0; text-transform: uppercase;"><%= fav.fav_loan_data["program_name"] %></p>
                                   </td>
                                   <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
-                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= number_to_currency(fav.favorite_loan["saving"],  :unit=> "$", precision: 0)%></h1>
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= number_to_currency(fav.fav_loan_data["saving"],  :unit=> "$", precision: 0)%></h1>
                                     <span style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0;">Expected Savings</span>
                                   </td>
                                   <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
-                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= number_to_currency(fav.favorite_loan["monthly_payment"],  :unit=> "$", precision: 0) %></h1>
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"><%= number_to_currency(fav.fav_loan_data["monthly_payment"],  :unit=> "$", precision: 0) %></h1>
                                     <span style="font-weight: normal;float: left;font-size: 14px;color: #333;width: 100%;margin: 0;">Monthly Payment</span>
                                   </td>
                                   <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
-                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"> <%= number_to_currency(fav.favorite_loan["closing_cost"],  :unit=> "$", precision: 0) %></h1>
+                                    <h1 style="font-size:16px; margin: 0; padding: 0; font-family: inherit;"> <%= number_to_currency(fav.fav_loan_data["closing_cost"],  :unit=> "$", precision: 0) %></h1>
                                     <span style="font-weight: normal;float: left;font-size: 12px;color: #333;width: 100%;margin: 0;">Total Closing Coste</span>
                                   </td>
                                   <td style="padding: 10px 15px; background-color: #fff;border-bottom: 1px solid #ddd;" nowrap="nowrap">
