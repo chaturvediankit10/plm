@@ -5,3 +5,5 @@ log/development.log
 db/schema.rb
 config/database.yml
 public/assets
+app/assets/.DS_Store
+app/views/.DS_Store
