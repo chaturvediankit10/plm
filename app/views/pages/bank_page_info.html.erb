@@ -1,0 +1,76 @@
+<section class="bank-content">
+  <div class="container">    
+    <div class="bank-details">
+      <div class="row">
+        <div class="col-lg-2 col-md-12">
+          <div class="bank-logo">
+            <img src="/assets/<%= @bank.name%>.png">
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-12">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">
+              <p>
+                <span class="title-head">Bank Name:</span>
+                <span class="bank-content"><%= @bank.name%></span>
+              </p>
+             </div>
+             <div class="col-md-4 col-sm-6">
+              <p>
+                <span class="title-head">NMLS:</span>
+                <span class="bank-content"><%= Program::NMLS[@bank.name] %></span>
+              </p>
+             </div>
+             <div class="col-md-4 col-sm-6">
+               <p>
+                <span class="title-head">Phone:</span>
+                <span class="bank-content"><%= @bank.phone%></span>
+              </p>
+             </div>
+
+              <div class="col-md-4 col-sm-6">
+               <p>
+                <span class="title-head">Address1:</span>
+                <span class="bank-content"><%= @bank.address1%></span>
+                </p>
+              </div>
+             <div class="col-md-4 col-sm-6">
+               <p>
+                <span class="title-head">Address2:</span>
+                <span class="bank-content"><%= @bank.address2%></span>
+              </p>
+             </div>
+             <div class="col-md-4 col-sm-6">
+               <p>
+                <span class="title-head">City:</span>
+                <span class="bank-content"><%= @bank.city%></span>
+              </p>
+             </div>
+             <div class="col-md-4 col-sm-6">
+               <p>
+                <span class="title-head">state code:</span>
+                <span class="bank-content"><%= @bank.state_code%></span>
+              </p>
+             </div>
+
+             <div class="col-md-4 col-sm-6">
+               <p>
+                <span class="title-head">Zip:</span>
+                <span class="bank-content"><%= @bank.zip%></span>
+              </p>
+             </div>
+             <div class="col-md-4 col-sm-6">
+               <p>
+                <span class="title-head">State Eligibility:</span>
+                <span class="bank-content"><%= @bank.state_eligibility%></span>
+              </p>
+             </div>
+           </div> 
+         </div>
+    </table>
+  </div>
+</section>
+
+
+
+
