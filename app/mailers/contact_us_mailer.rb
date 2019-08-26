@@ -1,6 +1,6 @@
 class ContactUsMailer < ApplicationMailer
  #Mailer for sending user's query to admin
-  default from: "from@example.com"
+  default from: "hello@pureloan.com"
   def contact_us_email(admin_user,query)
     @query= query
     mail(to: admin_user, subject: "Query From "+query[:name])
