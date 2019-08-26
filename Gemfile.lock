@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/PureLoan/APIRead.git
+  revision: f2b21b6a0ed937eef94757213c576339c7c3431d
+  specs:
+    search_api (0.1.0)
+      activesupport
+      finance_math
+      jquery-datatables
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,16 +72,16 @@ GEM
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
-    autoprefixer-rails (9.6.1)
+    autoprefixer-rails (9.6.1.1)
       execjs
     aws-eventstream (1.0.3)
-    aws-sdk (2.11.336)
-      aws-sdk-resources (= 2.11.336)
-    aws-sdk-core (2.11.336)
+    aws-sdk (2.11.340)
+      aws-sdk-resources (= 2.11.340)
+    aws-sdk-core (2.11.340)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.336)
-      aws-sdk-core (= 2.11.336)
+    aws-sdk-resources (2.11.340)
+      aws-sdk-core (= 2.11.340)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
@@ -133,6 +142,7 @@ GEM
     ffi (1.11.1)
     figaro (1.1.1)
       thor (~> 0.14)
+    finance_math (1.0.5)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -235,7 +245,7 @@ GEM
     puma (3.12.1)
     raabro (1.1.6)
     rack (2.0.7)
-    rack-protection (2.0.5)
+    rack-protection (2.0.7)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -380,6 +390,7 @@ DEPENDENCIES
   roo (~> 2.8.0)
   rufus-scheduler (~> 3.4, >= 3.4.2)
   sassc
+  search_api!
   selenium-webdriver
   sidekiq (~> 5.1, >= 5.1.1)
   spring
