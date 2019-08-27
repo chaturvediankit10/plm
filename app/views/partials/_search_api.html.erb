@@ -59,7 +59,7 @@
         <div class="form-group">
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'fha', 'fha', (params[:commit].present? ? (params[:fha].present? ? true : false) : true), :class => "fvrt-search"  %>FHA (Income-based)
+              <%= check_box_tag 'fha', 'fha', (params[:fha].present? ? true : false), :class => "fvrt-search"  %>FHA (Income-based)
                <span class="checkmark"></span>
             </label>
           </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'va', 'va', (params[:commit].present? ? (params[:va].present? ? true : false) : true), :class => "fvrt-search" %>Military (VA)
+              <%= check_box_tag 'va', 'va', (params[:va].present? ? true : false), :class => "fvrt-search" %>Military (VA)
                <span class="checkmark"></span>
             </label>
           </div>
@@ -82,7 +82,7 @@
           </div> -->
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'usda', 'usda', (params[:commit].present? ? (params[:usda].present? ? true : false) : true), :class => "fvrt-search" %> Rural (USDA)
+              <%= check_box_tag 'usda', 'usda', (params[:usda].present? ? true : false), :class => "fvrt-search" %> Rural (USDA)
                <span class="checkmark"></span>
             </label>
           </div>
