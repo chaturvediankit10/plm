@@ -197,14 +197,13 @@ class PagesController < SearchController
         if !params[:attachment].nil? && !params[:attachment].blank?
           file = params[:attachment].tempfile.path
           file_name = params[:attachment].original_filename
+          flash[:notice] = "Thank you! Your message has been submitted."
         else
           file = ""
           file_name = ""
         end
         ResearchMailer.research_email(rec, params[:name], params[:email], params[:website], params[:message],file_name,file).deliver
       end
-    flash[:notice] = 'Thank you! Your message has been submitted.'
-    # flash[:notice] = 'Research submitted successfully.'
     redirect_back fallback_location: root_path
   end
 
