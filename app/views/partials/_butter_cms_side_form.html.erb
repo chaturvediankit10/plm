@@ -54,23 +54,23 @@
               <div class="screen-reader-response"></div>
               <div>
                 <span class="wpcf7-form-control-wrap your-name">
-                  <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "wpcf7-form-control wpcf7-text wpcf7-validates-as-required" %>
+                  <%= f.text_field :name, autofocus: true, placeholder: "Name",:required => true, id: 'f1' %>
                 </span>
               </div>
               <div>
                 <span class="wpcf7-form-control-wrap your-email">
-                  <%= f.email_field :email, autofocus: true, placeholder: "Email",class: "wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" %>
+                  <%= f.email_field :email, autofocus: true, placeholder: "Email",class: "wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email", id: 'f2' %>
                 </span>
               </div>
               <div>
                 <span class="wpcf7-form-control-wrap your-subject">
-                  <%= f.url_field :website, autofocus: true, placeholder: "Website",class: "" %>
+                  <%= f.url_field :website, autofocus: true, placeholder: "Website",class: "", id: 'f3'%>
                 </span>
               </div>
               <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
               <div>
                 <span class="wpcf7-form-control-wrap your-message">
-                  <%= f.text_area :message, size: "55x5", autofocus: true, placeholder: "Research summary and key insights", style: 'max-width: 100%', class: "wpcf7-form-control wpcf7-textarea"%>
+                  <%= f.text_area :message, size: "55x5", autofocus: true, placeholder: "Research summary and key insights", style: 'max-width: 100%', class: "wpcf7-form-control wpcf7-textarea", id: 'f4'%>
                 </span>
               </div>
               <div>
@@ -81,9 +81,10 @@
                   <b><p id="image-holder" style="margin-left: 35px; margin-bottom: 30px; margin-right: 30px;"></p></b>
                 </span>
               </div>
+              
               <p>
                 <%#= f.submit "SHARE RESEARCH", class: "rates-btn btn btn-success success",id: "submit"%>
-                <%= f.submit "SHARE RESEARCH", class: "rates-btn btn btn-success success",type: "submit",value: "SUBMIT"%>
+                <%= f.submit "SHARE RESEARCH", class: "rates-btn btn btn-success success",type: "submit", value: "SUBMIT"%>
 
                 <span class="ajax-loader"></span>
               </p>
@@ -313,20 +314,34 @@
 $(function(){
     $('#research_form').on('submit', function(e){
         e.preventDefault();
-        $('.loader').show();
-        $.ajax({
-            url:  '/research_contact_us_email', //this is the submit URL
-            type: 'POST', //or POST
-            data: $('#research_form').serialize(),
-            success: function(data){
-              $('.loader').hide();
-              alert('Thank you! Your message has been submitted.');
-              $("#research_contact_form").modal("hide");
-                   //$('#research_form').reset();
-                   // $('#research_form').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
-
-            }
-        });
+        //console.log(101);
+        // $('.loader').show();
+        var val1, val2, val3, val4, val5;
+        val1 = document.getElementById("f1").value;
+        val2 = document.getElementById("f2").value;
+        val3 = document.getElementById("f3").value;
+        val4 = document.getElementById("f4").value; //Define variable values
+        val5 = document.getElementById("image").value;
+        if (val1.length != "" && val2.length != "" && val3.length !="" && val4.length != "" && val5.length != "" ){
+          $.ajax({
+              url:  '/research_contact_us_email',//this is the submit URL
+              type: 'POST', //or POST
+              data: $('#research_form').serialize(),
+              success: function(data){
+                //console.log(101);
+                $('.loader').hide();
+                alert('Thank you! Your message has been submitted.');
+                $("#research_contact_form").modal("hide");
+                    $('#research_form').reset();
+                    // $('#research_form').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
+              }
+          });
+        }
+        else{
+          // $('.loader').hide();
+          alert('Sorry, please fill the correct values');
+          $("#research_contact_form").modal("hide");
+        }
     });
 });
 </script>
