@@ -81,11 +81,9 @@
                   <b><p id="image-holder" style="margin-left: 35px; margin-bottom: 30px; margin-right: 30px;"></p></b>
                 </span>
               </div>
-              
               <p>
                 <%#= f.submit "SHARE RESEARCH", class: "rates-btn btn btn-success success",id: "submit"%>
                 <%= f.submit "SHARE RESEARCH", class: "rates-btn btn btn-success success",type: "submit", value: "SUBMIT"%>
-
                 <span class="ajax-loader"></span>
               </p>
             <% end %>
@@ -258,6 +256,7 @@
 
 <script type="text/javascript">
       $(document).ready(function() {
+        document.getElementById('image-error').innerHTML = '(Supported file types: .pdf, .doc/.docx, .rtf, .txt)'
         $("#image").on('change', function() {
           //Get count of selected filesW
           var countFiles = $(this)[0].files.length;
@@ -309,7 +308,7 @@
     color: black;
 }
 </style>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 $(function(){
     $('#research_form').on('submit', function(e){
@@ -344,4 +343,4 @@ $(function(){
         }
     });
 });
-</script>
+</script> -->
