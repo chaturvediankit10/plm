@@ -176,22 +176,25 @@
     })
 
      function matchFavoriteSearch(){
-      var form_data = {}
-      $('#search_form').serializeArray().filter((item)=>{
-          form_data[item.name] = item.value
-      })
-      $.ajax({
-        url: '/favorite_search_heart',
-        type: 'GET',
-        data: {form_data: form_data},
-        success: function(response) {
-          if (response.status) {
-            $('#favorite_search').find($(".fa")).removeClass('fa fa-heart').addClass('fa fa-heart-o');
-          }else{
-            $('#favorite_search').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
+      current_user = <%= raw current_user.present? %>
+      if (current_user) {
+        var form_data = {}
+        $('#search_form').serializeArray().filter((item)=>{
+            form_data[item.name] = item.value
+        })
+        $.ajax({
+          url: '/favorite_search_heart',
+          type: 'GET',
+          data: {form_data: form_data},
+          success: function(response) {
+            if (response.status) {
+              $('#favorite_search').find($(".fa")).removeClass('fa fa-heart').addClass('fa fa-heart-o');
+            }else{
+              $('#favorite_search').find($(".fa")).removeClass('fa fa-heart-o').addClass('fa fa-heart');
+            }
           }
-        }
-      })
+        })
+      }
      }
   });
 
