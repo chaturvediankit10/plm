@@ -5,6 +5,7 @@
 =end
 class PagesController < SearchController
   include InitilizeZipCode
+  include ActiveTab
   before_action :authenticate_user!, only: [:secret]
   before_action :update_statue, only: [:change_status, :user_mass_activate, :user_mass_deactivate]
 
@@ -30,6 +31,7 @@ class PagesController < SearchController
   def refinance
     params[:loan_purpose] = "Refinance" if params[:loan_purpose].nil?
     initilize_state_and_zip_code
+    initilize_term_loan_type if params[:commit].present? && params[:ajax_call].nil?
     api_search if params[:commit].present?
     if params[:loan_type] == "ARM" && params[:arm_basic].present?
       @arm_term = 51
@@ -39,6 +41,7 @@ class PagesController < SearchController
   end
 
   def mortgage
+    initilize_term_loan_type if params[:commit].present? && params[:ajax_call].nil?
     api_search if params[:commit].present?
     initilize_state_and_zip_code
     if params[:loan_type] == "ARM" && params[:arm_basic].present?

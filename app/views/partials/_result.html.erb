@@ -1,9 +1,22 @@
 <div style="position: relative; clear: both;">
   <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
   <ul class="nav nav-tabs rates-tab">
-    <li class="<%= @arm_term.to_s == "30" && params[:loan_type] != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li>
-    <li class="<%= @arm_term.to_s == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
-    <li  class="<%= (params[:loan_type] == "ARM" && @arm_basic == "5/1") ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li>
+    <li class="<%= @arm_term.to_s == "30" ? 'active li-30years' : 'li-30years' %>"><a data-toggle="tab" href="#30years" data-tab="30" class="tab-btn js-trigger">30 Year</a></li>
+
+    <li class="<%= @arm_term.to_s == "15" ? 'active li-15years' : 'li-15years' %>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li>
+
+    <li class="<%= @arm_term.to_s == "10" ? 'active li-10years' : 'li-10years' %>"><a data-toggle="tab" href="#10years" data-tab="10" class="tab-btn js-trigger">10 Year</a></li>
+
+    <li class="<%= @arm_term.to_s == "71" ? 'active li-71years' : 'li-71years' %>"><a data-toggle="tab" href="#71years" data-tab="71" class="tab-btn js-trigger">7/1 ARM</a></li>
+
+    <li class="<%= @arm_term.to_s == "51" ? 'active li-51years' : 'li-51years' %>"><a data-toggle="tab" href="#51years" data-tab="51" class="tab-btn js-trigger">5/1 ARM</a></li>
+
+
+    <!-- <li class="<%#= @arm_term.to_s == "30" && params[:loan_type] != "ARM"? 'active' : '' %>" ><a data-toggle="tab" data-tab="30" href="#30years" class="tab-btn js-trigger">30 Year</a></li> -->
+
+   <!--  <li class="<%#= @arm_term.to_s == "15" ? "active" : ""%>"><a data-toggle="tab" href="#15years" data-tab="15" class="tab-btn js-trigger">15 Year</a></li> -->
+
+   <!--  <li  class="<%#= (params[:loan_type] == "ARM" && @arm_basic == "5/1") ? "active" : ""%>"><a data-toggle="tab" href="#51years" data-tab="5" class="tab-btn js-trigger">5/1 ARM</a></li> -->
   </ul>
   <div class="tab-content rates-tab-content aaa" style="position: relative;">
     <%= render partial: "partials/tabs", locals: { term_n: @arm_term.to_i, result: @result }%>

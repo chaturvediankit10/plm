@@ -60,6 +60,8 @@
           <div class="col-sm-2 col-xs-6">
             <!-- <button class="rates-btn hm-search-btn-nw">Get Rates</button> -->
             <%= submit_tag "Get Rates", :class => "rates-btn hm-search-btn-nw", :id => "get_rates"  %>
+
+          <!-- <input type="button" class="rates-btn hm-search-btn-nw" id="get_rates" onclick="get_program_results()" value="Get Rates" /> -->
             <% if current_user.present? %>
               <center><a href="JavaScript:void(0);" class="price-alert-btn inner-page-link favorite_search" id="favorite_search">
                 <i class="fa fa-heart-o"></i>
@@ -140,6 +142,40 @@
       $('#loan_purpose').val('Refinance');
       $('#adv_loan_purpose').val('Refinance');
     }
+    
+    function active_tab() {
+      $('.rates-tab li.active').removeClass('active');
+      if (<%= raw params[:term_30_list].present? ? true : false %>) {
+        $('.li-30years').addClass("active");
+        load_more(30, true);
+        average_closing_cost(30,20)
+      }else{
+        if (<%= raw params[:term_15_list].present? ? true : false %>) {
+          $('.li-15years').addClass("active");
+          load_more(15, true);
+          average_closing_cost(15,20)
+        }else{
+          if (<%= raw params[:term_10_list].present? ? true : false %>) {
+            $('.li-10years').addClass("active");
+            load_more(10, true);
+            average_closing_cost(10,20)
+          }else{
+            if (<%= raw params[:arm_basic_7_list].present? ? true : false %>) {
+              $('.li-71years').addClass("active");
+              load_more(71, true);
+              average_closing_cost(71,20)
+            }else{
+              if (<%= raw params[:arm_basic_5_list].present? ? true : false %>) {
+                $('.li-51years').addClass("active");
+                load_more(51, true);
+                average_closing_cost(51,20)
+              }
+            }
+          }
+        }
+      }
+    }
+    active_tab();
     get_form_submitted(form_submitted);
 
     $(".favorite_search").click(function() {

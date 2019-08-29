@@ -7,12 +7,33 @@ function get_form_submitted(flag){
 function get_program_results(){
   $(".suitable-program").hide()
   $(".loader").show();
-  $('.term_10').prop('checked', false);
-  $('.arm_basic_7').prop('checked', false);
-  $('.arm_basic_5').prop('checked', false);
-  $('.term_15').prop('checked', false);
-  $('.term_30').prop('checked', true);
   var data = $("#search_form").serialize();
+  $('.rates-tab li.active').removeClass('active');
+  if ($('.term_30').prop('checked')) {
+    data = data+'&term=30&loan_type=Fixed'
+    $('.li-30years').addClass("active");
+  }else{
+    if ($('.term_15').prop('checked')) {
+      data = data+'&term=15&loan_type=Fixed'
+      $('.li-15years').addClass("active");
+    }else{
+      if ($('.term_10').prop('checked')) {
+        data = data+'&term=10&loan_type=Fixed'
+        $('.li-10years').addClass("active");
+      }else{
+        if ($('.arm_basic_7').prop('checked')) {
+          data = data+'&arm_basic=7/1&loan_type=ARM'
+          $('.li-71years').addClass("active");
+        }else{
+          if ($('.arm_basic_5').prop('checked')) {
+            data = data+'&arm_basic=5/1&loan_type=ARM'
+            $('.li-51years').addClass("active");
+          }
+        }
+      }
+    }
+  }
+
   data = data+'&commit=commit'
   $.ajax({
     url: '/',
@@ -118,45 +139,43 @@ $(document).ready(function () {
     load_more(tab_val, true);
     average_closing_cost(tab_val,20)
     $('.tab-btn').click(function (e) {
-      tab_val = $(this).text().replace ( /[^\d.]/g, '' ); 
+      tab_val = $(this).text().replace ( /[^\d.]/g, '' );
       // load_m`ore(tab_val);
     });
 
-    tab_term =  $('.active .js-trigger').attr('data-tab');
+    tab_term =  $('.active .js-trigger').attr('data-tab')
     $('.js-trigger').click(function(){
-      $(".loader").show();
-      $("#"+tab_term+"years").removeClass("active");
-      
-      tab_term = $(this).text().replace ( /[^\d.]/g, '' );
-      if (tab_term=="51") {
-        $(".arm-basic").show();
-        $("#term").val('');
-        $(".term").hide();
-        $('#loan_type').val("ARM");
-        $('.term_30').prop('checked', false);
-        $('.term_15').prop('checked', false);
-        $('.term_10').prop('checked', false);
-        $('.arm_basic_7').prop('checked', false);
-        $('.arm_basic_5').prop('checked', true);
+      $(".loader").show();  
+      $('.rates-tab li.active').removeClass('active');
+      tab_val = $(this).attr('data-tab');
+      $('.li-'+tab_val+'years').addClass("active");
+       var data = $("#search_form").serialize();
+        
+          if (tab_val=="30") {
+            data = data+'&term=30&loan_type=Fixed&ajax_call=true'
+            $('.li-30years').addClass("active");
+          }else{
+            if (tab_val=="15") {
+              data = data+'&term=15&loan_type=Fixed&ajax_call=true'
+              $('.li-15years').addClass("active");
+            }else{
+              if (tab_val=="10") {
+                data = data+'&term=10&loan_type=Fixed&ajax_call=true'
+                $('.li-10years').addClass("active");
+              }else{
+                if (tab_val=="71") {
+                  data = data+'&arm_basic=7/1&loan_type=ARM&ajax_call=true'
+                  $('.li-71years').addClass("active");
+                }else{
+                  if (tab_val=="51") {
+                    data = data+'&arm_basic=5/1&loan_type=ARM&ajax_call=true'
+                    $('.li-51years').addClass("active");
+                  }
+                }
+              }
+            }
+          }
 
-      }else{
-        $('#loan_type').val("Fixed");
-        if (tab_term=="15") {
-          $('.term_30').prop('checked', false);
-          $('.term_10').prop('checked', false);
-          $('.arm_basic_7').prop('checked', false);
-          $('.arm_basic_5').prop('checked', false);
-          $('.term_15').prop('checked', true);
-        }else{
-          $('.term_10').prop('checked', false);
-          $('.arm_basic_7').prop('checked', false);
-          $('.arm_basic_5').prop('checked', false);
-          $('.term_15').prop('checked', false);
-          $('.term_30').prop('checked', true);
-        }
-      }
-
-      var data = $("#search_form").serialize();
       data = data+'&commit=commit'
       $.ajax({
         url: '/',
@@ -304,21 +323,132 @@ $(document).ready(function () {
           $('#fannie_mae').prop('checked', fannie_mae);
         }
       });
+    
+      var selected_tabs = []
+      if($('.arm_basic_5').prop('checked')){
+        selected_tabs.push(51)
+      }
+      if($('.arm_basic_7').prop('checked')){
+        selected_tabs.push(71)
+      }
+      if($('.term_30').prop('checked')){
+        selected_tabs.push(30)
+      }
+      if($('.term_15').prop('checked')){
+        selected_tabs.push(15)
+      }
+      if($('.term_10').prop('checked')){
+        selected_tabs.push(10)
+      }
+      dynamic_tab();
 
-      $('.arm_basic_7, .arm_basic_5').click(function () {
-        if ($(this).prop("checked"))
-          $('#loan_type').val("ARM")
-        else
-          $('#loan_type').val('')
+      $('.arm_basic_5').click(function () {
+        if ($(this).prop("checked")){
+          selected_tabs.push(51);
+        }else{
+          if (selected_tabs.length>1) {
+            var index = selected_tabs.indexOf(51);
+            if (index > -1) {
+              selected_tabs.splice(index, 1);
+            }
+          }else{
+            $(this).prop('checked', true);
+          }
+        }
+        dynamic_tab();
       });
-
-      $('.term_30, .term_15, .term_10').click(function () {
-        if ($(this).prop("checked"))
-          $('#loan_type').val("Fixed")
-        else
-          $('#loan_type').val('')
+      $('.arm_basic_7').click(function () {
+        if ($(this).prop("checked")){
+          selected_tabs.push(71);
+        }else{
+          if (selected_tabs.length>1) {
+            var index = selected_tabs.indexOf(71);
+            if (index > -1) {
+              selected_tabs.splice(index, 1);
+            }
+          }else{
+            $(this).prop('checked', true);
+          }
+        }
+        dynamic_tab();
       });
+      $('.term_30').click(function () {
+        if ($(this).prop("checked")){
+          selected_tabs.push(30);
+        }else{
+          if (selected_tabs.length>1) {
+            var index = selected_tabs.indexOf(30);
+            if (index > -1) {
+              selected_tabs.splice(index, 1);
+            }
+          }else{
+            $(this).prop('checked', true);
+          }
+        }
+        dynamic_tab();
+      });
+      $('.term_15').click(function () {
+        if ($(this).prop("checked")){
+          selected_tabs.push(15);
+        }else{
+          if (selected_tabs.length>1) {
+            var index = selected_tabs.indexOf(15);
+            if (index > -1) {
+              selected_tabs.splice(index, 1);
+            }
+          }else{
+            $(this).prop('checked', true);
+          }
+        }
+        dynamic_tab();
+      });
+      $('.term_10').click(function () {
+        if ($(this).prop("checked")){
+          selected_tabs.push(10);
+        }else{
+          if (selected_tabs.length>1) {
+            var index = selected_tabs.indexOf(10);
+            if (index > -1) {
+              selected_tabs.splice(index, 1);
+            }
+          }else{
+            $(this).prop('checked', true);
+          }
+        }
+        dynamic_tab();
+      });
+      
+    function dynamic_tab(){
+      if (selected_tabs.includes(30)) {
+        $('.li-30years').show()
+      }else{
+        $('.li-30years').hide()
+      }
 
+      if (selected_tabs.includes(15)) {
+        $('.li-15years').show()
+      }else{
+        $('.li-15years').hide()
+      }
+
+      if (selected_tabs.includes(10)) {
+        $('.li-10years').show()
+      }else{
+        $('.li-10years').hide()
+      }
+
+      if (selected_tabs.includes(71)) {
+        $('.li-71years').show()
+      }else{
+        $('.li-71years').hide()
+      }
+
+      if (selected_tabs.includes(51)) {
+        $('.li-51years').show()
+      }else{
+        $('.li-51years').hide()
+      }
+    }
       var freddie_mac = false
       $('#freddie_mac_lp').click(function () {
         if ($(this).prop("checked")){

@@ -16,41 +16,37 @@
         </div> 
         <div class="form-group">
           <div class="checkbox radio">
-          <!--             <label class="radio-bx"> <input type="checkbox" name="" id="" value="" checked> 30 Year fixed
-              <span class="checkmark"></span>
-            </label> -->
-            <% term_30_flag = ((params[:term].present? && params[:term]!="30") || params[:arm_basic].present?) ? false : true %>
             <label class="radio-bx">
-              <%= check_box_tag :term, "30", term_30_flag , :class => "check term_30 fvrt-search" %>30 Year fixed
+              <%= check_box_tag 'term_30_list', '30', (params[:commit].present? ? (params[:term_30_list].present? ? true : false) : true), :class => "term_30 fvrt-search" %>30 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :term, "15",  params[:term]=="15" ? true : false , :class => "check term_15 fvrt-search" %>15 Year fixed
+              <%= check_box_tag 'term_15_list', '15', (params[:commit].present? ? (params[:term_15_list].present? ? true : false) : true), :class => "term_15 fvrt-search" %>15 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :term, "10",  params[:term]=="10" ? true : false , :class => "check term_10 fvrt-search" %>10 Year fixed
+              <%= check_box_tag 'term_10_list', '10', (params[:commit].present? ? (params[:term_10_list].present? ? true : false) : true), :class => "term_10 fvrt-search" %>10 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :arm_basic, "7/1",  params[:arm_basic]=="7/1" ? true : false , :class => "check arm_basic_7 fvrt-search" %>7/1 ARM
+              <%= check_box_tag 'arm_basic_7_list', "7/1", (params[:commit].present? ? (params[:arm_basic_7_list].present? ? true : false) : true), :class => "arm_basic_7 fvrt-search" %>7/1 ARM
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag :arm_basic, "5/1",  params[:arm_basic]=="5/1" ? true : false , :class => "check arm_basic_5 fvrt-search" %>5/1 ARM
+              <%= check_box_tag 'arm_basic_5_list', "5/1", (params[:commit].present? ? (params[:arm_basic_5_list].present? ? true : false) : true), :class => "arm_basic_5 fvrt-search" %>5/1 ARM
                <span class="checkmark"></span>
             </label>
           </div>
           <%= hidden_field_tag 'loan_type', @loan_type.present? ? @loan_type : 'Fixed' %>
-        </div>
+        </div>  
       </div>
     </div>
     <div class="col-md-3 col-sm-6">
