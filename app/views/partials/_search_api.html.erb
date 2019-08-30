@@ -29,13 +29,13 @@
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'term_10_list', '10', (params[:commit].present? ? (params[:term_10_list].present? ? true : false) : true), :class => "term_10 fvrt-search" %>10 Year fixed
+              <%= check_box_tag 'term_10_list', '10', (params[:term_10_list].present? ? true : false), :class => "term_10 fvrt-search" %>10 Year fixed
                <span class="checkmark"></span>
             </label>
           </div>
           <div class="checkbox radio">
             <label class="radio-bx">
-              <%= check_box_tag 'arm_basic_7_list', "7/1", (params[:commit].present? ? (params[:arm_basic_7_list].present? ? true : false) : true), :class => "arm_basic_7 fvrt-search" %>7/1 ARM
+              <%= check_box_tag 'arm_basic_7_list', "7/1", (params[:arm_basic_7_list].present? ? true : false), :class => "arm_basic_7 fvrt-search" %>7/1 ARM
                <span class="checkmark"></span>
             </label>
           </div>
