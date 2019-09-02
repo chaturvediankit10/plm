@@ -11,6 +11,7 @@ module InitilizeZipCode
     end
     city = City.find_by_zip(@zip_code.to_i) if @zip_code.present?
     @state_code = city.present? ? city.state_code : "All"
+    @city_name = city.present? ? city.city : nil
     @term = params[:term].present? ? params[:term] : "30"
     if @state_code == "All"
       @expert_list = Expert.all.sort_by { |m| [m.created_at] }.reverse
@@ -25,8 +26,8 @@ module InitilizeZipCode
       @zip_code = ('%05d' % params[:zip])
     end
     if params[:state].present? && params[:city].present?
-      city_name = params[:city].include?('+') ? params[:city].tr('+', ' ') : params[:city]
-      city = City.where(state_code: params[:state], city: city_name).first
+      @city_name = params[:city].include?('+') ? params[:city].tr('+', ' ') : params[:city]
+      city = City.where(state_code: params[:state], city: @city_name).first
       @zip_code = city.present? ? ('%05d' % city.zip) : ('%05d' % @zip_code)
     end
     @state_code = city.present? ? city.state_code : "All"

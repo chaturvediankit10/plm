@@ -1,12 +1,12 @@
 class CalculatorController < ApplicationController
+  include InitilizeZipCode
   before_action :load_default
 
   def index
     if(params[:commit].present? || params["monthly_property_tax"].present?)
       set_variables
     end
-
-    set_property_tax_and_home_insurance_and_price_to_rent_ratio_by_zip_code
+    set_property_tax_and_home_insurance
     calculate_loan_payment
     number_of_payments
     set_default_pmi_insurance
@@ -241,7 +241,7 @@ class CalculatorController < ApplicationController
   end
 
   def load_default
-    @zip_code = "88901"
+    initilize_state_and_zip_code
     @home_price = 300000
     @down_payment = 50000
     @mortgage_term = 30
@@ -256,7 +256,6 @@ class CalculatorController < ApplicationController
   end
 
   def set_variables
-    @zip_code = params[:zip_code] if params[:zip_code].present?
     @home_price = params[:home_price].gsub(/[$,]/,'').to_i if params[:home_price].present?
     @down_payment = params[:down_payment].gsub(/[$,]/,'').to_i if params[:down_payment].present?
     @mortgage_term = params[:mortgage_term].to_i if params[:mortgage_term].present?
@@ -268,32 +267,27 @@ class CalculatorController < ApplicationController
     return @default_pmi_insurance
   end
 
-  def set_property_tax_and_home_insurance_and_price_to_rent_ratio_by_zip_code
-    location = ZipCodes.identify(@zip_code)
-    if location.present?
-      state_name = location[:state_name]
-      state_code = location[:state_code]
-      city = location[:city]
-      property_tax = CalculatorPropertyTax.where(state_code: state_code)
+  def set_property_tax_and_home_insurance
+    if @state_code.present? && @state_code!="All" && @city_name.present?
+      property_tax = CalculatorPropertyTax.where(state_code: @state_code)
       if property_tax.present?
          @default_property_tax_perc =  property_tax.first.tax_rate
       end
 
-      home_insurance = CalculatorHomeInsurance.where(state_code: state_code)
+      home_insurance = CalculatorHomeInsurance.where(state_code: @state_code)
       if home_insurance.present?
         @default_annual_home_insurance = home_insurance.first.avg_annual_insurance
       end
 
-      price_to_rent_ratio = CalculatorPriceToRentRatio.where(city: city)
+      price_to_rent_ratio = CalculatorPriceToRentRatio.where(city: @city_name)
       if price_to_rent_ratio.present?
         @price_to_rent_ratio = price_to_rent_ratio.first.price_rent_ratio
       else
-        price_to_rent_ratio = CalculatorPriceToRentRatio.where(state_code: state_code)
+        price_to_rent_ratio = CalculatorPriceToRentRatio.where(state_code: @state_code)
         if price_to_rent_ratio.present?
           @price_to_rent_ratio = price_to_rent_ratio.first.price_rent_ratio
         end
       end
-
     end
   end
 

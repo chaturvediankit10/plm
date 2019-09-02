@@ -16,7 +16,7 @@
           </div>
           <div class="form-group">
             <label>Zip Code</label>
-            <%= text_field_tag :zip_code, @zip_code, :class=> "form-control" %>
+            <%= text_field_tag :zip, @zip_code, :class=> "form-control" %>
           </div>
           <div class="form-group search-section">
             <label>Purpose</label>
@@ -515,7 +515,6 @@
     monthly_hoa_dues = <%= raw @monthly_exp_breakdown[:hoa_dues][:monthly] %>
     monthly_expenses_sum = <%= raw @monthly_exp_breakdown[:monthly_expenses_sum][:monthly].round(2) %>
     monthly_property_tax = <%= raw @monthly_exp_breakdown[:property_tax][:monthly] %>
-
     var formatter2 = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
