@@ -262,21 +262,19 @@ class PagesController < SearchController
   #For update user details from admin panel ends here
 
   def expert_user_registration
-      @expert_user = Expert.new expert_params
-      # city_zip = params[:expert][:city].split(',')
-      city_zip = params[:expert]
-      # @expert_user.city = city_zip[0]
-      @expert_user.city = city_zip[:city]
-      # @expert_user.zip = city_zip[1]
-      @expert_user.zip = city_zip[:zip]
-      begin
-        @expert_user.save!
-        # flash[:notice] = 'You are succesfully registered as expert.'
-        flash[:notice] = 'Thank you! Your message has been submitted.'
-      rescue => e
-        flash[:danger] = "Your account already exists."
-      end
-      redirect_back fallback_location: root_path
+    @expert_user = Expert.new expert_params
+    # city_zip = params[:expert][:city].split(',')
+    # city_zip = params[:expert]
+    # @expert_user.city = city_zip[0]
+    # @expert_user.city = city_zip[:city]
+    # @expert_user.zip = city_zip[1]
+    # @expert_user.zip = city_zip[:zip]
+    if @expert_user.save
+      flash[:notice] = 'Thank you! Your message has been submitted.'
+    else
+      flash[:danger] = @expert_user.errors.full_messages.join unless @expert_user.valid?
+    end
+    redirect_back fallback_location: root_path
   end
 
   def expert_state_and_city
