@@ -56,7 +56,7 @@ module SearchHelper
 							end
 						else
 							other_value = other_value + value
-							adj_hash['Other'] = other_value
+							adj_hash['Others'] = other_value
 						end
 				end
 			end
@@ -88,19 +88,27 @@ module SearchHelper
 	end
 	def adj_key_value(program, primary_key)
 		begin
-			arr = %w[state_code term financing_type refinance_option property_type misc_adjuster premium_type interest lock_period program_category dti home_price down_payment point_mode arm_basic arm_advanced arm_caps arm_benchmark arm_margin full_doc  term loan_size]
-			program_arr = %w[loan_category term loan_type loan_purpose fha va usda]
+			boolean_arr = %w[fannie_mae freddie_mac fha va usda streamline full_doc fhlmc lpmi epmi fnma others]
+			arr = %w[state_code term financing_type refinance_option property_type misc_adjuster premium_type interest lock_period program_category dti home_price down_payment point_mode arm_basic arm_advanced arm_caps arm_benchmark arm_margin term loan_size]
+			program_arr = %w[loan_category term loan_type loan_purpose]
 			key_value = ''
 			primary_key.split("/").each do |key|
 				key = "credit_score" if key == "FICO"
 				key = "lock_period" if key == "LockDay"
 				key = "state_code" if key == "State"
 				key = "ltv" if key == "CLTV"
-
 				if arr.include?(key.underscore)
 					value = instance_variable_get("@"+key.underscore).to_s
 					key_value  = key_value + '/' if key_value.present? && value.present?
 					key_value = key_value + value if value.present?
+				elsif boolean_arr.include?(key.underscore)
+					if key.underscore == "others"
+						key_value  = key_value + '/' if key_value.present?
+						key_value = key_value + "Others"
+					else
+						key_value  = key_value + '/' if key_value.present?
+						key_value = key_value + key.titleize if key.present?
+					end
 				elsif key.underscore == "ltv" || key.underscore == "credit_score"
 					value = instance_variable_get("@set_"+key.underscore).to_s
 					key_value  = key_value + '/' if key_value.present? && value.present?

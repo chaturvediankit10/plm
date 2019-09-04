@@ -9869,3 +9869,7 @@ p.hiden-txt-mb {
   }
 
 }
+
+tr.total-point {
+  border-top: 2px solid black;
+}

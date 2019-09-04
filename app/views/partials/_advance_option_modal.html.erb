@@ -86,25 +86,30 @@
                         <table class="table table-striped table-condensed">
                           <tbody>
                             <tr>
-                              <td>Starting Base Point</td>
-                              <td align="right" colspan="2"><b><%= program[:starting_base_point] %></b></td>
-                            </tr>
-                            <tr>
-                              <td>Adjustment</td>
-                              <td colspan="2">Value</td>
+                              <td>Base Point</td>
+                              <td align="right" colspan="2"><b><%= program[:starting_base_point] %> pts</b></td>
                             </tr>
                             <%
                               if program[:adjustment_pair].present?
+                                %>
+                              <tr>
+                                <td colspan="2">Adjustments</td>
+                              </tr>
+                              <%
                                 closing_costs_filter(program[:adjustment_pair]).each_with_index do |key|%>
                                     <tr>
-                                      <td><%= adj_key_name(key.first) %></td>
-                                      <td><b><%= adj_key_value(program, key.first) %></b></td>
-                                      <td align="right"><b><%= key.last %></b></td>
+                                      <!-- <td><%#= adj_key_name(key.first) %></td> -->
+                                      <td style="padding-left: 40px"><%= adj_key_name(key.first) == "Others" ? "Others" : adj_key_value(program, key.first) %></td>
+                                      <td align="right"><b><%= key.last %> pts</b></td>
                                     </tr>
                               <%end
                               end%>
+                              <tr class="total-point">
+                                <td>Total Points</td>
+                                <td align="right"><b><%= program[:adj_points].sum %> pts</b></td>
+                              </tr>
                             <tr>
-                              <td>Ending Closing Cost</td>
+                              <td>Total Closing Cost</td>
                               <td colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> / <%= number_to_currency(closing_cost_sum(program[:adj_points],  program[:starting_base_point]),  :unit=> "", precision: 3) %> Points</b></td>
                             </tr>
                           </tbody>
