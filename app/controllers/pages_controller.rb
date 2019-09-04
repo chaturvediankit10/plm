@@ -269,13 +269,9 @@ class PagesController < SearchController
     # @expert_user.city = city_zip[:city]
     # @expert_user.zip = city_zip[1]
     # @expert_user.zip = city_zip[:zip]
-    puts "Expert before save: #{@expert_user}"
-
     if @expert_user.save
       flash[:notice] = 'Thank you! Your message has been submitted.'
     else
-      puts "Expert error message: #{@expert_user.errors.full_messages.join}"
-      puts "@expert_user.valid: #{@expert_user.errors.full_messages.join}"
       flash[:danger] = @expert_user.errors.full_messages.join unless @expert_user.valid?
     end
     redirect_back fallback_location: root_path
