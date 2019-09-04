@@ -1,12 +1,18 @@
 <!-- banner start-->
-<%= render partial: "partials/basic_search" %>
+<%unless request.url.split("/").last == 'results'  %>
+  <%= render partial: "partials/basic_search" %>
+<% else %>  
+  <div class="inner-search">
+  <%= render partial: "partials/basic_search" %>
+  </div>
+<%end%>
 <%#= render 'partials/search_api'%>
 <!-- banner end-->
 <!-- search result feed start-->
 
 <% title  t('search.home.title') %>
 <% meta_description t('search.home.description') %>
-<section class="content-main">
+<section class="<%= request.url.split("/").last == 'results' ? "content-main pt-110" : "content-main"%> ">
   <div class="container">
     <p class="main-para-hdng">Pureloan searches all the major banks and lenders to give you the best rates. Here are a few sample rates
       in your area for 30-year Fixed, 15-year Fixed, and 5/1 Adjustable Rate Mortgage (ARM).
@@ -224,10 +230,17 @@
 </div>
 <!-- expert application overlay popup end-->
 <script type="text/javascript">
+  scroll = <%=  raw request.url.split("/").last == 'results' %>
   $('#adv-option').click(function () {
-        $("html, body").animate({
-            scrollTop: 250
-        }, 1000);
+        if (scroll) {
+          $("html, body").animate({
+            scrollTop: 60
+        }, 1000);  
+        } else {
+          $("html, body").animate({
+              scrollTop: 250
+          }, 1000);
+        }
         //return false;
     });
 </script>
