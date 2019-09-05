@@ -6,7 +6,7 @@ class CalculatorController < ApplicationController
     if(params[:commit].present? || params["monthly_property_tax"].present?)
       set_variables
     end
-    set_property_tax_and_home_insurance
+    # set_property_tax_and_home_insurance
     calculate_loan_payment
     number_of_payments
     set_default_pmi_insurance
