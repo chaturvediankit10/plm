@@ -14,13 +14,7 @@ module InitilizeZipCode
     @city_name = city.present? ? city.city : nil
     @term = params[:term].present? ? params[:term] : "30"
     if current_user.present?
-      expert = Expert.where(city: @city_name).sort_by(&:created_at).reverse.first(4)
-      if expert.count<4
-        @experts = Expert.where.not(id: expert).sort_by(&:created_at).reverse.first(4-expert.count)
-        @experts = @experts+expert
-       else
-        @experts = expert
-      end
+      get_expert_list(city)
     end
   end
 
@@ -29,6 +23,7 @@ module InitilizeZipCode
     if params[:zip].present?
       @zip_code = ('%05d' % params[:zip])
     end
+    city = nil
     if params[:state].present? && params[:city].present?
       @city_name = params[:city].include?('+') ? params[:city].tr('+', ' ') : params[:city]
       city = City.where(state_code: params[:state], city: @city_name).first
@@ -37,14 +32,20 @@ module InitilizeZipCode
     @state_code = city.present? ? city.state_code : "All"
     @term = params[:term].present? ? params[:term] : "30"
     if current_user.present?
-      expert = Expert.where(city: @city_name).sort_by(&:created_at).reverse.first(4)
-      if expert.count<4
-        @experts = Expert.where.not(id: expert).sort_by(&:created_at).reverse.first(4-expert.count)
-       else
-        @experts = expert
-      end
+      get_expert_list(city)
     end
+  end
 
+  def get_expert_list(city)
+    if city.present?
+      expert_list_1 = Expert.where(city: city.city).sort_by(&:created_at).reverse.first(4)
+      expert_list_2 = []
+      expert_list_2 = Expert.where(state: city.state_code).where.not(id: expert_list_1).sort_by(&:created_at).reverse.first(4-expert_list_1.count) if expert_list_1.count < 4
+      @experts = expert_list_1.count<4 ? (expert_list_1 + expert_list_2) : expert_list_1
+      @experts = @experts + (Expert.where.not(id: @experts).sort_by(&:created_at).reverse.first(4-@experts.count)) if (@experts.count<4)
+    else
+      @experts = Expert.all.sort_by(&:created_at).reverse.first(4)
+    end
   end
 
 end
