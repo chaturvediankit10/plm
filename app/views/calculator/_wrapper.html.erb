@@ -56,7 +56,7 @@
               <div class="input-section">
                 <%= text_field_tag :monthly_property_tax, @monthly_exp_breakdown[:property_tax][:monthly], :class=> "form-control" %>
               </div>
-              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:property_tax][:percentage]%></span>
+              <span class="form-control padding-left"><%= @monthly_exp_breakdown[:property_tax][:percentage]%>%</span>
             </div>
           </div>
 
@@ -107,109 +107,6 @@
         <div id="container-a"></div>
         <div id="addText" ></div>
       </div>
-      <%#= pie_chart({interest: @mortgage_interest[:monthly], property: @property_tax[:monthly], pmi: @pmi_insurance[:monthly], hoa: @hoa_dues[:monthly], principal: @mortgage_principal[:monthly]})%>
-      <!-- <div class="breakdown-wrapper"> -->
-        <!-- <h1>Monthly Expenses Breakdown</h1> -->
-        <!-- <div class="ex-breakdown"> -->
-          <!-- <table class="table table-striped"> -->
-            <!-- <thead>
-              <tr>
-                <th></th>
-                <th align="center">
-                  <center>Monthly</center>
-                </th>
-                <th>
-                  <center>Total</center>
-                </th>
-                <th>
-                  <center>Percentage</center>
-                </th>
-              </tr>
-            </thead> -->
-            <!-- <tbody> -->
-             <!--  <tr>
-                <td>Mortgage Principle</td>
-                <td align="center">
-                  <%#= number_to_currency(@mortgage_principal[:monthly], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= number_to_currency(@mortgage_principal[:total], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= @mortgage_principal[:percentage]%>%
-                </td>
-              </tr> -->
-              <!-- <tr>
-                <td>Mortgage Interest</td>
-                <td align="center">
-
-                  <%#= number_to_currency(@mortgage_interest[:monthly], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= number_to_currency(@mortgage_interest[:total], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= @mortgage_interest[:percentage]%>%
-                </td>
-              </tr> -->
-             <!--  <tr>
-                <td>Property Tax</td>
-                <td align="center">
-                <%#= text_field_tag :monthly_property_tax, @property_tax[:monthly], :class=> "editable-field" %>
-                </td>
-                <td align="center">
-                  <%#= number_to_currency(@property_tax[:total], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= @property_tax[:percentage]%>%
-                </td>
-              </tr> -->
-              <!-- <tr>
-                <td>Home Insurance</td>
-                <td align="center">
-                <%#= text_field_tag :monthly_home_insurance, @home_insurance[:monthly], :class=> "editable-field" %>
-                </td>
-                <td align="center">
-                  <%#= number_to_currency(@home_insurance[:total], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= @home_insurance[:percentage]%>%
-                </td>
-              </tr> -->
-              <!-- <tr>
-                <td>PMI Insurance</td>
-                <td align="center">
-                <%#= text_field_tag :monthly_pmi_insurance, @pmi_insurance[:monthly], :class=> "editable-field" %>
-                </td>
-                <td align="center">
-                  <%#= number_to_currency(@pmi_insurance[:total], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= @pmi_insurance[:percentage]%>%
-                </td>
-              </tr> -->
-              <!-- <tr>
-                <td>HOA Dues</td>
-                <td align="center">
-                <%#= text_field_tag :monthly_hoa_dues, @hoa_dues[:monthly], :class=> "editable-field" %>
-                </td>
-                <td align="center"><%#= number_to_currency(@hoa_dues[:total], unit: "")%></td>
-                <td align="center"><%#= @hoa_dues[:percentage]%>%</td>
-              </tr> -->
-              <!-- <tr class="table-footer">
-                <td>Total</td>
-                <td align="center">
-                  <%#= number_to_currency(@monthly_expenses_sum[:monthly], unit: "")%>
-                </td>
-                <td align="center">
-                  <%#= number_to_currency(@monthly_expenses_sum[:total], unit: "")%>
-                </td>
-                <td align="center"><%#= @monthly_expenses_sum[:percentage] %>%</td>
-              </tr> -->
-            <!-- </tbody> -->
-          <!-- </table> -->
-        <!-- </div> -->
-      <!-- </div> -->
       <div class="breakdown-wrapper">
         <h1>Mortgage Payoff Over Time</h1>
         <div class="ex-breakdown">
