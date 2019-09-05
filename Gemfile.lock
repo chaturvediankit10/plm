@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/PureLoan/APIRead.git
-  revision: c36d6e9704d74090b5f2a41a93fe4898f29a530d
+  revision: 36c70338fc5952d484d467575c7447f062c9f4ed
   specs:
     search_api (0.1.0)
       activesupport

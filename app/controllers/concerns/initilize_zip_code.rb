@@ -13,10 +13,14 @@ module InitilizeZipCode
     @state_code = city.present? ? city.state_code : "All"
     @city_name = city.present? ? city.city : nil
     @term = params[:term].present? ? params[:term] : "30"
-    if @state_code == "All"
-      @expert_list = Expert.all.sort_by { |m| [m.created_at] }.reverse
-    else
-      @expert_list = Expert.where(city: city.city).sort_by { |m| [m.created_at] }.reverse
+    if current_user.present?
+      expert = Expert.where(city: @city_name).sort_by(&:created_at).reverse.first(4)
+      if expert.count<4
+        @experts = Expert.where.not(id: expert).sort_by(&:created_at).reverse.first(4-expert.count)
+        @experts = @experts+expert
+       else
+        @experts = expert
+      end
     end
   end
 
@@ -32,10 +36,13 @@ module InitilizeZipCode
     end
     @state_code = city.present? ? city.state_code : "All"
     @term = params[:term].present? ? params[:term] : "30"
-    if @state_code == "All"
-      @expert_list = Expert.all.sort_by { |m| [m.created_at] }.reverse
-    else
-      @expert_list = Expert.where(city: city.city).sort_by { |m| [m.created_at] }.reverse
+    if current_user.present?
+      expert = Expert.where(city: @city_name).sort_by(&:created_at).reverse.first(4)
+      if expert.count<4
+        @experts = Expert.where.not(id: expert).sort_by(&:created_at).reverse.first(4-expert.count)
+       else
+        @experts = expert
+      end
     end
 
   end

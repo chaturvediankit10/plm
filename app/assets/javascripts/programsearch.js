@@ -240,7 +240,9 @@ $(document).ready(function () {
               required: true
           },
           "expert[phone]":{
-            required: true
+            required: true,
+            minlength: 10,
+            maxlength: 15
           },
           "expert[email]": {
               required: {
@@ -283,7 +285,9 @@ $(document).ready(function () {
               required: "Please enter you last name."
           },
           "expert[phone]":{
-            required: "Plese enter mobile number."
+            required: "Plese enter mobile number.",
+            minlength: "Phone number should be 10-15 digits.",
+            maxlength: "Phone number should be 10-15 digits."
           },
           "expert[email]": {
               required: "Please enter your email.",

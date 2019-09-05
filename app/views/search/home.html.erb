@@ -39,64 +39,32 @@
 <section class="advertisement-box">
   <% if user_signed_in? %>
     <div class="container">
-      <h2 class="text-center">Mortgage Experts that specilize in Albany, CA</h2>
+      <h2 class="text-center">Mortgage Experts that specilize in <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? ? @state_code : "CA" %></h2>
       <div class="expert-box">
         <div class="row">
           <div class="col-sm-12 col-lg-9 col-md-9">
             <div class="row">
-              <div class="col-md-3 col-lg-3 col-sm-12">
-                <div class="card">
-                  <div class="card-img">
-                    <img class="card-img-top" src="/assets/profile-4.jpg" alt="Card image cap">
+              <%if current_user.present? && @experts.present? %>
+                <% @experts.each do |expert| %>
+                  <div class="col-md-3 col-lg-3 col-sm-12">
+                    <div class="card">
+                      <div class="card-img">
+                        <%= image_tag(expert.image.url, :alt=>"Card image cap", :class=> "card-img-top")%>
+                      </div>
+                      <div class="card-body">
+                        <h4><%= expert.first_name%> <%= expert.last_name%></h4>
+                        <p><i class="fa fa-envelope"></i> <%= expert.email%></p>
+                        <p><i class="fa fa-phone"></i> <%= expert.phone%></p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="card-body">
-                    <h4>James Adamson</h4>
-                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-lg-3 col-sm-12">
-                <div class="card">
-                  <div class="card-img">
-                    <img class="card-img-top" src="/assets/profile-3.jpg" alt="Card image cap">
-                  </div>
-                  <div class="card-body">
-                    <h4>James Adamson</h4>
-                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-lg-3 col-sm-12">
-                <div class="card">
-                  <div class="card-img">
-                    <img class="card-img-top" src="/assets/profile-2.jpg" alt="Card image cap">
-                  </div>
-                  <div class="card-body">
-                    <h4>James Adamson</h4>
-                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-lg-3 col-sm-12">
-                <div class="card">
-                  <div class="card-img">
-                    <img class="card-img-top" src="/assets/profile-1.jpg" alt="Card image cap">
-                  </div>
-                  <div class="card-body">
-                    <h4>James Adamson</h4>
-                    <p><i class="fa fa-envelope"></i> example@gmail.com</p>
-                    <p><i class="fa fa-phone"></i> 0123-456-778</p>
-                  </div>
-                </div>
-              </div>
+                <% end %>
+              <% end -%>
             </div>
           </div>
           <div class="col-md-3 col-lg-3 col-sm-12">
             <div class="submit-app">
-              <p>Become an Expert on X.com and reach hundreds of thousands of home buyers of refi customers every month!</p>
+              <p>Become an Expert on pureloan.com and reach hundreds of thousands of home buyers of refi customers every month!</p>
               <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
             </div>
           </div>
