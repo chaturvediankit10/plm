@@ -110,7 +110,9 @@
                               </tr>
                             <tr>
                               <td>Total Closing Cost</td>
-                              <td colspan="2" align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> / <%= number_to_currency(closing_cost_sum(program[:adj_points],  program[:starting_base_point]),  :unit=> "", precision: 3) %> Points</b></td>
+                              <td colspan="2" align="right">
+                                <b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> (refund from lender)</b>
+                             </td>
                             </tr>
                           </tbody>
                         </table>
