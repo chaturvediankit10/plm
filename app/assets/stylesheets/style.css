@@ -9873,3 +9873,15 @@ p.hiden-txt-mb {
 tr.total-point {
   border-top: 2px solid black;
 }
+
+.total-cost {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+}
+.total-cost h4 {
+    font-size: 12px;
+    padding-left: 7px;
+}
