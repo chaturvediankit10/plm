@@ -111,7 +111,7 @@
                             <tr>
                               <td>Total Closing Cost</td>
                               <td colspan="2" align="right">
-                                <b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> (refund from lender)</b>
+                                <b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%> program[:closing_cost] >= 0 ? (payment to lender) : (refund from lender)</b>
                              </td>
                             </tr>
                           </tbody>
