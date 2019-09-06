@@ -13,7 +13,7 @@ class CalculatorController < ApplicationController
     monthly_interest_rate
     calculate_discount_factor
     calculate_monthly_payment
-    @monthly_exp_breakdown = SearchApi::Calculation.new.monthly_expenses_breakdown(calculate_loan_payment,number_of_payments,calculate_monthly_payment, @home_price, @default_annual_home_insurance, @default_pmi_insurance, @default_property_tax_perc, @down_payment, params)
+    @monthly_exp_breakdown = SearchApi::Calculation.new.monthly_expenses_breakdown(calculate_loan_payment,number_of_payments,calculate_monthly_payment, @home_price, @default_annual_home_insurance, @default_pmi_monthly, @default_property_tax_perc, @down_payment, params)
     monthly_payoff_schedule
     monthly_payoff_schedule_graph
     investment_return_from_ownership
@@ -248,7 +248,7 @@ class CalculatorController < ApplicationController
     @annual_interest_rate = 4.0
     @default_property_tax_perc = 0.86
     @default_annual_home_insurance = 974
-    @default_pmi_insurance = 100.00
+    @default_pmi_monthly = 100.00
     @price_to_rent_ratio = 38.02
 
     @purpose_list = [['Purchase', 'Purchase']]
@@ -263,8 +263,8 @@ class CalculatorController < ApplicationController
   end
 
   def set_default_pmi_insurance
-      @default_pmi_insurance = ((@home_price*0.5)/100).to_f
-    return @default_pmi_insurance
+      @default_pmi_monthly = ((@home_price*0.5)/100)/12.to_f
+    return @default_pmi_monthly
   end
 
   def set_property_tax_and_home_insurance
