@@ -87,7 +87,7 @@
                           <tbody>
                             <tr>
                               <td>Base Point</td>
-                              <td><b><%= (program[:starting_base_point]).round(3) %> pts</b></td>
+                              <td><b><%= number_to_currency(program[:starting_base_point],  :unit=> "$", precision: 3) %> pts</b></td>
                             </tr>
                             <%
                               if program[:adjustment_pair].present?
@@ -99,20 +99,20 @@
                                 closing_costs_filter(program[:adjustment_pair]).each_with_index do |key|%>
                                     <tr>
                                       <td style="padding-left: 40px; width: 65%"><%= adj_key_name(key.first) == "Others" ? "Others" : adj_key_value(program, key.first) %></td>
-                                      <td><b><%= (key.last).round(3) %> pts</b></td>
+                                      <td><b><%= number_to_currency(key.last,  :unit=> "$", precision: 3) %> pts</b></td>
                                     </tr>
                               <%end
                               end%>
                               <tr class="total-point">
                                 <td style="">Total Points</td>
-                                <td><b><%= (program[:adj_points].sum).round(3) %> pts</b></td>
+                                <td><b><%= number_to_currency(program[:adj_points].sum,  :unit=> "$", precision: 3) %> pts</b></td>
                               </tr>
                           </tbody>
                         </table>
                         <div class="total-cost">
                           <h4>Total Closing Cost</h4>
                           <div>
-                            <%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%>
+                            <%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 3)%>
                               <%= program[:closing_cost].to_i >= 0 ? "(payment to lender)" : "(refund from lender)"%>
                           </div>
                         </div>
