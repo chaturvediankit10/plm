@@ -75,4 +75,7 @@ config.action_mailer.delivery_method = :smtp
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  
+  #google_analytics
+  config.google_analytics = 'UA-146519460-1'
 end

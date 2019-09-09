@@ -9,7 +9,8 @@
         Standup App
       <%end%>
     </title>
-    <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
+      <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Rails.application.config.google_analytics %>"></script>
       <meta charset="utf-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
       <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
@@ -81,5 +82,11 @@
       <!-- rendering footer partial  -->
 	    <%= render 'partials/footer' %>
     </div> <!-- wrapper end-->
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '<%= Rails.application.config.google_analytics %>');
+      </script>
   </body>
 </html>
