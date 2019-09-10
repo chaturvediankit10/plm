@@ -54,25 +54,25 @@
                               end
                               %>
 
-                              <td>Loan Amount</td>
+                              <td style="width: 62%">Loan Amount</td>
                               <% loan_amount_value = (@home_price.to_i - @down_payment.to_i) rescue nil %>
-                              <td align="right"><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
+                              <td><b> <%= number_to_currency(loan_amount_value,  :unit=> "$", precision: 0) if loan_amount_value.present? rescue nil %></b></td>
                             </tr>
                             <tr>
-                              <td>Interest Rate</td>
-                              <td align="right"><b><%=final_rate%>%</b></td>
+                              <td style="width: 62%">Interest Rate</td>
+                              <td><b><%=final_rate%>%</b></td>
                             </tr>
                             <tr>
-                              <td>Term</td>
-                              <td align="right"><b><%= pro_term%> <%= pro_term.present? ? "Year" : ""%></b></td>
+                              <td style="width: 62%">Term</td>
+                              <td><b><%= pro_term%> <%= pro_term.present? ? "Year" : ""%></b></td>
                             </tr>
                             <tr>
-                              <td>Monthly Payment</td>
-                              <td align="right"><b><%=number_to_currency(program[:monthly_payment],  :unit=> "$", precision: 0) if program[:monthly_payment].present?%></b></td>
+                              <td style="width: 62%">Monthly Payment</td>
+                              <td><b><%=number_to_currency(program[:monthly_payment],  :unit=> "$", precision: 0) if program[:monthly_payment].present?%></b></td>
                             </tr>
                             <tr>
-                              <td>Closing Cost</td>
-                              <td align="right"><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%></b></td>
+                              <td style="width: 62%">Closing Cost</td>
+                              <td><b><%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 0)%></b></td>
                             </tr>
 
                           </tbody>
@@ -86,7 +86,7 @@
                         <table class="table table-striped table-condensed">
                           <tbody>
                             <tr>
-                              <td>Base Point</td>
+                              <td style="width: 62%">Base Point</td>
                               <td><b><%= number_to_currency(program[:starting_base_point],  :unit=> "$", precision: 3) %> pts</b></td>
                             </tr>
                             <%
@@ -98,24 +98,26 @@
                               <%
                                 closing_costs_filter(program[:adjustment_pair]).each_with_index do |key|%>
                                     <tr>
-                                      <td style="padding-left: 40px; width: 65%"><%= adj_key_name(key.first) == "Others" ? "Others" : adj_key_value(program, key.first) %></td>
+                                      <td style="padding-left: 40px; width: 62%"><%= adj_key_name(key.first) == "Others" ? "Others" : adj_key_value(program, key.first) %></td>
                                       <td><b><%= number_to_currency(key.last,  :unit=> "$", precision: 3) %> pts</b></td>
                                     </tr>
                               <%end
                               end%>
                               <tr class="total-point">
-                                <td style="">Total Points</td>
+                                <td style="width: 62%">Total Points</td>
                                 <td><b><%= number_to_currency(program[:adj_points].sum,  :unit=> "$", precision: 3) %> pts</b></td>
+                              </tr>
+                              <tr class="closing-cost">
+                                <td style="width: 62%; border: 0; padding-top: 10px; padding-bottom: 5px;">Total Closing Cost</td>
+                                <td style="border: 0; padding-top: 10px; padding-bottom: 5px;">
+                                  <b>
+                                    <%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 3)%><br/>
+                                    <%= program[:closing_cost].to_i >= 0 ? "(payment to lender)" : "(refund from lender)"%>
+                                  </b>
+                                </td>
                               </tr>
                           </tbody>
                         </table>
-                        <div class="total-cost">
-                          <h4>Total Closing Cost</h4>
-                          <div>
-                            <%=number_to_currency(program[:closing_cost],  :unit=> "$", precision: 3)%>
-                              <%= program[:closing_cost].to_i >= 0 ? "(payment to lender)" : "(refund from lender)"%>
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <!-- <span class="small-p">*Negative value in closing calculation Indicates a Rebate</span> -->
