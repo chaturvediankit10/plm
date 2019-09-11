@@ -43,6 +43,9 @@
              <%= render partial: "partials/closing_cost_summary" %>
           </div>
        </div>
+       <%if Expert.where(verified: true).count >= 1%>
+        <%= render 'pages/index'%>
+      <%end%>
        <!-- <div class="row">
         <div class="col-xs-12 col-md-12 home_closing">
           <%#= render partial: "partials/expert_list" %>

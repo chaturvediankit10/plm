@@ -20,11 +20,10 @@
       <%= render partial: "partials/closing_cost_summary" %>
     </div>
   </div>
-  <!-- <div class="row">
-    <div class="col-xs-12 col-md-12 home_closing">
-      <%#= render partial: "partials/expert_list" %>
-    </div>
-  </div> -->
+  <!--Rendering Experts  -->
+  <%if Expert.where(verified: true).count >= 1%>
+    <%= render 'pages/index'%>
+  <%end%>
 </div>
 <script type="text/javascript">
   $('#adv-option').click(function () {

@@ -1,5 +1,7 @@
 <div class="loan-detail-blocks">
-	<h3><%= @city.present? ? "Closing Cost Summary for Mortgage Rates in " + @city.city+ ", "+ state_full_name(@state) : "Closing Cost Summary" %></h3>
+	<!-- <h3><%#= @city.present? ? "Closing Cost Summary for Mortgage Rates in " + @city.city+ ", "+ state_full_name(@state) : "Closing Cost Summary" %></h3> -->
+  <h3><%= @city_name.present? ? "Closing Cost Summary for Mortgage Rates in "+ @city_name+", "+ ( @state_code!="All" ? state_full_name(@state_code) : "CA")+"" : "Closing Cost Summary" %></h3>
+
   <!-- <h3>Closing Cost Summary for Mortgage Rates in <%#=@city.city%>, <%#=state_full_name(@state)%></h3> -->
   <div class="closing-cost-smry-cntnt">
     <div class="col-xs-12 col-md-2">
