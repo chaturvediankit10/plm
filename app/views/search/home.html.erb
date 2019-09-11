@@ -34,62 +34,6 @@
 </div>
 <!-- <div id="showLess">Show less</div> -->
 <!-- search result feed end-->
-<%if Expert.where(verified: true).count < 1%>
-<!-- Advertisement with expert start-->
-<section class="advertisement-box">
-  <% if user_signed_in? %>
-    <div class="container">
-      <h2 class="text-center">Mortgage Experts that specilize in <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? ? @state_code : "CA" %></h2>
-      <div class="expert-box">
-        <div class="row">
-          <div class="col-sm-12 col-lg-9 col-md-9">
-            <div class="row">
-              <%if current_user.present? && @experts.present? %>
-                <% @experts.each do |expert| %>
-                  <div class="col-md-3 col-lg-3 col-sm-12">
-                    <div class="card">
-                      <div class="card-img">
-                        <%= image_tag(expert.image.url, :alt=>"Card image cap", :class=> "card-img-top")%>
-                      </div>
-                      <div class="card-body">
-                        <h4><%= expert.first_name%> <%= expert.last_name%></h4>
-                        <p><i class="fa fa-envelope"></i> <%= expert.email%></p>
-                        <p><i class="fa fa-phone"></i> <%= expert.phone%></p>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              <% end -%>
-            </div>
-          </div>
-          <div class="col-md-3 col-lg-3 col-sm-12">
-            <div class="submit-app">
-              <p>Become an Expert on pureloan.com and reach hundreds of thousands of home buyers of refi customers every month!</p>
-              <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <%else%>
-    <div class="container">
-      <div class="advertisement">
-        <img class="mb-hide" src="/assets/home-ad.jpg" alt="">
-        <img class="mb-only" src="/assets/expert-ad-mb-img.png" alt="">
-        <h4>Become a mortgage expert on Pureloan.com for Albany, CA</h4>
-        <span class="">Reach hundreds of thousands of home buyers or
-        refi customers every month!</span>
-        <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
-      </div>
-    </div> 
-  <%end%>
-</section>
-<%end%>
-<!-- Advertisement with expert end-->
-<!--Rendering Experts  -->
-<%if Expert.where(verified: true).count >= 1%>
-<%= render 'pages/index'%>
-<%end%>
 <!-- expert application overlay popup start-->
 <div class="modal fade common-popup-layout" id="expert-app-overlay" role="dialog">
   <div class="modal-dialog">
