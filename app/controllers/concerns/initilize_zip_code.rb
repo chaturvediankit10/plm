@@ -39,7 +39,7 @@ module InitilizeZipCode
   def get_expert_list(city)
     expert_all = Expert.all
     if city.present?
-      expert_list_1 = expert_all.where(city: city.city).sort_by(&:created_at).reverse.first(4)
+      expert_list_1 = expert_all.where( city: city.city, state: city.state_code ).sort_by(&:created_at).reverse.first(4)
       expert_list_2 = []
       expert_list_2 = expert_all.where(state: city.state_code).where.not(id: expert_list_1).sort_by(&:created_at).reverse.first(4-expert_list_1.count) if expert_list_1.count < 4
       @experts = expert_list_1.count<4 ? (expert_list_1 + expert_list_2) : expert_list_1
