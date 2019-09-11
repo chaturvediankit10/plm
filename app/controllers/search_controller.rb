@@ -1,10 +1,10 @@
 class SearchController < SearchApi::DashboardController
-  include InitilizeZipCode
+  include InitializeZipCode
   include ActiveTab
 
   def home
-    initilize_state_and_zip_code
-    initilize_term_loan_type if params[:commit].present? && params[:ajax_call].nil?
+    initialize_state_and_zip_code
+    initialize_term_loan_type if params[:commit].present? && params[:ajax_call].nil?
     api_search if params[:commit].present?
 
     respond_to do |format|

@@ -1,7 +1,7 @@
-module InitilizeZipCode
+module InitializeZipCode
   extend ActiveSupport::Concern
   
-  def initilize_state_and_zip_code
+  def initialize_state_and_zip_code
     @zip_code = "94035"
     if params[:zip].present?
       @zip_code = params[:zip]
@@ -18,7 +18,7 @@ module InitilizeZipCode
     end
   end
 
-  def initilize_zip_code_for_seo_pages
+  def initialize_zip_code_for_seo_pages
     @zip_code = "94035"
     if params[:zip].present?
       @zip_code = ('%05d' % params[:zip])

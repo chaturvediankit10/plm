@@ -1,6 +1,6 @@
 module ActiveTab
   extend ActiveSupport::Concern
-  def initilize_term_loan_type
+  def initialize_term_loan_type
     if params[:term_30_list].present?
       params[:term] = 30
       params[:loan_type] = "Fixed"

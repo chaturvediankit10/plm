@@ -1,5 +1,5 @@
 class CalculatorController < ApplicationController
-  include InitilizeZipCode
+  include InitializeZipCode
   before_action :load_default
 
   def index
@@ -241,7 +241,7 @@ class CalculatorController < ApplicationController
   end
 
   def load_default
-    initilize_state_and_zip_code
+    initialize_state_and_zip_code
     @home_price = 300000
     @down_payment = 50000
     @mortgage_term = 30

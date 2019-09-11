@@ -6,7 +6,7 @@ Purpose:        display and define logic for all the seo pages
 =end  
   include ApplicationHelper
   include SeoPagesHelper
-  include InitilizeZipCode
+  include InitializeZipCode
 
   #apply dry concept for common code
   before_action :default_programs, only: [:city_home_mortgage_rates, :city_home_refinance_rates, :bank_mortgage_loans]
@@ -14,7 +14,7 @@ Purpose:        display and define logic for all the seo pages
   before_action :bank_home, only: [:bank_mortgage_loans, :bank_personal_loans, :bank_auto_loans]
 
   def city_home_mortgage_rates
-    initilize_zip_code_for_seo_pages
+    initialize_zip_code_for_seo_pages
     @news_articles = news_article_data(' mortgage')
     # for report section fetching all cities record similer to current city 
     cached_data = FreddieMacCache.find_by('zip_prefix like ? and loan_type = ?', "#{@city.zip.to_s.first(3)+ '%'}", 'P')
@@ -28,7 +28,7 @@ Purpose:        display and define logic for all the seo pages
   end 
 
   def city_home_refinance_rates
-    initilize_zip_code_for_seo_pages
+    initialize_zip_code_for_seo_pages
     @news_articles = news_article_data(' refinance')
     # for report section fetching all cities record similer to current city
     # for loan type N & C
@@ -43,7 +43,7 @@ Purpose:        display and define logic for all the seo pages
   end 
 
   def bank_mortgage_loans
-    initilize_zip_code_for_seo_pages
+    initialize_zip_code_for_seo_pages
     @news_articles = bank_news_article(" mortgage")
     @loan_officers = LoanOfficer.loan_officers_gen(@bank, "mortgage")
   end
