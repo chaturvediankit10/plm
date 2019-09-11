@@ -2,7 +2,7 @@
 <%if current_user.present? %>
   <section class="home-experts-box">
      <div class="container">
-        <h2 class="mb-hide">Mortgage Experts that specilize in <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? ? @state_code : "CA" %></h2>
+        <h2 class="mb-hide">Mortgage Experts that specilize in <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? && @state_code!="All" ? @state_code : "CA" %></h2>
         <h2 class="mb-only">Mortgage Experts in <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? ? @state_code : "CA" %></h2>
         <div class="home-experts">
            <div class="row">
