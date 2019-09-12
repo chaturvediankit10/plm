@@ -263,7 +263,7 @@ class CalculatorController < ApplicationController
   end
 
   def set_default_pmi_insurance
-      @default_pmi_monthly = ((@home_price*0.5)/100)/12.to_f
+      @default_pmi_monthly = (((@home_price-@down_payment)*0.5)/100)/12.to_f
     return @default_pmi_monthly
   end
 
