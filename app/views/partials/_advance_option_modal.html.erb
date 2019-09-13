@@ -25,6 +25,7 @@
                   <li class="active"><a href="#tab1warning-<%=program[:term].to_s+"years"+index.to_s%>" data-toggle="tab">Loan Overview</a></li>
                   <li><a href="#tab2warning-<%=program[:term].to_s+"years"+index.to_s%>" data-toggle="tab">Monthly Calculator</a></li>
                   <li><a href="#tab3warning-<%=program[:term].to_s+"years"+index.to_s%>" data-toggle="tab">Loan Parameters</a></li>
+                  <li><a href="#tab4warning-<%=program[:term].to_s+"years"+index.to_s%>" data-toggle="tab">Contact Lender</a></li>
                 </ul>
               </div>
             </div>
@@ -306,6 +307,9 @@
                   </div>
                 </div>
               </div>
+              <div class="tab-pane fade" id="tab4warning-<%=program[:term].to_s+"years"+index.to_s%>">
+                <%= render partial: "partials/lender_page", locals: { bank_name: program[:bank_name]  }%>
+              </div>
             </div>
           </div>
         </div>
@@ -313,8 +317,9 @@
       <div class="modal-footer adv-search-mdl-footer">
         <div class="content-btns">
           <p>Get Started with <%= program[:bank_name]%></p>
-          <!-- <a href="<%= bank_page_info_path%>" class="btn btn-orange">Contact lender</a> -->
-          <%= link_to 'Contact lender', bank_page_info_path({bank_name:  program[:bank_name]}), :class => "btn btn-orange" %>
+          
+          <a href="<%= Program::BANK_LINK[program[:bank_name]]%>" class=
+            "btn btn-orange" target="_blank">Contact lender</a>
 
           <a href="#" class="mb-adv-search btn btn-orange reverse-btn close" data-dismiss="modal">Continue Searching</a>
         </div>
