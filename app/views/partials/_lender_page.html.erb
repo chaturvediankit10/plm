@@ -1,9 +1,9 @@
 <section class="bank-content">
-  <div class="container">    
     <div class="bank-details">
       <div class="row">
         <div class="col-lg-2 col-md-12">
           <div class="bank-logo">
+            <% @bank = Bank.find_by_name(bank_name)%>
             <img src="/assets/<%= @bank.name%>.png">
           </div>
         </div>
@@ -68,7 +68,6 @@
            </div> 
          </div>
     </table>
-  </div>
 </section>
 
 

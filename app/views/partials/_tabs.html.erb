@@ -62,7 +62,7 @@
               <!-- <a href="" data-toggle="modal" data-target="#login-popup" class="login-btn">LOGIN</a> -->
             <% end %>
               <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+"years"+index.to_s%>" class="dtail-btn">View Details</a>
-            <a href="" class="lendr-web-link">Lender Website</a>
+            <a href="<%= Program::BANK_LINK[program[:bank_name]] %>" class="lendr-web-link" target="_blank">Lender Website</a>
           </div>
           <div class="mb-scroll-icn">
             <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+"years"+index.to_s%>" ><i class="fa fa-angle-right"></i></a>
