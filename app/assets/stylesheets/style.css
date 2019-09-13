@@ -9873,3 +9873,10 @@ p.hiden-txt-mb {
 tr.total-point {
   border-top: 2px solid black;
 }
+
+label.error-red{
+  color: red !important;
+  display: none;
+  margin-top: -15px;
+  margin-bottom: 15px;
+}

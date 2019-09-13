@@ -29,11 +29,13 @@
             <div class="dollar-icn">$</div>
             <%= text_field_tag :home_price, number_to_currency(@home_price, :unit=> "", precision: 0), :class=> "form-control" %>
           </div>
+          <label class="home-price-error error-red">home-price-error</label>
           <div class="form-group">
             <label>Down Payment</label>
             <div class="dollar-icn">$</div>
             <%= text_field_tag :down_payment,number_to_currency(@down_payment,  :unit=> "", precision: 0), :class=> "form-control" %>
           </div>
+          <label class="down-payment-error error-red">down-payment-error</label>
           <div class="form-group">
             <label>Mortgage Term</label>
             <div class="flex-group">
@@ -59,6 +61,7 @@
               <span class="form-control padding-left"><%= @monthly_exp_breakdown[:property_tax][:percentage]%>%</span>
             </div>
           </div>
+          <label class="property-tax-error error-red">property-tax-error</label>
 
           <div class="form-group">
             <label>Home Insurance</label>
@@ -70,6 +73,7 @@
               <span class="form-control padding-left"><%= @monthly_exp_breakdown[:home_insurance][:percentage]%>%</span>
             </div>
           </div>
+          <label class="home-insurance-error error-red">home-insurance-error</label>
 
           <div class="form-group">
             <label>PMI Insurance</label>
@@ -81,6 +85,7 @@
               <span class="form-control padding-left"><%= @monthly_exp_breakdown[:pmi_insurance][:percentage]%>%</span>
             </div>
           </div>
+          <label class="pmi-insurance-error error-red">pmi-insurance-error</label>
 
           <div class="form-group">
             <label>HOA Dues</label>
@@ -393,6 +398,75 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+    var items = document.querySelectorAll("#home_price, #down_payment");
+    for (var i = 0; i < items.length; i++)
+    {
+      $(items[i]).maskMoney({decimal: ',', thousands: ',', allowEmpty: true, precision: 0, allowZero: true}).maskMoney('mask');
+    }
+
+    $('#home_price, #down_payment').keyup(function(){
+      var home_price = parseInt($('#home_price').val().replace(/,/g, '').trim())
+      var down_payment = parseInt($('#down_payment').val().replace(/,/g, '').trim())
+      if (home_price == 0) {
+        $('.home-price-error').show();
+        $('.home-price-error').text('This field is required');
+      }else{
+        if (home_price < 10000) {
+          $('.home-price-error').show();
+          $('.home-price-error').text('Home Price must be grether then or equal to 10,000');
+        }else{
+          if (home_price >= 10000000) {
+            $('.home-price-error').show();
+            $('.home-price-error').text('Value must be less than or equal to $10,000,000');
+          }else{
+            $('.home-price-error').hide();
+          }
+        }
+      }
+
+      if (home_price <= down_payment){
+        $('.down-payment-error').show();
+        $('.down-payment-error').text('Down payment must be less than purchase price');
+      }else{
+        if (down_payment==0) {
+          $('.down-payment-error').show();
+           $('.down-payment-error').text('This field is required');
+        }else{
+          $('.down-payment-error').hide();
+        }
+      }
+    });
+
+    $('#monthly_property_tax').keyup(function(){
+      var monthly_property_tax = parseInt($('#monthly_property_tax').val().replace(/,/g, '').trim())
+      if (monthly_property_tax<10) {
+        $('.property-tax-error').show();
+        $('.property-tax-error').text('Property Tax must be grether then or equal to 10');
+      }else{
+        $('.property-tax-error').hide();
+      }
+    });
+
+    $('#monthly_home_insurance').keyup(function(){
+      var monthly_home_insurance = parseInt($('#monthly_home_insurance').val().replace(/,/g, '').trim())
+      if (monthly_home_insurance<10) {
+        $('.home-insurance-error').show();
+        $('.home-insurance-error').text('Home Insurance must be grether then or equal to 10');
+      }else{
+        $('.home-insurance-error').hide();
+      }
+    });
+
+    $('#monthly_pmi_insurance').keyup(function(){
+      var monthly_pmi_insurance = parseInt($('#monthly_pmi_insurance').val().replace(/,/g, '').trim())
+      if (monthly_pmi_insurance<10) {
+        $('pmi-insurance-error').show();
+        $('pmi-insurance-error').text('Home Insurance must be grether then or equal to 10');
+      }else{
+        $('pmi-insurance-error').hide();
+      }
+    });
+
     ca_keys = <%= raw @ca_affordability.keys.reverse %>
     ca_values = <%= raw @ca_values %>
     nation_wide_keys = <%= raw @nation_wide_affordability.keys.reverse %>
@@ -665,7 +739,7 @@
               boxShadow: '5px 5px 5px #ccc',
               formatter: function () {
                 if (this.y != 0) {
-                  return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable">'+ formatter2.format(Math.round(this.point.y)) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
+                  return ('<span class="labels-name">'+this.point.name +'</span><br/><span class="value-lable">'+ formatter2.format((this.point.y).toFixed(2)) +'</span><br/><span >'+ (this.percentage).toFixed(2) + '%</span>');
                 }
                 // return ('<div><p>'+this.point.name+'</p><span>'+this.point.y+'</span></div>');
               },
@@ -764,22 +838,6 @@
          dataType: "script",
         });
       });
-
-      // function FixHeader() {
-      //   window.onscroll = function() {myFunction()};
-
-      //   var header = document.getElementById("myHeader");
-      //   var sticky = header.offsetTop;
-
-      //   function myFunction() {
-      //     if (window.pageYOffset > sticky) {
-      //       header.classList.add("sticky");
-      //     } else {
-      //       header.classList.remove("sticky");
-      //     }
-      //   }
-      // }
-
     });
 </script>
 <style type="text/css">

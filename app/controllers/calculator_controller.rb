@@ -6,10 +6,12 @@ class CalculatorController < ApplicationController
     if(params[:commit].present? || params["monthly_property_tax"].present?)
       set_variables
     end
-    set_property_tax_and_home_insurance
+    @default_property_tax_perc = SearchApi::Calculation.new.set_default_property_tax_perc(@state_code)
+    @default_annual_home_insurance = SearchApi::Calculation.new.set_default_annual_home_insurance(@state_code)
+    @price_to_rent_ratio = SearchApi::Calculation.new.set_price_to_rent_ratio(@city_name, @state_code)
     calculate_loan_payment
     number_of_payments
-    set_default_pmi_insurance
+    @default_pmi_monthly = SearchApi::Calculation.new.set_default_pmi_insurance(@home_price.to_f-@down_payment.to_f)
     monthly_interest_rate
     calculate_discount_factor
     calculate_monthly_payment
@@ -246,11 +248,6 @@ class CalculatorController < ApplicationController
     @down_payment = 50000
     @mortgage_term = 30
     @annual_interest_rate = 4.0
-    @default_property_tax_perc = 0.86
-    @default_annual_home_insurance = 974
-    @default_pmi_monthly = 100.00
-    @price_to_rent_ratio = 38.02
-
     @purpose_list = [['Purchase', 'Purchase']]
     @mortgage_term_list = [ ['15 years', 15], ['20 years', 20], ['25 years', 25], ['30 years', 30]]
   end
@@ -260,35 +257,6 @@ class CalculatorController < ApplicationController
     @down_payment = params[:down_payment].gsub(/[$,]/,'').to_i if params[:down_payment].present?
     @mortgage_term = params[:mortgage_term].to_i if params[:mortgage_term].present?
     @annual_interest_rate = params[:annual_interest_rate].delete(',').to_f if params[:annual_interest_rate].present?
-  end
-
-  def set_default_pmi_insurance
-      @default_pmi_monthly = (((@home_price-@down_payment)*0.5)/100)/12.to_f
-    return @default_pmi_monthly
-  end
-
-  def set_property_tax_and_home_insurance
-    if @state_code.present? && @state_code!="All" && @city_name.present?
-      property_tax = CalculatorPropertyTax.where(state_code: @state_code)
-      if property_tax.present?
-         @default_property_tax_perc =  property_tax.first.tax_rate
-      end
-
-      home_insurance = CalculatorHomeInsurance.where(state_code: @state_code)
-      if home_insurance.present?
-        @default_annual_home_insurance = home_insurance.first.avg_annual_insurance
-      end
-
-      price_to_rent_ratio = CalculatorPriceToRentRatio.where(city: @city_name)
-      if price_to_rent_ratio.present?
-        @price_to_rent_ratio = price_to_rent_ratio.first.price_rent_ratio
-      else
-        price_to_rent_ratio = CalculatorPriceToRentRatio.where(state_code: @state_code)
-        if price_to_rent_ratio.present?
-          @price_to_rent_ratio = price_to_rent_ratio.first.price_rent_ratio
-        end
-      end
-    end
   end
 
   def set_affordability_chart_data
