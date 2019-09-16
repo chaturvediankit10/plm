@@ -50,7 +50,7 @@
             <%= text_field_tag :annual_interest_rate, @annual_interest_rate, :class=> "form-control" %>
             <a href="JavaScript:Void(0);" id="today_rate" class="link-to">Use Today's Rate</a>
           </div>
-
+          <label class="interest-rate-error error-red"></label>
           <div class="form-group">
             <label>Property Tax</label>
             <div class="flex-group">
@@ -112,6 +112,7 @@
         <div id="container-a"></div>
         <div id="addText" ></div>
       </div>
+      <div class="loader" style="display: none;"><i class="fa fa-spinner fa-spin loader-spinner"></i></div>
       <div class="breakdown-wrapper">
         <h1>Mortgage Payoff Over Time</h1>
         <div class="ex-breakdown">
@@ -397,89 +398,205 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    var items = document.querySelectorAll("#home_price, #down_payment");
-    var form_submit = true
+$(document).ready(function(){
+  var form_submit = true
+
+  var items = document.querySelectorAll("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues");
     for (var i = 0; i < items.length; i++)
     {
-      $(items[i]).maskMoney({decimal: ',', thousands: ',', allowEmpty: true, precision: 0, allowZero: true}).maskMoney('mask');
+      $(items[i]).maskMoney().maskMoney('mask',Number(items[i].value));
     }
 
-    $('#home_price, #down_payment').keyup(function(){
-      var home_price = parseInt($('#home_price').val().replace(/,/g, '').trim())
-      var down_payment = parseInt($('#down_payment').val().replace(/,/g, '').trim())
-      if (home_price == 0) {
+  var items2 = document.querySelectorAll("#home_price, #down_payment");
+    for (var i = 0; i < items2.length; i++)
+    {
+      $(items2[i]).maskMoney({decimal: ',', thousands: ',', allowEmpty: true, precision: 0, allowZero: true}).maskMoney('mask');
+    }
+
+  $('#home_price, #down_payment').keyup(function(){
+    var home_price = parseInt($('#home_price').val().replace(/,/g, '').trim())
+    var down_payment = parseInt($('#down_payment').val().replace(/,/g, '').trim())
+    if (home_price == 0) {
+      form_submit = false
+      $('.home-price-error').show();
+      $('.home-price-error').text('This field is required');
+    }else{
+      if (home_price < 10000) {
         form_submit = false
         $('.home-price-error').show();
-        $('.home-price-error').text('This field is required');
+        $('.home-price-error').text('Home Price must be grether then or equal to 10,000');
       }else{
-        if (home_price < 10000) {
+        if (home_price >= 10000000) {
           form_submit = false
           $('.home-price-error').show();
-          $('.home-price-error').text('Home Price must be grether then or equal to 10,000');
+          $('.home-price-error').text('Value must be less than or equal to $10,000,000');
         }else{
-          if (home_price >= 10000000) {
-            form_submit = false
-            $('.home-price-error').show();
-            $('.home-price-error').text('Value must be less than or equal to $10,000,000');
-          }else{
-            $('.home-price-error').hide();
-            form_submit = true
-          }
-        }
-      }
-
-      if (home_price <= down_payment){
-        form_submit = false
-        $('.down-payment-error').show();
-        $('.down-payment-error').text('Down payment must be less than purchase price');
-      }else{
-        if (down_payment==0) {
-          form_submit = false
-          $('.down-payment-error').show();
-           $('.down-payment-error').text('This field is required');
-        }else{
-          $('.down-payment-error').hide();
+          $('.home-price-error').hide();
           form_submit = true
         }
       }
-    });
+    }
 
-    $('#monthly_property_tax').keyup(function(){
-      var monthly_property_tax = parseInt($('#monthly_property_tax').val().replace(/,/g, '').trim())
-      if (monthly_property_tax<10) {
+    if (home_price <= down_payment){
+      form_submit = false
+      $('.down-payment-error').show();
+      $('.down-payment-error').text('Down payment must be less than purchase price');
+    }else{
+      if (down_payment==0) {
+        form_submit = false
+        $('.down-payment-error').show();
+         $('.down-payment-error').text('This field is required');
+      }else{
+        $('.down-payment-error').hide();
+        form_submit = true
+      }
+    }
+  });
+
+  $('#monthly_property_tax').keyup(function(){
+    var monthly_property_tax = parseInt($('#monthly_property_tax').val().replace(/,/g, '').trim())
+    if (monthly_property_tax<10) {
+      form_submit = false
+      $('.property-tax-error').show();
+      $('.property-tax-error').text('Property Tax must be grether then or equal to 10');
+    }else{
+      home_price = parseInt($('#home_price').val().replace(/,/g, '').trim())
+      if (monthly_property_tax > home_price/10) {
         form_submit = false
         $('.property-tax-error').show();
-        $('.property-tax-error').text('Property Tax must be grether then or equal to 10');
+        $('.property-tax-error').text('Property Tax must be less then Home Price * 10%');
       }else{
         $('.property-tax-error').hide();
         form_submit = true
       }
-    });
+    }
+  });
 
-    $('#monthly_home_insurance').keyup(function(){
-      var monthly_home_insurance = parseInt($('#monthly_home_insurance').val().replace(/,/g, '').trim())
-      if (monthly_home_insurance<10) {
-        form_submit = false
-        $('.home-insurance-error').show();
-        $('.home-insurance-error').text('Home Insurance must be grether then or equal to 10');
-      }else{
-        $('.home-insurance-error').hide();
-        form_submit = true
+  $('#annual_interest_rate').keyup(function(){
+    var annual_interest_rate = parseInt($('#annual_interest_rate').val().replace(/,/g, '').trim())
+    if (annual_interest_rate>10) {
+      form_submit = false
+      $('.interest-rate-error').show();
+      $('.interest-rate-error').text('Interest Rate must be less then or equal to 10');
+    }else{
+      $('.interest-rate-error').hide();
+      form_submit = true
+    }
+  });
+
+  $('#monthly_home_insurance').keyup(function(){
+    var monthly_home_insurance = parseInt($('#monthly_home_insurance').val().replace(/,/g, '').trim())
+    if (monthly_home_insurance<10) {
+      form_submit = false
+      $('.home-insurance-error').show();
+      $('.home-insurance-error').text('Home Insurance must be grether then or equal to 10');
+    }else{
+      $('.home-insurance-error').hide();
+      form_submit = true
+    }
+  });
+
+  $('#monthly_pmi_insurance').keyup(function(){
+    var monthly_pmi_insurance = parseInt($('#monthly_pmi_insurance').val().replace(/,/g, '').trim())
+    if (monthly_pmi_insurance<10) {
+      form_submit = false
+      $('pmi-insurance-error').show();
+      $('pmi-insurance-error').text('Home Insurance must be grether then or equal to 10');
+    }else{
+      $('pmi-insurance-error').hide();
+      form_submit = true
+    }
+  });
+
+  // get_todays_rate
+  $("#today_rate").click(function(){
+    var term = $('#mortgage_term').val()
+    $.ajax({
+      type:'GET',
+      url:'/get_todays_rate',
+      data: {mortgage_term: term},
+      success:function(res){
+      $('#annual_interest_rate').val(res["today_rate"] + '%')
       }
     });
+  });
 
-    $('#monthly_pmi_insurance').keyup(function(){
-      var monthly_pmi_insurance = parseInt($('#monthly_pmi_insurance').val().replace(/,/g, '').trim())
-      if (monthly_pmi_insurance<10) {
-        form_submit = false
-        $('pmi-insurance-error').show();
-        $('pmi-insurance-error').text('Home Insurance must be grether then or equal to 10');
-      }else{
-        $('pmi-insurance-error').hide();
-        form_submit = true
-      }
+  $(".toggle-btn").click(function(){
+    $(".toggle-container").toggle(500);
+  });
+
+  if ($('#mortgage_term').val()!=''){
+    $('#mortgage_month').val(parseInt($('#mortgage_term').val())*12 + " "+ "month")
+  }
+
+  if($('#annual_interest_rate')!=''){
+    var value = $('#annual_interest_rate').val()
+    if (value.includes("%")) {
+      value = value.replace('%%','%')
+      value = value.replace('% %','%')
+      value = value.replace('%%%','%')
+      $('#annual_interest_rate').val(value)
+    }
+    else{
+      $('#annual_interest_rate').val(value + "%")
+    }
+  }
+
+  $("#annual_interest_rate").change(function () {
+    var value = $(this).val()
+    if (value.includes("%")) {
+      value = value.replace('%%','%')
+      value = value.replace('% %','%')
+      value = value.replace('%%%','%')
+      $('#annual_interest_rate').val(value)
+    }
+    else{
+      $('#annual_interest_rate').val(value + "%")
+    }
+  });
+
+  $("#mortgage_term").change(function () {
+    var selectedText = $(this).find("option:selected").text();
+    var selectedValue = $(this).val();
+    $('#mortgage_month').val(parseInt(selectedValue)*12 + " "+ "month")
+    if (form_submit) {
+      get_monthly_expenses()
+    }
+  });
+
+  function get_monthly_expenses(){
+    $('.loader').show()
+    data = $("#calculator_form").serialize();
+    all_data = data +
+          "&monthly_property_tax=" + $("#monthly_property_tax").val() +
+          "&monthly_home_insurance=" + $("#monthly_home_insurance").val() +
+          "&monthly_pmi_insurance=" + $("#monthly_pmi_insurance").val() +
+          "&monthly_hoa_dues=" + $("#monthly_hoa_dues").val()
+          "&home_price=" + $("#home_price").val()
+          "&down_payment=" + $("#down_payment").val()
+          "&mortgage_term=" + $("#mortgage_term").val()
+          "&annual_interest_rate=" + $("#annual_interest_rate").val()
+    
+      $.ajax({
+       type: "GET",
+       url: "/mortgage+calculator",
+       data : all_data,
+       dataType: "script",
+      });
+  }
+
+  $("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues, #home_price, #down_payment, #mortgage_term, #annual_interest_rate").keyup(function() {
+    if (form_submit) {
+      get_monthly_expenses()
+    }
+  });
+
+
+  $('.change-name').click(function(){
+    $(this).text(function(i,old){
+      return old=='SHOW PAYOFF SCHEDULE' ?  'HIDE PAYOFF SCHEDULE' : 'SHOW PAYOFF SCHEDULE';
     });
+  });
 
     ca_keys = <%= raw @ca_affordability.keys.reverse %>
     ca_values = <%= raw @ca_values %>
@@ -771,90 +888,6 @@
         }, ],
     });
   });
-
-    $(document).ready(function(){
-
-      // get_todays_rate
-      $("#today_rate").click(function(){
-        var term = $('#mortgage_term').val()
-        $.ajax({
-          type:'GET',
-          url:'/get_todays_rate',
-          data: {mortgage_term: term},
-          success:function(res){
-          $('#annual_interest_rate').val(res["today_rate"] + '%')
-          }
-        });
-      });
-
-      $(".toggle-btn").click(function(){
-        $(".toggle-container").toggle(500);
-      });
-
-      if ($('#mortgage_term').val()!=''){
-        $('#mortgage_month').val(parseInt($('#mortgage_term').val())*12 + " "+ "month")
-      }
-
-      if($('#annual_interest_rate')!=''){
-        var value = $('#annual_interest_rate').val()
-        if (value.includes("%")) {
-          value = value.replace('%%','%')
-          value = value.replace('% %','%')
-          value = value.replace('%%%','%')
-          $('#annual_interest_rate').val(value)
-        }
-        else{
-          $('#annual_interest_rate').val(value + "%")
-        }
-      }
-
-      $("#annual_interest_rate").change(function () {
-        var value = $(this).val()
-        if (value.includes("%")) {
-          value = value.replace('%%','%')
-          value = value.replace('% %','%')
-          value = value.replace('%%%','%')
-          $('#annual_interest_rate').val(value)
-        }
-        else{
-          $('#annual_interest_rate').val(value + "%")
-        }
-      });
-
-      $("#mortgage_term").change(function () {
-        var selectedText = $(this).find("option:selected").text();
-        var selectedValue = $(this).val();
-        $('#mortgage_month').val(parseInt(selectedValue)*12 + " "+ "month")
-      });
-    });
-
-    var items = document.querySelectorAll("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues");
-
-    for (var i = 0; i < items.length; i++)
-    {
-      $(items[i]).maskMoney().maskMoney('mask',Number(items[i].value));
-    }
-
-    $("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues").change(function() {
-      data = $("#calculator_form").serialize();
-      all_data = data +
-            "&monthly_property_tax=" + $("#monthly_property_tax").val() +
-            "&monthly_home_insurance=" + $("#monthly_home_insurance").val() +
-            "&monthly_pmi_insurance=" + $("#monthly_pmi_insurance").val() +
-            "&monthly_hoa_dues=" + $("#monthly_hoa_dues").val()
-      $.ajax({
-       type: "GET",
-       url: "/mortgage+calculator",
-       data : all_data,
-       dataType: "script",
-      });
-    });
-
-    $('.change-name').click(function(){
-      $(this).text(function(i,old){
-        return old=='SHOW PAYOFF SCHEDULE' ?  'HIDE PAYOFF SCHEDULE' : 'SHOW PAYOFF SCHEDULE';
-      });
-    });
 
 </script>
 <style type="text/css">
