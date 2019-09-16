@@ -69,7 +69,7 @@
                             </tr>
                             <tr>
                               <td style="width: 62%">Monthly Payment</td>
-                              <td><b><%=number_to_currency(program[:monthly_payment],  :unit=> "$", precision: 0) if program[:monthly_payment].present?%></b></td>
+                              <td><b><%=number_to_currency(program[:monthly_payment],  :unit=> "$", precision: 2) if program[:monthly_payment].present?%></b></td>
                             </tr>
                             <tr>
                               <td style="width: 62%">Closing Cost</td>

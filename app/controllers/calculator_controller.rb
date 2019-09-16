@@ -9,13 +9,13 @@ class CalculatorController < ApplicationController
     @default_property_tax_perc = SearchApi::Calculation.new.set_default_property_tax_perc(@state_code)
     @default_annual_home_insurance = SearchApi::Calculation.new.set_default_annual_home_insurance(@state_code)
     @price_to_rent_ratio = SearchApi::Calculation.new.set_price_to_rent_ratio(@city_name, @state_code)
-    calculate_loan_payment
-    number_of_payments
+    @calculate_loan_payment = calculate_loan_payment
+    @number_of_payments = number_of_payments(@mortgage_term)
     @default_pmi_monthly = SearchApi::Calculation.new.set_default_pmi_insurance(@home_price.to_f-@down_payment.to_f)
-    monthly_interest_rate
-    calculate_discount_factor
-    calculate_monthly_payment
-    @monthly_exp_breakdown = SearchApi::Calculation.new.monthly_expenses_breakdown(calculate_loan_payment,number_of_payments,calculate_monthly_payment, @home_price, @default_annual_home_insurance, @default_pmi_monthly, @default_property_tax_perc, @down_payment, params)
+    @monthly_interest_rate = SearchApi::Calculation.new.monthly_interest_rate(@annual_interest_rate)
+    @calculate_discount_factor = SearchApi::Calculation.new.calculate_discount_factor(@monthly_interest_rate, @number_of_payments)
+    @calculate_monthly_payment = SearchApi::Calculation.new.calculate_monthly_payment(@calculate_loan_payment, @calculate_discount_factor)
+    @monthly_exp_breakdown = SearchApi::Calculation.new.monthly_expenses_breakdown(@calculate_loan_payment,@number_of_payments,@calculate_monthly_payment, @home_price, @default_annual_home_insurance, @default_pmi_monthly, @default_property_tax_perc, @down_payment, params)
     monthly_payoff_schedule
     monthly_payoff_schedule_graph
     investment_return_from_ownership
@@ -31,11 +31,11 @@ class CalculatorController < ApplicationController
     render json: {today_rate: today_rate}
   end
 
-  def calculate_monthly_payment
-    monthly_pay = (calculate_loan_payment/calculate_discount_factor) rescue 0.0
-    monthly_pay = 0.0 if (monthly_pay.nan? || monthly_pay.infinite?)
-    return monthly_pay
-  end
+  # def calculate_monthly_payment(calculate_loan_payment,calculate_discount_factor)
+  #   monthly_pay = (calculate_loan_payment/calculate_discount_factor) rescue 0.0
+  #   monthly_pay = 0.0 if (monthly_pay.nan? || monthly_pay.infinite?)
+  #   return monthly_pay
+  # end
 
   def investment_return_from_ownership
     @initial_costs = {}
@@ -54,12 +54,12 @@ class CalculatorController < ApplicationController
 
     @recuring_costs[:rent] = (@home_price/@price_to_rent_ratio*@mortgage_term*(1+0.025)**@mortgage_term+@home_price/@price_to_rent_ratio*@mortgage_term*0.0132)*-1
     @recuring_costs[:buy] =
-    ((@monthly_exp_breakdown[:mortgage_principal][:total] + @monthly_exp_breakdown[:mortgage_interest][:total])*-1) + (@monthly_exp_breakdown[:property_tax][:total]*-1) + (@monthly_exp_breakdown[:home_insurance][:total]*-1) + (@monthly_exp_breakdown[:pmi_insurance][:total]*-1) + ((((1+0.054/12)**number_of_payments-1)*@down_payment)*-1)
+    ((@monthly_exp_breakdown[:mortgage_principal][:total] + @monthly_exp_breakdown[:mortgage_interest][:total])*-1) + (@monthly_exp_breakdown[:property_tax][:total]*-1) + (@monthly_exp_breakdown[:home_insurance][:total]*-1) + (@monthly_exp_breakdown[:pmi_insurance][:total]*-1) + ((((1+0.054/12)**@number_of_payments-1)*@down_payment)*-1)
 
     @total_monthly_rents = (@home_price/@price_to_rent_ratio*@mortgage_term*(1+0.025)**@mortgage_term)
     @mortgage_payments = (@monthly_exp_breakdown[:mortgage_principal][:total] + @monthly_exp_breakdown[:mortgage_interest][:total])*-1
     @renter_insurance = (@home_price/@price_to_rent_ratio*@mortgage_term*0.0132)*-1
-    @returns_for_investment = ((((1+0.054/12)**number_of_payments-1)*@down_payment)*-1)
+    @returns_for_investment = ((((1+0.054/12)**@number_of_payments-1)*@down_payment)*-1)
 
     @closing_costs[:rent] = 0.0
     @closing_costs[:buy] = (@home_price*0.03)*-1
@@ -70,10 +70,10 @@ class CalculatorController < ApplicationController
     @costs_compare_sum[:rent] =(@initial_costs[:rent] + @recuring_costs[:rent] + @closing_costs[:rent] + @home_appreciation[:rent])
     @costs_compare_sum[:buy] = @initial_costs[:buy] + @recuring_costs[:buy] + @closing_costs[:buy] + @home_appreciation[:buy]
 
-    if (calculate_loan_payment<=750000)
-      @mortgage_interest_deduction = (calculate_monthly_payment*number_of_payments-calculate_loan_payment)/@mortgage_term
+    if (@calculate_loan_payment<=750000)
+      @mortgage_interest_deduction = (@calculate_monthly_payment*@number_of_payments-@calculate_loan_payment)/@mortgage_term
     else
-      @mortgage_interest_deduction = ((calculate_monthly_payment*number_of_payments-calculate_loan_payment)/@mortgage_term)*750000/calculate_loan_payment
+      @mortgage_interest_deduction = ((@calculate_monthly_payment*@number_of_payments-@calculate_loan_payment)/@mortgage_term)*750000/@calculate_loan_payment
     end
 
     if (@costs_compare_sum[:buy].abs <=0)
@@ -93,20 +93,20 @@ class CalculatorController < ApplicationController
 
   def monthly_payoff_schedule
     @monthly_payoff_list = [{
-      :payoff_remaining=>calculate_loan_payment,
+      :payoff_remaining=>@calculate_loan_payment,
       :payoff_interest=>0.0,
       :payoff_principal=>0.0,
       :month=>0
     }]
     x = 1
 
-    while x <= number_of_payments.to_i
+    while x <= @number_of_payments.to_i
       monthly_payoff = {}
       monthly_payoff[:month] = x
 
-      monthly_payoff[:payoff_interest] = (monthly_interest_rate*@monthly_payoff_list[x-1][:payoff_remaining])
+      monthly_payoff[:payoff_interest] = (@monthly_interest_rate*@monthly_payoff_list[x-1][:payoff_remaining])
 
-      monthly_payoff[:payoff_principal] = calculate_monthly_payment - monthly_payoff[:payoff_interest].to_f < @monthly_payoff_list[x-1][:payoff_remaining] ?  (calculate_monthly_payment - monthly_payoff[:payoff_interest].to_f) : (@monthly_payoff_list[x-1][:payoff_remaining])
+      monthly_payoff[:payoff_principal] = @calculate_monthly_payment - monthly_payoff[:payoff_interest].to_f < @monthly_payoff_list[x-1][:payoff_remaining] ?  (@calculate_monthly_payment - monthly_payoff[:payoff_interest].to_f) : (@monthly_payoff_list[x-1][:payoff_remaining])
 
       monthly_payoff[:payoff_remaining] = (@monthly_payoff_list[x-1][:payoff_remaining] -  monthly_payoff[:payoff_principal])
 
@@ -131,7 +131,7 @@ class CalculatorController < ApplicationController
   end
 
   def monthly_payoff_schedule_graph
-    remaining_amount =  calculate_loan_payment
+    remaining_amount =  @calculate_loan_payment
     @payoff_schedule_graph = [
       {:name=>"Principal", :data=>{}, dataset: {borderWidth:5}},
       {:name=>"Interest", :data=>{}, dataset: {borderDash: [10,4]}},
@@ -145,10 +145,10 @@ class CalculatorController < ApplicationController
       monthly_payoff_remaining = {}
       monthly_payoff_total = {}
 
-    while x <= number_of_payments.to_i
-      monthly_payoff_interest[x] =  monthly_interest_rate*remaining_amount
+    while x <= @number_of_payments.to_i
+      monthly_payoff_interest[x] =  @monthly_interest_rate*remaining_amount
 
-      monthly_payoff_principle[x] =  calculate_monthly_payment - monthly_payoff_interest[x].to_f < remaining_amount ?  (calculate_monthly_payment - monthly_payoff_interest[x].to_f) : (remaining_amount)
+      monthly_payoff_principle[x] =  @calculate_monthly_payment - monthly_payoff_interest[x].to_f < remaining_amount ?  (@calculate_monthly_payment - monthly_payoff_interest[x].to_f) : (remaining_amount)
       monthly_payoff_total[x] = monthly_payoff_interest[x] + monthly_payoff_principle[x]
 
       monthly_payoff_remaining[x] =  (remaining_amount -  monthly_payoff_principle[x])
@@ -224,18 +224,18 @@ class CalculatorController < ApplicationController
     @total_paid = @payoff_schedule_graph[3][:data]
   end
 
-  def calculate_discount_factor
-    dis_factor = ((((1+monthly_interest_rate) ** number_of_payments)-1)/(monthly_interest_rate * (1 + monthly_interest_rate)** number_of_payments)) rescue 0.0
-    dis_factor = 0.0 if (dis_factor.nan? || dis_factor.infinite?)
-    return dis_factor.to_f
-  end
+  # def calculate_discount_factor
+  #   dis_factor = ((((1+@monthly_interest_rate) ** @number_of_payments)-1)/(@monthly_interest_rate * (1 + @monthly_interest_rate)** @number_of_payments)) rescue 0.0
+  #   dis_factor = 0.0 if (dis_factor.nan? || dis_factor.infinite?)
+  #   return dis_factor.to_f
+  # end
 
-  def monthly_interest_rate
-    (@annual_interest_rate.to_f*1.0/12/100) rescue 0.0
-  end
+  # def monthly_interest_rate
+  #   (@annual_interest_rate.to_f*1.0/12/100) rescue 0.0
+  # end
 
-  def number_of_payments
-    @n = (@mortgage_term * 12) rescue 0
+  def number_of_payments(mortgage_term)
+    return (mortgage_term * 12) rescue 0
   end
 
   def calculate_loan_payment

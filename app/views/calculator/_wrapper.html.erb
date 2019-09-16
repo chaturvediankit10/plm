@@ -118,8 +118,8 @@
           <div class="graph-wrapper">
             <div id="payoff-schedule-graph" style="height: 300px"></div>
             <div class="text-center">
-              <a href="javascript:void(0)" class="btn primary-btn toggle-btn monthly-btn">SHOW PAYOFF SCHEDULE</a>
-              <a href="#" class="btn btn-block primary-btn modal-btn" data-toggle="modal" data-target="#payoff_schedule_modal">SHOW PAYOFF SCHEDULE</a>
+              <a href="javascript:void(0)" class="btn primary-btn toggle-btn monthly-btn change-name">SHOW PAYOFF SCHEDULE</a>
+              <a href="#" class="btn btn-block primary-btn modal-btn change-name" data-toggle="modal" data-target="#payoff_schedule_modal">SHOW PAYOFF SCHEDULE</a>
             </div>
           </div>
         </div>
@@ -399,6 +399,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     var items = document.querySelectorAll("#home_price, #down_payment");
+    var form_submit = true
     for (var i = 0; i < items.length; i++)
     {
       $(items[i]).maskMoney({decimal: ',', thousands: ',', allowEmpty: true, precision: 0, allowZero: true}).maskMoney('mask');
@@ -408,31 +409,38 @@
       var home_price = parseInt($('#home_price').val().replace(/,/g, '').trim())
       var down_payment = parseInt($('#down_payment').val().replace(/,/g, '').trim())
       if (home_price == 0) {
+        form_submit = false
         $('.home-price-error').show();
         $('.home-price-error').text('This field is required');
       }else{
         if (home_price < 10000) {
+          form_submit = false
           $('.home-price-error').show();
           $('.home-price-error').text('Home Price must be grether then or equal to 10,000');
         }else{
           if (home_price >= 10000000) {
+            form_submit = false
             $('.home-price-error').show();
             $('.home-price-error').text('Value must be less than or equal to $10,000,000');
           }else{
             $('.home-price-error').hide();
+            form_submit = true
           }
         }
       }
 
       if (home_price <= down_payment){
+        form_submit = false
         $('.down-payment-error').show();
         $('.down-payment-error').text('Down payment must be less than purchase price');
       }else{
         if (down_payment==0) {
+          form_submit = false
           $('.down-payment-error').show();
            $('.down-payment-error').text('This field is required');
         }else{
           $('.down-payment-error').hide();
+          form_submit = true
         }
       }
     });
@@ -440,30 +448,36 @@
     $('#monthly_property_tax').keyup(function(){
       var monthly_property_tax = parseInt($('#monthly_property_tax').val().replace(/,/g, '').trim())
       if (monthly_property_tax<10) {
+        form_submit = false
         $('.property-tax-error').show();
         $('.property-tax-error').text('Property Tax must be grether then or equal to 10');
       }else{
         $('.property-tax-error').hide();
+        form_submit = true
       }
     });
 
     $('#monthly_home_insurance').keyup(function(){
       var monthly_home_insurance = parseInt($('#monthly_home_insurance').val().replace(/,/g, '').trim())
       if (monthly_home_insurance<10) {
+        form_submit = false
         $('.home-insurance-error').show();
         $('.home-insurance-error').text('Home Insurance must be grether then or equal to 10');
       }else{
         $('.home-insurance-error').hide();
+        form_submit = true
       }
     });
 
     $('#monthly_pmi_insurance').keyup(function(){
       var monthly_pmi_insurance = parseInt($('#monthly_pmi_insurance').val().replace(/,/g, '').trim())
       if (monthly_pmi_insurance<10) {
+        form_submit = false
         $('pmi-insurance-error').show();
         $('pmi-insurance-error').text('Home Insurance must be grether then or equal to 10');
       }else{
         $('pmi-insurance-error').hide();
+        form_submit = true
       }
     });
 
@@ -814,31 +828,34 @@
       });
     });
 
-    $(document).ready(function(){
-      // FixHeader()
+    var items = document.querySelectorAll("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues");
 
-        var items = document.querySelectorAll("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues");
+    for (var i = 0; i < items.length; i++)
+    {
+      $(items[i]).maskMoney().maskMoney('mask',Number(items[i].value));
+    }
 
-        for (var i = 0; i < items.length; i++)
-        {
-          $(items[i]).maskMoney().maskMoney('mask',Number(items[i].value));
-        }
-
-      $("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues").change(function() {
-        data = $("#calculator_form").serialize();
-        all_data = data +
-              "&monthly_property_tax=" + $("#monthly_property_tax").val() +
-              "&monthly_home_insurance=" + $("#monthly_home_insurance").val() +
-              "&monthly_pmi_insurance=" + $("#monthly_pmi_insurance").val() +
-              "&monthly_hoa_dues=" + $("#monthly_hoa_dues").val()
-        $.ajax({
-         type: "GET",
-         url: "/mortgage+calculator",
-         data : all_data,
-         dataType: "script",
-        });
+    $("#monthly_property_tax, #monthly_home_insurance, #monthly_pmi_insurance, #monthly_hoa_dues").change(function() {
+      data = $("#calculator_form").serialize();
+      all_data = data +
+            "&monthly_property_tax=" + $("#monthly_property_tax").val() +
+            "&monthly_home_insurance=" + $("#monthly_home_insurance").val() +
+            "&monthly_pmi_insurance=" + $("#monthly_pmi_insurance").val() +
+            "&monthly_hoa_dues=" + $("#monthly_hoa_dues").val()
+      $.ajax({
+       type: "GET",
+       url: "/mortgage+calculator",
+       data : all_data,
+       dataType: "script",
       });
     });
+
+    $('.change-name').click(function(){
+      $(this).text(function(i,old){
+        return old=='SHOW PAYOFF SCHEDULE' ?  'HIDE PAYOFF SCHEDULE' : 'SHOW PAYOFF SCHEDULE';
+      });
+    });
+
 </script>
 <style type="text/css">
   #pieChartInfoText{
