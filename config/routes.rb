@@ -127,6 +127,7 @@ Rails.application.routes.draw do
   get '/refinance/:state', to: 'directories#refinance_state_cities', as: 'refinance_state_cities'
 
   get '/refinance/:state-(:city_from)-(:city_to)/:city_list', to: 'directories#refinance_state_cities_list', as: 'refinance_state_cities_list'
+  get 'sensitivity_analysis', to: 'search#sensitivity_analysis'
 
 
   #--------------------------- routes for calculator controller ----------------------------------

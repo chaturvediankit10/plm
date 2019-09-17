@@ -13,6 +13,10 @@ class SearchController < SearchApi::DashboardController
 	  end
   end
 
+  def sensitivity_analysis
+    calculate_sensitivity_analysis
+  end
+
   def fetch_programs
     fetch_programs_by_bank
   end
