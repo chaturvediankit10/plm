@@ -13,9 +13,7 @@ module InitializeZipCode
     @state_code = city.present? ? city.state_code : "All"
     @city_name = city.present? ? city.city : nil
     @term = params[:term].present? ? params[:term] : "30"
-    if current_user.present?
-      get_expert_list(city)
-    end
+    get_expert_list(city)
   end
 
   def initialize_zip_code_for_seo_pages
@@ -31,9 +29,7 @@ module InitializeZipCode
     end
     @state_code = city.present? ? city.state_code : "All"
     @term = params[:term].present? ? params[:term] : "30"
-    if current_user.present?
-      get_expert_list(city)
-    end
+    get_expert_list(city)
   end
 
   def get_expert_list(city)

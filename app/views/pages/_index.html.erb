@@ -1,5 +1,4 @@
 <!-- experts block start--> 
-<%if current_user.present? %>
   <section class="home-experts-box">
      <div class="container">
         <h2 class="mb-hide">Mortgage Experts that specilize in <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? && @state_code!="All" ? state_full_name(@state_code) : "California" %></h2>
@@ -64,5 +63,4 @@
         </div>
      </div>
   </section>
-<%end%>
 <!-- experts block end-->
