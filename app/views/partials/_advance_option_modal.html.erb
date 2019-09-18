@@ -133,11 +133,11 @@
                               <td>
                                 <img src="/assets/save-icon.png">
                               </td>
-                              <td>Did you know you can save <strong>$2,400</strong> or <strong>1.2</strong> points by lowering the loan LTV from <strong><%= @set_ltv.split('-')[0]%> %</strong> to <strong><%= @set_ltv.split('-')[1]%> %</strong> ?</td>
+                              <td>Did you know you can save <strong><label class="closing_cost_saving_ltv"></label></strong> or <strong><label class="point_change_ltv"></label></strong> points by lowering the loan LTV from <strong><label class="ltv_start"></label> %</strong> to <strong><label class="ltv_new"></label> %</strong> ?</td>
                             </tr>
                             <tr>
                               <td><img src="/assets/save-icon.png"></td>
-                              <td>Did you know you can save <strong>$2,400</strong> or <strong>1.3</strong> points by Increasing your credit score from <strong><%= @set_credit_score.split('-')[0]%></strong> to <strong><%= @set_credit_score.split('-')[1]%></strong> </td>
+                              <td>Did you know you can save <strong><label class="closing_cost_saving_fico"></label></strong> or <strong><label class="point_change_fico"></strong> points by Increasing your credit score from <strong><label class="fico_start"></label></strong> to <strong><label class="fico_new"></label></strong> </td>
                             </tr>
                             <tr>
                               <td><img src="/assets/save-icon.png"></td>

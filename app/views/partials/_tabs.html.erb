@@ -61,7 +61,7 @@
               <img src="/assets/heart_03.png" alt="" class="wishlist-icn-fill favorite", id ="favorite_<%=program[:id]%>" data-toggle="modal" data-target="#login-popup">
               <!-- <a href="" data-toggle="modal" data-target="#login-popup" class="login-btn">LOGIN</a> -->
             <% end %>
-              <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+"years"+index.to_s%>" class="dtail-btn">View Details</a>
+              <a href="" data-toggle="modal" data-target="#view-details-popup-<%=program[:term].to_s+"years"+index.to_s%>" class="dtail-btn"  data-value="<%=program.to_json %>" >View Details</a>
             <a href="<%= Program::BANK_LINK[program[:bank_name]] %>" class="lendr-web-link" target="_blank">Lender Website</a>
           </div>
           <div class="mb-scroll-icn">
@@ -78,24 +78,68 @@
 
 <script>
   $( document ).ready(function() {
+     $('.dtail-btn').click(function(){
+      var params = <%= raw params.to_json %>
+      params["program"] = $(this).data("value");
+      home_price = parseFloat(params["home_price"].replace(/\D/g,''))
+      down_payment = parseFloat(params["down_payment"].replace(/\D/g,''))
+
+      ltv = (((home_price-down_payment))/home_price*100)
+      n = ltv/5
+      ltv_start = (n+1)*5
+      ltv_new = n*5
+      $('.ltv_start').text(ltv_start.toFixed(2))
+      $('.ltv_new').text(ltv_new.toFixed(2))
+      params['ltv'] = ltv_new
+      params['loan_amount'] = home_price*(ltv_new/100)
+      params['down_payment'] = home_price - params['loan_amount']
+      $.ajax({
+        url: '/sensitivity_analysis',
+        type: "GET",
+        dataType: "json",
+        data: params,
+        success: function(response) {
+          $('.closing_cost_saving_ltv').text(response.hash_obj.closing_cost.toFixed(2))
+          $('.point_change_ltv').text(response.hash_obj.air_point.toFixed(2))
+        }
+      });
+
+      params['ltv'] = ltv
+      params['loan_amount'] = home_price-down_payment
+      params['down_payment'] = down_payment
+      fico = ''
+      if (params['credit_score'].includes('-')) {
+        fico_start = parseInt(params['credit_score'].split('-')[0])
+        fico_new = fico_start+20
+        fico = fico_new+'-'+(parseInt(fico_new)+20)
+        $('.fico_start').text(fico_new)
+        $('.fico_new').text(parseInt(fico_new)+20)
+      }
+      params['credit_score'] = fico
+      $.ajax({
+        url: '/sensitivity_analysis',
+        type: "GET",
+        dataType: "json",
+        data: params,
+        success: function(response) {
+          $('.closing_cost_saving_fico').text(response.hash_obj.closing_cost.toFixed(2))
+          $('.point_change_fico').text(response.hash_obj.air_point.toFixed(2))
+        }
+      });
+    });
+
     $(".favorite").click(function() {
         var fav_loan_program_id = parseInt(this.id.split("_")[1])
         var img_id = this.id
-        // var form_data = {}
-        // var program = $('#program-'+program_id.toString()).val();
         var program = JSON.parse(this.dataset['program'])
         program['home_price'] = $('#home_price').val();
         program['down_payment'] = $('#down_payment').val();
         program['credit_score'] = $('#credit_score').val();
-        // var favorite_url = location.href+'?'+$('#search_form').serialize()
-        // $('#search_form').serializeArray().filter((item)=>{
-        //   form_data[item.name] = item.value
-        // })
+
        $.ajax({
             url: '/favorite_program',
             type: "GET",
             dataType: "json",
-            // data: {program_id: program_id, form_data: form_data, favorite_url: favorite_url,program: program},
             data: {fav_loan_program_id: fav_loan_program_id,program: program},
             success: function(response) {
               if (response.data == "create") {
