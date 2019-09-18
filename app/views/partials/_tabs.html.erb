@@ -83,13 +83,12 @@
       params["program"] = $(this).data("value");
       home_price = parseFloat(params["home_price"].replace(/\D/g,''))
       down_payment = parseFloat(params["down_payment"].replace(/\D/g,''))
-
       ltv = (((home_price-down_payment))/home_price*100)
-      n = int( ltv/5 )
+      n = parseInt( ltv/5 )
       ltv_start = (n+1)*5
       ltv_new = n*5
-      $('.ltv_start').text( ltv_start )
-      $('.ltv_new').text( ltv_new )
+      $('.ltv_start').text(ltv_start)
+      $('.ltv_new').text(ltv_new)
       params['ltv'] = ltv_new
       params['loan_amount'] = home_price*(ltv_new/100)
       params['down_payment'] = home_price - params['loan_amount']
