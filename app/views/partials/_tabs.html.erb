@@ -85,11 +85,11 @@
       down_payment = parseFloat(params["down_payment"].replace(/\D/g,''))
 
       ltv = (((home_price-down_payment))/home_price*100)
-      n = ltv/5
+      n = int( ltv/5 )
       ltv_start = (n+1)*5
       ltv_new = n*5
-      $('.ltv_start').text(ltv_start.toFixed(2))
-      $('.ltv_new').text(ltv_new.toFixed(2))
+      $('.ltv_start').text( ltv_start )
+      $('.ltv_new').text( ltv_new )
       params['ltv'] = ltv_new
       params['loan_amount'] = home_price*(ltv_new/100)
       params['down_payment'] = home_price - params['loan_amount']
@@ -112,8 +112,8 @@
         fico_start = parseInt(params['credit_score'].split('-')[0])
         fico_new = fico_start+20
         fico = fico_new+'-'+(parseInt(fico_new)+20)
-        $('.fico_start').text(fico_new)
-        $('.fico_new').text(parseInt(fico_new)+20)
+        $('.fico_start').text( fico_start )
+        $('.fico_new').text( fico_new )
       }
       params['credit_score'] = fico
       $.ajax({
