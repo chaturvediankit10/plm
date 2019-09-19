@@ -88,7 +88,7 @@
                           <tbody>
                             <tr>
                               <td style="width: 62%">Base Point</td>
-                              <td><b><%= number_to_currency(program[:starting_base_point],  :unit=> "$", precision: 3) %> pts</b></td>
+                              <td><b><%= number_to_currency(program[:starting_base_point],  :unit=> "", precision: 3) %> pts</b></td>
                             </tr>
                             <%
                               if program[:adjustment_pair].present?
@@ -100,13 +100,13 @@
                                 closing_costs_filter(program[:adjustment_pair]).each_with_index do |key|%>
                                     <tr>
                                       <td style="padding-left: 40px; width: 62%"><%= adj_key_name(key.first) == "Others" ? "Others" : adj_key_value(program, key.first) %></td>
-                                      <td><b><%= number_to_currency(key.last,  :unit=> "$", precision: 3) %> pts</b></td>
+                                      <td><b><%= number_to_currency(key.last,  :unit=> "", precision: 3) %> pts</b></td>
                                     </tr>
                               <%end
                               end%>
                               <tr class="total-point">
                                 <td style="width: 62%">Total Points</td>
-                                <td><b><%= number_to_currency(program[:adj_points].sum,  :unit=> "$", precision: 3) %> pts</b></td>
+                                <td><b><%= number_to_currency(program[:adj_points].sum,  :unit=> "", precision: 3) %> pts</b></td>
                               </tr>
                               <tr class="closing-cost">
                                 <td style="width: 62%; border: 0; padding-top: 10px; padding-bottom: 5px;">Total Closing Cost</td>
