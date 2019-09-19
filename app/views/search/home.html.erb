@@ -138,7 +138,7 @@
         <%end%>
         <!--              <button class="rates-btn">Submit Application</button> -->
         <div class="expert-app-overlay-note">
-          Your listing as an expert in the city Albany, California will be processed when we verify your status and we recieve an authentication link back from your business site
+          Your listing as an expert in the city <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? && @state_code!="All" ? state_full_name(@state_code) : "California" %> will be processed when we verify your status and we recieve an authentication link back from your business site
         </div>
       </div>
     </div>
