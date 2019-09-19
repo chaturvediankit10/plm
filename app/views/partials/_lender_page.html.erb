@@ -30,7 +30,7 @@
 
               <div class="col-md-4 col-sm-6">
                <p>
-                <span class="title-head">Address1:</span>
+                <span class="title-head">Address:</span>
                 <span class="bank-content"><%= @bank.address1%></span>
                 </p>
               </div>
@@ -68,7 +68,13 @@
              <div class="col-md-4 col-sm-6">
                <p>
                 <span class="title-head">State Eligibility:</span>
-                <span class="bank-content"><%= @bank.state_eligibility%></span>
+                <span class="bank-content">
+                  <%if @bank.state_eligibility.present? %>
+                    <%@bank.state_eligibility.each do |state|%>
+                      <%= state%>
+                    <%end%>
+                  <%end%>
+                  </span>
               </p>
              </div>
            </div> 
