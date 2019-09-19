@@ -71,7 +71,10 @@
                 <span class="bank-content">
                   <%if @bank.state_eligibility.present? %>
                     <%@bank.state_eligibility.each do |state|%>
-                      <%= state%>
+                      <%= state %>
+                      <% if(state != @bank.state_eligibility.last) %>
+                        ,
+                      <% end %>
                     <%end%>
                   <%end%>
                   </span>
