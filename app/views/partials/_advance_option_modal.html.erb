@@ -106,7 +106,7 @@
                               end%>
                               <tr class="total-point">
                                 <td style="width: 62%">Total Points</td>
-                                <td><b><%= number_to_currency(program[:adj_points].sum,  :unit=> "", precision: 3) %> pts</b></td>
+                                <td><b><%= number_to_currency(program[:starting_base_point] + program[:adj_points].sum,  :unit=> "", precision: 3) %> pts</b></td>
                               </tr>
                               <tr class="closing-cost">
                                 <td style="width: 62%; border: 0; padding-top: 10px; padding-bottom: 5px;">Total Closing Cost</td>
