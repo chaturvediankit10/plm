@@ -2,7 +2,7 @@
 <%unless request.url.split("/").last == 'results'  %>
   <%= render partial: "partials/basic_search" %>
 <% else %>  
-  <div class="inner-search">
+  <div class="inner-search results-inner">
   <%= render partial: "partials/basic_search" %>
   </div>
 <%end%>

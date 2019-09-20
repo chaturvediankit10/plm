@@ -146,11 +146,11 @@
 }
 
 @media (min-width: 768px) {
-  /*.reviews .active.center .item {
-      -webkit-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-      transform: scale(1.05);
-  }*/
+  .reviews .active.center .item {
+      -webkit-transform: scale(1.09);
+      -ms-transform: scale(1.09);
+      transform: scale(1.09);
+  }
 }
 
 .reviews .item {

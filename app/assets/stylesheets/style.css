@@ -3106,8 +3106,11 @@ input.error {
   background-color: transparent;
   position: relative;
   z-index: 99999;
+  color: #888;
 }
-
+#expert-app-overlay .select-arrow:before{
+  color: #888;
+}
 #expert-app-overlay .form-group label span {
   font-size: 14px;
   font-weight: normal;
@@ -3116,7 +3119,7 @@ input.error {
 }
 
 #expert-app-overlay .modal-body {
-  padding: 15px 30px;
+  padding: 15px 25px;
 }
 #expert-app-overlay p{
   text-align: left;
@@ -3147,13 +3150,14 @@ input.error {
 }
 
 .custm-file-input span {
-  background: #d6d6d9;
+  background: #fff;
   border-radius: 3px;
   float: left;
-  color: #111;
-  padding: 10px 25px;
+  color: #888;
+  padding: 11px 25px;
   margin: 0 0 0 0;
   width: 100%;
+  border: 1px solid #ddd;
 }
 
 .custm-file-input span .fa {
@@ -3799,6 +3803,18 @@ a.seo-loan-aftr-cntnt-link {
   padding: 10px 0;
   background-position: center;
 }
+.inner-search.results-inner .banner{
+  padding: 0;
+}
+.inner-search.results-inner .search-main {
+    padding: 10px 0 20px;
+}
+.inner-search.results-inner .search-adv-option-box{
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
+
 .inner-search .banner .search-main{
   top: 0;
 }
