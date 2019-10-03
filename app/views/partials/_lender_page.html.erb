@@ -14,72 +14,51 @@
                 <span class="title-head">Bank Name:</span>
                 <span class="bank-content"><%= @bank.name%></span>
               </p>
-             </div>
-             <div class="col-md-4 col-sm-6">
               <p>
                 <span class="title-head">NMLS:</span>
                 <span class="bank-content"><%= Program::NMLS[@bank.name] %></span>
               </p>
-             </div>
-             <div class="col-md-4 col-sm-6">
-               <p>
+              <p>
                 <span class="title-head">Phone:</span>
                 <span class="bank-content"><%= @bank.phone%></span>
               </p>
-             </div>
 
-              <div class="col-md-4 col-sm-6">
-               <p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <p>
                 <span class="title-head">Address:</span>
                 <span class="bank-content"><%= @bank.address1%></span>
-                </p>
-              </div>
-             <div class="col-md-4 col-sm-6">
-               <p>
-                <span class="title-head">Address2:</span>
-                <span class="bank-content"><%= @bank.address2%></span>
               </p>
-             </div>
-             <div class="col-md-4 col-sm-6">
-               <p>
+              <p>
                 <span class="title-head">City:</span>
                 <span class="bank-content"><%= @bank.city%></span>
               </p>
-             </div>
-             <div class="col-md-4 col-sm-6">
-               <p>
-                <span class="title-head">State:</span>
-                <span class="bank-content"><%= @bank.state%></span>
-              </p>
-             </div>
-             <div class="col-md-4 col-sm-6">
-               <p>
-                <span class="title-head">state code:</span>
-                <span class="bank-content"><%= @bank.state_code%></span>
-              </p>
-             </div>
-
-             <div class="col-md-4 col-sm-6">
-               <p>
+              <p>
                 <span class="title-head">Zip:</span>
                 <span class="bank-content"><%= @bank.zip%></span>
               </p>
-             </div>
-             <div class="col-md-4 col-sm-6">
-               <p>
+
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <p>
+                <span class="title-head">State:</span>
+                <span class="bank-content"><%= @bank.state.capitalize%></span>
+              </p>
+              <p>
                 <span class="title-head">State Eligibility:</span>
                 <span class="bank-content">
                   <%if @bank.state_eligibility.present? %>
-                    <%@bank.state_eligibility.each do |state|%>
+                    <% total_state_eligibility = @bank.state_eligibility.count %>
+                    <%@bank.state_eligibility.each_with_index do |state, index|%>
                       <%= state %>
-                      <% if(state != @bank.state_eligibility.last) %>
+                      <% if((index+1) != total_state_eligibility) %>
                         ,
                       <% end %>
                     <%end%>
                   <%end%>
                   </span>
               </p>
-             </div>
+            </div>
            </div> 
          </div>
     </table>
