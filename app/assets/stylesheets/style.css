@@ -3799,7 +3799,11 @@ a.seo-loan-aftr-cntnt-link {
    color: #fff;
 }
 .inner-search .banner-overlay {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.inner-search .search-main{
+  background: transparent;
+  box-shadow: none;
 }
 .inner-search .banner {
   padding: 10px 0;
