@@ -56,8 +56,10 @@
                                 <%= image_tag exp.image.url(:thumb)%>
                               </div>
                               <h3 class=""><%=exp.first_name%> <%=exp.last_name%></h3>
-                              <i class="fa fa-envelope-o"></i><%= exp.email%><br/>
-                              <i class="fa fa-phone"></i><%=mobile_no_formatting(exp.phone)%>
+                              <p class="item-price"><i class="fa fa-envelope-o"></i><%= exp.email%></p>
+                              <p class="item-phone">
+                                <i class="fa fa-phone"></i><%=mobile_no_formatting(exp.phone)%>
+                              </p>
                             </div>
                           </div>
                         <%end%>

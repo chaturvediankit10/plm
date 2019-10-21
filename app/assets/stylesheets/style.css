@@ -5559,12 +5559,12 @@ span.title-head {
   .desktop-experts .col-xs-12.col-md-3.text-center {
     width: 33%;
   }
-  .mb-expert-img-box {
+  /*.mb-expert-img-box {
     min-height: 100px;
     padding: 10px 0;
     display: inline-block;
     width: 100%;
-  }
+  }*/
   .mb-expert-img-box img {
     max-height: 100%;
   }
@@ -8291,6 +8291,14 @@ span.title-head {
 /*tab css end*/
 
 @media(max-width:767px) {
+  .mb-experts-slider .carousel-control {
+    top: -7%;
+  }
+  .mb-expert-img-box {
+    width: 200px;
+    height: 200px;
+    margin: 0px auto;
+  }
   .desktop-experts {
     display: none;
   }
@@ -8299,6 +8307,13 @@ span.title-head {
   }
   .expert-slider .carousel .item img {
     position: unset !important;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+  }
+  .home-experts h3 {
+    margin-top: 10px;
   }
   .mb-experts-slider .carousel-control.left {
     left: -8px;
@@ -9958,6 +9973,11 @@ label.error-red{
   width: 100%;
   position: relative;
 }
+.expert-slider .carousel .item .img-box img {
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
 .expert-slider .carousel .item img { 
   max-width: 100%;
   max-height: 100%;
@@ -9990,6 +10010,7 @@ label.error-red{
 .expert-slider .carousel .carousel-control {
   height: 22px;
   width: 22px;
+  line-height: 22px;
   background: #a7a6ac;  
     margin: auto 0;
     border-radius: 2px;
