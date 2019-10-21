@@ -10,10 +10,10 @@ module InitializeZipCode
       @zip_code = results.first.postal_code if results.first.postal_code.present?
     end
     city = City.find_by_zip(@zip_code.to_i) if @zip_code.present?
-    @state_code = city.present? ? city.state_code : "All"
-    @city_name = city.present? ? city.city : nil
+    @state_code = city.present? ? city.state_code : "CA"
+    @city_name = city.present? ? city.city : "Mountain View"
     @term = params[:term].present? ? params[:term] : "30"
-    get_expert_list(city)
+    get_expert_list(@city_name, @state_code)
   end
 
   def initialize_zip_code_for_seo_pages
@@ -27,9 +27,10 @@ module InitializeZipCode
       city = City.where(state_code: params[:state], city: @city_name).first
       @zip_code = city.present? ? ('%05d' % city.zip) : ('%05d' % @zip_code)
     end
-    @state_code = city.present? ? city.state_code : "All"
+    @state_code = city.present? ? city.state_code : "CA"
+    @city_name = city.present? ? city.city : "Mountain View"
     @term = params[:term].present? ? params[:term] : "30"
-    get_expert_list(city)
+    get_expert_list(@city_name, @state_code)
   end
 
   def get_expert_list(city_name, state_code)
@@ -41,5 +42,4 @@ module InitializeZipCode
     # @experts = @experts + (expert_all.where.not(id: @experts).sort_by(&:created_at).reverse.first(4-@experts.count)) if (@experts.count<4)
     @experts =  Expert.where( city: city_name, state: state_code, verified: true ).sort_by(&:created_at).reverse
   end
-
 end
