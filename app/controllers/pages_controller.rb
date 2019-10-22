@@ -288,7 +288,7 @@ class PagesController < SearchController
   def expert_city_and_zip
     if request.xhr?
      # city = City.where(state_code: params[:state]).uniq(&:city).sort_by(&:city).pluck(:city,:zip)
-     zip = City.where(city: params[:city]).sort_by(&:zip).pluck(:zip)
+     zip = City.where(city: params[:city], state_code: params[:state]).sort_by(&:zip).pluck(:zip)
      render json: zip.map{ |z|  ('%05d' % z) }
     end
   end

@@ -196,7 +196,7 @@ $(document).ready(function () {
     });
   
       $('.state').change(function(){
-          id_passed = $(".state option:selected").val();
+          var id_passed = $(".state option:selected").val();
           $.ajax({
               url: '/pages/expert_state_and_city',
               type: "GET",
@@ -212,12 +212,13 @@ $(document).ready(function () {
       })
   
       $('.city').change(function(){
-          id_passed = $(".city option:selected").val();
+          var id_passed = $(".city option:selected").val();
+          var state = $(".state option:selected").val();
           $.ajax({
               url: '/pages/expert_city_and_zip',
               type: "GET",
               dataType: 'json',
-              data: {"city" : id_passed},
+              data: {"city" : id_passed, "state": state},
               success: function(response) {
                 $(".zip").empty();
                 $.each(response, function(e,res){
