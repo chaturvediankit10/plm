@@ -8613,6 +8613,23 @@ span.title-head {
   font-weight: 300;
   line-height: 24px;
 }
+.blog-post p a{
+  color: #0000EE;
+  text-decoration: underline;
+}
+
+.blog-post p a:hover {
+  color: #551A8B;
+  text-decoration: none;
+}
+
+.blog-post ul{
+  margin-top: 10px;
+}
+.blog-post ul li {
+  list-style-type: disc; 
+}
+
 .blog-post p strong {
     font-weight: 500;
 }

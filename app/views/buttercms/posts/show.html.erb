@@ -6,7 +6,7 @@
       <div class="blog-post-box">
           <div class="blog-post">
           <!-- Post title -->
-          <h4><%= @post.title %></h4>
+          <h2><b><%= @post.title %></b></h2>
           <!-- Post author -->
           <p class="post-by">
             <%= link_to "#{@post.author.first_name} #{@post.author.last_name}", buttercms_author_path(@post.author.slug) %>
