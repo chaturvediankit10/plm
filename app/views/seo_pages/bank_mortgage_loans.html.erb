@@ -45,9 +45,22 @@
       </div>
     </div>
     <!--Rendering Experts  -->
-  <%if Expert.where(verified: true).count >= 1%>
+  <%if @experts.present? %>
     <%= render 'pages/index'%>
-  <%end%>
+  <%else%>
+    <section class="advertisement-container">
+      <div class="container">
+        <div class="advertisement">
+          <img class="mb-hide" src="/assets/user-pic.png" alt="">
+          <img class="mb-only" src="/assets/user-pic.png" alt="">
+          <h4>Become a mortgage expert on Pureloan.com<br/> for <%= @city_name.present? ? @city_name : "Mountain View" %>, <%= @state_code.present? && @state_code!="All" ? state_full_name(@state_code) : "California" %></h4>
+          <span class="">Reach hundreds of thousands of home <br/>buyers or
+          refi customers every month!</span>
+          <a href="" data-toggle="modal" data-target="#expert-app-overlay" class="dtail-btn">Submit Application</a>
+        </div>
+      </div>
+    </section>
+  <% end %>
     <!-- <div class="row">
     <div class="col-xs-12 col-md-12 home_closing">
       <%#= render partial: "partials/expert_list" %>

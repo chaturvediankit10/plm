@@ -9,7 +9,6 @@
                 <div class="desktop-experts">
                   <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
                     <div class="carousel-inner">
-                      <%if @experts.present?%>
                       <%@experts.each_slice(4).with_index do |exp_arr, index|%>
                             <div class="item carousel-item <%= index==0 ? 'active' : ''%>">
                               <div class="row">
@@ -34,7 +33,6 @@
                               </div>
                             </div>
                         <%end%>
-                      <%end%>
                     </div>
                     <!-- Carousel controls -->
                     <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
